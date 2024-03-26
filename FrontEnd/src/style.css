@@ -22,3 +22,11 @@ body {
     border: 1px solid var(--orange);
     color: var(--orange);
 }
+
+/* NavBar */
+.mobile_checkbox:checked ~ .nav__overlay  {
+    display: block;
+}
+.mobile_checkbox:checked ~ .mobile_navbar {
+    transform: translateX(0);
+}
