@@ -13,9 +13,9 @@ body {
     background-color: var(--orange);
     color: white;
     border-radius: 8px;
-    padding: 10px 12px;
     border: 1px solid;
     font-weight: 500;
+    border-color: var(--orange);
 }
 .btn:hover {
     background-color: var(--pale-orange);
@@ -29,4 +29,8 @@ body {
 }
 .mobile_checkbox:checked ~ .mobile_navbar {
     transform: translateX(0);
+}
+
+.custom-select {
+    appearance: none;
 }
