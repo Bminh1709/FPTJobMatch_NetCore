@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<body>
+<body class="relative">
   <nav class="px-6 md:px-16 py-3 w-full text-sm">
     <div class="hidden lg:block">
         <div class="flex justify-between items-center">
@@ -54,6 +54,7 @@
     </div>
   </nav>
 
+  <!-- Searching box -->
   <div class="px-6 md:px-16">
     <div class="rounded-xl p-5 sm:p-10 bg-cover bg-fixed text-center" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/imgs/fptdiscussion.jpg);">
         <div class="w-full sm:w-11/12 lg:w-4/5 xl:w-3/4 mx-auto">
@@ -125,6 +126,7 @@
     </div>
   </div>
 
+  <!-- Jobs list -->
   <div class="px-6 md:px-16 grid grid-cols-3 gap-2 sm:gap-5 xl:gap-7 mt-8">
     <div class="col-span-1 flex flex-col gap-2">
         <div class="rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:border-MyOrange hover:border-r-8">
@@ -162,7 +164,7 @@
                     <p class="text-xs">2 days ago</p>
                 </div>
             </div>
-            <button class="btn h-fit py-2 px-3">Apply Now</button>
+            <button class="btn h-fit py-2 px-3" id="applyNowBtn">Apply Now</button>
         </div>
         <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
         <div class="text-sm flex flex-col gap-2">
@@ -244,6 +246,66 @@
     </div>
   </div>
 
+  <!-- CV Form -->
+  <div id="cvFormPopup" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+    <div class="bg-white mx-auto w-11/12 md:w-3/4 xl:w-1/2 h-fit rounded-lg mt-14">
+        <div class="flex gap-4 items-center justify-between p-3">
+            <p class="text-MyOrange text-lg font-semibold">Java Developer (Spring, MySQL) at Giao Hang Tiet Kiem</p>
+            <button for="" id="closeFormBtn" class="text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyOrange"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+        <div class="px-5 pb-4">
+            <div class="py-3 text-center">
+                <p class="font-medium">Review your application</p>
+                <p class="text-sm text-MyDarkGrey">The employer will also receive a copy of your profile</p>
+            </div>
+            <div class="h-0.5 w-full bg-MyPaleGrey"></div>
+            <div class="py-4">
+                <p class="font-medium">Contact Info</p>
+                <p class="text-sm text-MyDarkGrey">You should verify your information correcly</p>
+                <div class="flex flex-col gap-4 mt-3">
+                    <div class="flex flex-wrap sm:flex-nowrap gap-4">
+                        <div class="w-full border border-MyOrange rounded-sm py-1.5 px-3">
+                            <p class="text-xs text-MyDarkGrey">Your name <span class="text-red-600">*</span></p>
+                            <input type="text" class="w-full outline-none text-sm font-medium" placeholder="Enter your full name">
+                        </div>
+                        <div class="w-full border border-MyOrange rounded-sm py-1.5 px-3">
+                            <p class="text-xs text-MyDarkGrey">Your phone number <span class="text-red-600">*</span></p>
+                            <input type="text" class="w-full outline-none text-sm font-medium" placeholder="Enter your phone number">
+                        </div>
+                    </div>
+                    <div class="w-full border border-MyOrange rounded-sm py-1.5 px-3">
+                        <p class="text-xs text-MyDarkGrey">Your gmail <span class="text-red-600">*</span></p>
+                        <input type="text" class="w-full outline-none text-sm font-medium" placeholder="Enter your email address">
+                    </div>
+                </div>
+            </div>
+            <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+            <div class="py-4">
+                <p class="font-medium">Resume</p>
+                <p class="text-sm text-MyDarkGrey">You should verify your information correcly</p>
+                <div class="flex flex-wrap sm:flex-nowrap gap-2 mt-3 text-sm">
+                    <div class="w-full px-5 pb-8 pt-4 rounded-md border border-MyOrange bg-MyPaleOrange flex flex-col gap-2">
+                        <p class="font-medium">Upload your resume</p>
+                        <input type="file">
+                        <p class="text-xs text-MyDarkGrey">We accept .doc .docx, .pdf files, no password protected, up to 3MB</p>
+                    </div>
+                    <a href="" class="btn w-full sm:w-fit p-3 flex items-center justify-center">View</a>
+                </div>
+            </div>
+            <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+            <div class="py-4">
+                <p class="font-medium">Resume</p>
+                <p class="text-sm text-MyDarkGrey">You should verify your information correcly</p>
+                <textarea  name="" id="" rows="5" class="resize-none p-2 outline-MyOrange text-sm w-full border border-MyOrange rounded-md mt-3"></textarea>
+            </div>
+            <button class="btn w-full py-3 text-sm">Submit My CV</button>
+        </div>
+        
+    </div>
+  </div>
+
+  <!-- Advertisements -->
   <div class="px-6 md:px-16 py-24">
     <div class="h-80 p-12 rounded-lg bg-cover flex relative" style="background-image: linear-gradient(to right, #000000bf, transparent), url(/imgs/fptdiscussion.jpg);">
         <div class="col-span-1 flex flex-col justify-center w-full sm:w-1/2">
@@ -318,4 +380,24 @@
 </footer>
   
 </body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+
+$(document).ready(function() {
+  const applyNowBtn = $('#applyNowBtn');
+  const cvFormPopup = $('#cvFormPopup');
+  const closeFormBtn = $('#closeFormBtn');
+
+  applyNowBtn.on('click', function() {
+    cvFormPopup.removeClass('hidden');
+  });
+
+  closeFormBtn.on('click', function() {
+    cvFormPopup.addClass('hidden');
+  })
+
+});
+
+
+</script>
 </html>
