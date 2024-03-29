@@ -24,10 +24,10 @@ body {
 }
 
 /* NavBar */
-.mobile_checkbox:checked ~ .nav__overlay  {
+#mobile_checkbox:checked ~ .nav__overlay  {
     display: block;
 }
-.mobile_checkbox:checked ~ .mobile_navbar {
+#mobile_checkbox:checked ~ .mobile_navbar {
     transform: translateX(0);
 }
 
