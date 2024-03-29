@@ -34,3 +34,7 @@ body {
 .custom-select {
     appearance: none;
 }
+
+#educationInfo:checked ~ .educationInfo {
+    display: block;
+}
