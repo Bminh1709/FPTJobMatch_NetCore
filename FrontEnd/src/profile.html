@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="relative">
+  <nav class="px-6 md:px-16 py-3 w-full text-sm">
+    <div class="hidden lg:block">
+        <div class="flex justify-between items-center">
+            <a><img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32"></a>
+            <div class="flex gap-12">
+              <a href="">Find Jobs</a>
+              <a href="">Company Profiles</a>
+              <a href="">Contacts</a>
+            </div>
+            <div class="flex gap-6">
+              <div class="flex gap-3 items-center font-medium">
+                <a href="">Sign Up</a>
+                <div class="h-5 w-0.5 bg-MyPaleGrey"></div>
+                <a href="">Sign In</a>
+              </div>
+              <a href="" class="btn py-2 px-3">
+                For Recruiters
+              </a>
+            </div>
+        </div>
+    </div>
+    <!-- Responsive navbar -->
+    <div class="flex justify-between items-center lg:hidden">
+        <a><img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32"></a>
+        <input hidden type="checkbox" id="mobile_checkbox" class="mobile_checkbox">
+        <label for="mobile_checkbox" class="hover:cursor-pointer"><i class="text-2xl text-MyOrange fa-solid fa-bars"></i></label>
+        <div class="mobile_navbar fixed z-10 top-0 right-0 h-screen bg-white transform translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="border-b border-MyPaleGrey py-2 flex flex-row-reverse">
+                <label for="mobile_checkbox" class="mr-5 hover:cursor-pointer"><i class="text-3xl text-MyOrange fa-solid fa-xmark"></i></label>
+            </div>
+            <div class="px-20 py-5 flex flex-col justify-between h-full">
+                <div class="flex flex-col items-center gap-6 text-base">
+                    <a href="">Find Jobs</a>
+                    <a href="">Company Profiles</a>
+                    <a href="">Contacts</a>
+                </div>
+                <img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32 mb-14">
+            </div>
+        </div>
+        <label for="mobile_checkbox" class="nav__overlay fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-50 hidden"></label>
+    </div>
+  </nav>
+
+    <div class="px-6 md:px-16 bg-MyVeryPaleGrey min-h-screen">
+   
+        <div class="grid grid-cols-4 gap-6 py-7">
+            <div class="col-span-1">
+                <div class="bg-white p-3 border-t-4 border-MyOrange">
+                    <div class="flex gap-3 items-center">
+                        <div class="border border-MyGrey p-1 rounded-sm">
+                            <img src="/imgs/fptlearn.jpg" alt="" class="w-20 h-20 rounded-sm object-cover">
+                        </div>
+                        <div>
+                            <p class="font-medium text-lg">Bui Minh</p>
+                            <p class="text-sm text-MyDarkGrey">Currently finding a job</p>
+                        </div>
+                        
+                    </div>
+                    <p class="text-sm leading-6 mt-1 mb-5">Lorem ipsum dolor sit amet
+                        consectetur adipisicing elit.
+                        Reprehenderit, eligendi dolorum sequi illum qui unde aspernatur non deserunt</p>
+                    <ul
+                        class="bg-MyPaleOrange py-2 px-3 text-sm">
+                        <li class="flex items-center py-3">
+                            <span>Status</span>
+                            <span class="ml-auto"><span
+                                    class="bg-MyOrange py-1 px-2 rounded text-white text-sm">Active</span></span>
+                        </li>
+                        <li class="flex items-center py-3">
+                            <span>Member since</span>
+                            <span class="ml-auto">Nov 07, 2016</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-white p-5 mt-5">
+                    <p class="text-lg font-bold text-MyOrange mb-5">Social accounts</p>
+                    <div class="text-sm">
+                        <div class="flex gap-3 items-center">
+                            <div class="w-8 flex justify-center">
+                                <i class="text-2xl text-MyOrange fa-brands fa-facebook-f"></i>
+                            </div>
+                            <div class="w-full">
+                                <p class="font-semibold">Facebook account</p>
+                                <input type="text" class="text-MyBlue text-xs underline w-full outline-MyOrange" value="www.facebook.com/bminh1709">
+                            </div>
+                        </div>
+                        <div class="h-0.5 w-full bg-MyPaleGrey my-4"></div>
+                        <div class="flex gap-3 items-center">
+                            <div class="w-8 flex justify-center">
+                                <i class="text-2xl text-MyOrange fa-brands fa-linkedin-in"></i>
+                            </div>
+                            <div class="w-full">
+                                <p class="font-semibold">Linkedin account</p>
+                                <input type="text" class="text-MyBlue text-xs underline w-full outline-MyOrange" value="www.facebook.com/bminh1709">
+                            </div>
+                        </div>
+                        <div class="h-0.5 w-full bg-MyPaleGrey my-4"></div>
+                        <div class="flex gap-3 items-center">
+                            <div class="w-8 flex justify-center">
+                                <i class="text-2xl text-MyOrange fa-brands fa-twitter"></i>
+                            </div>
+                            <div class="w-full">
+                                <p class="font-semibold">Twitter account</p>
+                                <input type="text" class="text-MyBlue text-xs underline w-full outline-MyOrange" value="www.facebook.com/bminh1709">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn text-sm py-2 px-4 mt-6">Update</button>
+                </div>
+            </div>
+
+            <div class="col-span-3">
+                <div class="flex gap-2">
+                    <button class="bg-white py-2 px-4 border rounded-md border-MyGrey hover:border-MyOrange hover:bg-MyPaleOrange">Profile</button>
+                    <button class="bg-white py-2 px-4 border rounded-md border-MyGrey hover:border-MyOrange hover:bg-MyPaleOrange">Manage CVs</button>
+                </div>
+                <div class="mt-3">
+                    <div class="bg-white rounded-md p-6">
+                        <p class="font-bold text-xl mb-5">General Information</p>
+                        <p class="font-medium mb-1">About me</p>
+                        <textarea rows="6" class="text-sm w-full outline-MyOrange focus:p-2">Tincidunt quam neque in cursus viverra orci, dapibus nec tristique. Nullam ut sit dolor consectetur urna, dui cras nec sed. Cursus risus congue arcu aenean posuere aliquam.Et vivamus lorem pulvinar nascetur non. Pulvinar a sed platea rhoncus ac mauris amet. Urna, sem pretium sit pretium urna, senectus vitae. Scelerisque fermentum, cursus felis dui suspendisse velit pharetra. Augue et duis cursus maecenas eget quam lectus. Accumsan vitae nascetur pharetra rhoncus praesent dictum risus suspendisse.</textarea>
+                        <div class="text-sm grid grid-cols-2 gap-6 mt-7">
+                            <div>
+                                <p class="font-medium mb-2">Full Name</p>
+                                <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="Bui Quang Minh">
+                            </div>
+                            <div>
+                                <p class="font-medium mb-2">Email Address</p>
+                                <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="minhbee203@gmail.com">
+                            </div>
+                            <div>
+                                <p class="font-medium mb-2">Phone number</p>
+                                <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="0706162561">
+                            </div>
+                            <div>
+                                <p class="font-medium mb-2">Date Of Birth</p>
+                                <input type="date" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="17/09/2003">
+                            </div>
+                            <div>
+                                <p class="font-medium mb-2">Gender</p>
+                                <select name="" id="" class="w-full custom-select p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange">
+                                    <option value="">Male</option>
+                                    <option value="">Female</option>
+                                    <option value="">Others</option>
+                                </select>
+                            </div>
+                            <div>
+                                <p class="font-medium mb-2">Address</p>
+                                <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="78 Le Tan Trung, Tho Quang, Son Tra">
+                            </div>
+                            <div>
+                                <p class="font-medium mb-2">Educational Level</p>
+                                <select name="" id="" class="w-full custom-select p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange">
+                                    <option value="">High School</option>
+                                    <option value="">Master's Degree</option>
+                                    <option value="">Doctoral Degree</option>
+                                    <option value="">Professional Degrees</option>
+                                    <option value="">Others</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 mt-8 justify-end text-sm">
+                            <button class="btn py-2 px-4" type="submit">Update</button>
+                            <button class="bg-MyPaleOrange border border-MyOrange rounded-lg text-MyOrange py-2 px-4" type="submit">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-md mt-4">
+                        <div class="flex items-center justify-between p-6">
+                            <div>
+                                <p class="font-bold text-xl mb-1">Skills</p>
+                                <p class="text-MyDarkGrey">Introduce your strengths and years of experience</p>
+                            </div>
+                            <label for="educationInfo" class="hover:cursor-pointer"><i class="text-2xl text-MyOrange fa-regular fa-pen-to-square"></i></label>
+                        </div>
+                        <input type="checkbox" id="educationInfo" hidden>
+                        <div class="h-0.5 w-full bg-MyPaleGrey"></div>
+                        <div class="educationInfo hidden p-6">
+                            <ul class="text-sm flex flex-wrap gap-2 mb-5">
+                                <li class="rounded-full px-3 py-2 shadow-normal w-fit">.NET</li>
+                                <li class="rounded-full px-3 py-2 shadow-normal w-fit">Team working</li>
+                                <li class="rounded-full px-3 py-2 shadow-normal w-fit">React JS</li>
+                                <li class="rounded-full px-3 py-2 shadow-normal w-fit">React JS</li>
+                                <li class="rounded-full px-3 py-2 shadow-normal w-fit">React JS</li>
+                            </ul>
+                            <input type="text" placeholder="Type your skill" class="bg-MyPaleOrange outline-MyOrange w-1/3 border border-MyOrange p-2 rounded-md text-sm">
+                            <button type="submit" class="btn py-2 px-3 text-sm"><i class="fa-solid fa-circle-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+  
+</body>
+</html>
