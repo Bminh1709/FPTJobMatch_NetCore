@@ -11,6 +11,7 @@ module.exports = {
         MyPaleGrey: "#f0ecec",
         MyGrey: "#d6d4d4",
         MyDarkGrey: "#8F8F8F",
+        MyGreen: "#50B846"
       },
       boxShadow: {
         'normal': '0px 0px 20px #f0ecec',
