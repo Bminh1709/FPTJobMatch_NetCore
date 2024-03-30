@@ -38,3 +38,8 @@ body {
 #educationInfo:checked ~ .educationInfo {
     display: block;
 }
+
+button.active {
+    background-color: var(--pale-orange);
+    border-color: var(--orange);
+}
