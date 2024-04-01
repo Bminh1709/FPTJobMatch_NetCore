@@ -56,37 +56,54 @@
 
   <div class="min-h-screen bg-cover bg-fixed bg-black w-full py-16" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.54), transparent), url(/imgs/fpthonor.jpg);">
     <div class="bg-white p-9 w-11/12 sm:w-fit rounded-lg mx-auto">
-      <p class="text-MyOrange font-bold text-2xl mb-1">Register</p>
+      <p class="text-MyOrange font-bold text-2xl mb-1">Register for Employer</p>
       <div class="flex gap-1 text-sm">
         <p>Already have an account?</p>
         <a href="/src/signin.html" class="underline text-MyBlue">Sign In</a>
       </div>
       <form action="" class="mt-6">
+        <p class="text-lg font-bold text-MyOrange text-center">Your contact information</p>
         <div class="flex flex-col gap-4">
-          <div class="flex flex-col gap-2">
-              <label for="FullName" class="font-semibold">Full Name</label>
-              <input type="text" id="FullName" placeholder="Type your full name" class="border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
+            <div class="flex flex-col gap-2">
+                <label for="FullName" class="font-semibold">Full Name</label>
+                <input type="text" id="FullName" placeholder="Type your full name" class="border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
             </div>
-          <div class="flex flex-col gap-2">
-            <label for="Email" class="font-semibold">Email Address</label>
-            <input type="text" id="Email" placeholder="Type your gmail" class="border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
-          </div>
-          <div class="flex flex-col md:flex-row gap-5">
-              <div class="flex flex-col gap-2">
-                  <label for="Password" class="font-semibold">Password</label>
-                  <input type="password" id="Password" placeholder="Type your password" class="min-w-64 border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
-              </div>
-              <div class="flex flex-col gap-2">
-                  <label for="PasswordConfirm" class="font-semibold">Password Confirm</label>
-                  <input type="password" id="PasswordConfirm" placeholder="Type your password" class="min-w-64 border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
-              </div>
-          </div>
+            <div class="flex flex-col gap-2">
+              <label for="Email" class="font-semibold">Email Address</label>
+              <input type="text" id="Email" placeholder="Type your gmail" class="border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
+            </div>
+            <div class="flex flex-col md:flex-row gap-5">
+                <div class="flex flex-col gap-2">
+                    <label for="Password" class="font-semibold">Password</label>
+                    <input type="password" id="Password" placeholder="Type your password" class="min-w-64 border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="PasswordConfirm" class="font-semibold">Password Confirm</label>
+                    <input type="password" id="PasswordConfirm" placeholder="Type your password" class="min-w-64 border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
+                </div>
+            </div>
         </div>
         <div class="flex items-center gap-1 mt-3">
-          <input id="showPassword" type="checkbox" class="accent-MyOrange w-3.5 h-3.5">
-          <label for="showPassword" class="text-xs">Show password</label>
+            <input id="showPassword" type="checkbox" class="accent-MyOrange w-3.5 h-3.5">
+            <label for="showPassword" class="text-xs">Show password</label>
         </div>
-        <div class="flex items-center gap-1 mt-3 mb-5">
+        <p class="text-lg font-bold text-MyOrange text-center mt-7">Company information</p>
+        <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-2">
+                <label for="CompanyName" class="font-semibold">Company Name</label>
+                <input type="text" id="CompanyName" placeholder="Type your full name" class="border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
+            </div>
+            <div class="flex flex-col gap-2">
+                <label for="CompanyAddress" class="font-semibold">Location</label>
+                <select name="" id="" class="custom-select border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
+                    <option value="">Da Nang</option>
+                    <option value="">Ha Noi</option>
+                    <option value="">Ho Chi Minh</option>
+                    <option value="">Others</option>
+                </select>
+            </div>
+        </div>
+        <div class="flex items-center gap-1 my-5">
           <input id="policy" type="checkbox" class="accent-MyOrange w-3.5 h-3.5">
           <label for="policy" class="text-xs">I have read and agree to your <span class="underline font-semibold">Terms of use</span> and <span class="underline font-semibold">Privacy Policy</span></label>
         </div>
@@ -172,4 +189,16 @@
   </footer>
   
 </body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#showPassword').change(function() {
+            const isChecked = $(this).prop('checked');
+            const inputType = isChecked ? 'text' : 'password';
+            $('#Password, #PasswordConfirm').each(function() {
+                $(this).attr('type', inputType);
+            });
+        });
+    });
+</script>
 </html>

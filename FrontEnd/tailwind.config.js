@@ -7,6 +7,7 @@ module.exports = {
         MyOrange: "#F2721E",
         MyPaleOrange: "#fef1e8",
         MyBlue: "#024FA0",
+        MyPaleBlue: "#dfebf5",
         MyVeryPaleGrey: "#f7f7f7",
         MyPaleGrey: "#f0ecec",
         MyGrey: "#d6d4d4",
