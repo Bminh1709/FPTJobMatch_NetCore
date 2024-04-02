@@ -2,7 +2,12 @@
     --orange: #F2721E;
     --pale-orange: #fef1e8 ;
     --dark-blue: #1F2636;
+    --pale-blue: #dfebf5;
     --blue: #024FA0;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -54,10 +59,17 @@ body {
 #educationInfo:checked ~ .educationInfo {
     display: block;
 }
+#socialLink:checked ~ .socialLink {
+    display: block;
+}
 
-button.active {
+.btnOrange.active {
     background-color: var(--pale-orange);
     border-color: var(--orange);
+}
+.btnBlue.active {
+    background-color: var(--pale-blue);
+    border-color: var(--blue);
 }
 
 #jobType_select:hover #jobType_options {
