@@ -85,47 +85,44 @@
                         </li>
                     </ul>
                 </div>
-                <div class="bg-white p-5 mt-5">
+                <div class="bg-white p-5 pb-8 mt-5">
                     <p class="text-lg font-bold text-MyOrange mb-5">Social accounts</p>
-                    <div class="te min-w-44xt-sm">
+                    <div class="flex flex-col gap-4 text-sm">
                         <div class="flex gap-3 items-center">
                             <div class="w-8 flex justify-center">
                                 <i class="text-2xl text-MyOrange fa-brands fa-facebook-f"></i>
                             </div>
                             <div class="w-full">
                                 <p class="font-semibold">Facebook account</p>
-                                <input type="text" class="text-MyBlue text-xs underline w-full outline-MyOrange" value="www.facebook.com/bminh1709">
+                                <a href="www.facbook.com/bminh" class="text-MyBlue text-xs underline w-full">www.facbook.com/bminh</a>
                             </div>
                         </div>
-                        <div class min-w-44="h-0.5 w-full bg-MyPaleGrey my-4"></div>
                         <div class="flex gap-3 items-center">
                             <div class="w-8 flex justify-center">
                                 <i class="text-2xl text-MyOrange fa-brands fa-linkedin-in"></i>
                             </div>
                             <div class="w-full">
                                 <p class="font-semibold">Linkedin account</p>
-                                <input type="text" class="text-MyBlue text-xs underline w-full outline-MyOrange" value="www.facebook.com/bminh1709">
+                                <a href="www.facbook.com/bminh" class="text-MyBlue text-xs underline w-full">www.facbook.com/bminh</a>
                             </div>
                         </div>
-                        <div class min-w-44="h-0.5 w-full bg-MyPaleGrey my-4"></div>
                         <div class="flex gap-3 items-center">
                             <div class="w-8 flex justify-center">
                                 <i class="text-2xl text-MyOrange fa-brands fa-twitter"></i>
                             </div>
                             <div class="w-full">
                                 <p class="font-semibold">Twitter account</p>
-                                <input type="text" class="text-MyBlue text-xs underline w-full outline-MyOrange" value="www.facebook.com/bminh1709">
+                                <a href="www.facbook.com/bminh" class="text-MyBlue text-xs underline w-full">www.facbook.com/bminh</a>
                             </div>
                         </div>
                     </div>
-                    <button class="btn text-sm py-2 px-4 mt-6">Update</button>
                 </div>
             </div>
 
             <div class="col-span-4 lg:col-span-5 xl:col-span-6">
                 <div class="flex gap-2 text-sm">
-                    <button id="profileBtn" class="active bg-white py-2 px-4 border rounded-md border-MyGrey hover:border-MyOrange hover:bg-MyPaleOrange">Profile</button>
-                    <button id="manageCvBtn" class="bg-white py-2 px-4 border rounded-md border-MyGrey hover:border-MyOrange hover:bg-MyPaleOrange">Manage CVs</button>
+                    <button id="profileBtn" class="btnOrange active bg-white py-2 px-4 border rounded-md border-MyGrey hover:border-MyOrange hover:bg-MyPaleOrange">Profile</button>
+                    <button id="manageCvBtn" class="btnOrange bg-white py-2 px-4 border rounded-md border-MyGrey hover:border-MyOrange hover:bg-MyPaleOrange">Manage CVs</button>
                 </div>
                 <div id="Profile_section" class="mt-3">
                     <div class="bg-white rounded-md p-6">
@@ -175,6 +172,61 @@
                         <div class="flex gap-3 mt-8 justify-end text-sm">
                             <button class="btn py-2 px-4" type="submit">Update</button>
                             <button class="bg-MyPaleOrange border border-MyOrange rounded-lg text-MyOrange py-2 px-4" type="submit">Cancel</button>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-md mt-4">
+                        <div class="flex items-center justify-between p-6">
+                            <div>
+                                <p class="font-bold text-xl mb-1">Social Links</p>
+                                <p class="text-MyDarkGrey">Introduce your strengths and years of experience</p>
+                            </div>
+                            <label for="socialLink" class="hover:cursor-pointer"><i class="text-2xl text-MyOrange fa-regular fa-pen-to-square"></i></label>
+                        </div>
+                        <input type="checkbox" id="socialLink" hidden>
+                        <div class="h-0.5 w-full bg-MyPaleGrey"></div>
+                        <div class="socialLink hidden p-6">
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="w-full">
+                                    <p class="font-medium mb-2">Company Website</p>
+                                    <div class="relative">
+                                        <div class="absolute text-3xl text-MyOrange h-full flex items-center left-3">
+                                            <i class="fa-solid fa-square-share-nodes"></i>
+                                        </div>
+                                        <input type="text" class="pl-12 w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="minhbee203@gmail.com">
+                                    </div>
+                                </div>
+                                <div class="w-full">
+                                    <p class="font-medium mb-2">Facebook</p>
+                                    <div class="relative">
+                                        <div class="absolute text-3xl text-MyOrange h-full flex items-center left-3">
+                                            <i class="fa-brands fa-square-facebook"></i>
+                                        </div>
+                                        <input type="text" class="pl-12 w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="minhbee203@gmail.com">
+                                    </div>
+                                </div>
+                                <div class="w-full">
+                                    <p class="font-medium mb-2">Twitter</p>
+                                    <div class="relative">
+                                        <div class="absolute text-3xl text-MyOrange h-full flex items-center left-3">
+                                            <i class="fa-brands fa-square-twitter"></i>
+                                        </div>
+                                        <input type="text" class="pl-12 w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="minhbee203@gmail.com">
+                                    </div>
+                                </div>
+                                <div class="w-full">
+                                    <p class="font-medium mb-2">Youtube</p>
+                                    <div class="relative">
+                                        <div class="absolute text-3xl text-MyOrange h-full flex items-center left-3">
+                                            <i class="fa-brands fa-square-youtube"></i>
+                                        </div>
+                                        <input type="text" class="pl-12 w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="minhbee203@gmail.com">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="flex gap-3 mt-8 justify-end text-sm">
+                                <button class="btn py-2 px-4" type="submit">Update</button>
+                                <button class="bg-MyPaleOrange border border-MyOrange rounded-lg py-2 px-4" type="submit">Cancel</button>
+                            </div>
                         </div>
                     </div>
                     <div class="bg-white rounded-md mt-4">
