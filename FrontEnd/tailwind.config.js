@@ -18,6 +18,9 @@ module.exports = {
         'normal': '0px 0px 20px #f0ecec',
         'orange': '8px -8px 5px #F2721E',
       },
+      height: {
+        'job': '500px',
+      }
     },
   },
   plugins: [],
