@@ -62,6 +62,9 @@ body {
 #socialLink:checked ~ .socialLink {
     display: block;
 }
+#passwordReset:checked ~ .passwordReset {
+    display: block;
+}
 
 .btnOrange.active {
     background-color: var(--pale-orange);
@@ -73,5 +76,9 @@ body {
 }
 
 #jobType_select:hover #jobType_options {
+    display: block;
+}
+
+#profile_select:hover #profile_options {
     display: block;
 }

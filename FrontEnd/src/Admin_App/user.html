@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/src/stylesheets/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="/src/stylesheets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="relative">
+  <nav class="px-6 md:px-16 py-3 w-full text-sm">
+    <div class="hidden lg:block">
+        <div class="flex justify-between items-center">
+            <a><img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32"></a>
+            <div class="flex gap-12">
+              <a href="">Find Jobs</a>
+              <a href="">Company Profiles</a>
+              <a href="">Contacts</a>
+            </div>
+            <div class="flex gap-6">
+              <div class="flex gap-3 items-center font-medium">
+                <a href="">Sign Up</a>
+                <div class="h-5 w-0.5 bg-MyPaleGrey"></div>
+                <a href="">Sign In</a>
+              </div>
+              <a href="" class="btn py-2 px-3">
+                For Recruiters
+              </a>
+            </div>
+        </div>
+    </div>
+    <!-- Responsive navbar -->
+    <div class="flex justify-between items-center lg:hidden">
+        <a><img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32"></a>
+        <input hidden type="checkbox" id="mobile_checkbox" class="mobile_checkbox">
+        <label for="mobile_checkbox" class="hover:cursor-pointer"><i class="text-2xl text-MyOrange fa-solid fa-bars"></i></label>
+        <div class="mobile_navbar fixed z-10 top-0 right-0 h-screen bg-white transform translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="border-b border-MyPaleGrey py-2 flex flex-row-reverse">
+                <label for="mobile_checkbox" class="mr-5 hover:cursor-pointer"><i class="text-3xl text-MyOrange fa-solid fa-xmark"></i></label>
+            </div>
+            <div class="px-20 py-5 flex flex-col justify-between h-full">
+                <div class="flex flex-col items-center gap-6 text-base">
+                    <a href="">Find Jobs</a>
+                    <a href="">Company Profiles</a>
+                    <a href="">Contacts</a>
+                </div>
+                <img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32 mb-14">
+            </div>
+        </div>
+        <label for="mobile_checkbox" class="nav__overlay fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-50 hidden"></label>
+    </div>
+  </nav>
+
+  <!-- Searching box -->
+  <div class="px-6 md:px-16">
+    <div class="rounded-xl p-5 sm:p-10 bg-cover bg-fixed text-center" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/imgs/fptdiscussion.jpg);">
+        <div class="w-full sm:w-11/12 lg:w-4/5 xl:w-3/4 mx-auto">
+            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">22 Jobs </span>Available Now</p>
+            <p class="text-white mb-6">Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero repellendus magni, atque delectus molestias quis
+            </p>
+            <div class="flex flex-wrap gap-4 text-white items-center justify-center text-sm font-semibold tracking-widest">
+                <a href="" class="hover:underline">HOME</a>
+                <i class="fa-solid fa-angle-right"></i>
+                <a href="" class="text-MyPaleGrey">USER LIST</a>
+            </div>
+
+        </div>
+    </div>
+  </div>
+
+  <!-- Candidate List -->
+  <div class="h-screen px-6 md:px-16 overflow-x-auto">
+    <div class="flex gap-3 flex-wrap justify-between items-center mt-6">
+        <div>
+            <a class="flex gap-1 items-center hover:underline text-MyBlue hover:cursor-pointer text-sm font-semibold">
+                <i class="fa-solid fa-arrow-left"></i>
+                <p>Back</p>
+            </a>
+            <p class="font-medium text-xl text-MyBlue">User List</p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+            <div class="relative" id="jobType_select">
+                <div class="hover:cursor-pointer text-sm flex items-center justify-between w-36 py-3 px-4 border border-MyBlue rounded-md">
+                    <p>Job Type</p>
+                    <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
+                </div>
+                <ul id="jobType_options" class="hidden w-36 absolute text-sm">
+                    <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">Full Time</li>
+                    <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">Part Time</li>
+                    <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">Remote</li>
+                </ul>
+            </div>
+            <div class="relative" id="jobType_select">
+                <div class="hover:cursor-pointer text-sm flex items-center justify-between w-36 py-3 px-4 border border-MyBlue rounded-md">
+                    <p>Sorting</p>
+                    <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
+                </div>
+                <ul id="jobType_options" class="hidden w-36 absolute text-sm">
+                    <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">Full Time</li>
+                    <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">Part Time</li>
+                    <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">Remote</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <table class="w-full mt-5">
+        <thead class="text-left text-MyBlue bg-MyPaleBlue">
+            <tr class="">
+                <th class="py-3 pl-9 rounded-tl-md">User</th>
+                <th class="py-3">Phone</th>
+                <th class="py-3">Status</th>
+                <th class="py-3">Date Applied</th>
+                <th class="py-3 px-5 text-center">Profile</th>
+                <th class="py-3 px-5 rounded-tr-md text-center">Modify</th>
+            </tr>
+        </thead>
+        <tbody class="pt-3">
+            <tr class="border border-MyPaleBlue">
+                <td class="py-5 px-8 min-w-56">
+                    <div class="flex gap-3 items-center">
+                        <img src="/imgs/fptlearn.jpg" alt="" class="w-14 h-14 rounded-full object-cover p-1 border border-MyDarkGrey">
+                        <div class="break-all">
+                            <a href="www" class="font-semibold text-lg hover:underline hover:text-MyBlue">Le Thi Tuyet Giang</a>
+                            <p class="text-sm text-MyDarkGrey">mgmsupport@gmail.com</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="py-5 pr-3">070166256</td>
+                <td class="py-5 pr-3">
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-solid fa-circle text-xs text-MyGreen"></i>
+                        <p>Active</p>
+                    </div>
+                </td>
+                <td class="py-5 pr-3">Mar 31, 2021</td>
+                <td class="view_cvFormSubmitted py-5 text-center text-MyBlue hover:underline hover:cursor-pointer">View</td>
+                <td class="text-xs">
+                    <div class="flex justify-center">
+                        <button id="open_statusForm" class="border border-MyBlue bg-MyPaleBlue py-2 px-3 rounded-lg hover:bg-MyBlue hover:text-white">Change</button>
+                    </div>
+                </td>
+            </tr>
+            <tr class="border border-MyPaleBlue">
+                <td class="py-5 px-8 min-w-56">
+                    <div class="flex gap-3 items-center">
+                        <img src="/imgs/fptlearn.jpg" alt="" class="w-14 h-14 rounded-full object-cover p-1 border border-MyDarkGrey">
+                        <div class="break-all">
+                            <a href="www" class="font-semibold text-lg hover:underline hover:text-MyBlue">Le Thi Tuyet Giang</a>
+                            <p class="text-sm text-MyDarkGrey">mgmsupport@gmail.com</p>
+                        </div>
+                    </div>
+                </td>
+                <td class="py-5 pr-3">070166256</td>
+                <td class="py-5 pr-3">
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-solid fa-circle text-xs text-MyOrange"></i>
+                        <p>Suspicision</p>
+                    </div>
+                </td>
+                <td class="py-5 pr-3">Mar 31, 2021</td>
+                <td class="view_cvFormSubmitted py-5 text-center text-MyBlue hover:underline hover:cursor-pointer">View</td>
+                <td class="text-xs">
+                    <div class="flex justify-center">
+                        <button class="border border-MyBlue bg-MyPaleBlue py-2 px-3 rounded-lg hover:bg-MyBlue hover:text-white">Change</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul class="mt-7 flex justify-end gap-2 text-sm font-medium text-MyBlue">
+        <li class="border border-MyBlue rounded-md w-7 h-7 flex items-center justify-center hover:bg-MyBlue hover:text-white hover:cursor-pointer"><i class="fa-solid fa-angle-left"></i></li>
+        <li class="border border-MyBlue rounded-md w-7 h-7 flex items-center justify-center hover:bg-MyBlue hover:text-white hover:cursor-pointer">1</li>
+        <li class="border border-MyBlue rounded-md w-7 h-7 flex items-center justify-center hover:bg-MyBlue hover:text-white hover:cursor-pointer">2</li>
+        <li class="border border-MyBlue rounded-md w-7 h-7 flex items-center justify-center hover:bg-MyBlue hover:text-white hover:cursor-pointer">3</li>
+        <li class="border border-MyBlue rounded-md w-7 h-7 flex items-center justify-center hover:bg-MyBlue hover:text-white hover:cursor-pointer"><i class="fa-solid fa-angle-right"></i></li>
+      </ul>
+  </div>
+
+
+    <!-- Modify Status -->
+    <div id="statusForm" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+        <div class="bg-white mx-auto w-1/4 h-fit rounded-lg mt-28">
+            <div class="flex gap-4 items-center justify-between px-5 py-3">
+                <p class="text-MyBlue text-lg font-semibold">Confirm Deletion</p>
+                <button id="close_statusForm" class="text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyBlue"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+            <div class="px-5 py-3">
+                <p class="">Are you sure you would like to delete this profile from the database? This action cannot be undone.</p>
+                <div class="flex gap-2 justify-end mt-6">
+                    <button id="cancel_statusForm" class=" rounded-lg border border-MyBlue bg-MyPaleBlue py-2 px-5">Cancel</button>
+                    <button class="border border-MyBlue bg-MyBlue text-white rounded-lg hover:bg-MyPaleBlue hover:text-MyBlue py-2 px-5">Change</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+
+$(document).ready(function() {
+  const statusForm = $('#statusForm');
+  const close_statusForm = $('#close_statusForm');
+  const cancel_statusForm = $('#cancel_statusForm');
+  const open_statusForm = $('#open_statusForm');
+
+  open_statusForm.on('click', function() {
+    statusForm.removeClass('hidden');
+  });
+
+  close_statusForm.on('click', function() {
+    statusForm.addClass('hidden');
+  });
+  cancel_statusForm.on('click', function() {
+    statusForm.addClass('hidden');
+  })
+
+});
+
+</script>
+</html>
