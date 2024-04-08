@@ -1,0 +1,96 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|d:\\greenwich subjects\\1670 application development\\asm1\\source\\backend\\fptjobmatch\\fptjobmatch\\areas\\admin\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|solutionrelative:fptjobmatch\\areas\\admin\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|d:\\greenwich subjects\\1670 application development\\asm1\\source\\backend\\fptjobmatch\\fptjobmatch\\areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|solutionrelative:fptjobmatch\\areas\\admin\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|d:\\greenwich subjects\\1670 application development\\asm1\\source\\backend\\fptjobmatch\\fptjobmatch\\areas\\employer\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|solutionrelative:fptjobmatch\\areas\\employer\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0D59E778-761C-4E96-A1CF-558061EEACBE}|FPT.Models\\FPT.Models.csproj|d:\\greenwich subjects\\1670 application development\\asm1\\source\\backend\\fptjobmatch\\fpt.models\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0D59E778-761C-4E96-A1CF-558061EEACBE}|FPT.Models\\FPT.Models.csproj|solutionrelative:fpt.models\\company.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\Areas\\Admin\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "FPTJobMatch\\Areas\\Admin\\Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\Areas\\Admin\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "FPTJobMatch\\Areas\\Admin\\Views\\Home\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-08T09:29:25.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "FPTJobMatch\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "ToolTip": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "FPTJobMatch\\Areas\\Admin\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-08T09:29:20.12Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Company.cs",
+              "DocumentMoniker": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Models\\Company.cs",
+              "RelativeDocumentMoniker": "FPT.Models\\Company.cs",
+              "ToolTip": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Models\\Company.cs",
+              "RelativeToolTip": "FPT.Models\\Company.cs",
+              "ViewState": "AQIAAAkAAAAAAAAAAAAAABAAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-08T09:19:53.487Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\Areas\\Employer\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "FPTJobMatch\\Areas\\Employer\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\Areas\\Employer\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "FPTJobMatch\\Areas\\Employer\\Controllers\\AccountController.cs",
+              "ViewState": "AQIAAC8AAAAAAAAAAAAgwD0AAABQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-08T09:18:45.868Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

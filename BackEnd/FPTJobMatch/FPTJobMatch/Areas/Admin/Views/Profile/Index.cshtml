@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="px-6 md:px-16 mb-40">
+
+    <!-- Searching box -->
+    <div class="rounded-xl p-5 sm:p-10 bg-cover bg-fixed text-center" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/imgs/fptdiscussion.jpg);">
+        <div class="w-full sm:w-11/12 lg:w-4/5 xl:w-3/4 mx-auto">
+            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">22 Jobs </span>Available Now</p>
+            <div class="mt-5 flex flex-wrap gap-4 text-white items-center justify-center text-sm font-semibold tracking-widest">
+                <a href="" class="hover:underline">HOME</a>
+                <i class="fa-solid fa-angle-right"></i>
+                <a href="" class="text-MyPaleGrey">USER LIST</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile -->
+    <div id="" class="mt-3">
+        <div class="rounded-xl">
+            <div id="Profile_section" class="mt-3">
+                <div class="border border-MyGrey bg-white rounded-md p-6">
+                    <p class="font-bold text-xl mb-5">General Information</p>
+                    <p class="font-semibold mb-1">About me</p>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-7">
+                        <div>
+                            <p class="font-medium mb-2">Full Name</p>
+                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="Bui Quang Minh">
+                        </div>
+                        <div>
+                            <p class="font-medium mb-2">Email Address</p>
+                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="minhbee203@gmail.com">
+                        </div>
+                    </div>
+                    <div class="flex gap-3 mt-8 justify-end text-sm">
+                        <button class="rounded-lg bg-MyBlue text-white py-2 px-4" type="submit">Update</button>
+                        <button class="bg-MyPaleBlue border border-MyBlue rounded-lg py-2 px-4" type="submit">Cancel</button>
+                    </div>
+                </div>
+                <div class="border border-MyGrey bg-white rounded-md mt-4">
+                    <div class="flex items-center justify-between p-6">
+                        <div>
+                            <p class="font-bold text-xl mb-1">Password</p>
+                            <p class="text-MyDarkGrey">Introduce your strengths and years of experience</p>
+                        </div>
+                        <label for="passwordReset" class="hover:cursor-pointer text-2xl text-MyBlue"><i class="fa-regular fa-pen-to-square"></i></label>
+                    </div>
+                    <input type="checkbox" id="passwordReset" hidden>
+                    <div class="h-0.5 w-full bg-MyVeryPaleGrey"></div>
+                    <div class="passwordReset hidden p-6">
+                        <div class="flex flex-wrap gap-6">
+                            <div class="w-full">
+                                <p class="font-medium mb-2">Company Website</p>
+                                <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="minhbee203@gmail.com">
+                            </div>
+                            <div class="flex w-full gap-6">
+                                <div class="w-full">
+                                    <p class="font-medium mb-2">Company Website</p>
+                                    <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="minhbee203@gmail.com">
+                                </div>
+                                <div class="w-full">
+                                    <p class="font-medium mb-2">Company Website</p>
+                                    <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="minhbee203@gmail.com">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 mt-8 justify-end text-sm">
+                            <button class="rounded-lg bg-MyBlue text-white py-2 px-4" type="submit">Update</button>
+                            <button class="bg-MyPaleBlue border border-MyBlue rounded-lg py-2 px-4" type="submit">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

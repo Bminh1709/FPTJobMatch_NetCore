@@ -1,0 +1,218 @@
+﻿@using FPT.Utility
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> SignInManager
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - FPTJobMatch</title>
+    <link rel="icon" href="~/images/system/FPT.png" type="image/icon type">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        MyOrange: "#F2721E",
+                        MyPaleOrange: "#fef1e8",
+
+                        MyBlue: "#024FA0",
+                        MyPaleBlue: "#dfebf5",
+
+                        MyVeryPaleGrey: "#f7f7f7",
+                        MyPaleGrey: "#f0ecec",
+                        MyGrey: "#d6d4d4",
+                        MyDarkGrey: "#8F8F8F",
+
+                        MyGreen: "#51b748"
+                    },
+                    boxShadow: {
+                        'normal': '0px 0px 20px #f0ecec',
+                        'orange': '8px -8px 5px #F2721E',
+                    },
+                    height: {
+                        'job': '500px',
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body>
+    <button onclick="backToTopFunction()" title="Go to top" id="backToTop-btn" class="hidden fixed z-10 bottom-6 right-6 text-xl bg-MyOrange rounded-lg text-white px-3 py-2 "><i class="fa-solid fa-circle-arrow-up"></i></button>
+    <nav class="px-6 md:px-16 py-2 w-full text-sm">
+        <div class="hidden lg:block">
+            <div class="flex justify-between items-center">
+                <a><img src="~/images/system/blueLogo.png" alt="FPT Logo" class="w-32"></a>
+                <div class="flex gap-12 font-medium">
+                    @if (User.IsInRole(SD.Role_Admin))
+                    {
+                        <a href="" class="hover:text-MyOrange">User List</a>
+                        <a href="" class="hover:text-MyOrange">Categories</a>
+                        <a href="" class="hover:text-MyOrange">Profile</a>
+                    }
+                    else if (User.IsInRole(SD.Role_Employer))
+                    {
+                        <a href="" class="hover:text-MyOrange">Job List</a>
+                        <a href="" class="hover:text-MyOrange">Profile</a>
+                    } else
+                    {
+                        <a href="" class="hover:text-MyOrange">Jobs List</a>
+                        <a href="" class="hover:text-MyOrange">Top Companies</a>
+                    }
+                    <a href="" class="hover:text-MyOrange">Contacts</a>
+                    <a href="" class="hover:text-MyOrange">FAQ</a>
+                </div>
+                 
+
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <div class="relative" id="profile_select">
+                        <div class="flex items-center gap-2 text-MyBlue hover:cursor-pointer">
+                            <img src="~/images/system/fptlearn.jpg" alt="" class="h-10 w-10 rounded-full">
+                            <i class="fa-solid fa-sort-down"></i>
+                        </div>
+                        <div id="profile_options" class="hidden flex-col w-36 absolute text-sm right-0 pt-2">
+                            <a href="www.facebook.com" class="py-3 px-4 bg-MyPaleBlue rounded-t-md hover:bg-MyBlue hover:text-white">Profile</a>
+                            <a href="www.facebook.com" class="py-3 px-4 bg-MyPaleBlue rounded-b-md hover:bg-MyBlue hover:text-white">Log Out</a>
+                        </div>
+                    </div>
+                } else
+                {
+                    <div class="flex gap-6">
+                        <div class="flex gap-3 items-center font-medium">
+                            <a asp-area="JobSeeker" asp-controller="SignUp" asp-action="Index">Sign Up</a>
+                            <div class="h-5 w-0.5 bg-MyPaleGrey"></div>
+                            <a asp-controller="Access" asp-action="Index">Sign In</a>
+                        </div>
+                        <a asp-area="Employer" asp-controller="SignUp" asp-action="Index" class="btn py-2 px-3">
+                            For Recruiters
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- Responsive navbar -->
+        <div class="flex justify-between items-center lg:hidden">
+            <a><img src="~/images/system/blueLogo.png" alt="FPT Logo" class="w-32"></a>
+            <input hidden type="checkbox" id="mobile_checkbox" class="mobile_checkbox">
+            <label for="mobile_checkbox" class="hover:cursor-pointer"><i class="text-2xl text-MyOrange fa-solid fa-bars"></i></label>
+            <div class="mobile_navbar fixed z-20 top-0 right-0 h-screen bg-white transform translate-x-full transition-transform duration-300 ease-in-out">
+                <div class="border-b border-MyPaleGrey py-2 flex flex-row-reverse">
+                    <label for="mobile_checkbox" class="mr-5 hover:cursor-pointer"><i class="text-3xl text-MyOrange fa-solid fa-xmark"></i></label>
+                </div>
+                <div class="px-20 py-5 flex flex-col justify-between h-full">
+                    <div class="flex flex-col items-center gap-6 text-base">
+                        @if (User.IsInRole(SD.Role_Admin))
+                        {
+                            <a href="" class="hover:text-MyOrange">User List</a>
+                            <a href="#contact" class="hover:text-MyOrange">Categories</a>
+                                <a href="" class="hover:text-MyOrange">Profile</a>
+                        } else if (User.IsInRole(SD.Role_Employer))
+                        {
+                            <a href="" class="hover:text-MyOrange">Job List</a>
+                            <a href="#contact" class="hover:text-MyOrange">Profile</a>
+                        } else
+                        {
+                            <a href="" class="hover:text-MyOrange">Job List</a>
+                            <a href="#contact" class="hover:text-MyOrange">Top Companies</a>
+                        }
+                        <a href="" class="hover:text-MyOrange">Contact</a>
+                        <a href="#contact" class="hover:text-MyOrange">FAQ</a>
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            <a href="" class="hover:text-MyOrange">Logout</a>
+                        } else
+                        {
+                            <a href="" class="hover:text-MyOrange">Sign In</a>
+                            <a href="" class="hover:text-MyOrange">Sign Up</a>
+                            <a href="" class="hover:text-MyOrange">For Recruiter</a>
+                        }
+                    </div>
+                    <img src="~/images/system/blueLogo.png" alt="FPT Logo" class="w-32 mb-14">
+                </div>
+            </div>
+            <label for="mobile_checkbox" class="nav__overlay z-10 fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-50 hidden"></label>
+        </div>
+    </nav>
+
+
+    <div>
+        @RenderBody()
+    </div>
+
+
+    <footer id="contact" class="px-16 bg-MyPaleOrange">
+        <div class="flex flex-wrap gap-5 justify-center sm:justify-between py-6">
+            <img src="~/images/system/blueLogo.png" alt="FPT-Logo" class="w-32">
+            <div class="text-3xl text-MyOrange flex gap-3">
+                <a target="_blank" href="https://www.linkedin.com/in/minh-bui-166979272/" class=""><i class="fa-brands fa-linkedin"></i></a>
+                <a target="_blank" href="https://www.facebook.com/bmint1709/" class=""><i class="fa-brands fa-square-facebook"></i></a>
+                <a target="_blank" href="https://www.youtube.com/channel/UCyK6v3wVuhNz0EMI9fAHrsw" class=""><i class="fa-brands fa-square-youtube"></i></a>
+            </div>
+        </div>
+        <div class="w-full h-0.5 bg-MyPaleGrey"></div>
+        <div class="flex flex-wrap justify-between gap-7 py-10">
+            <p class="text-sm w-full lg:w-2/5">
+                Business Registration Certificate No. 0101778163 issued by Hanoi Department of Planning and Investment on July 28, 2005
+                <br><br>
+                License to provide telecommunications services No. 255/GP-CVT dated November 7, 2022
+                <br><br>
+                FPT Telecommunications Joint Stock Company
+                <br>
+                Contact address: 9th Floor, Block A, FPT Cau Giay Building, 10 Pham Van Bach, Cau Giay District, City. Hanoi
+                <br>Email: hotrokhachhang@fpt.com
+                <br>Contact phone number: 024 7300 2222
+                <br>Name of representative: Mr. Hoang Viet Anh
+            </p>
+            <div>
+                <p class="text-MyOrange font-semibold text-lg">Top Hiring Companies</p>
+                <div class="flex flex-col gap-2 mt-3">
+                    <a href="">FPT Software</a>
+                    <a href="">MGM Technology</a>
+                    <a href="">Apple Inc</a>
+                    <a href="">STI Solution</a>
+                    <a href="">NashTech</a>
+                </div>
+            </div>
+            <div>
+                <p class="text-MyOrange font-semibold text-lg">Hot Job Categories</p>
+                <div class="flex flex-col gap-2 mt-3">
+                    <a href="">Marketing</a>
+                    <a href="">Software Development</a>
+                    <a href="">English Teacher</a>
+                    <a href="">Digital Marketing Manager</a>
+                    <a href="">Netwwork Security</a>
+                </div>
+            </div>
+            <div>
+                <p class="text-MyOrange font-semibold text-lg">FPT Ecosystem</p>
+                <div class="flex flex-col gap-2 mt-3">
+                    <a href="">Technology</a>
+                    <a href="">Telecommunication</a>
+                    <a href="">Education</a>
+                    <a href="">Member company</a>
+                </div>
+            </div>
+        </div>
+        <div class="w-full h-0.5 bg-MyPaleGrey"></div>
+        <div class="py-5 flex flex-wrap gap-5 justify-between text-xs">
+            <p>Copyright © FPT</p>
+            <a href="mailto:minhbee203@gmail.com" class="text-MyBlue underline">tuyendungfpt@fpt.com.vn</a>
+            <a href="">Liên hệ & Trợ giúp</a>
+        </div>
+    </footer>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

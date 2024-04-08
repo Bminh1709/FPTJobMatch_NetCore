@@ -1,0 +1,398 @@
+﻿@{
+    ViewData["Title"] = "Jobs";
+}
+
+<div class="px-6 md:px-16">
+    <!-- Searching box -->
+    <div class="rounded-xl p-5 sm:p-10 bg-cover bg-fixed text-center" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/images/system/fptdiscussion.jpg);">
+        <div class="w-full sm:w-11/12 lg:w-4/5 xl:w-3/4 mx-auto">
+            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">22 Jobs </span>Available Now</p>
+            <p class="text-white mb-6">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero repellendus magni, atque delectus molestias quis
+            </p>
+            <form action="" class="flex flex-col gap-3 w-full">
+                <div class="flex flex-col sm:flex-row gap-5">
+                    <div class="flex w-full h-14">
+                        <div class="relative">
+                            <div class="absolute h-full flex left-3 items-center">
+                                <i class="text-xl text-MyGrey fa-solid fa-location-dot"></i>
+                            </div>
+                            <div class="absolute h-full flex right-3 items-center">
+                                <i class="text-xl text-MyGrey fa-solid fa-angle-down"></i>
+                            </div>
+                            <select name="" id="" class="h-full custom-select outline-none rounded-l-md w-40 lg:w-48 pl-10 text-MyDarkGrey font-medium hover:cursor-pointer">
+                                <option value="">All Cities</option>
+                                <option value="">Ha Noi</option>
+                                <option value="">Da Nang</option>
+                                <option value="">Ho Chi Minh</option>
+                            </select>
+                        </div>
+                        <div class="bg-white flex items-center pr-4">
+                            <div class="w-0.5 h-3/5 bg-MyPaleGrey"></div>
+                        </div>
+                        <input type="text" placeholder="Type the keyword you want to search" class="outline-none rounded-r-md w-full pr-4">
+                    </div>
+                    <button type="submit" class="flex items-center justify-center gap-2 btn px-8 lg:px-11 py-4"><i class="fa-solid fa-magnifying-glass"></i><p>Search</p></button>
+                </div>
+                <div class="flex flex-wrap gap-5 mt-3 mx-auto justify-center">
+                    <div class="relative flex w-fit">
+                        <select name="" id="" class="h-full custom-select outline-none rounded-md w-40 p-3 font-medium hover:cursor-pointer">
+                            <option value="">All Cities</option>
+                            <option value="">Ha Noi</option>
+                            <option value="">Da Nang</option>
+                            <option value="">Ho Chi Minh</option>
+                        </select>
+                        <div class="absolute top-3.5 right-3">
+                            <i class="text-xl text-MyGrey fa-solid fa-angle-down"></i>
+                        </div>
+                    </div>
+                    <div class="relative flex w-fit">
+                        <select name="" id="" class="h-full custom-select outline-none rounded-md w-40 p-3 font-medium hover:cursor-pointer">
+                            <option value="">All Cities</option>
+                            <option value="">Ha Noi</option>
+                            <option value="">Da Nang</option>
+                            <option value="">Ho Chi Minh</option>
+                        </select>
+                        <div class="absolute top-3.5 right-3">
+                            <i class="text-xl text-MyGrey fa-solid fa-angle-down"></i>
+                        </div>
+                    </div>
+                    <div class="relative flex w-fit">
+                        <select name="" id="" class="h-full custom-select outline-none rounded-md w-40 p-3 font-medium hover:cursor-pointer">
+                            <option value="">All Cities</option>
+                            <option value="">Ha Noi</option>
+                            <option value="">Da Nang</option>
+                            <option value="">Ho Chi Minh</option>
+                        </select>
+                        <div class="absolute top-3.5 right-3">
+                            <i class="text-xl text-MyGrey fa-solid fa-angle-down"></i>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Jobs list -->
+    <div class="grid grid-cols-3 gap-2 sm:gap-5 xl:gap-7 mt-8">
+        <div id="leftTab" class="col-span-1 flex flex-col gap-2">
+            <div class="rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:border-MyOrange hover:border-r-8">
+                <div class="flex flex-wrap justify-center md:justify-start gap-3">
+                    <img src="~/images/system/Facebook-logo.png" alt="" class="h-16 w-16 p-4 border border-MyPaleGrey rounded-lg object-contain">
+                    <div>
+                        <p class="font-semibold text-xl">Apple Inc.</p>
+                        <p class="text-xs text-MyDarkGrey">Posted 20 minutes ago</p>
+                    </div>
+                </div>
+                <p class="font-semibold sm:text-xl my-4">Full Stack Engineer</p>
+                <div class="flex items-center gap-5 flex-wrap">
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-regular fa-calendar text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Moday to Saturday</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Da Nang City</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Full Time</p>
+                    </div>
+                </div>
+            </div>
+            <div class="rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:border-MyOrange hover:border-r-8">
+                <div class="flex flex-wrap justify-center md:justify-start gap-3">
+                    <img src="~/images/system/Facebook-logo.png" alt="" class="h-16 w-16 p-4 border border-MyPaleGrey rounded-lg object-contain">
+                    <div>
+                        <p class="font-semibold text-xl">Apple Inc.</p>
+                        <p class="text-xs text-MyDarkGrey">Posted 20 minutes ago</p>
+                    </div>
+                </div>
+                <p class="font-semibold sm:text-xl my-4">Full Stack Engineer</p>
+                <div class="flex items-center gap-5 flex-wrap">
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-regular fa-calendar text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Moday to Saturday</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Da Nang City</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Full Time</p>
+                    </div>
+                </div>
+            </div>
+            <div class="rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:border-MyOrange hover:border-r-8">
+                <div class="flex flex-wrap justify-center md:justify-start gap-3">
+                    <img src="~/images/system/Facebook-logo.png" alt="" class="h-16 w-16 p-4 border border-MyPaleGrey rounded-lg object-contain">
+                    <div>
+                        <p class="font-semibold text-xl">Apple Inc.</p>
+                        <p class="text-xs text-MyDarkGrey">Posted 20 minutes ago</p>
+                    </div>
+                </div>
+                <p class="font-semibold sm:text-xl my-4">Full Stack Engineer</p>
+                <div class="flex items-center gap-5 flex-wrap">
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-regular fa-calendar text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Moday to Saturday</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Da Nang City</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Full Time</p>
+                    </div>
+                </div>
+            </div>
+            <div class="rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:border-MyOrange hover:border-r-8">
+                <div class="flex flex-wrap justify-center md:justify-start gap-3">
+                    <img src="~/images/system/Facebook-logo.png" alt="" class="h-16 w-16 p-4 border border-MyPaleGrey rounded-lg object-contain">
+                    <div>
+                        <p class="font-semibold text-xl">Apple Inc.</p>
+                        <p class="text-xs text-MyDarkGrey">Posted 20 minutes ago</p>
+                    </div>
+                </div>
+                <p class="font-semibold sm:text-xl my-4">Full Stack Engineer</p>
+                <div class="flex items-center gap-5 flex-wrap">
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-regular fa-calendar text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Moday to Saturday</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Da Nang City</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Full Time</p>
+                    </div>
+                </div>
+            </div>
+            <div class="rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:border-MyOrange hover:border-r-8">
+                <div class="flex flex-wrap justify-center md:justify-start gap-3">
+                    <img src="~/images/system/Facebook-logo.png" alt="" class="h-16 w-16 p-4 border border-MyPaleGrey rounded-lg object-contain">
+                    <div>
+                        <p class="font-semibold text-xl">Apple Inc.</p>
+                        <p class="text-xs text-MyDarkGrey">Posted 20 minutes ago</p>
+                    </div>
+                </div>
+                <p class="font-semibold sm:text-xl my-4">Full Stack Engineer</p>
+                <div class="flex items-center gap-5 flex-wrap">
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-regular fa-calendar text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Moday to Saturday</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Da Nang City</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Full Time</p>
+                    </div>
+                </div>
+            </div>
+            <div class="rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:border-MyOrange hover:border-r-8">
+                <div class="flex flex-wrap justify-center md:justify-start gap-3">
+                    <img src="~/images/system/Facebook-logo.png" alt="" class="h-16 w-16 p-4 border border-MyPaleGrey rounded-lg object-contain">
+                    <div>
+                        <p class="font-semibold text-xl">Apple Inc.</p>
+                        <p class="text-xs text-MyDarkGrey">Posted 20 minutes ago</p>
+                    </div>
+                </div>
+                <p class="font-semibold sm:text-xl my-4">Full Stack Engineer</p>
+                <div class="flex items-center gap-5 flex-wrap">
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-regular fa-calendar text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Moday to Saturday</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Da Nang City</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">Full Time</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="rightTab" class="col-span-2">
+            <div class="sticky top-0 h-fit rounded-md border border-MyGrey p-3 sm:p-6">
+                <div class="flex flex-wrap gap-3 justify-between">
+                    <div class="flex flex-wrap gap-4">
+                        <img src="~/images/system/Facebook-logo.png" alt="" class="h-20 w-20 p-3 border border-MyPaleGrey rounded-lg">
+                        <div>
+                            <p class="text-xl font-semibold">Game Economy Designer</p>
+                            <p class="text-sm my-1"><span class="font-semibold">Ubisoft. </span>Da Nang City, Vietnam</p>
+                            <p class="text-xs">2 days ago</p>
+                        </div>
+                    </div>
+                    <button class="btn h-fit py-2 px-3" id="apply_cvFormSubmit">Apply Now</button>
+                    <div class="h-0.5 w-full bg-MyPaleGrey mt-3"></div>
+                </div>
+                <div id="custom-scroll" class="h-job overflow-y-scroll pr-2 pt-5">
+                    <div class="text-sm flex flex-col gap-2">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-earth-asia text-MyGrey text-lg"></i>
+                            <p>Tang 2 Toa nha Machinco, 444 Hoàng hoa thám, tHỤ khuê, Tay Ho, Hà Nội</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-regular fa-clock text-MyGrey text-lg"></i>
+                            <p>Full Time</p>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <p>Skills: </p>
+                            <div class="flex gap-1 flex-wrap text-xs">
+                                <a href="" class="rounded-full px-3 py-1 shadow-normal">.NET</a>
+                                <a href="" class="rounded-full px-3 py-1 shadow-normal">ReactJs</a>
+                                <a href="" class="rounded-full px-3 py-1 shadow-normal">Japanese</a>
+                                <a href="" class="rounded-full px-3 py-1 shadow-normal">Team working</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
+                    <div>
+                        <p class="text-xl font-semibold mb-2">Job Description</p>
+                        <p>This position is responsible for serving as a technical expert; designing, developing and maintaining high profile application software and software tools for large projects and complex applications.This position is also responsible for adhering to and promoting GrapeCity’s vision and values by performing duties in a manner that is consistent with being a team member and supporting the continued growth of the company.</p>
+                    </div>
+                    <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
+                    <div>
+                        <p class="text-xl font-semibold mb-2">Responsibilities</p>
+                        <ul class="list-disc ml-7">
+                            <li>Create, modify and organize next-gen photo realistic textures</li>
+                            <li>Participate in the projects artistic directions</li>
+                            <li>Anticipate and suggest improvements to solve technical issues</li>
+                            <li>Create photorealistic textures from reference and interpret artistic direction from lead</li>
+                            <li>Ability to use efficiently the textures space and to take into consideration the pixel ratio</li>
+                            <li>Texturing, assignation and mapping knowledge is a must</li>
+                            <li>Good understanding of memory and performance constraints, and know how to optimize textures while maintaining high quality</li>
+                            <li>Work closely with Art Director, Lead, Modeler, and Technical Director in achieving desired looks of models</li>
+                        </ul>
+                    </div>
+                    <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
+                    <div>
+                        <p class="text-xl font-semibold mb-2">Your Skills and Experience</p>
+                        <ul class="list-disc ml-7">
+                            <li>Create, modify and organize next-gen photo realistic textures</li>
+                            <li>Participate in the projects artistic directions</li>
+                            <li>Anticipate and suggest improvements to solve technical issues</li>
+                            <li>Create photorealistic textures from reference and interpret artistic direction from lead</li>
+                            <li>Ability to use efficiently the textures space and to take into consideration the pixel ratio</li>
+                            <li>Texturing, assignation and mapping knowledge is a must</li>
+                            <li>Good understanding of memory and performance constraints, and know how to optimize textures while maintaining high quality</li>
+                            <li>Work closely with Art Director, Lead, Modeler, and Technical Director in achieving desired looks of models</li>
+                        </ul>
+                    </div>
+                    <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
+                    <div>
+                        <p class="text-xl font-semibold mb-2">Additional Information</p>
+                        <p>Ubisoft’s 19,000 team members, working across more than 30 countries around the world, are bound by a common mission to enrich players’ lives with original and memorable gaming experiences. Their commitment and talent have brought to life many acclaimed franchises such as Assassin’s Creed, Far Cry, Watch Dogs, Just Dance, Rainbow Six, and many more to come. Ubisoft is an equal opportunity employer that believes diverse backgrounds and perspectives are key to creating worlds where both players and teams can thrive and express themselves. If you are excited about solving game-changing challenges, cutting edge technologies and pushing the boundaries of entertainment, we invite you to join our journey and help us create the unknown.</p>
+                    </div>
+                    <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
+                    <div>
+                        <p class="text-2xl font-semibold">Apple Inc.</p>
+                        <p class="text-sm text-MyDarkGrey">Japanese international enterprise software developer specializing in Microsoft technologies</p>
+                        <div class="flex flex-wrap gap-5 md:gap-10 mt-3">
+                            <div class="font-semibold">
+                                <p class="text-MyDarkGrey text-xs">Company Type</p>
+                                <p class="text-sm">IT Product</p>
+                            </div>
+                            <div class="font-semibold">
+                                <p class="text-MyDarkGrey text-xs">Company Size</p>
+                                <p class="text-sm">100-150</p>
+                            </div>
+                            <div class="font-semibold">
+                                <p class="text-MyDarkGrey text-xs">Working Day</p>
+                                <p class="text-sm">Monday - Sunday</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CV Form -->
+    <div id="cvFormSubmit" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+        <div class="bg-white mx-auto w-11/12 md:w-3/4 xl:w-1/2 h-fit rounded-lg mt-14">
+            <div class="flex gap-4 items-center justify-between p-3">
+                <p class="text-MyOrange text-lg font-semibold">Java Developer (Spring, MySQL) at Giao Hang Tiet Kiem</p>
+                <button for="" id="close_cvFormSubmit" class="text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyOrange"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+            <div class="px-5 pb-4">
+                <div class="py-3 text-center">
+                    <p class="font-medium">Review your application</p>
+                    <p class="text-sm text-MyDarkGrey">The employer will also receive a copy of your profile</p>
+                </div>
+                <div class="h-0.5 w-full bg-MyPaleGrey"></div>
+                <div class="py-4">
+                    <p class="font-medium">Contact Info</p>
+                    <p class="text-sm text-MyDarkGrey">You should verify your information correcly</p>
+                    <div class="flex flex-col gap-4 mt-3">
+                        <div class="flex flex-wrap sm:flex-nowrap gap-4">
+                            <div class="w-full border border-MyOrange rounded-sm py-1.5 px-3">
+                                <p class="text-xs text-MyDarkGrey">Your name <span class="text-red-600">*</span></p>
+                                <input type="text" class="w-full outline-none text-sm font-medium" placeholder="Enter your full name">
+                            </div>
+                            <div class="w-full border border-MyOrange rounded-sm py-1.5 px-3">
+                                <p class="text-xs text-MyDarkGrey">Your phone number <span class="text-red-600">*</span></p>
+                                <input type="text" class="w-full outline-none text-sm font-medium" placeholder="Enter your phone number">
+                            </div>
+                        </div>
+                        <div class="w-full border border-MyOrange rounded-sm py-1.5 px-3">
+                            <p class="text-xs text-MyDarkGrey">Your gmail <span class="text-red-600">*</span></p>
+                            <input type="text" class="w-full outline-none text-sm font-medium" placeholder="Enter your email address">
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+                <div class="py-4">
+                    <p class="font-medium">Resume</p>
+                    <p class="text-sm text-MyDarkGrey">You should verify your information correcly</p>
+                    <div class="flex flex-wrap sm:flex-nowrap gap-2 mt-3 text-sm">
+                        <div class="w-full px-5 pb-8 pt-4 rounded-md border border-MyOrange bg-MyPaleOrange flex flex-col gap-2">
+                            <p class="font-medium">Upload your resume</p>
+                            <input type="file">
+                            <p class="text-xs text-MyDarkGrey">We accept .doc .docx, .pdf files, no password protected, up to 3MB</p>
+                        </div>
+                        <a href="" class="btn w-full sm:w-fit p-3 flex items-center justify-center">View</a>
+                    </div>
+                </div>
+                <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+                <div class="py-4">
+                    <p class="font-medium">Resume</p>
+                    <p class="text-sm text-MyDarkGrey">You should verify your information correcly</p>
+                    <textarea name="" id="" rows="5" class="resize-none p-2 outline-MyOrange text-sm w-full border border-MyOrange rounded-md mt-3"></textarea>
+                </div>
+                <button class="btn w-full py-3 text-sm">Submit My CV</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Advertisements -->
+    <div class="py-24">
+        <div class="h-80 p-12 rounded-lg bg-cover flex relative" style="background-image: linear-gradient(to right, #000000bf, transparent), url(/images/system/fptdiscussion.jpg);">
+            <div class="col-span-1 flex flex-col justify-center w-full sm:w-1/2">
+                <p class="text-MyOrange font-bold">WE ARE</p>
+                <p class="text-5xl font-semibold text-white">HIRING</p>
+                <p class="text-white">Choose from a variety of Happy Birthday ribbon designs or create your own! Shop now for custom gift giving supplies & more!</p>
+                <a href="" class="w-fit btn py-2 px-3 flex justify-center items-center text-sm mt-3"><i class="fa-solid fa-circle-check"></i><span class="ml-2">Apply Now</span></a>
+            </div>
+            <img src="~/images/system/logos/FPT.png" alt="" class="h-14 absolute right-14 hidden sm:block">
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script src="~/js/job.js"></script>
+}
+

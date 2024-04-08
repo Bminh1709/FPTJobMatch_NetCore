@@ -34,14 +34,25 @@ body {
     background-color: var(--orange);
     color: white;
     border-radius: 8px;
-    border: 1px solid;
+    border: 1px solid var(--orange);
     font-weight: 500;
-    border-color: var(--orange);
 }
 .btn:hover {
     background-color: var(--pale-orange);
     border: 1px solid var(--orange);
     color: var(--orange);
+}
+
+.btnPaleBlue {
+    background-color: var(--pale-blue);
+    color: var(--blue);
+    border-radius: 8px;
+    border: 1px solid var(--blue);
+    font-weight: 500;
+}
+.btnPaleBlue:hover {
+    background-color: var(--blue);
+    color: white;
 }
 
 /* NavBar */
@@ -80,5 +91,5 @@ body {
 }
 
 #profile_select:hover #profile_options {
-    display: block;
+    display: flex;
 }

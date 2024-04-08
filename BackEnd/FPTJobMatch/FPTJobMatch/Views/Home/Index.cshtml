@@ -1,0 +1,216 @@
+﻿@using FPT.Utility
+@model IEnumerable<Job>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="h-screen overflow-auto bg-cover bg-fixed" style="background-image: linear-gradient(to bottom, rgba(2,79,160), #0000004d), url(/images/system/fptdiscussion.jpg);">
+    <div class="mt-28">
+        <div class="w-11/12 md:w-4/5 xl:w-3/5 mx-auto text-center">
+            <p class="text-4xl font-bold text-white mb-3">
+                The #1
+                <span class="text-MyOrange">Job Board for</span><br>
+                Hiring or Find your next job
+            </p>
+            <p class="text-white text-lg mb-5 xl:w-10/12 mx-auto">Join over 3 million job seekers who rely on FPTJobMatch to streamline their career journey. With 140,000 daily applications, find your perfect fit in the dynamic world of FPT</p>
+            <form action="" class="flex flex-col sm:flex-row gap-3 w-full">
+                <div class="flex w-full h-16 sm:h-auto">
+                    <div class="relative">
+                        <div class="absolute h-full flex left-3 items-center">
+                            <i class="text-xl text-MyGrey fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="absolute h-full flex right-3 items-center">
+                            <i class="text-xl text-MyGrey fa-solid fa-angle-down"></i>
+                        </div>
+                        <select name="" id="" class="h-full custom-select outline-none rounded-l-md w-40 lg:w-48 pl-10 text-MyDarkGrey font-medium">
+                            <option value="">All Cities</option>
+                            <option value="">Ha Noi</option>
+                            <option value="">Da Nang</option>
+                            <option value="">Ho Chi Minh</option>
+                        </select>
+                    </div>
+                    <div class="bg-white flex items-center pr-4">
+                        <div class="w-0.5 h-3/5 bg-MyPaleGrey"></div>
+                    </div>
+                    <input type="text" placeholder="Type the keyword you want to search" class="outline-none rounded-r-md w-full pr-4">
+                </div>
+                <button type="submit" class="flex items-center justify-center gap-2 btn px-8 lg:px-11 py-4"><i class="fa-solid fa-magnifying-glass"></i><p>Search</p></button>
+            </form>
+            <div class="hidden sm:flex gap-3 text-white text-sm w-fit mx-auto mt-3 font-extralight">
+                <p>Popular Searches: </p>
+                <div class="flex gap-2 underline">
+                    @foreach (var category in ViewBag.Categories)
+                    {
+                        <a href="">@category.Name,</a>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="px-16 flex flex-wrap xl:flex-nowrap justify-center gap-4 md:gap-8 mt-16 h-20">
+            <div class="flex items-center gap-4 bg-white w-auto xl:w-full rounded-lg p-5">
+                <i class="text-4xl text-MyBlue fa-solid fa-chart-simple"></i>
+                <div class="">
+                    <p class="mb-0.5 font-medium">Data Analyst</p>
+                    <p class="text-xs text-MyDarkGrey">31 Jobs Available</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 bg-white w-auto xl:w-full rounded-lg p-5">
+                <i class="text-4xl text-MyBlue fa-solid fa-compass-drafting"></i>
+                <div class="">
+                    <p class="mb-0.5 font-medium">Graphic Designer</p>
+                    <p class="text-xs text-MyDarkGrey">31 Jobs Available</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 bg-white w-auto xl:w-full rounded-lg p-5">
+                <i class="text-4xl text-MyBlue fa-solid fa-laptop-code"></i>
+                <div class="">
+                    <p class="mb-0.5 font-medium">.NET Developer</p>
+                    <p class="text-xs text-MyDarkGrey">31 Jobs Available</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 bg-white w-auto xl:w-full rounded-lg p-5">
+                <i class="text-4xl text-MyBlue fa-solid fa-user-shield"></i>
+                <div class="">
+                    <p class="mb-0.5 font-medium">Cyber Security</p>
+                    <p class="text-xs text-MyDarkGrey">31 Jobs Available</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-4 bg-white w-auto xl:w-full rounded-lg p-5">
+                <i class="text-4xl text-MyBlue fa-solid fa-cloud-bolt"></i>
+                <div class="">
+                    <p class="mb-0.5 font-medium">Meteorologist</p>
+                    <p class="text-xs text-MyDarkGrey">31 Jobs Available</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="px-6 md:px-16">
+
+    <!-- TOP Hiring Companies -->
+    <div class="px-6 md:px-16 py-20 text-center">
+        <p class="text-MyOrange text-4xl font-bold">Top Hiring Companies</p>
+        <p class="text-MyDarkGrey mt-2">Find the company that's perfect for you. about 800+ new jobs everyday</p>
+        <div class="flex flex-wrap gap-10 justify-center mt-8">
+            <div class="w-fit text-MyDarkGrey grayscale hover:grayscale-0 hover:text-MyOrange">
+                <div class="w-32 h-32 bg-MyVeryPaleGrey p-4 rounded-lg hover:bg-white hover:shadow-2xl">
+                    <img src="~/images/system/amazonLogo.jpg" alt="Company Logo" class="w-full h-full object-contain">
+                </div>
+                <p class="mt-2 w-32 overflow-hidden text-ellipsis text-nowrap">NashTech</p>
+            </div>
+            <div class="w-fit text-MyDarkGrey grayscale hover:grayscale-0 hover:text-MyOrange">
+                <div class="w-32 h-32 bg-MyVeryPaleGrey p-4 rounded-lg hover:bg-white hover:shadow-2xl">
+                    <img src="~/images/system/avepointLogo.png" alt="Company Logo" class="w-full h-full object-contain">
+                </div>
+                <p class="mt-2 w-32 overflow-hidden text-ellipsis text-nowrap">Hewlett Packard</p>
+            </div>
+            <div class="w-fit text-MyDarkGrey grayscale hover:grayscale-0 hover:text-MyOrange">
+                <div class="w-32 h-32 bg-MyVeryPaleGrey p-4 rounded-lg hover:bg-white hover:shadow-2xl">
+                    <img src="~/images/system/hewlettpackardLogo.png" alt="Company Logo" class="w-full h-full object-contain">
+                </div>
+                <p class="mt-2 w-32 overflow-hidden text-ellipsis text-nowrap">4H</p>
+            </div>
+            <div class="w-fit text-MyDarkGrey grayscale hover:grayscale-0 hover:text-MyOrange">
+                <div class="w-32 h-32 bg-MyVeryPaleGrey p-4 rounded-lg hover:bg-white hover:shadow-2xl">
+                    <img src="~/images/system/FPT.png" alt="Company Logo" class="w-full h-full object-contain">
+                </div>
+                <p class="mt-2 w-32 overflow-hidden text-ellipsis text-nowrap">Planned Parenthood</p>
+            </div>
+            <div class="w-fit text-MyDarkGrey grayscale hover:grayscale-0 hover:text-MyOrange">
+                <div class="w-32 h-32 bg-MyVeryPaleGrey p-4 rounded-lg hover:bg-white hover:shadow-2xl">
+                    <img src="~/images/system/mgmLogo.jpg" alt="Company Logo" class="w-full h-full object-contain">
+                </div>
+                <p class="mt-2 w-32 overflow-hidden text-ellipsis text-nowrap">Maa Charity</p>
+            </div>
+            <div class="w-fit text-MyDarkGrey grayscale hover:grayscale-0 hover:text-MyOrange">
+                <div class="w-32 h-32 bg-MyVeryPaleGrey p-4 rounded-lg hover:bg-white hover:shadow-2xl">
+                    <img src="~/images/system/nashtechLogo.png" alt="Company Logo" class="w-full h-full object-contain">
+                </div>
+                <p class="mt-2 w-32 overflow-hidden text-ellipsis text-nowrap">Chanel</p>
+            </div>
+            <div class="w-fit text-MyDarkGrey grayscale hover:grayscale-0 hover:text-MyOrange">
+                <div class="w-32 h-32 bg-MyVeryPaleGrey p-4 rounded-lg hover:bg-white hover:shadow-2xl">
+                    <img src="~/images/system/openaiLogo.png" alt="Company Logo" class="w-full h-full object-contain">
+                </div>
+                <p class="mt-2 w-32 overflow-hidden text-ellipsis text-nowrap">Bravo</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Advertisement -->
+    <div class="w-4/5 mx-auto hidden xl:grid grid-cols-6 h-52 p-5 gap-5 border border-MyPaleGrey rounded-md shadow-lg">
+        <div class="col-span-1">
+            <img src="~/images/system/Interview.png" alt="" class="h-full object-contain">
+        </div>
+        <div class="col-span-1 flex flex-col justify-center">
+            <p class="text-MyOrange font-bold">WE ARE</p>
+            <p class="text-5xl font-bold">HIRING</p>
+        </div>
+        <div class="col-span-3 flex flex-col justify-center mx-5">
+            <p class="font-medium mb-2">Let's Work Together & Explore Opportunities</p>
+            <p class="text-MyDarkGrey text-sm">Choose from a variety of Happy Birthday ribbon designs or create your own! Shop now for custom gift giving supplies & more!</p>
+        </div>
+        <div class="col-span-1 flex flex-col gap-4">
+            <img src="~/images/system/logos/FPT.png" alt="" class="object-contain">
+            <a href="" class="btn py-3 px-4 flex justify-center items-center"><i class="fa-solid fa-circle-check"></i><span class="ml-2">Apply Now</span></a>
+        </div>
+    </div>
+
+    <!-- Jobs List -->
+    <div class="px-6 md:px-16 py-24">
+        <p class="text-MyOrange text-4xl font-bold text-center">Jobs of the day</p>
+        <p class="text-MyDarkGrey mt-2 text-center">Search and connect with the right candidates faster</p>
+        @foreach (var job in Model)
+		{
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 xl:gap-8 mt-8">
+            <div class="shadow-normal px-5 pt-5 pb-10 rounded-sm">
+                <a href="www.facebook.com" class="flex gap-3">
+                    <img src="~/images/companyLogo/@job.Company.Logo" alt="" class="h-20 w-20 p-4 border border-MyPaleGrey rounded-lg">
+                    <div>
+                        <p class="font-semibold text-xl">@job.Company.Name</p>
+                            <p class="text-xs text-MyDarkGrey">Posted @Helpers.GetTimeAgoString(job.CreatedAt)</p>
+                    </div>
+                </a>
+                <div>
+                    <p class="font-semibold text-xl mt-3 mb-2">@job.Title</p>
+                    <div class="flex gap-1 flex-wrap text-xs">
+                        <a href="" class="rounded-full px-3 py-2 shadow-xl">@job.Category.Name</a>
+                    </div>
+                </div>
+                <div class="h-0.5 w-full bg-MyVeryPaleGrey my-5"></div>
+                <div>
+                    <div class="flex gap-2 items-center mb-3">
+                        <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">@job.Address</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">@job.JobType.Name</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+        <div class="w-fit mx-auto mt-8">
+            <a asp-controller="Jobs" asp-action="Index" class="border border-MyOrange rounded-md text-MyOrange hover:bg-MyOrange hover:text-white py-2 px-4 text-sm">View More</a>
+        </div>
+    </div>
+
+    <!-- Advertisement -->
+    <div class="px-6 md:px-16 py-24">
+        <div class="border border-MyGrey rounded-md p-14 flex flex-col xl:flex-row justify-between gap-14">
+            <div class="flex flex-col gap-3 flex-1">
+                <p class="text-MyOrange text-3xl font-semibold">Explore the Marketplace</p>
+                <p>The box-shadow property enables you to cast a drop shadow from the frame of almost any element. If a border-radius is specified on the element with a box shadow, the box shadow takes on the same rounded corners. The z-ordering of multiple box shadows is the same as multiple </p>
+                <a href="" class="btn py-2 px-3 w-fit">Apply Now</a>
+            </div>
+            <div class="flex flex-wrap sm:flex-nowrap justify-center xl:justify-end gap-8 flex-1">
+                <img src="~/images/system/fptdiscussion.jpg" alt="" class="rounded-xl w-36 h-52 object-cover shadow-orange">
+                <img src="~/images/system/fptdiscussion.jpg" alt="" class="rounded-xl w-36 h-52 object-cover shadow-orange">
+                <img src="~/images/system/fptdiscussion.jpg" alt="" class="rounded-xl w-36 h-52 object-cover shadow-orange">
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,114 @@
+:root {
+    --orange: #F2721E;
+    --pale-orange: #fef1e8;
+    --dark-blue: #1F2636;
+    --pale-blue: #dfebf5;
+    --blue: #024FA0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    position: relative;
+    font-family: "Plus Jakarta Sans", sans-serif;
+    color: var(--dark-blue);
+}
+
+/* Custom Scroll Bar */
+
+    /* Define scrollbar styles */
+    #custom-scroll::-webkit-scrollbar {
+        width: 6px;
+    }
+    /* Track */
+    #custom-scroll::-webkit-scrollbar-track {
+        background: var(--pale-orange); /* Change the background color as needed */
+    }
+    /* Handle */
+    #custom-scroll::-webkit-scrollbar-thumb {
+        background: var(--orange); /* Change the handle color as needed */
+    }
+
+/* End Custom Scroll Bar */
+
+
+.btn {
+    background-color: var(--orange);
+    color: white;
+    border-radius: 8px;
+    border: 1px solid;
+    font-weight: 500;
+    border-color: var(--orange);
+}
+
+    .btn:hover {
+        background-color: var(--pale-orange);
+        border: 1px solid var(--orange);
+        color: var(--orange);
+    }
+
+.btnPaleBlue {
+    background-color: var(--pale-blue);
+    color: var(--blue);
+    border-radius: 8px;
+    border: 1px solid var(--blue);
+    font-weight: 500;
+}
+
+    .btnPaleBlue:hover {
+        background-color: var(--blue);
+        color: white;
+    }
+
+/* Responsive NavBar */
+
+    #mobile_checkbox:checked ~ .nav__overlay {
+        display: block;
+    }
+
+    #mobile_checkbox:checked ~ .mobile_navbar {
+        transform: translateX(0);
+    }
+
+/* End Responsive NavBar */
+
+.custom-select {
+    appearance: none;
+}
+
+/* Popup Form Profile */
+    #educationInfo:checked ~ .educationInfo {
+        display: block;
+    }
+
+    #socialLink:checked ~ .socialLink {
+        display: block;
+    }
+
+    #passwordReset:checked ~ .passwordReset {
+        display: block;
+    }
+/* End Popup Form Profile */
+
+.btnOrange.active {
+    background-color: var(--pale-orange);
+    border-color: var(--orange);
+}
+
+.btnBlue.active {
+    background-color: var(--pale-blue);
+    border-color: var(--blue);
+}
+
+
+/* DropDown List */
+    #jobType_select:hover #jobType_options {
+        display: block;
+    }
+
+    #profile_select:hover #profile_options {
+        display: flex;
+    }
+/* End DropDown List */

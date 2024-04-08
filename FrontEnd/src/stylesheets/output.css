@@ -745,10 +745,6 @@ video {
   margin-top: 2rem;
 }
 
-.mt-10 {
-  margin-top: 2.5rem;
-}
-
 .block {
   display: block;
 }
@@ -846,10 +842,6 @@ video {
   height: 100vh;
 }
 
-.h-9 {
-  height: 2.25rem;
-}
-
 .min-h-screen {
   min-height: 100vh;
 }
@@ -894,6 +886,10 @@ video {
   width: 5rem;
 }
 
+.w-24 {
+  width: 6rem;
+}
+
 .w-28 {
   width: 7rem;
 }
@@ -922,6 +918,10 @@ video {
   width: 10rem;
 }
 
+.w-56 {
+  width: 14rem;
+}
+
 .w-7 {
   width: 1.75rem;
 }
@@ -941,14 +941,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.w-24 {
-  width: 6rem;
-}
-
-.w-9 {
-  width: 2.25rem;
 }
 
 .min-w-44 {
@@ -1141,6 +1133,11 @@ video {
   border-radius: 0.75rem;
 }
 
+.rounded-b-md {
+  border-bottom-right-radius: 0.375rem;
+  border-bottom-left-radius: 0.375rem;
+}
+
 .rounded-l-md {
   border-top-left-radius: 0.375rem;
   border-bottom-left-radius: 0.375rem;
@@ -1149,11 +1146,6 @@ video {
 .rounded-r-md {
   border-top-right-radius: 0.375rem;
   border-bottom-right-radius: 0.375rem;
-}
-
-.rounded-b-md {
-  border-bottom-right-radius: 0.375rem;
-  border-bottom-left-radius: 0.375rem;
 }
 
 .rounded-t-md {
@@ -1265,13 +1257,12 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.bg-MyGrey {
-  --tw-bg-opacity: 1;
-  background-color: rgb(214 212 212 / var(--tw-bg-opacity));
-}
-
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
+}
+
+.bg-contain {
+  background-size: contain;
 }
 
 .bg-cover {
@@ -1326,10 +1317,6 @@ video {
 
 .p-9 {
   padding: 2.25rem;
-}
-
-.p-10 {
-  padding: 2.5rem;
 }
 
 .px-16 {
@@ -1448,6 +1435,10 @@ video {
   padding-bottom: 1rem;
 }
 
+.pb-5 {
+  padding-bottom: 1.25rem;
+}
+
 .pb-8 {
   padding-bottom: 2rem;
 }
@@ -1458,6 +1449,10 @@ video {
 
 .pl-12 {
   padding-left: 3rem;
+}
+
+.pl-8 {
+  padding-left: 2rem;
 }
 
 .pl-9 {
@@ -1490,10 +1485,6 @@ video {
 
 .pt-5 {
   padding-top: 1.25rem;
-}
-
-.pl-8 {
-  padding-left: 2rem;
 }
 
 .text-left {
@@ -1788,16 +1779,6 @@ video {
   outline-color: #F2721E;
 }
 
-.active\:text-MyBlue:active {
-  --tw-text-opacity: 1;
-  color: rgb(2 79 160 / var(--tw-text-opacity));
-}
-
-.active\:text-MyOrange:active {
-  --tw-text-opacity: 1;
-  color: rgb(242 114 30 / var(--tw-text-opacity));
-}
-
 @media (min-width: 640px) {
   .sm\:block {
     display: block;
@@ -1858,10 +1839,6 @@ video {
 
   .sm\:p-6 {
     padding: 1.5rem;
-  }
-
-  .sm\:p-5 {
-    padding: 1.25rem;
   }
 
   .sm\:text-xl {
