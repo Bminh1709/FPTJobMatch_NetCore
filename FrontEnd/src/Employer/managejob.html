@@ -11,103 +11,478 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="relative">
-  <nav class="px-6 md:px-16 py-3 w-full text-sm">
-    <div class="hidden lg:block">
-        <div class="flex justify-between items-center">
-            <a><img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32"></a>
-            <div class="flex gap-12">
-              <a href="">Find Jobs</a>
-              <a href="">Company Profiles</a>
-              <a href="">Contacts</a>
-            </div>
-            <div class="flex gap-6">
-              <div class="flex gap-3 items-center font-medium">
-                <a href="">Sign Up</a>
-                <div class="h-5 w-0.5 bg-MyPaleGrey"></div>
-                <a href="">Sign In</a>
-              </div>
-              <a href="" class="btn py-2 px-3">
-                For Recruiters
-              </a>
-            </div>
-        </div>
-    </div>
-    <!-- Responsive navbar -->
-    <div class="flex justify-between items-center lg:hidden">
-        <a><img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32"></a>
-        <input hidden type="checkbox" id="mobile_checkbox" class="mobile_checkbox">
-        <label for="mobile_checkbox" class="hover:cursor-pointer"><i class="text-2xl text-MyOrange fa-solid fa-bars"></i></label>
-        <div class="mobile_navbar fixed z-10 top-0 right-0 h-screen bg-white transform translate-x-full transition-transform duration-300 ease-in-out">
-            <div class="border-b border-MyPaleGrey py-2 flex flex-row-reverse">
-                <label for="mobile_checkbox" class="mr-5 hover:cursor-pointer"><i class="text-3xl text-MyOrange fa-solid fa-xmark"></i></label>
-            </div>
-            <div class="px-20 py-5 flex flex-col justify-between h-full">
-                <div class="flex flex-col items-center gap-6 text-base">
-                    <a href="">Find Jobs</a>
-                    <a href="">Company Profiles</a>
-                    <a href="">Contacts</a>
+    <button onclick="backToTopFunction()" title="Go to top" id="backToTop-btn" class="hidden fixed z-10 bottom-6 right-6 text-xl bg-MyOrange rounded-lg text-white px-3 py-2 "><i class="fa-solid fa-circle-arrow-up"></i></button>
+    <nav class="px-6 md:px-16 py-3 w-full text-sm">
+        <div class="hidden lg:block">
+            <div class="flex justify-between items-center">
+                <a><img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32"></a>
+                <div class="flex gap-12 font-medium">
+                  <a href="" class="hover:text-MyOrange">Jobs List</a>
+                  <a href="" class="hover:text-MyOrange">Company Profile</a>
+                  <a href="" class="hover:text-MyOrange">Contacts</a>
+                  <a href="" class="hover:text-MyOrange">FAQ</a>
                 </div>
-                <img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32 mb-14">
+                <div class="relative" id="profile_select">
+                    <div class="flex items-center gap-2 text-MyBlue hover:cursor-pointer">
+                        <img src="/imgs/fptlearn.jpg" alt="" class="h-10 w-10 rounded-full">
+                        <i class="fa-solid fa-sort-down"></i>
+                    </div>
+                    <div id="profile_options" class="hidden flex-col w-36 absolute text-sm right-0 pt-2">
+                        <a href="www.facebook.com" class="py-3 px-4 bg-MyPaleBlue rounded-t-md hover:bg-MyBlue hover:text-white">Profile</a>
+                        <a href="www.facebook.com" class="py-3 px-4 bg-MyPaleBlue rounded-b-md hover:bg-MyBlue hover:text-white">Log Out</a>
+                    </div>
+                </div>
             </div>
         </div>
-        <label for="mobile_checkbox" class="nav__overlay fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-50 hidden"></label>
+        <!-- Responsive navbar -->
+        <div class="flex justify-between items-center lg:hidden">
+            <a><img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32"></a>
+            <input hidden type="checkbox" id="mobile_checkbox" class="mobile_checkbox">
+            <label for="mobile_checkbox" class="hover:cursor-pointer"><i class="text-2xl text-MyOrange fa-solid fa-bars"></i></label>
+            <div class="mobile_navbar fixed z-20 top-0 right-0 h-screen bg-white transform translate-x-full transition-transform duration-300 ease-in-out">
+                <div class="border-b border-MyPaleGrey py-2 flex flex-row-reverse">
+                    <label for="mobile_checkbox" class="mr-5 hover:cursor-pointer"><i class="text-3xl text-MyOrange fa-solid fa-xmark"></i></label>
+                </div>
+                <div class="px-20 py-5 flex flex-col justify-between h-full">
+                    <div class="flex flex-col items-center gap-6 text-base">
+                        <a href="" class="hover:text-MyOrange">Jobs List</a>
+                        <a href="" class="hover:text-MyOrange">Company Profile</a>
+                        <a href="#contact" class="hover:text-MyOrange">Contacts</a>
+                        <a href="" class="hover:text-MyOrange">FAQ</a>
+                        <a href="" class="hover:text-MyOrange">Log Out</a>
+                    </div>
+                    <img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32 mb-14">
+                </div>
+            </div>
+            <label for="mobile_checkbox" class="nav__overlay z-10 fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-50 hidden"></label>
+        </div>
+      </nav>
+
+
+    <div class="px-6 md:px-16">
+        <!-- Searching box -->
+        <div class="rounded-xl p-5 sm:p-10 bg-contain bg-fixed text-center" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/imgs/bg-reg.png);">
+            <div class="w-full sm:w-11/12 lg:w-4/5 xl:w-3/4 mx-auto">
+                <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">22 Jobs </span>Successfully Uploaded</p>
+                </p>
+                <form action="" class="mt-7">
+                    <div class="flex flex-wrap gap-5 mt-3 mx-auto justify-center">
+                        <div class="relative" id="jobType_select">
+                            <div class="bg-white hover:cursor-pointer text-sm flex items-center justify-between w-36 py-3 px-4 rounded-lg">
+                                <p>Job Type</p>
+                                <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
+                            </div>
+                            <ul id="jobType_options" class="hidden z-10 w-36 absolute text-sm">
+                                <li class="mt-1 py-3 px-4 bg-MyPaleOrange rounded-md border border-MyOrange hover:bg-MyOrange hover:text-white hover:cursor-pointer">Full Time</li>
+                                <li class="mt-1 py-3 px-4 bg-MyPaleOrange rounded-md border border-MyOrange hover:bg-MyOrange hover:text-white hover:cursor-pointer">Part Time</li>
+                                <li class="mt-1 py-3 px-4 bg-MyPaleOrange rounded-md border border-MyOrange hover:bg-MyOrange hover:text-white hover:cursor-pointer">Remote</li>
+                            </ul>
+                        </div>
+                        <label for="" id="create_employerCVForm" class="text-sm btn px-6 flex items-center hover:cursor-pointer">
+                            Upload Job
+                        </label>
+                    </div>
+                </form>
+    
+            </div>
+        </div>
+        <!-- Jobs list -->
+        <div class="grid grid-cols-3 gap-2 sm:gap-5 mt-8">
+            <div id="leftTab" class="col-span-1 flex flex-col gap-2">
+                <div class="rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:bg-MyPaleOrange hover:border-MyOrange">
+                    <div>
+                        <p class="font-semibold text-xl">Creative Marketing Leader</p>
+                        <p class="text-sm text-MyDarkGrey mt-1">Posted 20 minutes ago</p>
+                    </div>
+                    <div class="mt-5 flex items-center gap-5 flex-wrap">
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-regular fa-calendar text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Moday to Saturday</p>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Da Nang City</p>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Full Time</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:bg-MyPaleOrange hover:border-MyOrange">
+                    <div>
+                        <p class="font-semibold text-xl">Creative Marketing Leader</p>
+                        <p class="text-sm text-MyDarkGrey mt-1">Posted 20 minutes ago</p>
+                    </div>
+                    <div class="mt-5 flex items-center gap-5 flex-wrap">
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-regular fa-calendar text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Moday to Saturday</p>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Da Nang City</p>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Full Time</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:bg-MyPaleOrange hover:border-MyOrange">
+                    <div>
+                        <p class="font-semibold text-xl">Creative Marketing Leader</p>
+                        <p class="text-sm text-MyDarkGrey mt-1">Posted 20 minutes ago</p>
+                    </div>
+                    <div class="mt-5 flex items-center gap-5 flex-wrap">
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-regular fa-calendar text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Moday to Saturday</p>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Da Nang City</p>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Full Time</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:bg-MyPaleOrange hover:border-MyOrange">
+                    <div>
+                        <p class="font-semibold text-xl">Creative Marketing Leader</p>
+                        <p class="text-sm text-MyDarkGrey mt-1">Posted 20 minutes ago</p>
+                    </div>
+                    <div class="mt-5 flex items-center gap-5 flex-wrap">
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-regular fa-calendar text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Moday to Saturday</p>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Da Nang City</p>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Full Time</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:bg-MyPaleOrange hover:border-MyOrange">
+                    <div>
+                        <p class="font-semibold text-xl">Creative Marketing Leader</p>
+                        <p class="text-sm text-MyDarkGrey mt-1">Posted 20 minutes ago</p>
+                    </div>
+                    <div class="mt-5 flex items-center gap-5 flex-wrap">
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-regular fa-calendar text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Moday to Saturday</p>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Da Nang City</p>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Full Time</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:bg-MyPaleOrange hover:border-MyOrange">
+                    <div>
+                        <p class="font-semibold text-xl">Creative Marketing Leader</p>
+                        <p class="text-sm text-MyDarkGrey mt-1">Posted 20 minutes ago</p>
+                    </div>
+                    <div class="mt-5 flex items-center gap-5 flex-wrap">
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-regular fa-calendar text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Moday to Saturday</p>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Da Nang City</p>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Full Time</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:bg-MyPaleOrange hover:border-MyOrange">
+                    <div>
+                        <p class="font-semibold text-xl">Creative Marketing Leader</p>
+                        <p class="text-sm text-MyDarkGrey mt-1">Posted 20 minutes ago</p>
+                    </div>
+                    <div class="mt-5 flex items-center gap-5 flex-wrap">
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-regular fa-calendar text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Moday to Saturday</p>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Da Nang City</p>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Full Time</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:bg-MyPaleOrange hover:border-MyOrange">
+                    <div>
+                        <p class="font-semibold text-xl">Creative Marketing Leader</p>
+                        <p class="text-sm text-MyDarkGrey mt-1">Posted 20 minutes ago</p>
+                    </div>
+                    <div class="mt-5 flex items-center gap-5 flex-wrap">
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-regular fa-calendar text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Moday to Saturday</p>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Da Nang City</p>
+                        </div>
+                        <div class="flex gap-2 items-center">
+                            <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">Full Time</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="rightTab" class="col-span-2">
+                <div class="sticky top-0 h-fit rounded-md border border-MyGrey p-3 sm:p-6">
+                    <div class="flex flex-wrap gap-3 justify-between bg-white">
+                        <div>
+                            <div>
+                                <p class="text-xl font-semibold">Game Economy Designer</p>
+                                <p class="text-sm my-1">Da Nang City, Vietnam</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 text-sm mt-4">
+                                <div class="border border-MyOrange bg-MyPaleOrange px-3 rounded-lg py-2">24 CVs New</div>
+                                <div class="border border-MyBlue bg-MyPaleBlue px-3 rounded-lg py-2">43 CVs Submitted</div>
+                                <a href="" class="btn px-3 py-2">View Applicants</a>
+                            </div>
+                        </div>
+                        <div class="flex flex-col text-3xl">
+                            <button for="" id="edit_employerCVForm" class="text-MyBlue"><i class="fa-solid fa-square-pen"></i></button>
+                            <button for="" id="delete_employerCVFormDelete" class="text-MyOrange"><i class="fa-solid fa-square-xmark"></i></button>
+                        </div>
+                        <div class="h-0.5 w-full bg-MyPaleGrey mt-3"></div>
+                    </div>
+                    <div id="custom-scroll" class="h-job overflow-y-scroll pr-2 pt-5">
+                        <div class="text-sm flex flex-col gap-2">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-earth-asia text-MyGrey text-lg"></i>
+                                <p>Tang 2 Toa nha Machinco, 444 Hoàng hoa thám, tHỤ khuê, Tay Ho, Hà Nội</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-regular fa-clock text-MyGrey text-lg"></i>
+                                <p>Full Time</p>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <p>Skills: </p>
+                                <div class="flex gap-1 flex-wrap text-xs">
+                                    <a href="" class="rounded-full px-3 py-1 shadow-normal">.NET</a>
+                                    <a href="" class="rounded-full px-3 py-1 shadow-normal">ReactJs</a>
+                                    <a href="" class="rounded-full px-3 py-1 shadow-normal">Japanese</a>
+                                    <a href="" class="rounded-full px-3 py-1 shadow-normal">Team working</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
+                        <div>
+                            <p class="text-xl font-semibold mb-2">Job Description</p>
+                            <p>This position is responsible for serving as a technical expert; designing, developing and maintaining high profile application software and software tools for large projects and complex applications.This position is also responsible for adhering to and promoting GrapeCity’s vision and values by performing duties in a manner that is consistent with being a team member and supporting the continued growth of the company.</p>
+                        </div>
+                        <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
+                        <div>
+                            <p class="text-xl font-semibold mb-2">Responsibilities</p>
+                            <ul class="list-disc ml-7">
+                                <li>Create, modify and organize next-gen photo realistic textures</li>
+                                <li>Participate in the projects artistic directions</li>
+                                <li>Anticipate and suggest improvements to solve technical issues</li>
+                                <li>Create photorealistic textures from reference and interpret artistic direction from lead</li>
+                                <li>Ability to use efficiently the textures space and to take into consideration the pixel ratio</li>
+                                <li>Texturing, assignation and mapping knowledge is a must</li>
+                                <li>Good understanding of memory and performance constraints, and know how to optimize textures while maintaining high quality</li>
+                                <li>Work closely with Art Director, Lead, Modeler, and Technical Director in achieving desired looks of models</li>
+                            </ul>
+                        </div>
+                        <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
+                        <div>
+                            <p class="text-xl font-semibold mb-2">Your Skills and Experience</p>
+                            <ul class="list-disc ml-7">
+                                <li>Create, modify and organize next-gen photo realistic textures</li>
+                                <li>Participate in the projects artistic directions</li>
+                                <li>Anticipate and suggest improvements to solve technical issues</li>
+                                <li>Create photorealistic textures from reference and interpret artistic direction from lead</li>
+                                <li>Ability to use efficiently the textures space and to take into consideration the pixel ratio</li>
+                                <li>Texturing, assignation and mapping knowledge is a must</li>
+                                <li>Good understanding of memory and performance constraints, and know how to optimize textures while maintaining high quality</li>
+                                <li>Work closely with Art Director, Lead, Modeler, and Technical Director in achieving desired looks of models</li>
+                            </ul>
+                        </div>
+                        <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
+                        <div>
+                            <p class="text-xl font-semibold mb-2">Additional Information</p>
+                            <p>Ubisoft’s 19,000 team members, working across more than 30 countries around the world, are bound by a common mission to enrich players’ lives with original and memorable gaming experiences. Their commitment and talent have brought to life many acclaimed franchises such as Assassin’s Creed, Far Cry, Watch Dogs, Just Dance, Rainbow Six, and many more to come. Ubisoft is an equal opportunity employer that believes diverse backgrounds and perspectives are key to creating worlds where both players and teams can thrive and express themselves. If you are excited about solving game-changing challenges, cutting edge technologies and pushing the boundaries of entertainment, we invite you to join our journey and help us create the unknown.</p>
+                        </div>
+                        <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
+                        <div>
+                            <p class="text-2xl font-semibold">Apple Inc.</p>
+                            <p class="text-sm text-MyDarkGrey">Japanese international enterprise software developer specializing in Microsoft technologies</p>
+                            <div class="flex flex-wrap gap-5 md:gap-10 mt-3">
+                                <div class="font-semibold">
+                                    <p class="text-MyDarkGrey text-xs">Company Type</p>
+                                    <p class="text-sm">IT Product</p>
+                                </div>
+                                <div class="font-semibold">
+                                    <p class="text-MyDarkGrey text-xs">Company Size</p>
+                                    <p class="text-sm">100-150</p>
+                                </div>
+                                <div class="font-semibold">
+                                    <p class="text-MyDarkGrey text-xs">Working Day</p>
+                                    <p class="text-sm">Monday - Sunday</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- CV Form -->
+        <div id="employerCVForm" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+            <div class="bg-white mx-auto w-11/12 md:w-3/4 xl:w-1/2 h-fit rounded-lg mt-14">
+                <div class="flex gap-4 items-center justify-between py-3 px-5">
+                    <p class="text-MyOrange text-lg font-semibold">Creating a new job</p>
+                    <button for="" id="close_employerCVForm" class="text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyOrange"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+                <div class="px-5 pb-4">
+                    <div class="py-3 text-center">
+                        <p class="font-medium">Review your application</p>
+                        <p class="text-sm text-MyDarkGrey">The employee will also receive a copy of your profile</p>
+                    </div>
+                    <div class="h-0.5 w-full bg-MyPaleGrey"></div>
+                    <div class="py-4">
+                        <p class="font-medium">General Info</p>
+                        <p class="text-sm text-MyDarkGrey">You should verify your information correcly</p>
+                        <div class="flex flex-col gap-4 mt-3">
+                            <div class="flex flex-wrap sm:flex-nowrap gap-4">
+                                <div class="w-full border border-MyOrange rounded-sm py-2 px-3">
+                                    <p class="text-sm text-MyDarkGrey">Title <span class="text-red-600">*</span></p>
+                                    <input type="text" class="w-full outline-none text-sm font-medium" placeholder="Enter your full name">
+                                </div>
+                                <div class="w-full border border-MyOrange rounded-sm">
+                                    <p class="px-3 pt-2 text-sm text-MyDarkGrey">Job Type <span class="text-red-600">*</span></p>
+                                    <select class="custom-select px-3 pb-2 w-full outline-none text-sm font-medium">
+                                        <option value="">Full Time</option>
+                                        <option value="">Part Time</option>
+                                        <option value="">Remote</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="w-full border border-MyOrange rounded-sm">
+                                <p class="px-3 pt-2 text-sm text-MyDarkGrey">Job Category <span class="text-red-600">*</span></p>
+                                <select class="custom-select px-3 pb-2 w-full outline-none text-sm font-medium">
+                                    <option value="">Technology</option>
+                                    <option value="">Office</option>
+                                    <option value="">None of these (Type a new category)</option>
+                                </select>
+                            </div>
+                            <div class="w-full border border-MyOrange rounded-sm py-2 px-3">
+                                <p class="text-sm text-MyDarkGrey">New Category <span class="text-red-600">*</span></p>
+                                <input type="text" class="w-full outline-none text-sm font-medium" placeholder="Enter your full name">
+                            </div>
+                            <p class="text-sm"><span class="text-red-600">(*)</span> Please, wait for admin checking the category</p>
+                        </div>
+                    </div>
+                    <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+                    <div class="pt-4 pb-2">
+                        <p class="font-medium">Job Description</p>
+                        <p class="text-sm text-MyDarkGrey">You should verify your information correcly</p>
+                        <textarea placeholder="sdsdsd" name="" id="" rows="5" class="resize-none p-2 outline-MyOrange text-sm w-full border border-MyOrange rounded-md mt-3"></textarea>
+                    </div>
+                    <div class="">
+                        <p class="font-medium">Responsibilities</p>
+                        <p class="text-sm text-MyDarkGrey">You should verify your information correcly</p>
+                        <textarea  name="" id="" rows="5" class="resize-none p-2 outline-MyOrange text-sm w-full border border-MyOrange rounded-md mt-3"></textarea>
+                    </div>
+                    <div class="pt-2 pb-4">
+                        <p class="font-medium">Skills and Experience</p>
+                        <p class="text-sm text-MyDarkGrey">You should verify your information correcly</p>
+                        <textarea  name="" id="" rows="5" class="resize-none p-2 outline-MyOrange text-sm w-full border border-MyOrange rounded-md mt-3"></textarea>
+                    </div>
+                    <button class="btn w-full py-3 text-sm">Create</button>
+                </div>
+                
+            </div>
+        </div>
+        <!-- Delete CV -->
+        <div id="employerCVFormDelete" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+            <div class="bg-white mx-auto w-1/4 h-fit rounded-lg mt-28">
+                <div class="flex gap-4 items-center justify-between px-5 py-3">
+                    <p class="text-MyOrange text-lg font-semibold">Confirm Deletion</p>
+                    <button for="" id="close_employerCVFormDelete" class="text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyOrange"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+                <form class="px-5 pt-3 pb-5">
+                    <input hidden type="text" value="1">
+                    <p class="">Are you sure you would like to delete this profile from the database? This action cannot be undone.</p>
+                    <div class="flex gap-2 justify-end mt-6">
+                        <button id="cancel_employerCVFormDelete" class=" rounded-lg border border-MyOrange bg-MyPaleOrange py-2 px-5">Cancel</button>
+                        <button class="btn py-2 px-5">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Advertisements -->
+        <div class="py-24">
+            <div class="h-80 p-12 rounded-lg bg-cover flex relative" style="background-image: linear-gradient(to right, #000000bf, transparent), url(/imgs/fptdiscussion.jpg);">
+                <div class="col-span-1 flex flex-col justify-center w-full sm:w-1/2">
+                    <p class="text-MyOrange font-bold">WE ARE</p>
+                    <p class="text-5xl font-semibold text-white">HIRING</p>
+                    <p class="text-white">Choose from a variety of Happy Birthday ribbon designs or create your own! Shop now for custom gift giving supplies & more!</p>
+                    <a href="" class="w-fit btn py-2 px-3 flex justify-center items-center text-sm mt-3"><i class="fa-solid fa-circle-check"></i><span class="ml-2">Apply Now</span></a>
+                </div>
+                <img src="/imgs/logos/FPT.png" alt="" class="h-14 absolute right-14 hidden sm:block">
+            </div>
+        </div>
     </div>
-  </nav>
+
 
   <!-- Searching box -->
-  <div class="px-6 md:px-16">
-    <div class="rounded-xl p-5 sm:p-10 bg-cover bg-fixed text-center" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/imgs/fptdiscussion.jpg);">
+  <!-- <div class="px-6 md:px-16">
+    <div class="rounded-xl p-5 sm:p-10 bg-contain bg-fixed text-center" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/imgs/bg-reg.png);">
         <div class="w-full sm:w-11/12 lg:w-4/5 xl:w-3/4 mx-auto">
-            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">22 Jobs </span>Available Now</p>
-            <p class="text-white mb-6">Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero repellendus magni, atque delectus molestias quis
+            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">22 Jobs </span>Successfully Uploaded</p>
             </p>
-            <form action="" class="">
+            <form action="" class="mt-7">
                 <div class="flex flex-wrap gap-5 mt-3 mx-auto justify-center">
-                    <div class="relative flex w-fit">
-                        <select name="" id="" class="h-full custom-select outline-none rounded-md w-40 p-3 font-medium hover:cursor-pointer">
-                            <option value="">All Cities</option>
-                            <option value="">Ha Noi</option>
-                            <option value="">Da Nang</option>
-                            <option value="">Ho Chi Minh</option>
-                        </select>
-                        <div class="absolute top-3.5 right-3">
-                            <i class="text-xl text-MyGrey fa-solid fa-angle-down"></i>
+                    <div class="relative" id="jobType_select">
+                        <div class="bg-white hover:cursor-pointer text-sm flex items-center justify-between w-36 py-3 px-4 rounded-lg">
+                            <p>Job Type</p>
+                            <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
                         </div>
+                        <ul id="jobType_options" class="hidden z-10 w-36 absolute text-sm">
+                            <li class="mt-1 py-3 px-4 bg-MyPaleOrange rounded-md border border-MyOrange hover:bg-MyOrange hover:text-white hover:cursor-pointer">Full Time</li>
+                            <li class="mt-1 py-3 px-4 bg-MyPaleOrange rounded-md border border-MyOrange hover:bg-MyOrange hover:text-white hover:cursor-pointer">Part Time</li>
+                            <li class="mt-1 py-3 px-4 bg-MyPaleOrange rounded-md border border-MyOrange hover:bg-MyOrange hover:text-white hover:cursor-pointer">Remote</li>
+                        </ul>
                     </div>
-                    <div class="relative flex w-fit">
-                        <select name="" id="" class="h-full custom-select outline-none rounded-md w-40 p-3 font-medium hover:cursor-pointer">
-                            <option value="">All Cities</option>
-                            <option value="">Ha Noi</option>
-                            <option value="">Da Nang</option>
-                            <option value="">Ho Chi Minh</option>
-                        </select>
-                        <div class="absolute top-3.5 right-3">
-                            <i class="text-xl text-MyGrey fa-solid fa-angle-down"></i>
-                        </div>
-                    </div>
-                    <div class="relative flex w-fit">
-                        <select name="" id="" class="h-full custom-select outline-none rounded-md w-40 p-3 font-medium hover:cursor-pointer">
-                            <option value="">All Cities</option>
-                            <option value="">Ha Noi</option>
-                            <option value="">Da Nang</option>
-                            <option value="">Ho Chi Minh</option>
-                        </select>
-                        <div class="absolute top-3.5 right-3">
-                            <i class="text-xl text-MyGrey fa-solid fa-angle-down"></i>
-                        </div>
-                    </div>
-                    <label for="" id="create_employerCVForm" class="btn px-5 flex items-center hover:cursor-pointer">
-                        Add New Job
+                    <label for="" id="create_employerCVForm" class="text-sm btn px-6 flex items-center hover:cursor-pointer">
+                        Upload Job
                     </label>
                 </div>
             </form>
 
         </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- Jobs list -->
-  <div class="px-6 md:px-16 grid grid-cols-3 gap-2 sm:gap-5 mt-8">
+  <!-- <div class="px-6 md:px-16 grid grid-cols-3 gap-2 sm:gap-5 mt-8">
     <div id="leftTab" class="col-span-1 flex flex-col gap-2">
         <div class="rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:bg-MyPaleOrange hover:border-MyOrange">
             <div>
@@ -370,10 +745,10 @@
             </div>
         </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- CV Form -->
-  <div id="employerCVForm" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+  <!-- <div id="employerCVForm" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
     <div class="bg-white mx-auto w-11/12 md:w-3/4 xl:w-1/2 h-fit rounded-lg mt-14">
         <div class="flex gap-4 items-center justify-between py-3 px-5">
             <p class="text-MyOrange text-lg font-semibold">Creating a new job</p>
@@ -439,29 +814,30 @@
         </div>
         
     </div>
-  </div>
+  </div> -->
 
   <!-- Delete CV -->
-  <div id="employerCVFormDelete" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+  <!-- <div id="employerCVFormDelete" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
     <div class="bg-white mx-auto w-1/4 h-fit rounded-lg mt-28">
         <div class="flex gap-4 items-center justify-between px-5 py-3">
             <p class="text-MyOrange text-lg font-semibold">Confirm Deletion</p>
             <button for="" id="close_employerCVFormDelete" class="text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyOrange"><i class="fa-solid fa-xmark"></i></button>
         </div>
         <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
-        <div class="px-5 py-3">
+        <form class="px-5 pt-3 pb-5">
+            <input hidden type="text" value="1">
             <p class="">Are you sure you would like to delete this profile from the database? This action cannot be undone.</p>
             <div class="flex gap-2 justify-end mt-6">
                 <button id="cancel_employerCVFormDelete" class=" rounded-lg border border-MyOrange bg-MyPaleOrange py-2 px-5">Cancel</button>
                 <button class="btn py-2 px-5">Delete</button>
             </div>
-        </div>
+        </form>
     </div>
-  </div>
+  </div> -->
 
 
     <!-- Advertisements -->
-    <div class="px-6 md:px-16 py-24">
+    <!-- <div class="px-6 md:px-16 py-24">
         <div class="h-80 p-12 rounded-lg bg-cover flex relative" style="background-image: linear-gradient(to right, #000000bf, transparent), url(/imgs/fptdiscussion.jpg);">
             <div class="col-span-1 flex flex-col justify-center w-full sm:w-1/2">
                 <p class="text-MyOrange font-bold">WE ARE</p>
@@ -471,15 +847,15 @@
             </div>
             <img src="/imgs/logos/FPT.png" alt="" class="h-14 absolute right-14 hidden sm:block">
         </div>
-      </div>
+      </div> -->
     
-      <footer class="px-16 bg-MyPaleOrange">
+      <footer id="contact" class="px-16 bg-MyPaleOrange">
         <div class="flex flex-wrap gap-5 justify-center sm:justify-between py-6">
           <img src="/imgs/blueLogo.png" alt="FPT-Logo" class="w-32">
           <div class="text-3xl text-MyOrange flex gap-3">
-            <a href="" class=""><i class="fa-brands fa-linkedin"></i></a>
-            <a href="" class=""><i class="fa-brands fa-square-facebook"></i></a>
-            <a href="" class=""><i class="fa-brands fa-square-twitter"></i></a>
+            <a target="_blank" href="https://www.linkedin.com/in/minh-bui-166979272/" class=""><i class="fa-brands fa-linkedin"></i></a>
+            <a target="_blank" href="https://www.facebook.com/bmint1709/" class=""><i class="fa-brands fa-square-facebook"></i></a>
+            <a target="_blank" href="https://www.youtube.com/channel/UCyK6v3wVuhNz0EMI9fAHrsw" class=""><i class="fa-brands fa-square-youtube"></i></a>
           </div>
         </div>
         <div class="w-full h-0.5 bg-MyPaleGrey"></div>
@@ -571,21 +947,11 @@ $(document).ready(function() {
     employerCVFormDelete.addClass('hidden');
   })
 
-  function handleScroll() {
-  var scrollableDiv = document.getElementById('scrollableDiv');
-  var scrollTop = scrollableDiv.scrollTop;
-  var scrollHeight = scrollableDiv.scrollHeight;
-  var divHeight = scrollableDiv.clientHeight;
 
-  if (scrollTop + divHeight >= scrollHeight) {
-    // User has scrolled to the bottom of the div
-    console.log('Reached the end of the div');
-    // You can perform any actions here, such as loading more content or displaying a message
-  }
-}
 
 });
 
 
 </script>
+<script src="/src/javascripts/backToTop.js"></script>
 </html>

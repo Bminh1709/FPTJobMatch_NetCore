@@ -1,0 +1,131 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFramework = net8.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = FPTJobMatch
+build_property.RootNamespace = FPTJobMatch
+build_property.ProjectDir = D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPTJobMatch\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPTJobMatch
+build_property._RazorSourceGeneratorDebug = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Areas/Admin/Views/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Areas/Admin/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Areas/Admin/Views/Profile/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZmlsZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Areas/Admin/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Areas/Employer/Views/Applicant/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZXJcVmlld3NcQXBwbGljYW50XERldGFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Areas/Employer/Views/Applicant/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZXJcVmlld3NcQXBwbGljYW50XEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Areas/Employer/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZXJcVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Areas/Employer/Views/Profile/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZXJcVmlld3NcUHJvZmlsZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Areas/Employer/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZXJcVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Areas/Employer/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcRW1wbG95ZXJcVmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Areas/JobSeeker/Views/Account/SignUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSm9iU2Vla2VyXFZpZXdzXEFjY291bnRcU2lnblVwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Areas/JobSeeker/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSm9iU2Vla2VyXFZpZXdzXEhvbWVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Areas/JobSeeker/Views/Profile/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSm9iU2Vla2VyXFZpZXdzXFByb2ZpbGVcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Areas/JobSeeker/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSm9iU2Vla2VyXFZpZXdzXF9WaWV3SW1wb3J0cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Areas/JobSeeker/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSm9iU2Vla2VyXFZpZXdzXF9WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Views/Access/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Views/Home/Help.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxIZWxwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Views/Jobs/Detail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9ic1xEZXRhaWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Views/Jobs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSm9ic1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-nu7zdt6lzb

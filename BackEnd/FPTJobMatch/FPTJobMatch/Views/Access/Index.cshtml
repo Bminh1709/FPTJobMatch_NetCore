@@ -1,0 +1,49 @@
+﻿@model SignInVM
+@{
+    ViewData["Title"] = "Sign In";
+}
+
+<div class="min-h-screen bg-cover bg-fixed bg-black w-full py-16" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.54), transparent), url(/images/system/fpthonor.jpg);">
+    <div class="bg-white p-9 w-11/12 sm:w-fit rounded-lg mx-auto">
+        <p class="text-MyOrange font-bold text-2xl mb-1">Login</p>
+        <div class="flex gap-1 text-sm">
+            <p>Doesn't have an account yet?</p>
+            <a asp-area="JobSeeker" asp-controller="SignUp" asp-action="Index" class="underline text-MyBlue">Sign Up</a>
+        </div>
+        <form action="" method="post" class="mt-6">
+            <div class="flex flex-col gap-4">
+                <div class="flex flex-col gap-2">
+                    <label asp-for="Email" class="font-semibold">Email Address</label>
+                    <input asp-for="Email" type="text" id="Email" placeholder="Type your gmail" class="sm:w-96 border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
+                </div>
+                <div class="flex flex-col gap-2">
+                    <div class="flex justify-between items-center">
+                        <label asp-for="Password" class="font-semibold">Password</label>
+                        <a href="" class="text-MyBlue underline text-sm">Forgot Password?</a>
+                    </div>
+                    <input asp-for="Password" type="password" id="Password" placeholder="Type your password" class="sm:w-96 border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
+                </div>
+            </div>
+            <div class="flex items-center gap-1 mt-3 mb-5">
+                <input id="showPassword" type="checkbox" class="accent-MyOrange w-3.5 h-3.5">
+                <label for="showPassword" class="text-xs">Show password</label>
+            </div>
+            <button type="submit" class="btn py-2 px-3 w-full">Sign Up</button>
+        </form>
+        <div class="flex items-center gap-4 my-5">
+            <div class="bg-MyPaleGrey h-0.5 w-full"></div>
+            <p class="text-sm text-gray-400">OR</p>
+            <div class="bg-MyPaleGrey h-0.5 w-full"></div>
+        </div>
+        <div class="flex gap-3 justify-between h-10">
+            <div class="flex items-center justify-center gap-2 border border-MyOrange rounded-md w-full hover:bg-MyPaleOrange">
+                <img src="~/images/system/Facebook-logo.png" alt="Facebook-logo" class="h-5">
+                <p class="text-xs">Facebook</p>
+            </div>
+            <div class="flex items-center justify-center gap-2 border border-MyOrange rounded-md w-full hover:bg-MyPaleOrange">
+                <img src="~/images/system/Google-logo.png" alt="Google-logo" class="h-5">
+                <p class="text-xs">Google</p>
+            </div>
+        </div>
+    </div>
+</div>

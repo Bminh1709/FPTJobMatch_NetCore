@@ -1,0 +1,230 @@
+﻿@{
+    ViewData["Title"] = "Profile";
+}
+
+<div class="bg-MyVeryPaleGrey min-h-screen pb-20">
+
+    <div class="grid grid-cols-1 sm:grid-cols-8 gap-6 py-7">
+        <div class="col-span-4 lg:col-span-3 xl:col-span-2">
+            <div class="bg-white min-w-44-white p-3 border-t-4 border-MyBlue">
+                <div class="flex gap-3 items-center">
+                    <div class="border border-MyGrey p-1 rounded-sm">
+                        <img src="~/images/system/FPT.png" alt="" class="w-20 h-20 rounded-sm object-contain">
+                    </div>
+                    <div>
+                        <p class="font-medium text-lg">Bui Minh</p>
+                        <p class="text-sm text-MyDarkGrey">Currently finding a job</p>
+                    </div>
+
+                </div>
+                <p class="text-sm leading-6 mt-1 mb-5">
+                    Lorem ipsum dolor sit amet
+                    consectetur adipisicing elit.
+                    Reprehenderit, eligendi dolorum sequi illum qui unde aspernatur non deserunt
+                </p>
+                <ul class="bg-MyPaleBlue py-2 px-3 text-sm">
+                    <li class="flex items-center py-3">
+                        <span>Status</span>
+                        <span class="ml-auto">
+                            <span class="bg-MyBlue py-1 px-2 rounded text-white text-sm">Active</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center py-3">
+                        <span>Member since</span>
+                        <span class="ml-auto">Nov 07, 2016</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white p-5 mt-5">
+                <p class="text-lg font-bold text-MyBlue mb-5">Social accounts</p>
+                <div class="flex flex-col gap-4 text-sm">
+                    <div class="flex gap-3 items-center">
+                        <div class="w-8 flex justify-center">
+                            <i class="text-2xl text-MyBlue fa-brands fa-facebook-f"></i>
+                        </div>
+                        <div class="w-full">
+                            <p class="font-semibold">Facebook account</p>
+                            <a href="www.facbook.com/bminh" class="text-MyBlue text-xs underline w-full">www.facbook.com/bminh</a>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 items-center">
+                        <div class="w-8 flex justify-center">
+                            <i class="text-2xl text-MyBlue fa-brands fa-linkedin-in"></i>
+                        </div>
+                        <div class="w-full">
+                            <p class="font-semibold">Linkedin account</p>
+                            <a href="www.facbook.com/bminh" class="text-MyBlue text-xs underline w-full">www.facbook.com/bminh</a>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 items-center">
+                        <div class="w-8 flex justify-center">
+                            <i class="text-2xl text-MyBlue fa-brands fa-twitter"></i>
+                        </div>
+                        <div class="w-full">
+                            <p class="font-semibold">Twitter account</p>
+                            <a href="www.facbook.com/bminh" class="text-MyBlue text-xs underline w-full">www.facbook.com/bminh</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-span-4 lg:col-span-5 xl:col-span-6">
+            <div class="flex gap-2 text-sm">
+                <button id="companyBtn" class="btnBlue active bg-white py-2 px-4 border rounded-md border-MyGrey hover:border-MyBlue hover:bg-MyPaleBlue">Company</button>
+                <button id="profileBtn" class="btnBlue bg-white py-2 px-4 border rounded-md border-MyGrey hover:border-MyBlue hover:bg-MyPaleBlue">Profile</button>
+            </div>
+            <div id="Profile_section" class="hidden mt-3">
+                <div class="bg-white rounded-md p-6">
+                    <p class="font-bold text-xl mb-5">General Information</p>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-7">
+                        <div>
+                            <p class="font-medium mb-2">Full Name</p>
+                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="Bui Quang Minh">
+                        </div>
+                        <div>
+                            <p class="font-medium mb-2">Email Address</p>
+                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="minhbee203@gmail.com">
+                        </div>
+                        <div>
+                            <p class="font-medium mb-2">Phone number</p>
+                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="0706162561">
+                        </div>
+                        <div>
+                            <p class="font-medium mb-2">Address</p>
+                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="78 Le Tan Trung, Tho Quang, Son Tra">
+                        </div>
+                    </div>
+                    <div class="flex gap-3 mt-8 justify-end text-sm">
+                        <button class="rounded-lg bg-MyBlue text-white hover:bg-MyPaleBlue border border-MyBlue hover:text-MyBlue py-2 px-4" type="submit">Update</button>
+                        <button class="bg-MyPaleBlue border border-MyBlue rounded-lg py-2 px-4" type="submit">Cancel</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-md mt-4">
+                    <div class="flex items-center justify-between p-6">
+                        <div>
+                            <p class="font-bold text-xl mb-1">Password</p>
+                            <p class="text-MyDarkGrey">Introduce your strengths and years of experience</p>
+                        </div>
+                    </div>
+                    <div class="h-0.5 w-full bg-MyPaleGrey"></div>
+                    <div class="p-6">
+                        <div class="w-full">
+                            <p class="font-medium mb-2">Old Password</p>
+                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="Bui Quang Minh">
+                        </div>
+                        <div class="flex gap-6 mt-6">
+                            <div class="w-full">
+                                <p class="font-medium mb-2">New Password</p>
+                                <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="Bui Quang Minh">
+                            </div>
+                            <div class="w-full">
+                                <p class="font-medium mb-2">Confirm New Password</p>
+                                <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="minhbee203@gmail.com">
+                            </div>
+                        </div>
+                        <div class="flex gap-3 mt-8 justify-end text-sm">
+                            <button class="rounded-lg bg-MyBlue text-white hover:bg-MyPaleBlue border border-MyBlue hover:text-MyBlue py-2 px-4" type="submit">Update</button>
+                            <button class="bg-MyPaleBlue border border-MyBlue rounded-lg py-2 px-4" type="submit">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="Company_section" class="mt-3">
+                <div class="bg-white rounded-md p-6">
+                    <p class="font-bold text-xl mb-5">General Information</p>
+                    <p class="font-semibold mb-1">About me</p>
+                    <textarea rows="6" class="w-full outline-MyBlue focus:p-2">Tincidunt quam neque in cursus viverra orci, dapibus nec tristique. Nullam ut sit dolor consectetur urna, dui cras nec sed. Cursus risus congue arcu aenean posuere aliquam.Et vivamus lorem pulvinar nascetur non. Pulvinar a sed platea rhoncus ac mauris amet. Urna, sem pretium sit pretium urna, senectus vitae. Scelerisque fermentum, cursus felis dui suspendisse velit pharetra. Augue et duis cursus maecenas eget quam lectus. Accumsan vitae nascetur pharetra rhoncus praesent dictum risus suspendisse.</textarea>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-7">
+                        <div>
+                            <p class="font-medium mb-2">Company Name</p>
+                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="Bui Quang Minh">
+                        </div>
+                        <div>
+                            <p class="font-medium mb-2">Company Size</p>
+                            <input type="number" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="0706162561">
+                        </div>
+                        <div>
+                            <p class="font-medium mb-2">City</p>
+                            <select name="" id="" class="w-full custom-select p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue">
+                                <option value="">High School</option>
+                                <option value="">Master's Degree</option>
+                                <option value="">Doctoral Degree</option>
+                                <option value="">Professional Degrees</option>
+                                <option value="">Others</option>
+                            </select>
+                        </div>
+                        <div>
+                            <p class="font-medium mb-2">Company Address</p>
+                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="minhbee203@gmail.com">
+                        </div>
+                    </div>
+                    <div class="flex gap-3 mt-8 justify-end text-sm">
+                        <button class="rounded-lg bg-MyBlue text-white hover:bg-MyPaleBlue border border-MyBlue hover:text-MyBlue py-2 px-4" type="submit">Update</button>
+                        <button class="bg-MyPaleBlue border border-MyBlue rounded-lg py-2 px-4" type="submit">Cancel</button>
+                    </div>
+                </div>
+                <div class="bg-white rounded-md mt-4">
+                    <div class="flex items-center justify-between p-6">
+                        <div>
+                            <p class="font-bold text-xl mb-1">Social Links</p>
+                            <p class="text-MyDarkGrey">Introduce your strengths and years of experience</p>
+                        </div>
+                    </div>
+                    <div class="h-0.5 w-full bg-MyPaleGrey"></div>
+                    <div class="p-6">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="w-full">
+                                <p class="font-medium mb-2">Company Website</p>
+                                <div class="relative">
+                                    <div class="absolute text-3xl text-MyBlue h-full flex items-center left-3">
+                                        <i class="fa-solid fa-square-share-nodes"></i>
+                                    </div>
+                                    <input type="text" class="pl-12 w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="minhbee203@gmail.com">
+                                </div>
+                            </div>
+                            <div class="w-full">
+                                <p class="font-medium mb-2">Facebook</p>
+                                <div class="relative">
+                                    <div class="absolute text-3xl text-MyBlue h-full flex items-center left-3">
+                                        <i class="fa-brands fa-square-facebook"></i>
+                                    </div>
+                                    <input type="text" class="pl-12 w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="minhbee203@gmail.com">
+                                </div>
+                            </div>
+                            <div class="w-full">
+                                <p class="font-medium mb-2">Twitter</p>
+                                <div class="relative">
+                                    <div class="absolute text-3xl text-MyBlue h-full flex items-center left-3">
+                                        <i class="fa-brands fa-square-twitter"></i>
+                                    </div>
+                                    <input type="text" class="pl-12 w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="minhbee203@gmail.com">
+                                </div>
+                            </div>
+                            <div class="w-full">
+                                <p class="font-medium mb-2">Youtube</p>
+                                <div class="relative">
+                                    <div class="absolute text-3xl text-MyBlue h-full flex items-center left-3">
+                                        <i class="fa-brands fa-square-youtube"></i>
+                                    </div>
+                                    <input type="text" class="pl-12 w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="minhbee203@gmail.com">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 mt-8 justify-end text-sm">
+                            <button class="rounded-lg bg-MyBlue text-white hover:bg-MyPaleBlue border border-MyBlue hover:text-MyBlue py-2 px-4" type="submit">Update</button>
+                            <button class="bg-MyPaleBlue border border-MyBlue rounded-lg py-2 px-4" type="submit">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <script src="~/js/employer.js"></script>
+}
+
