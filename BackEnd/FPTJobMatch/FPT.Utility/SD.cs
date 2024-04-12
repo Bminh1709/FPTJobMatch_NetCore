@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FPT.Utility
 {
-    public class SD
+    public class SD // System Definition
     {
         // Roles
         public const string Role_JobSeeker = "JobSeeker";

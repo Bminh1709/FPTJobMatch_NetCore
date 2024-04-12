@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - FPTJobMatch</title>
-    <link rel="icon" href="~/images/system/FPT.png" type="image/icon type">
+    <link rel="icon" href="~/images/system/FPT.png" type="image/icon type" class="logo-icon">
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,20 +54,20 @@
                 <div class="flex gap-12 font-medium">
                     @if (User.IsInRole(SD.Role_Admin))
                     {
-                        <a href="" class="hover:text-MyOrange">User List</a>
-                        <a href="" class="hover:text-MyOrange">Categories</a>
-                        <a href="" class="hover:text-MyOrange">Profile</a>
+                        <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="hover:text-MyOrange">User List</a>
+                        <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="hover:text-MyOrange">Categories</a>
+                        <a asp-area="Admin" asp-controller="Profile" asp-action="Index" class="hover:text-MyOrange">Profile</a>
                     }
                     else if (User.IsInRole(SD.Role_Employer))
                     {
-                        <a href="" class="hover:text-MyOrange">Job List</a>
-                        <a href="" class="hover:text-MyOrange">Profile</a>
+                        <a asp-area="Employer" asp-controller="Home" asp-action="Index" class="hover:text-MyOrange">Job List</a>
+                        <a asp-area="Employer" asp-controller="Profile" asp-action="Index" class="hover:text-MyOrange">Profile</a>
                     } else
                     {
                         <a href="" class="hover:text-MyOrange">Jobs List</a>
                         <a href="" class="hover:text-MyOrange">Top Companies</a>
                     }
-                    <a href="" class="hover:text-MyOrange">Contacts</a>
+                    <a href="#contact" class="hover:text-MyOrange">Contacts</a>
                     <a href="" class="hover:text-MyOrange">FAQ</a>
                 </div>
                  
@@ -76,23 +76,34 @@
                 {
                     <div class="relative" id="profile_select">
                         <div class="flex items-center gap-2 text-MyBlue hover:cursor-pointer">
-                            <img src="~/images/system/fptlearn.jpg" alt="" class="h-10 w-10 rounded-full">
+                            <img src="~/images/avatar/maleavt.jpg" alt="" class="h-10 w-10 rounded-full">
                             <i class="fa-solid fa-sort-down"></i>
                         </div>
                         <div id="profile_options" class="hidden flex-col w-36 absolute text-sm right-0 pt-2">
-                            <a href="www.facebook.com" class="py-3 px-4 bg-MyPaleBlue rounded-t-md hover:bg-MyBlue hover:text-white">Profile</a>
-                            <a href="www.facebook.com" class="py-3 px-4 bg-MyPaleBlue rounded-b-md hover:bg-MyBlue hover:text-white">Log Out</a>
+                            @if (User.IsInRole(SD.Role_Admin))
+                            {
+                                <a asp-area="Admin" asp-controller="Profile" asp-action="Index" class="py-3 px-4 bg-MyPaleBlue rounded-t-md hover:bg-MyBlue hover:text-white">Profile</a>
+                            }
+                            else if (User.IsInRole(SD.Role_Employer))
+                            {
+                                <a asp-area="Employer" asp-controller="Profile" asp-action="Index" class="py-3 px-4 bg-MyPaleBlue rounded-t-md hover:bg-MyBlue hover:text-white">Profile</a>
+                            }
+                            else
+                            {
+                                <a asp-area="JobSeeker" asp-controller="Profile" asp-action="Index" class="py-3 px-4 bg-MyPaleBlue rounded-t-md hover:bg-MyBlue hover:text-white">Profile</a>   
+                            }
+                            <a asp-area="" asp-controller="Access" asp-action="LogOut" class="py-3 px-4 bg-MyPaleBlue rounded-b-md hover:bg-MyBlue hover:text-white">Log Out</a>
                         </div>
                     </div>
                 } else
                 {
                     <div class="flex gap-6">
                         <div class="flex gap-3 items-center font-medium">
-                            <a asp-area="JobSeeker" asp-controller="SignUp" asp-action="Index">Sign Up</a>
+                            <a asp-area="JobSeeker" asp-controller="Account" asp-action="SignUp">Sign Up</a>
                             <div class="h-5 w-0.5 bg-MyPaleGrey"></div>
-                            <a asp-controller="Access" asp-action="Index">Sign In</a>
+                            <a asp-area="" asp-controller="Access" asp-action="Index">Sign In</a>
                         </div>
-                        <a asp-area="Employer" asp-controller="SignUp" asp-action="Index" class="btn py-2 px-3">
+                        <a asp-area="Employer" asp-controller="Account" asp-action="SignUp" class="btn py-2 px-3">
                             For Recruiters
                         </a>
                     </div>
@@ -131,9 +142,9 @@
                             <a href="" class="hover:text-MyOrange">Logout</a>
                         } else
                         {
-                            <a href="" class="hover:text-MyOrange">Sign In</a>
-                            <a href="" class="hover:text-MyOrange">Sign Up</a>
-                            <a href="" class="hover:text-MyOrange">For Recruiter</a>
+                            <a asp-controller="Access" asp-action="Index" class="hover:text-MyOrange">Sign In</a>
+                            <a asp-area="JobSeeker" asp-controller="Account" asp-action="SignUp" class="hover:text-MyOrange">Sign Up</a>
+                            <a asp-area="Employer" asp-controller="Account" asp-action="SignUp" class="hover:text-MyOrange">For Recruiter</a>
                         }
                     </div>
                     <img src="~/images/system/blueLogo.png" alt="FPT Logo" class="w-32 mb-14">
@@ -145,6 +156,7 @@
 
 
     <div>
+        <partial name="_Notification" />
         @RenderBody()
     </div>
 

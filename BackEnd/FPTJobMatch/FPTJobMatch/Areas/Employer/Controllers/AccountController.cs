@@ -1,4 +1,5 @@
-﻿using FPT.DataAccess.Repository.IRepository;
+﻿using FPT.DataAccess.Repository;
+using FPT.DataAccess.Repository.IRepository;
 using FPT.Models;
 using FPT.Models.ViewModels;
 using FPT.Utility;
@@ -9,6 +10,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace FPTJobMatch.Areas.Employer.Controllers
 {
+    [Area("Employer")]
     public class AccountController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -22,62 +24,92 @@ namespace FPTJobMatch.Areas.Employer.Controllers
         }
         public IActionResult SignUp()
         {
-            IEnumerable<SelectListItem> cities = _unitOfWork.City.GetAll().Select(u => new SelectListItem
+            EmployerRegisterVM employerRegisterVM = new EmployerRegisterVM
             {
-                Text = u.Name,
-                Value = u.Id.ToString()
-            });
-            return View(cities);
+                CityList = _unitOfWork.City.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                }),
+            };
+            return View(employerRegisterVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SignUp(EmployerRegisterVM model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                // Check if the company name already exists
-                bool isCompanyNameExists = _unitOfWork.Company.IsExist(model.CompanyName);
-                if (isCompanyNameExists)
-                {
-                    ModelState.AddModelError(string.Empty, "Company name already exists. Please choose a different company name.");
-                    return View(model);
-                }
-                var user = new ApplicationUser
-                {
-                    Name = model.Name,
-                    UserName = model.Email,
-                    Email = model.Email,
-                    CreatedAt = DateTime.Now,
-                    Status = new Status
-                    {
-                        Name = SD.StatusPending
-                    }
-                };
-                // Store user data in AspNetUsers database table
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await _userManager.AddToRoleAsync(user, SD.Role_Employer);
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                PrepareViewModelCityList(model);
+                return View(model);
+            }
 
-                    var company = new Company
-                    {
-                        Name = model.Name,
-                        ApplicationUser = user,
-                        CityId = model.CityId,
-                        IsApproved = false
-                    };
-                    _unitOfWork.Company.Add(company);
-                    _unitOfWork.Save();
-                    return RedirectToAction("Index", "Home");
+            if (_unitOfWork.Company.IsExist(model.CompanyName))
+            {
+                ModelState.AddModelError("CompanyName", "Company name already exists");
+                PrepareViewModelCityList(model);
+                return View(model);
+            }
+
+            var user = new ApplicationUser
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                Name = model.Name,
+                CreatedAt = DateTime.UtcNow,
+                AccountStatus = SD.StatusPending,
+            };
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(user, SD.Role_Employer);
+                // await _signInManager.SignInAsync(user, isPersistent: false);
+
+                var company = new Company
+                {
+                    Name = model.CompanyName,
+                    CityId = model.CityId,
+                    CreatedAt = DateTime.UtcNow
+                };
+
+                // Associate the company with the user
+                user.Company = company;
+
+                // Add company and user to Unit of Work and save changes
+                _unitOfWork.Company.Add(company);
+                _unitOfWork.Save();
+
+                return RedirectToAction("Index", "Access", new { area = "" });
+            }
+
+            // Handle password-related errors separately
+            foreach (var error in result.Errors)
+            {
+                if (error.Code.StartsWith("Password"))
+                {
+                    ModelState.AddModelError("Password", error.Description);
                 }
-                foreach (var error in result.Errors)
+                else
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
             }
+
+            PrepareViewModelCityList(model);
             return View(model);
         }
+
+
+        private void PrepareViewModelCityList(EmployerRegisterVM model)
+        {
+            model.CityList = _unitOfWork.City.GetAll().Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.Id.ToString()
+            });
+        }
+
     }
 }

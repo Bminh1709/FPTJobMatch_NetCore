@@ -33,25 +33,32 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
                     Name = model.Name,
                     UserName = model.Email,
                     Email = model.Email,
-                    CreatedAt = DateTime.Now,
-                    AccountStatus = new Status
-                    {
-                        Name = SD.StatusActive
-                    }
+                    CreatedAt = DateTime.UtcNow,
+                    AccountStatus = SD.StatusActive
                 };
                 // Store user data in AspNetUsers database table
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
                     await _userManager.AddToRoleAsync(user, SD.Role_JobSeeker);
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "Home");
+                    TempData["success"] = "Sign up successfully";
+                    return RedirectToAction("Index", "Access", new { area = "" });
                 }
+                // Handle password-related errors separately
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    if (error.Code.StartsWith("Password"))
+                    {
+                        ModelState.AddModelError("Password", error.Description);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
                 }
             }
+
+            TempData["error"] = "Sign up again";
             return View(model);
         }
     }

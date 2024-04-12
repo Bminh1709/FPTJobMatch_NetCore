@@ -11,3 +11,6 @@ D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMat
 D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPT.Models\obj\Debug\net8.0\refint\FPT.Models.dll
 D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPT.Models\obj\Debug\net8.0\FPT.Models.pdb
 D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPT.Models\obj\Debug\net8.0\ref\FPT.Models.dll
+D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPT.Models\bin\Debug\net8.0\FPT.Utility.dll
+D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPT.Models\bin\Debug\net8.0\FPT.Utility.pdb
+D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPT.Models\obj\Debug\net8.0\FPT.Models.csproj.Up2Date

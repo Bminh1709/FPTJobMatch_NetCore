@@ -1,0 +1,14 @@
+﻿@if (TempData["success"] != null)
+{
+    <div id="successMessage" class="popUpMessage absolute right-10 top-14 z-20 h-14 pl-4 pr-5 min-w-52 bg-green-100 rounded-md border-l-8 border-MyGreen text-MyGreen flex gap-2 items-center">
+        <i class="fa-solid fa-circle-check text-xl"></i>
+        <p class="font-semibold text-sm" id="successMessageText">@TempData["success"]</p>
+    </div>
+}
+@if (TempData["error"] != null)
+{
+    <div id="errorMessage" class="popUpMessage absolute right-10 top-14 z-20 h-12 px-4 min-w-52 bg-MyPaleOrange rounded-md border-l-8 border-MyOrange text-MyOrange flex gap-2 items-center">
+        <i class="fa-solid fa-circle-xmark text-xl"></i>
+        <p class="font-semibold" id="errorMessageText">@TempData["error"]</p>
+    </div>
+}

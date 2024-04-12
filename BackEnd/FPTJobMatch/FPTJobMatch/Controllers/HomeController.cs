@@ -1,5 +1,6 @@
 using FPT.DataAccess.Repository.IRepository;
 using FPT.Models;
+using FPT.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -16,9 +17,9 @@ namespace FPTJobMatch.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Job> jobs = _unitOfWork.Job.GetAll(includeProperties: "Company, Category").Take(12).ToList();
-            IEnumerable<Category> categories = _unitOfWork.Category.GetAll().Take(4).ToList();
-            ViewBag.Categoris = categories;
+            IEnumerable<Job> jobs = _unitOfWork.Job.GetAll(c => c.Category.IsApproved == true ,includeProperties: "Category,Company.City,JobType").Take(12).ToList();
+            IEnumerable<Category> categories = _unitOfWork.Category.GetAll(c => c.IsApproved == true).Take(4).ToList();
+            ViewBag.Categories = categories;
             return View(jobs);
         }
 

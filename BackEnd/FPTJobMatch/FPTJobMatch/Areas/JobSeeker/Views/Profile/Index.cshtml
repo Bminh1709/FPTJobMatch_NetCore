@@ -1,4 +1,5 @@
-﻿@{
+﻿@model JobSeekerProfileVM
+@{
     ViewData["Title"] = "Profile";
 }
 <div class="px-6 md:px-16 bg-MyVeryPaleGrey min-h-screen pb-20">
@@ -11,7 +12,7 @@
                         <img src="~/images/system/fptdiscussion.jpg" alt="" class="w-20 h-20 rounded-sm object-cover">
                     </div>
                     <div>
-                        <p class="font-medium text-lg">Bui Minh</p>
+                        <p class="font-medium text-lg">@Model.JobSeeker.Name</p>
                         <p class="text-sm text-MyDarkGrey">Currently finding a job</p>
                     </div>
 
@@ -30,7 +31,7 @@
                     </li>
                     <li class="flex items-center py-3">
                         <span>Member since</span>
-                        <span class="ml-auto">Nov 07, 2016</span>
+                        <span class="ml-auto">@Model.JobSeeker.CreatedAt.ToString("MMM dd, yyyy")</span>
                     </li>
                 </ul>
             </div>
@@ -77,19 +78,19 @@
                 <div class="bg-white rounded-md p-6">
                     <p class="font-bold text-xl mb-5">General Information</p>
                     <p class="font-semibold mb-1">About me</p>
-                    <textarea rows="6" class="w-full outline-MyOrange focus:p-2">Tincidunt quam neque in cursus viverra orci, dapibus nec tristique. Nullam ut sit dolor consectetur urna, dui cras nec sed. Cursus risus congue arcu aenean posuere aliquam.Et vivamus lorem pulvinar nascetur non. Pulvinar a sed platea rhoncus ac mauris amet. Urna, sem pretium sit pretium urna, senectus vitae. Scelerisque fermentum, cursus felis dui suspendisse velit pharetra. Augue et duis cursus maecenas eget quam lectus. Accumsan vitae nascetur pharetra rhoncus praesent dictum risus suspendisse.</textarea>
+                    <textarea rows="6" class="w-full outline-MyOrange focus:p-2">@Model.JobSeekerDetail.AboutMe</textarea>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-7">
                         <div>
                             <p class="font-medium mb-2">Full Name</p>
-                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="Bui Quang Minh">
+                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="@Model.JobSeeker.Name">
                         </div>
                         <div>
                             <p class="font-medium mb-2">Email Address</p>
-                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="minhbee203@gmail.com">
+                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="@Model.JobSeeker.Email">
                         </div>
                         <div>
                             <p class="font-medium mb-2">Phone number</p>
-                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="0706162561">
+                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="@Model.JobSeeker.PhoneNumber">
                         </div>
                         <div>
                             <p class="font-medium mb-2">Date Of Birth</p>

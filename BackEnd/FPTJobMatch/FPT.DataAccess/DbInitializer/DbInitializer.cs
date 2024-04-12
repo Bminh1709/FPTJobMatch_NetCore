@@ -8,12 +8,12 @@ namespace FPT.DataAccess.DbInitializer
 {
     public class DbInitializer : IDbInitializer
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ApplicationDbContext _db;
 
         public DbInitializer(
-            UserManager<IdentityUser> userManager,
+            UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
             ApplicationDbContext db)
         {
@@ -53,12 +53,14 @@ namespace FPT.DataAccess.DbInitializer
             {
                 var adminUser = new ApplicationUser
                 {
-                    UserName = "minhbee203",
+                    UserName = "minhbee203@gmail.com",
                     Email = "minhbee203@gmail.com",
                     Name = "Bui Minh",
+                    CreatedAt = DateTime.UtcNow,
+                    AccountStatus = SD.StatusActive
                 };
 
-                var result = _userManager.CreateAsync(adminUser, "minhbee203").Result;
+                var result = _userManager.CreateAsync(adminUser, "Aa12345.").Result;
 
                 if (result.Succeeded)
                 {

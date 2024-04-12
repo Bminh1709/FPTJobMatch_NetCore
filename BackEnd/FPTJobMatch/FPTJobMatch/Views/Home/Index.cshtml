@@ -1,4 +1,4 @@
-﻿@using FPT.Utility
+﻿@using FPT.Utility.Helpers
 @model IEnumerable<Job>
 @{
     ViewData["Title"] = "Home Page";
@@ -41,7 +41,7 @@
                 <div class="flex gap-2 underline">
                     @foreach (var category in ViewBag.Categories)
                     {
-                        <a href="">@category.Name,</a>
+                        <a href="#">@category.Name</a>
                     }
                 </div>
             </div>
@@ -161,28 +161,29 @@
     <div class="px-6 md:px-16 py-24">
         <p class="text-MyOrange text-4xl font-bold text-center">Jobs of the day</p>
         <p class="text-MyDarkGrey mt-2 text-center">Search and connect with the right candidates faster</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 xl:gap-8 mt-8">
         @foreach (var job in Model)
 		{
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 xl:gap-8 mt-8">
-            <div class="shadow-normal px-5 pt-5 pb-10 rounded-sm">
+            <div class="shadow-normal px-5 py-5 rounded-sm border hover:border-MyOrange">
                 <a href="www.facebook.com" class="flex gap-3">
-                    <img src="~/images/companyLogo/@job.Company.Logo" alt="" class="h-20 w-20 p-4 border border-MyPaleGrey rounded-lg">
+                    <img src="~/images/companyLogo/@(job.Company.Logo ?? "noLogoCompany.jpg")" alt="" class="h-20 w-20 p-4 border border-MyPaleGrey rounded-lg">
                     <div>
                         <p class="font-semibold text-xl">@job.Company.Name</p>
-                            <p class="text-xs text-MyDarkGrey">Posted @Helpers.GetTimeAgoString(job.CreatedAt)</p>
+                            <p class="text-xs text-MyDarkGrey">Posted @DateTimeHelper.GetTimeAgoString(job.CreatedAt)</p>
                     </div>
                 </a>
-                <div>
-                    <p class="font-semibold text-xl mt-3 mb-2">@job.Title</p>
-                    <div class="flex gap-1 flex-wrap text-xs">
-                        <a href="" class="rounded-full px-3 py-2 shadow-xl">@job.Category.Name</a>
-                    </div>
+                <div class="mt-3 mb-2">
+                    <a class="font-semibold text-xl">@job.Title</a>
                 </div>
                 <div class="h-0.5 w-full bg-MyVeryPaleGrey my-5"></div>
                 <div>
-                    <div class="flex gap-2 items-center mb-3">
+                    <div class="flex gap-2 items-center mb-1">
+                        <i class="fa-solid fa-circle-info text-MyDarkGrey text-lg"></i>
+                        <p class="text-xs">@job.Category.Name</p>
+                    </div>
+                    <div class="flex gap-2 items-center mb-1">
                         <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
-                        <p class="text-xs">@job.Address</p>
+                        <p class="text-xs">@job.Company.City.Name City</p>
                     </div>
                     <div class="flex gap-2 items-center">
                         <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
@@ -190,8 +191,8 @@
                     </div>
                 </div>
             </div>
-        </div>
         }
+        </div>
         <div class="w-fit mx-auto mt-8">
             <a asp-controller="Jobs" asp-action="Index" class="border border-MyOrange rounded-md text-MyOrange hover:bg-MyOrange hover:text-white py-2 px-4 text-sm">View More</a>
         </div>

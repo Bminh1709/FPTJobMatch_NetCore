@@ -1,4 +1,6 @@
-﻿@{
+﻿@model CategoryVM
+
+@{
     ViewData["Title"] = "Category";
 }
 
@@ -31,9 +33,9 @@
                 <div class="flex flex-col gap-4 justify-between">
                     <div>
                         <p class="text-MyDarkGrey">Verified Categories</p>
-                        <p class="text-xl text-MyOrange font-bold">12,211</p>
+                        <p class="text-xl text-MyOrange font-bold">@Model.ApprovedCount</p>
                     </div>
-                    <p class="text-sm text-MyDarkGrey"><span class="text-MyOrange font-semibold">+ 24</span> This month</p>
+                    <p class="text-sm text-MyDarkGrey"><span class="text-MyOrange font-semibold">+ @Model.ApprovedThisMonthCount</span> This month</p>
                 </div>
                 <div class="text-white bg-MyOrange h-10 w-10 rounded-full flex items-center justify-center">
                     <i class="fa-solid fa-angles-down"></i>
@@ -43,9 +45,9 @@
                 <div class="flex flex-col gap-4 justify-between">
                     <div>
                         <p class="text-MyDarkGrey">New Categories</p>
-                        <p class="text-xl text-MyBlue font-bold">12,211</p>
+                        <p class="text-xl text-MyBlue font-bold">@Model.NewCount</p>
                     </div>
-                    <p class="text-sm text-MyDarkGrey"><span class="text-MyBlue font-semibold">+ 24</span> This month</p>
+                    <p class="text-sm text-MyDarkGrey"><span class="text-MyBlue font-semibold">+ @Model.NewThisMonthCount</span> This month</p>
                 </div>
                 <div class="text-white bg-MyBlue h-10 w-10 rounded-full flex items-center justify-center">
                     <i class="fa-solid fa-check-double"></i>
@@ -64,74 +66,29 @@
                     </tr>
                 </thead>
                 <tbody class="pt-3">
-                    <tr class="border border-MyPaleBlue">
-                        <td class="py-5 px-8">
-                            <p>1</p>
-                        </td>
-                        <td class="py-5 px-8 min-w-48">
-                            <p>Marketing</p>
-                        </td>
-                        <td class="py-5 pr-3 text-center">Mar 31, 2021</td>
-                        <td class="py-5 pr-3 text-center">
-                            <p>245</p>
-                        </td>
-                        <td class="text-xs">
-                            <div class="open_deletionForm hover:cursor-pointer flex justify-center text-xl text-MyOrange">
-                                <i class="fa-solid fa-trash"></i>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="border border-MyPaleBlue">
-                        <td class="py-5 px-8">
-                            <p>1</p>
-                        </td>
-                        <td class="py-5 px-8 min-w-48">
-                            <p>Marketing</p>
-                        </td>
-                        <td class="py-5 pr-3 text-center">Mar 31, 2021</td>
-                        <td class="py-5 pr-3 text-center">
-                            <p>245</p>
-                        </td>
-                        <td class="text-xs">
-                            <div class="flex justify-center text-xl text-MyOrange">
-                                <i class="fa-solid fa-trash"></i>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="border border-MyPaleBlue">
-                        <td class="py-5 px-8">
-                            <p>1</p>
-                        </td>
-                        <td class="py-5 px-8 min-w-48">
-                            <p>Marketing</p>
-                        </td>
-                        <td class="py-5 pr-3 text-center">Mar 31, 2021</td>
-                        <td class="py-5 pr-3 text-center">
-                            <p>245</p>
-                        </td>
-                        <td class="text-xs">
-                            <div class="flex justify-center text-xl text-MyOrange">
-                                <i class="fa-solid fa-trash"></i>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="border border-MyPaleBlue">
-                        <td class="py-5 px-8">
-                            <p>1</p>
-                        </td>
-                        <td class="py-5 px-8 min-w-48">
-                            <p>Marketing</p>
-                        </td>
-                        <td class="py-5 pr-3 text-center">Mar 31, 2021</td>
-                        <td class="py-5 pr-3 text-center">
-                            <p>245</p>
-                        </td>
-                        <td class="text-xs">
-                            <div class="flex justify-center text-xl text-MyOrange">
-                                <i class="fa-solid fa-trash"></i>
-                            </div>
-                        </td>
-                    </tr>
+                    @{
+                        int countIdApproved = 1;
+                        foreach (var category in Model.ApprovedCategortList) 
+                        {
+                            <tr class="border border-MyPaleBlue">
+                                <td class="py-5 px-8">
+                                    <p>@(countIdApproved++)</p>
+                                </td>
+                                <td class="py-5 px-8 min-w-48">
+                                    <p>@category.Name</p>
+                                </td>
+                                <td class="py-5 pr-3 text-center">@category.CreatedAt.ToString("MMM dd, yyyy")</td>
+                                <td class="py-5 pr-3 text-center">
+                                    <p>unidentified</p>
+                                </td>
+                                <td class="text-xs">
+                                    <div class="open_deletionForm hover:cursor-pointer flex justify-center text-xl text-MyOrange">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
                 </tbody>
             </table>
             <table id="UnverifiedCat" class="hidden w-full">
@@ -145,25 +102,31 @@
                     </tr>
                 </thead>
                 <tbody class="pt-3">
-                    <tr class="border border-MyPaleBlue">
-                        <td class="py-5 px-8">
-                            <p>1</p>
-                        </td>
-                        <td class="py-5 px-8 min-w-48">
-                            <p>Marketing</p>
-                        </td>
-                        <td class="py-5 pr-3 text-center">Mar 31, 2021</td>
-                        <td class="text-xs">
-                            <div id="open_acceptForm" class="flex justify-center text-2xl text-MyBlue hover:cursor-pointer">
-                                <i class="fa-solid fa-circle-check"></i>
-                            </div>
-                        </td>
-                        <td class="text-xs">
-                            <div class="open_deletionForm flex justify-center text-2xl text-MyOrange hover:cursor-pointer">
-                                <i class="fa-solid fa-circle-xmark"></i>
-                            </div>
-                        </td>
-                    </tr>
+                    @{
+                        int countIdNew = 1;
+                        foreach (var category in Model.NewCategoryList)
+                        {
+                            <tr class="border border-MyPaleBlue">
+                                <td class="py-5 px-8">
+                                    <p>@(countIdNew++)</p>
+                                </td>
+                                <td class="py-5 px-8 min-w-48">
+                                    <p>@category.Name</p>
+                                </td>
+                                <td class="py-5 pr-3 text-center">@category.CreatedAt.ToString("MMM dd, yyyy")</td>
+                                <td class="text-xs">
+                                    <button data-id="@category.Id" class="open_acceptForm flex justify-center mx-auto text-2xl text-MyBlue hover:cursor-pointer">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                    </button>
+                                </td>
+                                <td class="text-xs">
+                                    <button data-id="@category.Id" class="open_deletionForm flex justify-center mx-auto text-2xl text-MyOrange hover:cursor-pointer">
+                                        <i class="fa-solid fa-circle-xmark"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    }
                 </tbody>
             </table>
             <ul class="mt-7 flex justify-end gap-2 text-sm font-medium text-MyOrange">
@@ -177,7 +140,7 @@
     </div>
 
     <!-- Confirm Form -->
-    <div id="acceptForm" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+    <div class="acceptForm hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
         <div class="bg-white mx-auto w-1/4 h-fit rounded-lg mt-28">
             <div class="flex gap-4 items-center px-5 py-3">
                 <input hidden type="text" value="1">
@@ -186,16 +149,17 @@
             <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
             <div class="px-5 py-3">
                 <p class="">Are you sure you would like to delete this profile from the database? This action cannot be undone.</p>
-                <div class="flex gap-2 justify-end mt-6">
-                    <button id="cancel_acceptForm" class=" rounded-lg border border-MyBlue bg-MyPaleBlue py-2 px-5">Cancel</button>
-                    <button class="border border-MyBlue bg-MyBlue text-white rounded-lg hover:bg-MyPaleBlue hover:text-MyBlue py-2 px-5">Accept</button>
-                </div>
+                <form asp-controller="Category" asp-action="HandleCategory" method="post" class="flex gap-2 justify-end mt-6">
+                    <input name="categoryId" id="id_approveCategory" type="text" hidden />
+                    <button type="button" class="cancel_acceptForm rounded-lg border border-MyBlue bg-MyPaleBlue py-2 px-5">Cancel</button>
+                    <button type="submit" name="submitBtn" value="approve" class="border border-MyBlue bg-MyBlue text-white rounded-lg hover:bg-MyPaleBlue hover:text-MyBlue py-2 px-5">Accept</button>
+                </form>
             </div>
         </div>
     </div>
 
     <!-- Delete Form -->
-    <div id="deletionForm" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+    <div class="deletionForm hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
         <div class="bg-white mx-auto w-1/4 h-fit rounded-lg mt-28">
             <div class="flex gap-4 items-center px-5 py-3">
                 <input hidden type="text" value="1">
@@ -204,15 +168,16 @@
             <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
             <div class="px-5 py-3">
                 <p class="">Are you sure you would like to delete this profile from the database? This action cannot be undone.</p>
-                <div class="flex gap-2 justify-end mt-6">
-                    <button id="cancel_deletionForm" class=" rounded-lg border border-MyOrange bg-MyPaleOrange py-2 px-5">Cancel</button>
-                    <button class="btn py-2 px-5">Accept</button>
-                </div>
+                <form asp-controller="Category" asp-action="HandleCategory" method="post" class="flex gap-2 justify-end mt-6">
+                    <input name="categoryId" id="id_deleteCategory" type="text" hidden />
+                    <button type="button" class="cancel_deletionForm rounded-lg border border-MyOrange bg-MyPaleOrange py-2 px-5">Cancel</button>
+                    <button type="submit" name="submitBtn" value="delete" class="btn py-2 px-5">Accept</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
 
 @section Scripts {
-    <script src="~/js/admin.js"></script>
+    <script src="~/js/admin/home.js"></script>
 }

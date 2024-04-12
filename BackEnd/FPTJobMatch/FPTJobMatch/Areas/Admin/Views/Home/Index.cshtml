@@ -1,4 +1,8 @@
-﻿@{
+﻿@using FPT.Utility
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> UserManager
+@model IEnumerable<ApplicationUser>
+@{
     ViewData["Title"] = "Home";
 }
 
@@ -34,23 +38,22 @@
                 <button id="open_employerFormCreated" class="btnPaleBlue text-sm py-3 px-4 ">
                     Create Account
                 </button>
-                <div class="relative" id="jobType_select">
+                <div class="relative" id="dropdown_btn">
                     <div class="hover:cursor-pointer text-sm flex items-center justify-between w-36 py-3 px-4 border border-MyBlue rounded-md">
                         <p>Role</p>
                         <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
                     </div>
-                    <ul id="jobType_options" class="hidden w-36 absolute text-sm">
-                        <li class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Employers</li>
-                        <li class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Job Seekers</li>
-                        <li class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">All</li>
-                    </ul>
+                    <div id="dropdown_list" class="hidden w-36 absolute text-sm">
+                        <a asp-area="Admin" asp-controller="Home" asp-action="Index" asp-route-userType="JobSeeker" class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Employers</a>
+                        <a asp-area="Admin" asp-controller="Home" asp-action="Index" asp-route-userType="Employer" class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Job Seekers</a>
+                    </div>
                 </div>
-                <div class="relative" id="jobType_select">
+                <div class="relative" id="dropdown_btn">
                     <div class="hover:cursor-pointer text-sm flex items-center justify-between w-36 py-3 px-4 border border-MyBlue rounded-md">
                         <p>Sorting</p>
                         <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
                     </div>
-                    <ul id="jobType_options" class="hidden w-36 absolute text-sm">
+                    <ul id="dropdown_list" class="hidden w-36 absolute text-sm">
                         <li class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Full Time</li>
                         <li class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Part Time</li>
                         <li class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Remote</li>
@@ -72,61 +75,39 @@
                     <th class="py-3">Phone</th>
                     <th class="py-3">Status</th>
                     <th class="py-3">Date Applied</th>
-                    <th class="py-3 px-5 text-center">Company</th>
+                    <th class="py-3 px-5 text-center">Role</th>
                     <th class="py-3 px-5 rounded-tr-md text-center">Modify</th>
                 </tr>
             </thead>
             <tbody class="pt-3">
-                <tr class="border border-MyPaleBlue">
-                    <td class="py-5 px-8 min-w-56">
-                        <div class="flex gap-3 items-center">
-                            <img src="/imgs/fptlearn.jpg" alt="" class="w-14 h-14 rounded-full object-cover p-1 border border-MyDarkGrey">
-                            <div class="break-all">
-                                <a href="www" class="font-semibold text-lg hover:underline hover:text-MyBlue">Le Thi Tuyet Giang</a>
-                                <p class="text-sm text-MyDarkGrey">mgmsupport@gmail.com</p>
+                @foreach (var user in Model)
+                {
+                    <tr class="border border-MyPaleBlue">
+                        <td class="py-5 px-8 min-w-56">
+                            <div class="flex gap-3 items-center">
+                                <img src="~/images/avatar/@(user.Avatar ?? "maleavt.jpg")" class="w-14 h-14 rounded-full object-cover p-1 border border-MyDarkGrey">
+                                <div class="break-all">
+                                    <a href="www" class="font-semibold text-lg hover:underline hover:text-MyBlue">@user.Name</a>
+                                    <p class="text-sm text-MyDarkGrey">@user.Email</p>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td class="py-5 pr-3">070166256</td>
-                    <td class="py-5 pr-3">
-                        <div class="flex gap-2 items-center">
-                            <i class="fa-solid fa-circle text-xs text-MyGreen"></i>
-                            <p>Active</p>
-                        </div>
-                    </td>
-                    <td class="py-5 pr-3">Mar 31, 2021</td>
-                    <td class="view_cvFormSubmitted py-5 text-center">MGM</td>
-                    <td class="text-xs">
-                        <div class="flex justify-center">
-                            <button id="open_statusForm" class="border border-MyBlue bg-MyPaleBlue py-2 px-3 rounded-lg hover:bg-MyBlue hover:text-white">Change</button>
-                        </div>
-                    </td>
-                </tr>
-                <tr class="border border-MyPaleBlue">
-                    <td class="py-5 px-8 min-w-56">
-                        <div class="flex gap-3 items-center">
-                            <img src="/imgs/fptlearn.jpg" alt="" class="w-14 h-14 rounded-full object-cover p-1 border border-MyDarkGrey">
-                            <div class="break-all">
-                                <a href="www" class="font-semibold text-lg hover:underline hover:text-MyBlue">Le Thi Tuyet Giang</a>
-                                <p class="text-sm text-MyDarkGrey">mgmsupport@gmail.com</p>
+                        </td>
+                        <td class="py-5 pr-3">@user.PhoneNumber</td>
+                        <td class="py-5 pr-3">
+                            <div class="flex gap-2 items-center">
+                                <i class="fa-solid fa-circle text-xs @(user.AccountStatus == SD.StatusActive ? "text-MyGreen" : user.AccountStatus == SD.StatusSuspending ? "text-MyOrange" : "text-MyBlue")"></i>
+                                <p>@(user.AccountStatus == SD.StatusActive ? "Active" : user.AccountStatus == SD.StatusSuspending ? "Suspending" : "Pending")</p>
                             </div>
-                        </div>
-                    </td>
-                    <td class="py-5 pr-3">070166256</td>
-                    <td class="py-5 pr-3">
-                        <div class="flex gap-2 items-center">
-                            <i class="fa-solid fa-circle text-xs text-MyOrange"></i>
-                            <p>Suspicision</p>
-                        </div>
-                    </td>
-                    <td class="py-5 pr-3">Mar 31, 2021</td>
-                    <td class="view_cvFormSubmitted py-5 text-center">MGM</td>
-                    <td class="text-xs">
+                        </td>
+                        <td class="py-5 pr-3">@user.CreatedAt.ToString("MMM dd, yyyy")</td>
+                        <td class="view_cvFormSubmitted py-5 text-center">@((await UserManager.GetRolesAsync(user)).Contains(SD.Role_Employer) ? "Employer" : "Job Seeker")</td>
+                        <td class="text-xs">
                         <div class="flex justify-center">
-                            <button class="border border-MyBlue bg-MyPaleBlue py-2 px-3 rounded-lg hover:bg-MyBlue hover:text-white">Change</button>
+                            <button data-id="@user.Id" class="open_statusForm btn_modifyUser border border-MyBlue bg-MyPaleBlue py-2 px-3 rounded-lg hover:bg-MyBlue hover:text-white">Change</button>
                         </div>
                     </td>
-                </tr>
+                </tr> 
+                }
             </tbody>
         </table>
 
@@ -140,23 +121,25 @@
     </div>
 
     <!-- Modify Status -->
-    <div id="statusForm" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+    <div class="statusForm hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
         <div class="bg-white mx-auto w-1/4 h-fit rounded-lg mt-28">
             <div class="flex gap-4 items-center justify-between px-5 py-3">
                 <p class="text-MyBlue text-lg font-semibold">Confirm Deletion</p>
-                <button id="close_statusForm" class="text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyBlue"><i class="fa-solid fa-xmark"></i></button>
+                <button class="close_statusForm text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyBlue"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
-            <div class="px-5 py-3">
-                <select name="" id="" class="w-full custom-select p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue">
-                    <option value="">Active</option>
-                    <option value="">Suspend</option>
+            <form method="post" asp-controller="Home" asp-action="StatusChange" id="form_modifyUser" class="px-5 py-3">
+                <input name="Id" id="id_modifyUser" type="text" hidden/>
+                <select name="status" id="" class="w-full custom-select p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue">
+                    <option value="@SD.StatusActive">Activate</option>
+                    <option value="@SD.StatusSuspending">Suspend</option>
+                    <option value="Delete">Delete</option>
                 </select>
                 <div class="flex gap-2 justify-end mt-6">
-                    <button id="cancel_statusForm" class=" rounded-lg border border-MyBlue bg-MyPaleBlue py-2 px-5">Cancel</button>
-                    <button class="border border-MyBlue bg-MyBlue text-white rounded-lg hover:bg-MyPaleBlue hover:text-MyBlue py-2 px-5">Change</button>
+                    <button type="button" class="cancel_statusForm rounded-lg border border-MyBlue bg-MyPaleBlue py-2 px-5">Cancel</button>
+                    <button type="submit" class="border border-MyBlue bg-MyBlue text-white rounded-lg hover:bg-MyPaleBlue hover:text-MyBlue py-2 px-5">Change</button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 
@@ -210,7 +193,7 @@
     </div>
 </div>
 
-
 @section Scripts {
-    <script src="~/js/admin.js"></script>
+    <script src="~/js/admin/home.js" asp-append-version="true"></script>
+    <script src="~/ajax/admin/home.js" asp-append-version="true"></script>
 }

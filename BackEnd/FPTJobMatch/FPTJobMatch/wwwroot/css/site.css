@@ -6,6 +6,10 @@
     --blue: #024FA0;
 }
 
+.logo-icon {
+    object-fit: contain;
+}
+
 html {
     scroll-behavior: smooth;
 }
@@ -104,9 +108,10 @@ body {
 
 
 /* DropDown List */
-    #jobType_select:hover #jobType_options {
-        display: block;
-    }
+#dropdown_btn:hover #dropdown_list {
+    display: flex;
+    flex-direction: column;
+}
 
     #profile_select:hover #profile_options {
         display: flex;

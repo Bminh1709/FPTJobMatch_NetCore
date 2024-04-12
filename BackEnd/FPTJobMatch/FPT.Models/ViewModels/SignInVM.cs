@@ -9,11 +9,11 @@ namespace FPT.Models.ViewModels
 {
     public class SignInVM
     {
-        [Required]
+        [Required(ErrorMessage = "Email Address is required")]
         [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Password is required")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 

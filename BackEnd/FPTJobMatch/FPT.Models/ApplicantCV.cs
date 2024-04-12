@@ -14,16 +14,14 @@ namespace FPT.Models
         [Key]
         public int Id { get; set; }
         public DateTime DateSubmitted { get; set; }
-        public DateTime DateResponded { get; set; }
+        public DateTime? DateResponded { get; set; }
         public string? ResponseMessage { get; set; }
 
-        public int ApplicationUserId { get; set; }
-        [ForeignKey("ApplicationUserId")]
-        public ApplicationUser ApplicationUser { get; set; }
+        public string JobSeekerId { get; set; }
+        [ForeignKey("JobSeekerId")]
+        public ApplicationUser JobSeeker { get; set; }
 
-        public int StatusId { get; set; }
-        [ForeignKey("StatusId")]
-        public Status Status { get; set; }
+        public string? CVStatus { get; set; }
 
         public int JobId { get; set; }
         [ForeignKey("JobId")]

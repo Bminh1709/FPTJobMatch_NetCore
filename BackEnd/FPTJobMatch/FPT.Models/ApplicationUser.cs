@@ -16,9 +16,12 @@ namespace FPT.Models
         [Range(10, 1000, ErrorMessage = "You have to enter a correct name fully")]
         public string Name { get; set; }
         public DateTime CreatedAt { get; set; }
+        public string? Avatar { get; set; }
 
-        public int StatusId { get; set; }
-        [ForeignKey("StatusId")]
-        public Status Status { get; set; }
+        public string AccountStatus { get; set; }
+
+        public int? CompanyId { get; set; }
+        [ForeignKey("CompanyId")]
+        public Company Company { get; set; }
     }
 }

@@ -2,7 +2,8 @@
     var mybutton = $("#backToTop-btn");
 
     // When the user scrolls down 200px from the top of the document, show the button
-    $(window).scroll(function () {
+    $(window).on("scroll", function () {
+        var mybutton = $("#myBtn");
         if ($(this).scrollTop() > 200) {
             mybutton.css("display", "block");
         } else {
@@ -11,8 +12,11 @@
     });
 
     // When the user clicks on the button, scroll to the top of the document
-    mybutton.click(function () {
+    mybutton.on("click", function () {
         $("html, body").animate({ scrollTop: 0 }, "slow");
     });
+
+    // Fade out pop up message
+    $('.popUpMessage').delay(2000).fadeOut(1000);
 });
 

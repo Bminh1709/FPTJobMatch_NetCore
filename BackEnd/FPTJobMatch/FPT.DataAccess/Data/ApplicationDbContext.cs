@@ -15,7 +15,6 @@ namespace FPT.DataAccess.Data
         }
 
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
-        public DbSet<Status> AccountStatuses { get; set; }
         public DbSet<JobSeekerDetail> JobSeekerDetails { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Company> Companies { get; set; }
@@ -28,13 +27,6 @@ namespace FPT.DataAccess.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-
-            builder.Entity<Status>().HasData(
-                new Status { Id = 1, Name = SD.StatusSuspending },
-                new Status { Id = 2, Name = SD.StatusPending },
-                new Status { Id = 3, Name = SD.StatusActive },
-                new Status { Id = 4, Name = SD.StatusResponded }
-            );
 
             builder.Entity<JobType>().HasData(
                 new JobType { Id = 1, Name = "Part Time" },
