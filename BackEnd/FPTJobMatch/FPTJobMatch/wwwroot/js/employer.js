@@ -30,6 +30,19 @@ cancel_employerCVFormDelete.on('click', function () {
     employerCVFormDelete.addClass('hidden');
 })
 
+// Add New Category
+$('body').on("change", "#categoryDropdown", function () {
+    var newCategoryInput = $("#newCategoryInput");
+    console.log("gettt")
+    if ($(this).val() === "") {
+        console.log("click")
+        newCategoryInput.removeAttr("disabled");
+        newCategoryInput.focus();
+    } else {
+        newCategoryInput.attr("disabled", "disabled");
+    }
+});
+
 
 // Applicants page
 const view_cvFormSubmitted = $('.view_cvFormSubmitted');
@@ -58,5 +71,15 @@ $("#profileBtn").click(function () {
     $("#Profile_section").show();
     $(this).addClass('active');
     $('#companyBtn').removeClass('active');
+});
+
+
+// Show Password
+$('#showPassword').change(function () {
+    const isChecked = $(this).prop('checked');
+    const inputType = isChecked ? 'text' : 'password';
+    $('#Password, #PasswordConfirm').each(function () {
+        $(this).attr('type', inputType);
+    });
 });
 

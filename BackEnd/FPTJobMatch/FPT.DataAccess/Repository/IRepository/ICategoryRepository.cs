@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace FPT.DataAccess.Repository.IRepository
 {
-    public interface ICategoryRepository : IRepository<Category>
+    public interface IJobTypeRepository : IRepository<JobType>
     {
-        public void Update(Category category);
+        public void Update(JobType jobType);
     }
 }

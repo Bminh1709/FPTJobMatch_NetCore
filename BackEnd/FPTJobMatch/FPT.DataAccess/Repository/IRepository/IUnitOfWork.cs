@@ -10,10 +10,10 @@ namespace FPT.DataAccess.Repository.IRepository
     {
         IApplicationUserRepository ApplicationUser { get; }
         IJobSeekerDetailRepository JobSeekerDetail { get; }
-        IStatusRepository AccountStatus { get; }
         ICompanyRepository Company { get; }
         ICategoryRepository Category { get; }
         IJobRepository Job { get; }
+        IJobTypeRepository JobType { get; }
         ICityRepository City { get; }
         IApplicantCVRepository ApplicantCV { get; }
         void Save();

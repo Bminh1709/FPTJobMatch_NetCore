@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Access denied</title>
+    <link rel="icon" href="~/images/system/FPT.png" type="image/icon type">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        MyOrange: "#F2721E",
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body>
+
+
+    <div class="flex flex-col text-center mt-24">
+        <p class="text-6xl font-extrabold text-MyOrange">403</p>
+        <p class="text-2xl font-bold text-MyOrange my-3">Access Denied</p>
+        <p class="text-MyDarkGrey">You don't have permissions to access this page.</p>
+        <div class="text-MyDarkGrey">
+            Contact <a href="mailto:minhbee203@gmail.com" class="text-MyOrange underline">tuyendungfpt@fpt.com.vn</a> to get permissions or
+            go to the <a href="mailto:minhbee203@gmail.com" class="text-MyOrange underline">Home</a>
+        </div>
+        <img src="~/images/system/403ErrorForbidden.png" alt="" class="w-96 mx-auto">
+    </div>
+
+
+</body>
+</html>

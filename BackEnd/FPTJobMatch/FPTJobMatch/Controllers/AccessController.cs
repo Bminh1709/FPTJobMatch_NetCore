@@ -1,5 +1,6 @@
 ﻿using FPT.Models;
 using FPT.Models.ViewModels;
+using FPT.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -25,18 +26,29 @@ namespace FPTJobMatch.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user != null)
                 {
-                    // Get the user
-                    var user = await _userManager.FindByEmailAsync(model.Email);
-                    if (user != null)
+                    if (user.AccountStatus == SD.StatusSuspending)
+                    {
+                        ModelState.AddModelError(string.Empty, "This account has been suspended.");
+                        return View(model);
+                    }
+                    else if (user.AccountStatus == SD.StatusPending)
+                    {
+                        ModelState.AddModelError(string.Empty, "This account is still processing.");
+                        return View(model);
+                    }
+
+                    var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+
+                    if (result.Succeeded)
                     {
                         // Get the roles associated with the user
                         var roles = await _userManager.GetRolesAsync(user);
                         if (roles.Contains("JobSeeker"))
                         {
-                            return RedirectToAction("Index", "JobSeeker");
+                            return RedirectToAction("Index", "Home");
                         }
                         else if (roles.Contains("Employer"))
                         {
@@ -48,25 +60,23 @@ namespace FPTJobMatch.Controllers
                         }
                     }
 
-                    // If user does not have any roles, redirect to default page
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(model);
                 }
             }
 
+            ModelState.AddModelError(string.Empty, "Incorrect Email or Password");
             // Model state is invalid, return back
             return View(model);
         }
 
-        [HttpPost]
         public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }

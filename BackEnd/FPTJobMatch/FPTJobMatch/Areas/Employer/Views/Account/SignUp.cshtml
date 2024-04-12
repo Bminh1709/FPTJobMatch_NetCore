@@ -1,0 +1,96 @@
+﻿@model EmployerRegisterVM
+
+@{
+    ViewData["Title"] = "Sign Up";
+}
+
+
+<div class="min-h-screen bg-cover bg-fixed bg-black w-full py-16" style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.54), transparent), url(/images/system/fpthonor.jpg);">
+    <div class="bg-white p-9 w-11/12 sm:w-fit rounded-lg mx-auto">
+        <p class="text-MyOrange font-bold text-2xl mb-1">Register for Employer</p>
+        <div class="flex gap-1 text-sm">
+            <p>Already have an account?</p>
+            <a asp-controller="Home" asp-action="SignIn" class="underline text-MyBlue">Sign In</a>
+        </div>
+        <form action="" method="post" class="mt-6">
+            <p class="text-lg font-bold text-MyOrange text-center">Your contact information</p>
+            <div class="flex flex-col gap-3">
+                <div class="flex flex-col gap-2">
+                    <label asp-for="Name" class="font-semibold">Full Name</label>
+                    <input type="text" asp-for="Name" placeholder="Type your full name" class="border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
+                    <span asp-validation-for="Name" class="text-red-600 text-sm"></span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label asp-for="Email" class="font-semibold">Email Address</label>
+                    <input type="text" asp-for="Email" placeholder="Type your gmail" class="border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
+                    <span asp-validation-for="Email" class="text-red-600 text-sm"></span>
+                </div>
+                <div class="">
+                    <div class="flex flex-col md:flex-row gap-5">
+                        <div class="flex flex-col gap-2">
+                            <label asp-for="Password" class="font-semibold">Password</label>
+                            <input type="password" asp-for="Password" id="Password" placeholder="Type your password" class="min-w-64 border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label asp-for="ConfirmPassword" class="font-semibold">Password Confirm</label>
+                            <input type="password" asp-for="ConfirmPassword" id="PasswordConfirm" placeholder="Type your password" class="min-w-64 border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1">
+                        <span asp-validation-for="Password" class="text-red-600 text-sm mt-2"></span>
+                        <span asp-validation-for="ConfirmPassword" class="text-red-600 text-sm"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center gap-1 mt-2">
+                <input id="showPassword" type="checkbox" class="accent-MyOrange w-3.5 h-3.5">
+                <label for="showPassword" class="text-xs">Show password</label>
+            </div>
+            <p class="text-lg font-bold text-MyOrange text-center mt-7">Company information</p>
+            <div class="flex flex-col gap-4">
+                <div class="flex flex-col gap-2">
+                    <label asp-for="CompanyName" class="font-semibold">Company Name</label>
+                    <input type="text" asp-for="CompanyName" placeholder="Type your full name" class="border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
+                    <span asp-validation-for="CompanyName" class="text-red-600 text-sm"></span>
+                </div>
+                <div class="flex flex-col gap-2">
+                    <label for="CompanyAddress" class="font-semibold">Location</label>
+                    <select asp-for="CityId" asp-items="@Model.CityList" class="custom-select border border-MyPaleGrey focus:border-MyOrange p-3 rounded-sm outline-none text-sm">
+                        <option disabled selected>--Select City--</option>
+                    </select>
+                    <span asp-validation-for="CityId" class="text-red-600 text-sm"></span>
+                </div>
+            </div>
+            <div class="flex items-center gap-1 mt-2">
+                <input asp-for="isPolicyAgreed" type="checkbox" class="accent-MyOrange w-3.5 h-3.5">
+                <label for="policy" class="text-xs">I have read and agree to your <span class="underline font-semibold">Terms of use</span> and <span class="underline font-semibold">Privacy Policy</span></label>
+            </div>
+            <span asp-validation-for="isPolicyAgreed" class="text-red-600 text-sm mt-3"></span>
+            <button type="submit" class="btn w-full py-2 mt-5">Sign Up</button>
+            <div asp-validation-summary="ModelOnly" class="text-red-600 text-sm mt-3 text-center"></div>
+        </form>
+        <div class="flex items-center gap-4 my-5">
+            <div class="bg-MyPaleGrey h-0.5 w-full"></div>
+            <p class="text-sm text-gray-400">OR</p>
+            <div class="bg-MyPaleGrey h-0.5 w-full"></div>
+        </div>
+        <div class="flex gap-3 justify-between h-10">
+            <div class="flex items-center justify-center gap-2 border border-MyOrange rounded-md w-full hover:bg-MyPaleOrange">
+                <img src="~/images/system/Facebook-logo.png" alt="Facebook-logo" class="h-5">
+                <p class="text-xs">Facebook</p>
+            </div>
+            <div class="flex items-center justify-center gap-2 border border-MyOrange rounded-md w-full hover:bg-MyPaleOrange">
+                <img src="~/images/system/Google-logo.png" alt="Google-logo" class="h-5">
+                <p class="text-xs">Google</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script src="~/js/employer.js"></script>
+}
