@@ -33,7 +33,6 @@ namespace FPTJobMatch.Areas.Employer.Controllers
             var viewModel = new JobVM
             {
                 Jobs = jobs,
-                JobUploadModel = new Job(),
                 JobTypeList = _unitOfWork.JobType.GetAll().Select(u => new SelectListItem
                 {
                     Text = u.Name,
@@ -54,6 +53,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
         {
             if (!ModelState.IsValid || viewModel.JobUploadModel == null)
             {
+                TempData["error"] = "Fill out the form fully";
                 return RedirectToAction("Index");
             }
 
@@ -75,7 +75,8 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                 {
                     Name = newJob.Category.Name,
                     IsApproved = false,
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = DateTime.UtcNow,
+                    CreatedByUser = user,
                 };
 
                 _unitOfWork.Category.Add(category);
@@ -94,8 +95,6 @@ namespace FPTJobMatch.Areas.Employer.Controllers
         {
             // Get Job's info
             Job job = _unitOfWork.Job.Get(j => j.Id == id, includeProperties: "Category,JobType,Company.City");
-            //Company company = _unitOfWork.Company.Get(c => c.Id == job.CompanyId, includeProperties: "City");
-            //string cityName = company.City.Name;
             // Get Total Number of CVs
             int numOfCVs = _unitOfWork.ApplicantCV.CountCVs(cv => cv.Job == job);
             int numOfNewCVs = _unitOfWork.ApplicantCV.CountCVs(cv => cv.Job == job && cv.CVStatus == SD.StatusPending);

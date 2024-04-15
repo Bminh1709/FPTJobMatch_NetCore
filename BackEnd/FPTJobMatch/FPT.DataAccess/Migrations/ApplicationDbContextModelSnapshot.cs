@@ -33,11 +33,15 @@ namespace FPT.DataAccess.Migrations
                     b.Property<string>("CVStatus")
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("DateResponded")
+                    b.Property<DateTime?>("DateResponded")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("DateSubmitted")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("FileCV")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("JobId")
                         .HasColumnType("integer");
@@ -152,14 +156,18 @@ namespace FPT.DataAccess.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("CreatedByUserId")
+                        .HasColumnType("text");
+
                     b.Property<bool>("IsApproved")
                         .HasColumnType("boolean");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreatedByUserId");
 
                     b.ToTable("Categories");
                 });
@@ -252,22 +260,25 @@ namespace FPT.DataAccess.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("CompanyId")
+                    b.Property<int?>("CompanyId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<DateOnly>("Deadline")
+                        .HasColumnType("date");
+
                     b.Property<string>("Description")
                         .HasColumnType("text");
 
                     b.Property<string>("EmployerId")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Experience")
@@ -310,7 +321,7 @@ namespace FPT.DataAccess.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("text");
 
-                    b.Property<DateOnly>("DateOfBirth")
+                    b.Property<DateOnly?>("DateOfBirth")
                         .HasColumnType("date");
 
                     b.Property<string>("Gender")
@@ -359,6 +370,36 @@ namespace FPT.DataAccess.Migrations
                             Id = 3,
                             Name = "Remote"
                         });
+                });
+
+            modelBuilder.Entity("FPT.Models.Notification", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("ReceiverId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SenderId")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReceiverId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -521,6 +562,15 @@ namespace FPT.DataAccess.Migrations
                     b.Navigation("Company");
                 });
 
+            modelBuilder.Entity("FPT.Models.Category", b =>
+                {
+                    b.HasOne("FPT.Models.ApplicationUser", "CreatedByUser")
+                        .WithMany()
+                        .HasForeignKey("CreatedByUserId");
+
+                    b.Navigation("CreatedByUser");
+                });
+
             modelBuilder.Entity("FPT.Models.Company", b =>
                 {
                     b.HasOne("FPT.Models.City", "City")
@@ -536,21 +586,15 @@ namespace FPT.DataAccess.Migrations
                 {
                     b.HasOne("FPT.Models.Category", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("FPT.Models.Company", "Company")
                         .WithMany()
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CompanyId");
 
                     b.HasOne("FPT.Models.ApplicationUser", "Employer")
                         .WithMany()
-                        .HasForeignKey("EmployerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("EmployerId");
 
                     b.HasOne("FPT.Models.JobType", "JobType")
                         .WithMany()
@@ -576,6 +620,21 @@ namespace FPT.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("JobSeeker");
+                });
+
+            modelBuilder.Entity("FPT.Models.Notification", b =>
+                {
+                    b.HasOne("FPT.Models.ApplicationUser", "Receiver")
+                        .WithMany()
+                        .HasForeignKey("ReceiverId");
+
+                    b.HasOne("FPT.Models.ApplicationUser", "Sender")
+                        .WithMany()
+                        .HasForeignKey("SenderId");
+
+                    b.Navigation("Receiver");
+
+                    b.Navigation("Sender");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

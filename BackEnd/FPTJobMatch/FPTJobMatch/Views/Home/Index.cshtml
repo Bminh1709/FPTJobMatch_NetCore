@@ -1,5 +1,5 @@
 ﻿@using FPT.Utility.Helpers
-@model IEnumerable<Job>
+@model HomePageVM
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -13,7 +13,7 @@
                 Hiring or Find your next job
             </p>
             <p class="text-white text-lg mb-5 xl:w-10/12 mx-auto">Join over 3 million job seekers who rely on FPTJobMatch to streamline their career journey. With 140,000 daily applications, find your perfect fit in the dynamic world of FPT</p>
-            <form action="" class="flex flex-col sm:flex-row gap-3 w-full">
+            <form asp-controller="Jobs" asp-action="Index" class="flex flex-col sm:flex-row gap-3 w-full">
                 <div class="flex w-full h-16 sm:h-auto">
                     <div class="relative">
                         <div class="absolute h-full flex left-3 items-center">
@@ -22,24 +22,21 @@
                         <div class="absolute h-full flex right-3 items-center">
                             <i class="text-xl text-MyGrey fa-solid fa-angle-down"></i>
                         </div>
-                        <select name="" id="" class="h-full custom-select outline-none rounded-l-md w-40 lg:w-48 pl-10 text-MyDarkGrey font-medium">
+                        <select name="cityId" asp-items="@Model.CityList" class="h-full custom-select outline-none rounded-l-md w-40 lg:w-48 pl-10 text-MyDarkGrey font-medium">
                             <option value="">All Cities</option>
-                            <option value="">Ha Noi</option>
-                            <option value="">Da Nang</option>
-                            <option value="">Ho Chi Minh</option>
                         </select>
                     </div>
                     <div class="bg-white flex items-center pr-4">
                         <div class="w-0.5 h-3/5 bg-MyPaleGrey"></div>
                     </div>
-                    <input type="text" placeholder="Type the keyword you want to search" class="outline-none rounded-r-md w-full pr-4">
+                    <input type="text" name="keyword" placeholder="Type the keyword you want to search" class="outline-none rounded-r-md w-full pr-4">
                 </div>
                 <button type="submit" class="flex items-center justify-center gap-2 btn px-8 lg:px-11 py-4"><i class="fa-solid fa-magnifying-glass"></i><p>Search</p></button>
             </form>
             <div class="hidden sm:flex gap-3 text-white text-sm w-fit mx-auto mt-3 font-extralight">
                 <p>Popular Searches: </p>
                 <div class="flex gap-2 underline">
-                    @foreach (var category in ViewBag.Categories)
+                    @foreach (var category in Model.TopCategoryList)
                     {
                         <a href="#">@category.Name</a>
                     }
@@ -162,7 +159,7 @@
         <p class="text-MyOrange text-4xl font-bold text-center">Jobs of the day</p>
         <p class="text-MyDarkGrey mt-2 text-center">Search and connect with the right candidates faster</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 xl:gap-8 mt-8">
-        @foreach (var job in Model)
+        @foreach (var job in Model.TopJobList)
 		{
             <div class="shadow-normal px-5 py-5 rounded-sm border hover:border-MyOrange">
                 <a href="www.facebook.com" class="flex gap-3">

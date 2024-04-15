@@ -16,6 +16,7 @@ namespace FPT.DataAccess.Repository.IRepository
         IJobTypeRepository JobType { get; }
         ICityRepository City { get; }
         IApplicantCVRepository ApplicantCV { get; }
+        INotificationRepository Notification { get; }
         void Save();
     }
 }

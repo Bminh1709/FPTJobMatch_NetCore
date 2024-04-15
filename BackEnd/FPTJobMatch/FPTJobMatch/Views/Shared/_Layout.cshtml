@@ -64,8 +64,8 @@
                         <a asp-area="Employer" asp-controller="Profile" asp-action="Index" class="hover:text-MyOrange">Profile</a>
                     } else
                     {
-                        <a href="" class="hover:text-MyOrange">Jobs List</a>
-                        <a href="" class="hover:text-MyOrange">Top Companies</a>
+                        <a asp-area="" asp-controller="Jobs" asp-action="Index" class="hover:text-MyOrange">Jobs List</a>
+                        <a href="#topcompanies" class="hover:text-MyOrange">Top Companies</a>
                     }
                     <a href="#contact" class="hover:text-MyOrange">Contacts</a>
                     <a href="" class="hover:text-MyOrange">FAQ</a>
@@ -92,6 +92,7 @@
                             {
                                 <a asp-area="JobSeeker" asp-controller="Profile" asp-action="Index" class="py-3 px-4 bg-MyPaleBlue rounded-t-md hover:bg-MyBlue hover:text-white">Profile</a>   
                             }
+                            <a asp-area="" asp-controller="Home" asp-action="Notification" class="py-3 px-4 bg-MyPaleBlue hover:bg-MyBlue hover:text-white">Notification</a>
                             <a asp-area="" asp-controller="Access" asp-action="LogOut" class="py-3 px-4 bg-MyPaleBlue rounded-b-md hover:bg-MyBlue hover:text-white">Log Out</a>
                         </div>
                     </div>

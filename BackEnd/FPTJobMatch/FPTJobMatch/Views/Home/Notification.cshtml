@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Notification>
+
+@{
+    ViewData["Title"] = "Notification";
+}
+
+<div class="min-h-screen bg-MyVeryPaleGrey py-10">
+    <div class="w-11/12 sm:w-4/5 lg:w-1/2 bg-white mx-auto px-5 pt-5 pb-10">
+        <p class="text-MyOrange text-xl font-semibold">Notifications</p>
+        <div>
+            @foreach(var noti in Model)
+            {
+                <div class="flex gap-2 items-center mt-5">
+                    <img class="w-12 h-12 sm:h-14 sm:w-14 rounded-full object-cover" src="~/images/avatar/@(noti.Sender.Avatar ?? "maleavt.jpg")" alt="">
+                    <div class="flex flex-col">
+                        <p>@noti.Content</p>
+                        <P class="text-sm text-MyBlue font-medium">@noti.CreatedAt.ToString("MMM dd, yyyy")</P>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

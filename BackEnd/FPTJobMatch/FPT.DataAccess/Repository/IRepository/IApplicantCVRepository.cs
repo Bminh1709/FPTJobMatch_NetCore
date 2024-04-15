@@ -12,5 +12,7 @@ namespace FPT.DataAccess.Repository.IRepository
     {
         public void Update(ApplicantCV applicantCV);
         public int CountCVs(Expression<Func<ApplicantCV, bool>> filter);
+        public bool IsSubmittedLast30Days(int jobId, string userId);
+
     }
 }

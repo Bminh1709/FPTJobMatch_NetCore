@@ -22,6 +22,7 @@ namespace FPT.DataAccess.Data
         public DbSet<JobType> JobTypes { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<ApplicantCV> ApplicantCVs { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
