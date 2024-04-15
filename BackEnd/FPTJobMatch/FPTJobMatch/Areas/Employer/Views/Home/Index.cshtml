@@ -9,7 +9,7 @@
     <!-- Searching box -->
     <div class="rounded-xl p-5 sm:p-10 bg-contain bg-fixed text-center" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/images/system/bg-reg.png);">
         <div class="w-full sm:w-11/12 lg:w-4/5 xl:w-3/4 mx-auto">
-            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">22 Jobs </span>Successfully Uploaded</p>
+            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">Job Management </span>Your Key to Success!</p>
             </p>
             <form action="" class="mt-7">
                 <div class="flex flex-wrap gap-5 mt-3 mx-auto justify-center">
@@ -19,9 +19,11 @@
                             <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
                         </div>
                         <ul id="jobType_options" class="hidden z-10 w-36 absolute text-sm">
-                            <li class="mt-1 py-3 px-4 bg-MyPaleOrange rounded-md border border-MyOrange hover:bg-MyOrange hover:text-white hover:cursor-pointer">Full Time</li>
-                            <li class="mt-1 py-3 px-4 bg-MyPaleOrange rounded-md border border-MyOrange hover:bg-MyOrange hover:text-white hover:cursor-pointer">Part Time</li>
-                            <li class="mt-1 py-3 px-4 bg-MyPaleOrange rounded-md border border-MyOrange hover:bg-MyOrange hover:text-white hover:cursor-pointer">Remote</li>
+                            <li class="mt-1 py-3 px-4 bg-MyPaleOrange rounded-md border border-MyOrange hover:bg-MyOrange hover:text-white hover:cursor-pointer">All Types</li>
+                            @foreach (var jobType in Model.JobTypeList)
+                            {
+                                <li class="mt-1 py-3 px-4 bg-MyPaleOrange rounded-md border border-MyOrange hover:bg-MyOrange hover:text-white hover:cursor-pointer">@jobType.Text</li>
+                            }
                         </ul>
                     </div>
                     <label for="" id="create_employerCVForm" class="text-sm btn px-6 flex items-center hover:cursor-pointer">
@@ -35,11 +37,6 @@
     <!-- Jobs list -->
     <div class="grid grid-cols-3 gap-2 sm:gap-5 mt-8">
         <div id="leftTab" class="col-span-1 flex flex-col gap-2">
-@*             @if (Model.Jobs == null)
-            {
-                <p class="text-center font-medium text-MyOrange">You haven't uploaded any jobs</p>
-            } else
-            { *@
                 @foreach (var job in Model.Jobs)
                 {
                     <div data-id="@job.Id" class="job_item rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:bg-MyPaleOrange hover:border-MyOrange">
@@ -73,12 +70,12 @@
                         <div class="flex flex-wrap gap-2 text-sm mt-4">
                             <div id="applicantCV_new" class="border border-MyOrange bg-MyPaleOrange px-3 rounded-lg py-2"></div>
                             <div id="applicantCV_total" class="border border-MyBlue bg-MyPaleBlue px-3 rounded-lg py-2"></div>
-                            <a href="" class="btn px-3 py-2">View Applicants</a>
+                            <a id="viewApplicants_page" class="btn px-3 py-2">View Applicants</a>
                         </div>
                     </div>
                     <div class="flex flex-col text-3xl">
-                        <button for="" id="edit_employerCVForm" class="text-MyBlue"><i class="fa-solid fa-square-pen"></i></button>
-                        <button for="" id="delete_employerCVFormDelete" class="text-MyOrange"><i class="fa-solid fa-square-xmark"></i></button>
+                        <button for="" class="edit_employerCVForm text-MyBlue"><i class="fa-solid fa-square-pen"></i></button>
+                        <button for="" class="delete_employerCVFormDelete text-MyOrange"><i class="fa-solid fa-square-xmark"></i></button>
                     </div>
                     <div class="h-0.5 w-full bg-MyPaleGrey mt-3"></div>
                 </div>
@@ -95,6 +92,10 @@
                         <div class="flex items-center gap-2">
                             <i class="fa-regular fa-clock text-MyGrey text-lg"></i>
                             <p id="job_type"></p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-clock-rotate-left text-MyGrey text-lg"></i>
+                            <p id="job_deadline"></p>
                         </div>
                     </div>
                     <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
@@ -170,6 +171,11 @@
                             <p class="text-sm text-MyDarkGrey">Address <span class="text-red-600">*</span></p>
                             <input asp-for="JobUploadModel.Address" type="text" class="w-full outline-none text-sm font-medium" placeholder="Enter your full name">
                         </div>
+                        <div class="w-full border border-MyOrange rounded-sm py-2 px-3">
+                            <p class="text-sm text-MyDarkGrey">Deadline</p>
+                            <input id="deadlineInput" asp-for="JobUploadModel.Deadline" type="date" class="w-full outline-none text-sm font-medium" placeholder="Enter your full name">
+                        </div>
+                        <p id="deadline_errorMessage" class="hidden text-center text-red-600 text-sm">The deadline must be greater than today's date</p>
                         <div class="w-full border border-MyOrange rounded-sm">
                             <p class="px-3 pt-2 text-sm text-MyDarkGrey">Job Category <span class="text-red-600">*</span></p>
                             <select id="categoryDropdown" asp-for="JobUploadModel.CategoryId" asp-items="@Model.CategoryList" class="custom-select px-3 pb-2 w-full outline-none text-sm font-medium">
@@ -211,7 +217,7 @@
         <div class="bg-white mx-auto w-1/4 h-fit rounded-lg mt-28">
             <div class="flex gap-4 items-center justify-between px-5 py-3">
                 <p class="text-MyOrange text-lg font-semibold">Confirm Deletion</p>
-                <button for="" id="close_employerCVFormDelete" class="text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyOrange"><i class="fa-solid fa-xmark"></i></button>
+                <button for="" id="close_employerCVFormDelete" class="close_employerCVFormDelete text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyOrange"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
             <form class="px-5 pt-3 pb-5">

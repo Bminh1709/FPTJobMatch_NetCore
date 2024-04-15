@@ -6,6 +6,13 @@ $('body').on('click', '.job_item', function () {
     var tmpId = $(this).data("id");
     var curJob = $('#job_id').val();
     if (curJob != tmpId) {
+        // Remove active class from all job_item elements
+        $('.job_item').removeClass('active');
+
+        // Add active class to the clicked job_item
+        $(this).addClass('active');
+
+
         $.ajax({
             url: '/Employer/Home/GetJob',
             type: 'GET',
@@ -20,6 +27,7 @@ $('body').on('click', '.job_item', function () {
                     $('#applicantCV_total').text(rs.data.numOfCVs + " CVs Submitted");
                     $('#job_address').text(rs.data.job.address);
                     $('#job_type').text(rs.data.job.jobType.name);
+                    $('#job_deadline').text(rs.data.job.deadline);
                     $('#job_category').text(rs.data.job.category.name);
                     $('#job_description').text(rs.data.job.description);
                     $('#job_responsibilities').text(rs.data.job.responsibility);
@@ -28,6 +36,9 @@ $('body').on('click', '.job_item', function () {
                     $('#company_name').text(rs.data.job.company.name);
                     $('#company_size').text(rs.data.job.company.size);
                     $('#company_location').text(rs.data.job.company.city.name + " City");
+
+
+                    $('#viewApplicants_page').attr('href', '/Employer/Applicant/Index?jobId=' + rs.data.job.id);
 
                     // Show the #rightTab element
                     $('#jobDisplay_tab').show();

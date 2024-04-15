@@ -16,6 +16,8 @@ namespace FPT.Models
         public DateTime DateSubmitted { get; set; }
         public DateTime? DateResponded { get; set; }
         public string? ResponseMessage { get; set; }
+        [Required(ErrorMessage = "File is required")]
+        public string FileCV { get; set; }
 
         public string JobSeekerId { get; set; }
         [ForeignKey("JobSeekerId")]

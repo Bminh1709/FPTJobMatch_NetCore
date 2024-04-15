@@ -3,6 +3,7 @@ using FPT.Models.ViewModels;
 using FPT.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace FPTJobMatch.Controllers
 {
@@ -77,6 +78,52 @@ namespace FPTJobMatch.Controllers
         public IActionResult AccessDenied()
         {
             return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(string oldPassword, string newPassword, string confirmNewPassword)
+        {
+            // Check for null values
+            if (string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(confirmNewPassword))
+            {
+                return Json(new { success = false, error = "All fields are required" });
+            }
+
+            string? currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ApplicationUser user = await _userManager.FindByIdAsync(currentUserId);
+
+            // Check if the user exists
+            if (user == null)
+            {
+                return Json(new { success = false, error = "User not found" });
+            }
+
+            // Check if the old password matches the user's current password
+            var passwordCheck = await _userManager.CheckPasswordAsync(user, oldPassword);
+            if (!passwordCheck)
+            {
+                return Json(new { success = false, error = "Incorrect old password" });
+            }
+
+            // Check if the new password matches the confirm new password
+            if (newPassword != confirmNewPassword)
+            {
+                return Json(new { success = false, error = "New password and confirm new password do not match" });
+            }
+
+            // Hash the new password using Identity's password hasher
+            var passwordHasher = new PasswordHasher<ApplicationUser>();
+            var hashedNewPassword = passwordHasher.HashPassword(user, newPassword);
+
+            // Update the user's password hash in the database
+            user.PasswordHash = hashedNewPassword;
+            await _userManager.UpdateAsync(user);
+
+            TempData["success"] = "Password updated successfully";
+            return Json(new
+            {
+                success = false
+            });
         }
     }
 }

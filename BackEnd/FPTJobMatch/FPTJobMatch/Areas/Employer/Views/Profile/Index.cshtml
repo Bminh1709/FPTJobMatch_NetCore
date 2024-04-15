@@ -2,7 +2,7 @@
     ViewData["Title"] = "Profile";
 }
 
-<div class="bg-MyVeryPaleGrey min-h-screen pb-20">
+<div class="bg-MyVeryPaleGrey min-h-screen pb-20 px-6 md:px-16">
 
     <div class="grid grid-cols-1 sm:grid-cols-8 gap-6 py-7">
         <div class="col-span-4 lg:col-span-3 xl:col-span-2">
@@ -108,26 +108,27 @@
                         </div>
                     </div>
                     <div class="h-0.5 w-full bg-MyPaleGrey"></div>
-                    <div class="p-6">
+                    <form id="form_resetPassword" class="p-6">
                         <div class="w-full">
                             <p class="font-medium mb-2">Old Password</p>
-                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="Bui Quang Minh">
+                            <input id="old_resetPassword" type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue">
                         </div>
                         <div class="flex gap-6 mt-6">
                             <div class="w-full">
                                 <p class="font-medium mb-2">New Password</p>
-                                <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="Bui Quang Minh">
+                                <input id="new_resetPassword" type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue">
                             </div>
                             <div class="w-full">
                                 <p class="font-medium mb-2">Confirm New Password</p>
-                                <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="minhbee203@gmail.com">
+                                <input id="confirm_resetPassword" type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue">
                             </div>
                         </div>
+                        <p id="message_resetPassword" class="text-red-600 mt-4 text-sm"></p>
                         <div class="flex gap-3 mt-8 justify-end text-sm">
-                            <button class="rounded-lg bg-MyBlue text-white hover:bg-MyPaleBlue border border-MyBlue hover:text-MyBlue py-2 px-4" type="submit">Update</button>
-                            <button class="bg-MyPaleBlue border border-MyBlue rounded-lg py-2 px-4" type="submit">Cancel</button>
+                            <button class="rounded-lg bg-MyBlue text-white hover:bg-MyPaleBlue border border-MyBlue hover:text-MyBlue py-2 px-4" id="btn_resetPassword" type="submit">Update</button>
+                            <button class="bg-MyPaleBlue border border-MyBlue rounded-lg py-2 px-4" type="button">Cancel</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div id="Company_section" class="mt-3">
@@ -225,6 +226,7 @@
 </div>
 
 @section Scripts {
-    <script src="~/js/employer.js"></script>
+    <script src="~/js/employer/home.js"></script>
+    <script src="~/ajax/employer/profile.js" asp-append-version="true"></script>
 }
 

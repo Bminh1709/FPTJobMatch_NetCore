@@ -113,7 +113,18 @@ body {
     flex-direction: column;
 }
 
+#jobType_select:hover #jobType_options {
+    display: block;
+}
+
     #profile_select:hover #profile_options {
         display: flex;
     }
 /* End DropDown List */
+
+
+/* Job Item active */
+.job_item.active {
+    border-color: var(--orange);
+    border-right-width: 8px;
+}

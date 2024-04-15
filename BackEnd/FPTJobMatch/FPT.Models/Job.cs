@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using FPT.Utility.Helpers;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,6 +22,10 @@ namespace FPT.Models
         public string? Experience { get; set; }
         public string? AdditionalDetail { get; set; }
         public DateTime CreatedAt { get; set; }
+
+        [Required(ErrorMessage = "Deadline is required")]
+        [GreaterThanToday(ErrorMessage = "The deadline must be greater than today's date")]
+        public DateOnly Deadline { get; set; }
 
         public int? CategoryId { get; set; }
         [ForeignKey("CategoryId")]

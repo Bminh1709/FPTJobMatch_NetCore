@@ -1,4 +1,5 @@
-﻿@model JobSeekerProfileVM
+﻿@using FPT.Utility
+@model JobSeekerProfileVM
 @{
     ViewData["Title"] = "Profile";
 }
@@ -9,7 +10,7 @@
             <div class="bg-white min-w-44-white p-3 border-t-4 border-MyOrange">
                 <div class="flex gap-3 items-center">
                     <div class="border border-MyGrey p-1 rounded-sm">
-                        <img src="~/images/system/fptdiscussion.jpg" alt="" class="w-20 h-20 rounded-sm object-cover">
+                        <img src="~/images/avatar/@(Model.JobSeeker.Avatar ?? "maleavt.jpg")" alt="" class="w-20 h-20 rounded-full object-cover">
                     </div>
                     <div>
                         <p class="font-medium text-lg">@Model.JobSeeker.Name</p>
@@ -75,55 +76,46 @@
                 <button id="manageCvBtn" class="btnOrange bg-white py-2 px-4 border rounded-md border-MyGrey hover:border-MyOrange hover:bg-MyPaleOrange">Manage CVs</button>
             </div>
             <div id="Profile_section" class="mt-3">
-                <div class="bg-white rounded-md p-6">
+                <form asp-controller="Profile" asp-action="UpdateInfo" id="form_jobseekerInfo" class="bg-white rounded-md p-6">
                     <p class="font-bold text-xl mb-5">General Information</p>
                     <p class="font-semibold mb-1">About me</p>
-                    <textarea rows="6" class="w-full outline-MyOrange focus:p-2">@Model.JobSeekerDetail.AboutMe</textarea>
+                    <textarea asp-for="JobSeekerDetail.AboutMe" id="jobseeker_about" name="aboutMe" rows="6" class="w-full outline-MyOrange p-2 bg-MyVeryPaleGrey border border-MyGrey focus:bg-MyPaleOrange" disabled></textarea>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-7">
                         <div>
                             <p class="font-medium mb-2">Full Name</p>
-                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="@Model.JobSeeker.Name">
+                            <input asp-for="JobSeeker.Name" id="jobseeker_name" name="fullname" type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" disabled>
                         </div>
                         <div>
                             <p class="font-medium mb-2">Email Address</p>
-                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="@Model.JobSeeker.Email">
+                            <input asp-for="JobSeeker.Email" type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" disabled readonly>
                         </div>
                         <div>
                             <p class="font-medium mb-2">Phone number</p>
-                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="@Model.JobSeeker.PhoneNumber">
+                            <input asp-for="JobSeeker.PhoneNumber" id="jobseeker_phone" name="phone" type="tel" pattern="\d{10}" title="Format as 10 numbers" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" disabled>
                         </div>
                         <div>
                             <p class="font-medium mb-2">Date Of Birth</p>
-                            <input type="date" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="17/09/2003">
+                            <input asp-for="JobSeekerDetail.DateOfBirth" id="jobseeker_dateOfBirth" name="dateOfBirth" type="date" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" disabled>
                         </div>
                         <div>
                             <p class="font-medium mb-2">Gender</p>
-                            <select name="" id="" class="w-full custom-select p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange">
-                                <option value="">Male</option>
-                                <option value="">Female</option>
-                                <option value="">Others</option>
+                            <select asp-for="JobSeekerDetail.Gender" name="gender" id="jobseeker_gender" class="w-full custom-select p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" disabled>
+                                <option value="" disabled selected>--Select Gender--</option>
+                                <option value="Male" selected="@(Model.JobSeekerDetail?.Gender == "Male")">Male</option>
+                                <option value="Female" selected="@(Model.JobSeekerDetail?.Gender == "Female")">Female</option>
+                                <option value="Others" selected="@(Model.JobSeekerDetail?.Gender == "Others")">Others</option>
                             </select>
                         </div>
                         <div>
                             <p class="font-medium mb-2">Address</p>
-                            <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="78 Le Tan Trung, Tho Quang, Son Tra">
-                        </div>
-                        <div>
-                            <p class="font-medium mb-2">Educational Level</p>
-                            <select name="" id="" class="w-full custom-select p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange">
-                                <option value="">High School</option>
-                                <option value="">Master's Degree</option>
-                                <option value="">Doctoral Degree</option>
-                                <option value="">Professional Degrees</option>
-                                <option value="">Others</option>
-                            </select>
+                            <input asp-for="JobSeekerDetail.Address" type="text" name="address" id="jobseeker_address" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" disabled>
                         </div>
                     </div>
                     <div class="flex gap-3 mt-8 justify-end text-sm">
-                        <button class="btn py-2 px-4" type="submit">Update</button>
-                        <button class="bg-MyPaleOrange border border-MyOrange rounded-lg text-MyOrange py-2 px-4" type="submit">Cancel</button>
+                        <button class="btn py-2 px-4" type="submit" id="btn_updateInfo">Update</button>
+                        <button class="bg-MyPaleOrange border border-MyOrange rounded-lg text-MyOrange py-2 px-4" type="button">Cancel</button>
                     </div>
-                </div>
+                </form>
                 <div class="bg-white rounded-md mt-4">
                     <div class="flex items-center justify-between p-6">
                         <div>
@@ -134,28 +126,29 @@
                     </div>
                     <input type="checkbox" id="passwordReset" hidden>
                     <div class="h-0.5 w-full bg-MyPaleGrey"></div>
-                    <div class="passwordReset hidden p-6">
+                    <form id="form_resetPassword" class="passwordReset hidden p-6">
                         <div class="flex flex-wrap gap-6">
                             <div class="w-full">
-                                <p class="font-medium mb-2">Company Website</p>
-                                <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="minhbee203@gmail.com">
+                                <p class="font-medium mb-2">Old Password</p>
+                                <input id="old_resetPassword" type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange">
                             </div>
                             <div class="flex w-full gap-6">
                                 <div class="w-full">
-                                    <p class="font-medium mb-2">Company Website</p>
-                                    <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="minhbee203@gmail.com">
+                                    <p class="font-medium mb-2">New Password</p>
+                                    <input id="new_resetPassword" type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange">
                                 </div>
                                 <div class="w-full">
-                                    <p class="font-medium mb-2">Company Website</p>
-                                    <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange" value="minhbee203@gmail.com">
+                                    <p class="font-medium mb-2">Confirm New Password</p>
+                                    <input id="confirm_resetPassword" type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange">
                                 </div>
                             </div>
                         </div>
+                        <p id="message_resetPassword" class="text-red-600 mt-4 text-sm"></p>
                         <div class="flex gap-3 mt-8 justify-end text-sm">
-                            <button class="btn py-2 px-4" type="submit">Update</button>
-                            <button class="bg-MyPaleOrange border border-MyOrange rounded-lg py-2 px-4" type="submit">Cancel</button>
+                            <button class="btn py-2 px-4" type="submit" id="btn_resetPassword">Update</button>
+                            <button class="bg-MyPaleOrange border border-MyOrange rounded-lg py-2 px-4" type="button">Cancel</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div class="bg-white rounded-md mt-4">
                     <div class="flex items-center justify-between p-6">
@@ -258,69 +251,34 @@
                             <thead class="text-left text-MyOrange bg-MyPaleOrange">
                                 <tr class="">
                                     <th class="p-3 rounded-tl-md">Company</th>
-                                    <th class="p-3">Position</th>
+                                    <th class="p-3">Job Title</th>
                                     <th class="p-3">Status</th>
                                     <th class="p-3 rounded-tr-md">Response</th>
                                 </tr>
                             </thead>
                             <tbody class="">
-                                <tr class="border border-MyPaleOrange">
-                                    <td class="p-3 min-w-56">
-                                        <div class="flex gap-3 items-center">
-                                            <img src="~/images/system/fptlearn.jpg" alt="" class="w-12 h-12 rounded-full object-cover">
-                                            <div class="break-all">
-                                                <p class="font-medium">MGM Technology</p>
-                                                <p class="text-xs">mgmsupport@gmail.com</p>
+                                @foreach(var cv in Model.applicantCVsList)
+                                {
+                                    <tr class="border border-MyPaleOrange">
+                                        <td class="p-3 min-w-56">
+                                            <div class="flex gap-3 items-center">
+                                                <img src="~/images/avatar/@(cv.Job.Company.Logo ?? "maleavt.jpg")" alt="" class="w-12 h-12 rounded-full object-cover">
+                                                <div class="break-all">
+                                                    <p class="font-medium">@cv.Job.Company.Name</p>
+                                                    <p class="text-xs">@cv.Job.Employer.Email</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="p-3">Malcolm Lockyer</td>
-                                    <td class="p-3">
-                                        <div class="flex gap-2 items-center">
-                                            <i class="fa-solid fa-circle text-xs text-MyGreen"></i>
-                                            <p>Ongoing</p>
-                                        </div>
-                                    </td>
-                                    <td class="p-3 text-MyBlue underline">View</td>
-                                </tr>
-                                <tr class="border border-MyPaleOrange">
-                                    <td class="p-3 min-w-44">
-                                        <div class="flex gap-3 items-center">
-                                            <img src="~/images/system/fptlearn.jpg" alt="" class="w-12 h-12 rounded-full object-cover">
-                                            <div class="break-all">
-                                                <p class="font-medium">MGM Technology</p>
-                                                <p class="text-xs">mgmsupport@gmail.com</p>
+                                        </td>
+                                        <td class="p-3">@cv.Job.Title</td>
+                                        <td class="p-3">
+                                            <div class="flex gap-2 items-center">
+                                                <i class="fa-solid fa-circle text-xs @(cv.CVStatus == SD.StatusPending ? "text-MyOrange" : "text-MyGreen")"></i>
+                                                <p>@(cv.CVStatus == SD.StatusPending ? "Pending" : "Responded")</p>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="p-3">Malcolm Lockyer</td>
-                                    <td class="p-3">
-                                        <div class="flex gap-2 items-center">
-                                            <i class="fa-solid fa-circle text-xs text-MyBlue"></i>
-                                            <p>Responsed</p>
-                                        </div>
-                                    </td>
-                                    <td class="p-3 text-MyBlue underline">View</td>
-                                </tr>
-                                <tr class="border border-MyPaleOrange">
-                                    <td class="p-3 min-w-44">
-                                        <div class="flex gap-3 items-center">
-                                            <img src="~/images/system/fptlearn.jpg" alt="" class="w-12 h-12 rounded-full object-cover">
-                                            <div class="break-all">
-                                                <p class="font-medium">MGM Technology</p>
-                                                <p class="text-xs">mgmsupport@gmail.com</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="p-3">Malcolm Lockyer</td>
-                                    <td class="p-3">
-                                        <div class="flex gap-2 items-center">
-                                            <i class="fa-solid fa-circle text-xs text-MyOrange"></i>
-                                            <p>Pending</p>
-                                        </div>
-                                    </td>
-                                    <td class="p-3 text-MyBlue underline">View</td>
-                                </tr>
+                                        </td>
+                                        <td data-id="@cv.Id" class="p-3 open_cvFormSubmitted hover:cursor-pointer text-MyBlue underline">View</td>
+                                    </tr>
+                                }
                             </tbody>
                         </table>
                     </div>
@@ -330,25 +288,41 @@
 
     </div>
 
+
+    <!-- CV Form -->
+    <div id="cvFormSubmitted" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+        <div class="bg-white mx-auto w-11/12 md:w-3/4 xl:w-1/2 h-fit rounded-lg mt-14">
+            <div class="flex gap-4 items-center justify-between p-3">
+                <p class="text-MyOrange text-lg font-semibold">Java Developer (Spring, MySQL) at Giao Hang Tiet Kiem</p>
+                <button for="" id="close_cvFormSubmitted" class="text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyOrange"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+            <div class="px-5 pb-4">
+                <input hidden name="name" value="" id="applicantCV_id" />
+                <div class="py-4">
+                    <p class="font-medium">Resume</p>
+                    <p class="text-sm text-MyDarkGrey">You should verify your information correcly</p>
+                    <a href="" target="_blank" id="applicantCV_file" class="font-semibold flex gap-1 items-center mt-3 text-MyOrange text-sm">
+                        <i class="fa-solid fa-cloud-arrow-down"></i>
+                        <span class="underline"> Download Resume</span>
+                    </a>
+                </div>
+                <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+                <div>
+                    <div class="pt-4">
+                        <p class="font-medium">Response</p>
+                        <p class="text-sm text-MyDarkGrey">You should verify your information correcly</p>
+                        <textarea readonly name="responseMessage" id="applicantCV_response" rows="5" class="resize-none p-2 outline-MyOrange text-sm w-full border border-MyOrange rounded-md mt-3"></textarea>
+                    </div>
+                    <p id="responseMessage_errorMessage" class="text-center text-red-600 my-2 text-sm"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
-    <script>
-        $(document).ready(function () {
-            $("#manageCvBtn").click(function () {
-                $("#Profile_section").hide();
-                $("#ManageCV_section").show();
-                $(this).addClass('active');
-                $('#profileBtn').removeClass('active');
-            });
-
-            $("#profileBtn").click(function () {
-                $("#ManageCV_section").hide();
-                $("#Profile_section").show();
-                $(this).addClass('active');
-                $('#manageCvBtn').removeClass('active');
-            });
-        });
-    </script>
+    <script src="~/js/jobseeker/profile.js" asp-append-version="true"></script>
+    <script src="~/ajax/jobseeker/profile.js" asp-append-version="true"></script>
 }
 

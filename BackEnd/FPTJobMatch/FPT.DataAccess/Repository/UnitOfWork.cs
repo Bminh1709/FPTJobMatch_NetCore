@@ -27,6 +27,7 @@ namespace FPT.DataAccess.Repository
         public ICityRepository City { get; private set; }
 
         public IApplicantCVRepository ApplicantCV { get; private set; }
+        public INotificationRepository Notification { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
@@ -39,6 +40,7 @@ namespace FPT.DataAccess.Repository
             JobType = new JobTypeRepository(_db);
             City = new CityRepository(_db);
             ApplicantCV = new ApplicantCVRepository(_db);
+            Notification = new NotificationRepository(_db);
         }
 
         public void Save()

@@ -1,5 +1,9 @@
-﻿@{
+﻿@using FPT.Utility
+@model ApplicantPageVM
+
+@{
     ViewData["Title"] = "Applicants";
+    string jobId = Context.Request.Query["jobId"];
 }
 
 <div class="px-6 md:px-16">
@@ -14,7 +18,8 @@
                 <a href="" class="hover:underline">HOME</a>
                 <div>
                     <i class="fa-solid fa-angle-right"></i>
-                    <a href="" class="hover:underline">CREATIVE MANAGER</a>
+                    <input type="number" id="job_id" value="@Model.JobId" hidden />
+                    <a href="" class="hover:underline">@Model.JobTitle</a>
                 </div>
                 <div>
                     <i class="fa-solid fa-angle-right"></i>
@@ -29,22 +34,29 @@
     <div class="min-h-screen overflow-x-auto">
         <div class="flex gap-3 flex-wrap justify-between items-center mt-6">
             <div>
-                <a class="flex gap-1 items-center hover:underline text-MyBlue hover:cursor-pointer text-sm font-semibold">
+                <a asp-controller="Home" asp-action="Index" class="flex gap-1 items-center hover:underline text-MyBlue hover:cursor-pointer text-sm font-semibold">
                     <i class="fa-solid fa-arrow-left"></i>
                     <p>Back</p>
                 </a>
                 <p class="font-medium text-xl text-MyBlue">Candidate List</p>
             </div>
-            <div class="flex flex-wrap gap-3">
+            <form asp-controller="Applicant" asp-action="Index" method="get" class="flex flex-wrap gap-3">
+                <input type="int" hidden name="jobId" value="@jobId" />
                 <div class="relative" id="jobType_select">
                     <div class="hover:cursor-pointer text-sm flex items-center justify-between w-36 py-3 px-4 border border-MyBlue rounded-md">
-                        <p>Job Type</p>
+                        <p>Status</p>
                         <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
                     </div>
                     <ul id="jobType_options" class="hidden w-36 absolute text-sm">
-                        <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">Full Time</li>
-                        <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">Part Time</li>
-                        <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">Remote</li>
+                        <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">
+                            <button type="submit" name="status" value="Pending" class="w-full text-center">Pending</button>
+                        </li>
+                        <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">
+                            <button type="submit" name="status" value="Responded" class="w-full text-center">Responded</button>
+                        </li>
+                        <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">
+                            <button type="submit" name="status" value="All" class="w-full text-center">All</button>
+                        </li>
                     </ul>
                 </div>
                 <div class="relative" id="jobType_select">
@@ -53,12 +65,15 @@
                         <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
                     </div>
                     <ul id="jobType_options" class="hidden w-36 absolute text-sm">
-                        <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">Full Time</li>
-                        <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">Part Time</li>
-                        <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">Remote</li>
+                        <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">
+                            <button type="submit" name="sortType" value="Newest First" class="w-full text-center">Newest First</button>
+                        </li>
+                        <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">
+                            <button type="submit" name="sortType" value="Oldest First" class="w-full text-center">Oldest First</button>
+                        </li>
                     </ul>
                 </div>
-            </div>
+            </form>
         </div>
 
 
@@ -66,53 +81,36 @@
             <thead class="text-left text-MyBlue bg-MyPaleBlue">
                 <tr class="">
                     <th class="py-3 px-8 rounded-tl-md">Candidate</th>
-                    <th class="py-3">Position</th>
                     <th class="py-3">Status</th>
                     <th class="py-3">Date Applied</th>
+                    <th class="py-3">Date Response</th>
                     <th class="py-3 px-5 rounded-tr-md text-center">Application</th>
                 </tr>
             </thead>
             <tbody class="pt-3">
-                <tr class="border border-MyPaleBlue">
-                    <td class="py-5 px-8 min-w-56">
-                        <div class="flex gap-3 items-center">
-                            <img src="~/images/system/fptdiscussion.jpg" alt="" class="w-14 h-14 rounded-full object-cover p-1 border border-MyDarkGrey">
-                            <div class="break-all">
-                                <a href="www" class="font-semibold text-lg hover:underline hover:text-MyBlue">Le Thi Tuyet Giang</a>
-                                <p class="text-sm text-MyDarkGrey">mgmsupport@gmail.com</p>
+                @foreach (var applicant in Model.ApplicantList)
+                {
+                    <tr class="border border-MyPaleBlue">
+                        <td class="py-5 px-8 min-w-56">
+                            <div class="flex gap-3 items-center">
+                                <img src="~/images/avatar/@((applicant.JobSeeker.Avatar == null) ? "maleavt.jpg" : applicant.JobSeeker.Avatar)" alt="" class="w-14 h-14 rounded-full object-cover p-1 border border-MyDarkGrey">
+                                <div class="break-all">
+                                    <a asp-controller="Applicant" asp-action="ApplicantDetail" asp-route-applicantId="@applicant.JobSeekerId" target="_blank" class="font-semibold text-lg hover:underline hover:text-MyBlue">@applicant.JobSeeker.Name</a>
+                                    <p class="text-sm text-MyDarkGrey">@applicant.JobSeeker.Email</p>
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                    <td class="py-5 pr-3">Malcolm Lockyer</td>
-                    <td class="py-5 pr-3">
-                        <div class="flex gap-2 items-center">
-                            <i class="fa-solid fa-circle text-xs text-MyGreen"></i>
-                            <p>Ongoing</p>
-                        </div>
-                    </td>
-                    <td class="py-5 pr-3">Mar 31, 2021</td>
-                    <td class="view_cvFormSubmitted py-5 pr-3 text-MyBlue hover:underline text-center hover:cursor-pointer">View</td>
-                </tr>
-                <tr class="border border-MyPaleBlue">
-                    <td class="py-5 px-8 min-w-56">
-                        <div class="flex gap-3 items-center">
-                            <img src="~/images/system/fptdiscussion.jpg" alt="" class="w-14 h-14 rounded-full object-cover p-1 border border-MyDarkGrey">
-                            <div class="break-all">
-                                <a href="www" class="font-semibold text-lg hover:underline hover:text-MyBlue">Le Thi Tuyet Giang</a>
-                                <p class="text-sm text-MyDarkGrey">mgmsupport@gmail.com</p>
+                        </td>
+                        <td class="py-5 pr-3">
+                            <div class="flex gap-2 items-center">
+                                <i class="fa-solid fa-circle text-xs @(applicant.CVStatus == SD.StatusPending ? "text-MyOrange" : "text-MyGreen")"></i>
+                                <p>@(applicant.CVStatus == SD.StatusPending ? "Pending" : "Responded")</p>
                             </div>
-                        </div>
-                    </td>
-                    <td class="py-5 pr-3">Malcolm Lockyer</td>
-                    <td class="py-5 pr-3">
-                        <div class="flex gap-2 items-center">
-                            <i class="fa-solid fa-circle text-xs text-MyGreen"></i>
-                            <p>Ongoing</p>
-                        </div>
-                    </td>
-                    <td class="py-5 pr-3">Mar 31, 2021</td>
-                    <td class="view_cvFormSubmitted py-5 pr-3 text-MyBlue hover:underline text-center hover:cursor-pointer">View</td>
-                </tr>
+                        </td>
+                        <td class="py-5 pr-3">@applicant.DateSubmitted.ToString("MMM dd, yyyy")</td>
+                        <td class="py-5 pr-3">@((applicant.DateResponded == null) ? "Not Yet" : applicant.DateResponded.Value.ToString("MMM dd, yyyy"))</td>
+                        <td data-id="@applicant.JobSeekerId" class="view_cvFormSubmitted py-5 pr-3 text-MyBlue hover:underline text-center hover:cursor-pointer">View</td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>
@@ -126,6 +124,7 @@
             </div>
             <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
             <div class="px-5 pb-4">
+                <input type="text" id="applicantCV_id" />
                 <div class="py-3 text-center">
                     <p class="font-medium">Review your application</p>
                     <p class="text-sm text-MyDarkGrey">The employer will also receive a copy of your profile</p>
@@ -138,16 +137,16 @@
                         <div class="flex flex-wrap sm:flex-nowrap gap-4">
                             <div class="w-full border border-MyBlue rounded-sm py-1.5 px-3">
                                 <p class="text-xs text-MyDarkGrey">Your name <span class="text-red-600">*</span></p>
-                                <input type="text" disabled class="w-full outline-none text-sm font-medium" value="Bui Quang Minh">
+                                <input id="applicant_name" type="text" disabled class="w-full outline-none text-sm font-medium" value="">
                             </div>
                             <div class="w-full border border-MyBlue rounded-sm py-1.5 px-3">
                                 <p class="text-xs text-MyDarkGrey">Your phone number <span class="text-red-600">*</span></p>
-                                <input type="text" disabled class="w-full outline-none text-sm font-medium" value="0706162561">
+                                <input id="applicant_phone" type="text" disabled class="w-full outline-none text-sm font-medium" value="">
                             </div>
                         </div>
                         <div class="w-full border border-MyBlue rounded-sm py-1.5 px-3">
                             <p class="text-xs text-MyDarkGrey">Your gmail <span class="text-red-600">*</span></p>
-                            <input type="text" disabled class="w-full outline-none text-sm font-medium" value="minhbee203@gmail.com">
+                            <input id="applicant_email" type="text" disabled class="w-full outline-none text-sm font-medium" value="">
                         </div>
                     </div>
                 </div>
@@ -155,18 +154,24 @@
                 <div class="py-4">
                     <p class="font-medium">Resume</p>
                     <p class="text-sm text-MyDarkGrey">You should verify your information correcly</p>
-                    <a href="" class="font-semibold flex gap-1 items-center mt-3 text-MyBlue text-sm">
+                    <a href="" target="_blank" id="applicant_cv" class="font-semibold flex gap-1 items-center mt-3 text-MyBlue text-sm">
                         <i class="fa-solid fa-cloud-arrow-down"></i>
                         <span class="underline"> Download Resume</span>
                     </a>
                 </div>
                 <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
-                <div class="py-4">
-                    <p class="font-medium">Response</p>
-                    <p class="text-sm text-MyDarkGrey">You should verify your information correcly</p>
-                    <textarea name="" id="" rows="5" class="resize-none p-2 outline-MyBlue text-sm w-full border border-MyBlue rounded-md mt-3"></textarea>
-                </div>
-                <button class="border border-MyBlue bg-MyPaleBlue rounded-md hover:bg-MyBlue hover:text-white w-full py-3 text-sm">Response</button>
+                <form id="responseMessage_form" asp-controller="Applicant" asp-action="ResponseCV" method="post">
+                    <div class="pt-4">
+                        <p class="font-medium">Response</p>
+                        <p class="text-sm text-MyDarkGrey">You should verify your information correcly</p>
+                        <input name="curJobId" value="@Model.JobId" hidden />
+                        <input name="applicantId" id="applicant_id" hidden />
+                        <input name="cvId" id="CV_id" hidden />
+                        <textarea name="responseMessage" id="applicant_response" rows="5" class="resize-none p-2 outline-MyBlue text-sm w-full border border-MyBlue rounded-md mt-3"></textarea>
+                    </div>
+                    <p id="responseMessage_errorMessage" class="text-center text-red-600 my-2 text-sm"></p>
+                    <button type="submit" class="border border-MyBlue bg-MyPaleBlue rounded-md hover:bg-MyBlue hover:text-white w-full py-3 text-sm">Response</button>
+                </form>
             </div>
 
         </div>
@@ -174,5 +179,6 @@
 </div>
 
 @section Scripts {
-    <script src="~/js/employer.js"></script>
+    <script src="~/js/employer/home.js" asp-append-version="true"></script>
+    <script src="~/ajax/employer/applicant.js" asp-append-version="true"></script>
 }

@@ -12,7 +12,7 @@ namespace FPT.Models.ViewModels
     public class JobSeekerProfileVM
     {
         public ApplicationUser JobSeeker { get; set; }
-        public JobSeekerDetail JobSeekerDetail { get; set; } 
+        public JobSeekerDetail? JobSeekerDetail { get; set; } 
         public IEnumerable<ApplicantCV> applicantCVsList { get; set; }
     }
 }

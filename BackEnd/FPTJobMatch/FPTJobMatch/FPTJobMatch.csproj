@@ -29,7 +29,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="wwwroot\files\cvs\" />
+    <Folder Include="wwwroot\filecv\" />
   </ItemGroup>
 
 </Project>
