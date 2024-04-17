@@ -86,12 +86,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSm9iU2Vla2VyXFZpZXdzXF9WaWV3U3RhcnQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Views/Access/AccessDenied.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNzXEFjY2Vzc0RlbmllZC5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Views/Access/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjZXNzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Views/Error/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcQWNjZXNzRGVuaWVkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Views/Error/GenericError.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcR2VuZXJpY0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Views/Error/PageNotFound.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXJyb3JcUGFnZU5vdEZvdW5kLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Greenwich Subjects/1670 Application Development/ASM1/Source/BackEnd/FPTJobMatch/FPTJobMatch/Views/Home/Help.cshtml]

@@ -225,7 +225,7 @@ namespace FPT.DataAccess.Migrations
                     b.Property<string>("Address")
                         .HasColumnType("text");
 
-                    b.Property<int>("CityId")
+                    b.Property<int?>("CityId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedAt")
@@ -575,9 +575,7 @@ namespace FPT.DataAccess.Migrations
                 {
                     b.HasOne("FPT.Models.City", "City")
                         .WithMany()
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CityId");
 
                     b.Navigation("City");
                 });

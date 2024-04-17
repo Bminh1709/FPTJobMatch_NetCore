@@ -4,6 +4,7 @@ using FPT.Models.ViewModels;
 using FPT.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace FPTJobMatch.Areas.Employer.Controllers
 {
@@ -16,51 +17,46 @@ namespace FPTJobMatch.Areas.Employer.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        public IActionResult Index(int jobId, string? status, string? sortType)
+
+        public async Task<IActionResult> Index(int jobId, string? status, string? sortType)
         {
-            Job job = _unitOfWork.Job.Get(j => j.Id == jobId);
+            try { 
+                Job job = await _unitOfWork.Job.GetAsync(j => j.Id == jobId);
 
-            if (job == null)
-            {
-                // Return a view with an error message if the job is not found
-                TempData["error"] = "Job not found";
-                return RedirectToAction("Index", "Jobs");
-            }
-
-            IQueryable<ApplicantCV> applicantCVs = _unitOfWork.ApplicantCV.GetAll(a => a.JobId == jobId, includeProperties: "JobSeeker").AsQueryable();
-
-            if (status != "All" && !string.IsNullOrEmpty(status))
-            {
-                applicantCVs = applicantCVs.Where(a => a.CVStatus == status);
-            }
-
-            if (!string.IsNullOrEmpty(sortType))
-            {
-                if (sortType == "Newest First")
+                if (job == null)
                 {
-                    applicantCVs = applicantCVs.OrderByDescending(a => a.DateSubmitted);
+                    TempData["error"] = "Job not found";
+                    return RedirectToAction("Index", "Jobs");
                 }
-                else if (sortType == "Oldest First")
+
+                IEnumerable<ApplicantCV> applicantCVs = await _unitOfWork.ApplicantCV.GetAllByJobIdAsync(jobId, status, sortType);
+
+                ApplicantPageVM applicantPageVM = new ApplicantPageVM
                 {
-                    applicantCVs = applicantCVs.OrderBy(a => a.DateSubmitted);
-                }
+                    ApplicantList = applicantCVs.ToList(),
+                    JobId = jobId,
+                    JobTitle = job.Title,
+                };
+
+                return View(applicantPageVM);
             }
-
-            ApplicantPageVM applicantPageVM = new ApplicantPageVM
+            catch (Exception ex)
             {
-                ApplicantList = applicantCVs.ToList(),
-                JobId = jobId,
-                JobTitle = job.Title,
-            };
-
-            return View(applicantPageVM);
+                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
+            }
         }
 
         [HttpGet]
-        public IActionResult GetCV(string applicantId, int jobId)
+        public async Task<IActionResult> GetCV(string applicantId, int jobId)
         {
-            ApplicationUser jobSeeker = _unitOfWork.ApplicationUser.Get(u => u.Id == applicantId);
-            ApplicantCV applicantCV = _unitOfWork.ApplicantCV.Get(a => a.JobId == jobId && a.JobSeekerId == applicantId);
+            ApplicationUser jobSeeker = await _unitOfWork.ApplicationUser.GetAsync(u => u.Id == applicantId);
+            ApplicantCV applicantCV = await _unitOfWork.ApplicantCV.GetAsync(a => a.JobId == jobId && a.JobSeekerId == applicantId);
+
+            if (jobSeeker == null || applicantCV == null)
+            {
+                return Json(new { success = false, errorMessage = "Applicant or CV not found" });
+            }
+
             return Json(new
             {
                 success = true,
@@ -78,15 +74,20 @@ namespace FPTJobMatch.Areas.Employer.Controllers
         }
 
         [HttpPost]
-        public IActionResult ResponseCV(int cvId, string applicantId, string responseMessage, int curJobId)
+        public async Task<IActionResult> ResponseCV(int cvId, string applicantId, string responseMessage, int curJobId)
         {
-            ApplicantCV applicantCV = _unitOfWork.ApplicantCV.Get(a => a.Id == cvId && a.JobSeekerId == applicantId);
+            try { 
+                ApplicantCV applicantCV = await _unitOfWork.ApplicantCV.GetAsync(a => a.Id == cvId && a.JobSeekerId == applicantId);
 
-            if (applicantCV != null)
-            {
+                if (applicantCV == null)
+                {
+                    TempData["error"] = "Error, Try again!";
+                    return RedirectToAction("Index", "Applicant", new { jobId = curJobId });
+                }
+
                 if (applicantCV.CVStatus == SD.StatusResponded && applicantCV.ResponseMessage == responseMessage)
                 {
-                    TempData["error"] = "You already responsed this CV";
+                    TempData["error"] = "You already responded to this CV";
                     return RedirectToAction("Index", "Applicant", new { jobId = curJobId });
                 }
 
@@ -97,27 +98,39 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                 _unitOfWork.ApplicantCV.Update(applicantCV);
                 _unitOfWork.Save();
 
-                TempData["success"] = "Response the CV Successfully";
+                TempData["success"] = "Responded to the CV Successfully";
                 return RedirectToAction("Index", "Applicant", new { jobId = curJobId });
             }
-            else
+            catch (Exception ex)
             {
-                TempData["error"] = "Error, Try again!";
-                return RedirectToAction("Index", "Applicant", new { jobId = curJobId });
+                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
             }
         }
 
-        public IActionResult ApplicantDetail(string applicantId)
+        public async Task<IActionResult> ApplicantDetail(string applicantId)
         {
-            ApplicationUser applicant = _unitOfWork.ApplicationUser.Get(u => u.Id == applicantId);
-            JobSeekerDetail jobSeekerDetail = _unitOfWork.JobSeekerDetail.Get(u => u.JobSeekerId == applicant.Id);
+            try { 
+                ApplicationUser applicant = await _unitOfWork.ApplicationUser.GetAsync(u => u.Id == applicantId);
+                JobSeekerDetail jobSeekerDetail = await _unitOfWork.JobSeekerDetail.GetAsync(u => u.JobSeekerId == applicant.Id);
 
-            JobSeekerProfileVM jobSeekerProfileVM = new JobSeekerProfileVM
+                if (applicant == null || jobSeekerDetail == null)
+                {
+                    TempData["error"] = "Applicant or Job Seeker Detail not found";
+                    return RedirectToAction("Index", "Applicant");
+                }
+
+                JobSeekerProfileVM jobSeekerProfileVM = new JobSeekerProfileVM
+                {
+                    JobSeeker = applicant,
+                    JobSeekerDetail = jobSeekerDetail,
+                };
+                return View(jobSeekerProfileVM);
+            }
+            catch (Exception ex)
             {
-                JobSeeker = applicant,
-                JobSeekerDetail = jobSeekerDetail,
-            };
-            return View(jobSeekerProfileVM);
+                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
+            }
         }
     }
+
 }

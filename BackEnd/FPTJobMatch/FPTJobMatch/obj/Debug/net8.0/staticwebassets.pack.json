@@ -57,6 +57,14 @@
       "PackagePath": "staticwebassets\\images\\system\\403ErrorForbidden.png"
     },
     {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\system\\404PagenotFound.png",
+      "PackagePath": "staticwebassets\\images\\system\\404PagenotFound.png"
+    },
+    {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\system\\ErrorHandler.png",
+      "PackagePath": "staticwebassets\\images\\system\\ErrorHandler.png"
+    },
+    {
       "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\system\\FPT.png",
       "PackagePath": "staticwebassets\\images\\system\\FPT.png"
     },

@@ -1,6 +1,7 @@
 ﻿using FPT.DataAccess.Data;
 using FPT.DataAccess.Repository.IRepository;
 using FPT.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FPT.DataAccess.Repository
 {
@@ -12,9 +13,9 @@ namespace FPT.DataAccess.Repository
             _db = db;
         }
 
-        public bool IsExist(string companyName)
+        public async Task<bool> IsExistAsync(string companyName)
         {
-            return _db.Companies.Any(c => c.Name == companyName);
+            return await _db.Companies.AnyAsync(c => c.Name == companyName);
         }
 
         public void Update(Company company)

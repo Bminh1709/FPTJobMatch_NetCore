@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "sZqwNw4ecZ9BGepWvKEmswMdrLmWHup/nuzWV3xoxGU=",
+  "Hash": "Xj4jVnzyC+Q3rIKL0FHtnDE6GjknBQv8QG875yPl7WQ=",
   "Source": "FPTJobMatch",
   "BasePath": "_content/FPTJobMatch",
   "Mode": "Default",
@@ -302,6 +302,25 @@
       "OriginalItemSpec": "wwwroot\\images\\system\\403ErrorForbidden.png"
     },
     {
+      "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\system\\404PagenotFound.png",
+      "SourceId": "FPTJobMatch",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\",
+      "BasePath": "_content/FPTJobMatch",
+      "RelativePath": "images/system/404PagenotFound.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\system\\404PagenotFound.png"
+    },
+    {
       "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\system\\amazonLogo.jpg",
       "SourceId": "FPTJobMatch",
       "SourceType": "Discovered",
@@ -376,6 +395,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\system\\blueLogo.png"
+    },
+    {
+      "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\system\\ErrorHandler.png",
+      "SourceId": "FPTJobMatch",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\",
+      "BasePath": "_content/FPTJobMatch",
+      "RelativePath": "images/system/ErrorHandler.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\system\\ErrorHandler.png"
     },
     {
       "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\system\\Facebook-logo.png",

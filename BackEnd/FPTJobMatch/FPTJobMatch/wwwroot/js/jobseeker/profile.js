@@ -15,6 +15,7 @@
 });
 
 
+// Information
 var formSubmitted = false;
 $('#form_jobseekerInfo').on('submit', function (e) {
     e.preventDefault();
@@ -31,6 +32,15 @@ $('#form_jobseekerInfo').on('submit', function (e) {
         $(this).off('submit').submit();
     }
 });
+$('#btn_cancelInfo').on('click', function () {
+    $('#form_jobseekerInfo').find('input, select, textarea').attr('disabled', 'disabled');
+    formSubmitted = false; 
+});
+
+
+// Password Reset
+
+
 
 // View Repsonse from Employer
 const open_cvFormSubmitted = $('.open_cvFormSubmitted');

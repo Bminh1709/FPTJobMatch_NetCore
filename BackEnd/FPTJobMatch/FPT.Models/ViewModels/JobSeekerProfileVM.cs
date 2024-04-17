@@ -13,6 +13,6 @@ namespace FPT.Models.ViewModels
     {
         public ApplicationUser JobSeeker { get; set; }
         public JobSeekerDetail? JobSeekerDetail { get; set; } 
-        public IEnumerable<ApplicantCV> applicantCVsList { get; set; }
+        public IEnumerable<ApplicantCV> ApplicantCVsList { get; set; }
     }
 }

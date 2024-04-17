@@ -45,7 +45,7 @@ namespace FPT.DataAccess.Repository
 
         public void Save()
         {
-            _db.SaveChanges();
+            _db.SaveChangesAsync();
         }
     }
 }

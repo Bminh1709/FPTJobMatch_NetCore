@@ -66,10 +66,10 @@
                     </div>
                     <ul id="jobType_options" class="hidden w-36 absolute text-sm">
                         <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">
-                            <button type="submit" name="sortType" value="Newest First" class="w-full text-center">Newest First</button>
+                            <button type="submit" name="sortType" value="NewestFirst" class="w-full text-center">Newest First</button>
                         </li>
                         <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">
-                            <button type="submit" name="sortType" value="Oldest First" class="w-full text-center">Oldest First</button>
+                            <button type="submit" name="sortType" value="OldestFirst" class="w-full text-center">Oldest First</button>
                         </li>
                     </ul>
                 </div>
@@ -93,10 +93,10 @@
                     <tr class="border border-MyPaleBlue">
                         <td class="py-5 px-8 min-w-56">
                             <div class="flex gap-3 items-center">
-                                <img src="~/images/avatar/@((applicant.JobSeeker.Avatar == null) ? "maleavt.jpg" : applicant.JobSeeker.Avatar)" alt="" class="w-14 h-14 rounded-full object-cover p-1 border border-MyDarkGrey">
+                                <img src="~/images/avatar/@((applicant.JobSeeker?.Avatar == null) ? "maleavt.jpg" : applicant.JobSeeker.Avatar)" alt="" class="w-14 h-14 rounded-full object-cover p-1 border border-MyDarkGrey">
                                 <div class="break-all">
-                                    <a asp-controller="Applicant" asp-action="ApplicantDetail" asp-route-applicantId="@applicant.JobSeekerId" target="_blank" class="font-semibold text-lg hover:underline hover:text-MyBlue">@applicant.JobSeeker.Name</a>
-                                    <p class="text-sm text-MyDarkGrey">@applicant.JobSeeker.Email</p>
+                                    <a asp-controller="Applicant" asp-action="ApplicantDetail" asp-route-applicantId="@applicant.JobSeekerId" target="_blank" class="font-semibold text-lg hover:underline hover:text-MyBlue">@applicant.JobSeeker?.Name</a>
+                                    <p class="text-sm text-MyDarkGrey">@applicant.JobSeeker?.Email</p>
                                 </div>
                             </div>
                         </td>

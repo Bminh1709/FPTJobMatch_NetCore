@@ -26,40 +26,55 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
         [ValidateAntiForgeryToken] // Prevent Cross-Site Request Forgery (CSRF) attacks
         public async Task<IActionResult> SignUp(JobSeekerRegisterVM model)
         {
-            if (ModelState.IsValid)
+            try 
             {
-                var user = new ApplicationUser
+                // Check if the email already exists
+                var existingUser = await _userManager.FindByEmailAsync(model.Email);
+                if (existingUser != null)
                 {
-                    Name = model.Name,
-                    UserName = model.Email,
-                    Email = model.Email,
-                    CreatedAt = DateTime.UtcNow,
-                    AccountStatus = SD.StatusActive
-                };
-                // Store user data in AspNetUsers database table
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
-                {
-                    await _userManager.AddToRoleAsync(user, SD.Role_JobSeeker);
-                    TempData["success"] = "Sign up successfully";
-                    return RedirectToAction("Index", "Access", new { area = "" });
+                    ModelState.AddModelError("Email", "Email already exists");
+                    return View(model);
                 }
-                // Handle password-related errors separately
-                foreach (var error in result.Errors)
-                {
-                    if (error.Code.StartsWith("Password"))
-                    {
-                        ModelState.AddModelError("Password", error.Description);
-                    }
-                    else
-                    {
-                        ModelState.AddModelError(string.Empty, error.Description);
-                    }
-                }
-            }
 
-            TempData["error"] = "Sign up again";
-            return View(model);
+                if (ModelState.IsValid)
+                {
+                    var user = new ApplicationUser
+                    {
+                        Name = model.Name,
+                        UserName = model.Email,
+                        Email = model.Email,
+                        CreatedAt = DateTime.UtcNow,
+                        AccountStatus = SD.StatusActive
+                    };
+                    // Store user data in AspNetUsers database table
+                    var result = await _userManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        await _userManager.AddToRoleAsync(user, SD.Role_JobSeeker);
+                        TempData["success"] = "Sign up successfully";
+                        return RedirectToAction("Index", "Access", new { area = "" });
+                    }
+                    // Handle password-related errors separately
+                    foreach (var error in result.Errors)
+                    {
+                        if (error.Code.StartsWith("Password"))
+                        {
+                            ModelState.AddModelError("Password", error.Description);
+                        }
+                        else
+                        {
+                            ModelState.AddModelError(string.Empty, error.Description);
+                        }
+                    }
+                }
+
+                TempData["error"] = "Sign up again";
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
+            }
         }
     }
 }

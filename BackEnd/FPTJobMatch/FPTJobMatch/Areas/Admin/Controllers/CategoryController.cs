@@ -14,18 +14,19 @@ namespace FPTJobMatch.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<ApplicationUser> _userManager;
+
         public CategoryController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
-
         }
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index()
         {
             var today = DateTime.Today;
 
-            var approvedCategories = _unitOfWork.Category.GetAll(c => c.IsApproved);
-            var newCategories = _unitOfWork.Category.GetAll(c => !c.IsApproved);
+            var approvedCategories = await _unitOfWork.Category.GetAllAsync(c => c.IsApproved);
+            var newCategories = await _unitOfWork.Category.GetAllAsync(c => !c.IsApproved);
 
             var categoryVM = new CategoryVM
             {
@@ -43,30 +44,37 @@ namespace FPTJobMatch.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> HandleCategory(string submitBtn, int categoryId)
         {
-            Category category = _unitOfWork.Category.Get(c => c.Id  == categoryId);
+            try { 
+                Category category = await _unitOfWork.Category.GetAsync(c => c.Id == categoryId);
 
-            var user = await _userManager.GetUserAsync(User);
+                var user = await _userManager.GetUserAsync(User);
 
-            Notification newNotification = new Notification();
-            newNotification.Receiver = category.CreatedByUser;
-            newNotification.Sender = user;
-            newNotification.CreatedAt = DateTime.UtcNow;
+                Notification newNotification = new Notification();
+                newNotification.Receiver = category.CreatedByUser;
+                newNotification.Sender = user;
+                newNotification.CreatedAt = DateTime.UtcNow;
 
-            if (submitBtn == "approve") 
-            {
-                category.IsApproved = true;
-                newNotification.Content = $"The category {category.Name} has been approved by Admin";
+                if (submitBtn == "approve")
+                {
+                    category.IsApproved = true;
+                    newNotification.Content = $"The category {category.Name} has been approved by Admin";
+                }
+                else if (submitBtn == "delete")
+                {
+                    newNotification.Content = $"The category {category.Name} has been deleted by Admin";
+                    _unitOfWork.Category.Remove(category);
+                }
+
+                _unitOfWork.Notification.Add(newNotification);
+                _unitOfWork.Save();
+                return RedirectToAction("Index");
             }
-            else if (submitBtn == "delete") 
+            catch (Exception ex)
             {
-                newNotification.Content = $"The category {category.Name} has been deleted by Admin";
-                _unitOfWork.Category.Remove(category);
+                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
             }
-
-            _unitOfWork.Notification.Add(newNotification);
-            _unitOfWork.Save();
-            return RedirectToAction("Index");
         }
     }
+
 
 }

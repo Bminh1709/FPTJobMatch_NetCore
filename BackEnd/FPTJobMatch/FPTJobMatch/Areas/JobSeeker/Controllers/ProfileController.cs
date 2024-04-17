@@ -15,87 +15,102 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUnitOfWork _unitOfWork;
+
         public ProfileController(UserManager<ApplicationUser> userManager, IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _unitOfWork = unitOfWork;
         }
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index()
         {
-            // Get the ID of the current user
-            string? currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            try { 
+                string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            // Retrieve the user data and related information
-            ApplicationUser currentUser = _unitOfWork.ApplicationUser.Get(u => u.Id == currentUserId);
-            JobSeekerDetail jobSeekerDetail = _unitOfWork.JobSeekerDetail.Get(d => d.JobSeekerId == currentUserId);
-            IEnumerable<ApplicantCV> applicantCVsList = _unitOfWork.ApplicantCV.GetAll(cv => cv.JobSeekerId == currentUserId, includeProperties: "Job.Employer,Job.Company");
+                if (userId == null)
+                {
+                    TempData["error"] = "An error occurred while updating user information";
+                    return RedirectToAction("Index");
+                }
 
-            // Create the view model
-            JobSeekerProfileVM jobSeekerProfileVM = new JobSeekerProfileVM
+                ApplicationUser currentUser = await _unitOfWork.ApplicationUser.GetAsync(u => u.Id == userId);
+                JobSeekerDetail jobSeekerDetail = await _unitOfWork.JobSeekerDetail.GetAsync(d => d.JobSeekerId == userId);
+                IEnumerable<ApplicantCV> applicantCVsList = await _unitOfWork.ApplicantCV.GetAllAsync(cv => cv.JobSeekerId == userId, includeProperties: "Job.Employer,Job.Company");
+
+                JobSeekerProfileVM jobSeekerProfileVM = new JobSeekerProfileVM
+                {
+                    JobSeeker = currentUser,
+                    JobSeekerDetail = jobSeekerDetail,
+                    ApplicantCVsList = applicantCVsList,
+                };
+
+                return View(jobSeekerProfileVM);
+            }
+            catch (Exception ex)
             {
-                JobSeeker = currentUser,
-                JobSeekerDetail = jobSeekerDetail,
-                applicantCVsList = applicantCVsList,
-            };
-
-            // Pass the view model to the view
-            return View(jobSeekerProfileVM);
+                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
+            }
         }
 
         [HttpPost]
-        public IActionResult UpdateInfo(string aboutMe, string fullname, string phone, DateOnly dateOfBirth, string gender, string address)
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateInfo(string aboutMe, string fullname, string phone, DateOnly dateOfBirth, string gender, string address)
         {
-            string? currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            // Check if the JobSeekerDetail exists
-            JobSeekerDetail jobSeekerDetail = _unitOfWork.JobSeekerDetail.Get(u => u.JobSeekerId == currentUserId);
-            if (jobSeekerDetail == null)
+            try
             {
-                // Create a new JobSeekerDetail if it doesn't exist
-                jobSeekerDetail = new JobSeekerDetail
+                var user = await _userManager.GetUserAsync(User);
+
+                if (user == null)
                 {
-                    JobSeekerId = currentUserId
-                };
-            }
-
-            // Update the JobSeekerDetail properties
-            jobSeekerDetail.AboutMe = aboutMe;
-            jobSeekerDetail.DateOfBirth = dateOfBirth;
-            jobSeekerDetail.Gender = gender;
-            jobSeekerDetail.Address = address;
-
-            // Update or add the JobSeekerDetail in the database
-            _unitOfWork.JobSeekerDetail.Update(jobSeekerDetail);
-
-            // Update the ApplicationUser (jobSeeker) properties if fullname or phone is provided
-            if (!string.IsNullOrEmpty(fullname) || !string.IsNullOrEmpty(phone))
-            {
-                ApplicationUser jobSeeker = _unitOfWork.ApplicationUser.Get(u => u.Id == currentUserId);
-                if (jobSeeker != null)
-                {
-                    jobSeeker.Name = fullname ?? jobSeeker.Name; // Keep the existing name if fullname is null
-                    jobSeeker.PhoneNumber = phone ?? jobSeeker.PhoneNumber; // Keep the existing phone number if phone is null
-
-                    _unitOfWork.ApplicationUser.Update(jobSeeker);
+                    TempData["error"] = "An error occurred while updating user information";
+                    return RedirectToAction("Index");
                 }
-            }
 
-            _unitOfWork.Save();
-            TempData["success"] = "Update Info Successfully";
-            return RedirectToAction("Index");
+                // Retrieve or create the JobSeekerDetail for the user
+                JobSeekerDetail jobSeekerDetail = await _unitOfWork.JobSeekerDetail.GetAsync(u => u.JobSeeker == user) ?? new JobSeekerDetail { JobSeeker = user };
+
+                // Update JobSeekerDetail properties
+                jobSeekerDetail.AboutMe = aboutMe;
+                jobSeekerDetail.DateOfBirth = dateOfBirth;
+                jobSeekerDetail.Gender = gender;
+                jobSeekerDetail.Address = address;
+
+                _unitOfWork.JobSeekerDetail.Update(jobSeekerDetail);
+
+                // Update user's name and phone number if provided
+                if (!string.IsNullOrEmpty(fullname))
+                {
+                    user.Name = fullname;
+                }
+                if (!string.IsNullOrEmpty(phone))
+                {
+                    user.PhoneNumber = phone;
+                }
+
+                _unitOfWork.ApplicationUser.Update(user);
+
+                // Save changes to the database
+                _unitOfWork.Save();
+
+                TempData["success"] = "Update Info Successfully";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
+            }
         }
 
         [HttpGet]
-        public IActionResult GetCV(int cvId)
+        public async Task<IActionResult> GetCV(int cvId)
         {
-            ApplicantCV applicantCV = _unitOfWork.ApplicantCV.Get(a => a.Id == cvId);
+            ApplicantCV applicantCV = await _unitOfWork.ApplicantCV.GetAsync(a => a.Id == cvId);
             return Json(new
             {
                 success = true,
                 data = new { applicantCV.Id, applicantCV.FileCV, applicantCV.ResponseMessage }
             });
         }
-
-
     }
+
 }

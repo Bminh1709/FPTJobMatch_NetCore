@@ -9,7 +9,7 @@
         <div class="col-span-4 lg:col-span-3 xl:col-span-2">
             <div class="bg-white min-w-44-white p-3 border-t-4 border-MyOrange">
                 <div class="flex gap-3 items-center">
-                    <div class="border border-MyGrey p-1 rounded-sm">
+                    <div class="border border-MyGrey p-1 rounded-full">
                         <img src="~/images/avatar/@(Model.JobSeeker.Avatar ?? "maleavt.jpg")" alt="" class="w-20 h-20 rounded-full object-cover">
                     </div>
                     <div>
@@ -113,7 +113,7 @@
                     </div>
                     <div class="flex gap-3 mt-8 justify-end text-sm">
                         <button class="btn py-2 px-4" type="submit" id="btn_updateInfo">Update</button>
-                        <button class="bg-MyPaleOrange border border-MyOrange rounded-lg text-MyOrange py-2 px-4" type="button">Cancel</button>
+                        <button class="bg-MyPaleOrange border border-MyOrange rounded-lg text-MyOrange py-2 px-4" id="btn_cancelInfo" type="button">Cancel</button>
                     </div>
                 </form>
                 <div class="bg-white rounded-md mt-4">
@@ -130,23 +130,23 @@
                         <div class="flex flex-wrap gap-6">
                             <div class="w-full">
                                 <p class="font-medium mb-2">Old Password</p>
-                                <input id="old_resetPassword" type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange">
+                                <input disabled id="old_resetPassword" type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange">
                             </div>
                             <div class="flex w-full gap-6">
                                 <div class="w-full">
                                     <p class="font-medium mb-2">New Password</p>
-                                    <input id="new_resetPassword" type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange">
+                                    <input disabled id="new_resetPassword" type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange">
                                 </div>
                                 <div class="w-full">
                                     <p class="font-medium mb-2">Confirm New Password</p>
-                                    <input id="confirm_resetPassword" type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange">
+                                    <input disabled id="confirm_resetPassword" type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleOrange focus:outline-MyOrange">
                                 </div>
                             </div>
                         </div>
                         <p id="message_resetPassword" class="text-red-600 mt-4 text-sm"></p>
                         <div class="flex gap-3 mt-8 justify-end text-sm">
                             <button class="btn py-2 px-4" type="submit" id="btn_resetPassword">Update</button>
-                            <button class="bg-MyPaleOrange border border-MyOrange rounded-lg py-2 px-4" type="button">Cancel</button>
+                            <button class="bg-MyPaleOrange border border-MyOrange rounded-lg py-2 px-4" id="btn_cancelResetPassword" type="button">Cancel</button>
                         </div>
                     </form>
                 </div>
@@ -257,7 +257,7 @@
                                 </tr>
                             </thead>
                             <tbody class="">
-                                @foreach(var cv in Model.applicantCVsList)
+                                @foreach(var cv in Model.ApplicantCVsList)
                                 {
                                     <tr class="border border-MyPaleOrange">
                                         <td class="p-3 min-w-56">

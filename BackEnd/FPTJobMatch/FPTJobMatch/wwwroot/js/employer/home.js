@@ -30,14 +30,47 @@ cancel_employerCVFormDelete.on('click', function () {
     employerCVFormDelete.addClass('hidden');
 })
 
-// Add New Category
+// Add New Category (Employer/Home/CreateJob)
 $('body').on("change", "#categoryDropdown", function () {
     var newCategoryInput = $("#newCategoryInput");
     if ($(this).val() === "") {
         newCategoryInput.removeAttr("disabled");
-        newCategoryInput.focus();
+        newCategoryInput.trigger("focus");
     } else {
         newCategoryInput.attr("disabled", "disabled");
+    }
+});
+
+// Validate Category for Form (Employer/Home/CreateJob)
+$('#form_createJob').on("submit", function (event) {
+    var categoryId = $('#categoryDropdown').val();
+    var newCategoryName = $('#newCategoryInput').val();
+    var deadlineDate = $('#deadlineInput').val();
+
+    // Convert the deadline string to a JavaScript Date object
+    var deadline = new Date(deadlineDate);
+    // Get today's date
+    var today = new Date();
+
+    // Check if the deadline is not greater than today's date
+    if (deadline <= today) {
+        $('#deadline_errorMessage').show();
+        event.preventDefault();
+    } else {
+        // Clear the error message
+        $('#deadline_errorMessage').hide();
+
+        // Check if category selection or entry is empty
+        if ((categoryId === null || categoryId === "") && newCategoryName === "") {
+            // Display an error message for category selection
+            $('#category_errorMessage').text("Please select a category or enter a new category.");
+            event.preventDefault();
+        } else {
+            // Clear the error message for the category
+            $('#category_errorMessage').text("");
+            // If both are selected or typed
+            $(this).off('submit');
+        }
     }
 });
 
@@ -80,35 +113,3 @@ $('#showPassword').on("change", function () {
 });
 
 
-// Validate Category for Form
-$('#form_createJob').on("submit", function (event) {
-    var categoryId = $('#categoryDropdown').val();
-    var newCategoryName = $('#newCategoryInput').val();
-    var deadlineDate = $('#deadlineInput').val();
-
-    // Convert the deadline string to a JavaScript Date object
-    var deadline = new Date(deadlineDate);
-    // Get today's date
-    var today = new Date();
-
-    // Check if the deadline is not greater than today's date
-    if (deadline <= today) {
-        $('#deadline_errorMessage').show();
-        event.preventDefault();
-    } else {
-        // Clear the error message
-        $('#deadline_errorMessage').hide();
-
-        // Check if category selection or entry is empty
-        if ((categoryId === null || categoryId === "") && newCategoryName === "") {
-            // Display an error message for category selection
-            $('#category_errorMessage').text("Please select a category or enter a new category.");
-            event.preventDefault(); 
-        } else {
-            // Clear the error message for the category
-            $('#category_errorMessage').text("");
-            // If both are selected or typed
-            $(this).off('submit');
-        }
-    }
-});

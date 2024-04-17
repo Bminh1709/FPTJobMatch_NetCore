@@ -16,9 +16,23 @@ cancel_statusForm.on('click', function () {
 })
 
 
+// Filter (Admin/)
+function updateUserType(userType) {
+    $('#filter_userType').val(userType);
+    $('#form_filter').trigger("submit");
+}
+function updateSortType(sortType) {
+    $('#filter_sortType').val(sortType);
+    $('#form_filter').trigger("submit");
+}
+$('#btn_submitFilter').on('click', function () {
+    $('#filter_keyword').val($('#keywordInput').val());
+});
+
+
 // Creating Employer Form (User)
 const employerFormCreated = $('#employerFormCreated');
-const close_employerFormCreated = $('#employerFormCreated');
+const close_employerFormCreated = $('#close_employerFormCreated');
 const open_employerFormCreated = $('#open_employerFormCreated');
 
 open_employerFormCreated.on('click', function () {

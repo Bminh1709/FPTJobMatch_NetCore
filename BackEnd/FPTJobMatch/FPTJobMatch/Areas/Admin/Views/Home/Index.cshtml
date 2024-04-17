@@ -25,8 +25,8 @@
     </div>
 
     <!-- Candidate List -->
-    <div class="h-screen overflow-x-auto">
-        <div class="flex gap-3 flex-wrap justify-between items-center mt-6">
+    <div class="min-h-screen pb-12">
+        <div class="flex flex-wrap justify-between items-center mt-6">
             <div>
                 <a class="flex gap-1 items-center hover:underline text-MyBlue hover:cursor-pointer text-sm font-semibold">
                     <i class="fa-solid fa-arrow-left"></i>
@@ -38,37 +38,43 @@
                 <button id="open_employerFormCreated" class="btnPaleBlue text-sm py-3 px-4 ">
                     Create Account
                 </button>
-                <div class="relative" id="dropdown_btn">
-                    <div class="hover:cursor-pointer text-sm flex items-center justify-between w-36 py-3 px-4 border border-MyBlue rounded-md">
-                        <p>Role</p>
-                        <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
-                    </div>
-                    <div id="dropdown_list" class="hidden w-36 absolute text-sm">
-                        <a asp-area="Admin" asp-controller="Home" asp-action="Index" asp-route-userType="JobSeeker" class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Employers</a>
-                        <a asp-area="Admin" asp-controller="Home" asp-action="Index" asp-route-userType="Employer" class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Job Seekers</a>
-                    </div>
-                </div>
-                <div class="relative" id="dropdown_btn">
-                    <div class="hover:cursor-pointer text-sm flex items-center justify-between w-36 py-3 px-4 border border-MyBlue rounded-md">
-                        <p>Sorting</p>
-                        <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
-                    </div>
-                    <ul id="dropdown_list" class="hidden w-36 absolute text-sm">
-                        <li class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Full Time</li>
-                        <li class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Part Time</li>
-                        <li class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Remote</li>
-                    </ul>
-                </div>
-                <div class="border border-MyBlue rounded-md p-1">
-                    <form action="" class="h-full">
-                        <input type="text" class="outline-none w-56 h-full px-3">
-                        <button type="submit" class="bg-MyPaleBlue h-full w-10 text-MyBlue rounded-md"><i class="fa-solid fa-magnifying-glass"></i></button>
-                    </form>
-                </div>
-            </div>
-        </div>
+                <form id="form_filter" asp-controller="Home" asp-action="Index" method="get" class="flex flex-wrap gap-3">
+                    <input type="hidden" id="filter_userType" name="userType" value="@ViewBag.UserType">
+                    <input type="hidden" id="filter_sortType" name="sortType" value="@ViewBag.SortType">
+                    <input type="hidden" id="filter_keyword" name="keyword" value="@ViewBag.Keyword">
 
-        <table class="w-full mt-5">
+                    <div class="relative" id="dropdown_btn">
+                        <div class="hover:cursor-pointer text-sm flex items-center justify-between w-36 py-3 px-4 border border-MyBlue rounded-md">
+                            <p>Role</p>
+                            <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
+                        </div>
+                        <div id="dropdown_list" class="hidden w-36 absolute text-sm">
+                            <button type="button" onclick="updateUserType('Employer')" class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Employer</button>
+                            <button type="button" onclick="updateUserType('JobSeeker')" class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Job Seeker</button>
+                            <button type="button" onclick="updateUserType('')" class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">All</button>
+                        </div>
+                    </div>
+                    <div class="relative" id="dropdown_btn">
+                        <div class="hover:cursor-pointer text-sm flex items-center justify-between w-36 py-3 px-4 border border-MyBlue rounded-md">
+                            <p>Sorting</p>
+                            <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
+                        </div>
+                        <div id="dropdown_list" class="hidden w-36 absolute text-sm">
+                            <button type="button" onclick="updateSortType('NewestFirst')" class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Newest First</button>
+                            <button type="button" onclick="updateSortType('OldestFirst')" class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Oldest First</button>
+                        </div>
+                    </div>
+                    <div class="border border-MyBlue rounded-md p-1">
+                        <div class="h-full">
+                            <input type="text" id="keywordInput" value="@ViewBag.Keyword" class="outline-none w-56 h-full px-3">
+                            <button type="submit" id="btn_submitFilter" class="bg-MyPaleBlue h-full w-10 text-MyBlue rounded-md"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        <div class="overflow-x-auto w-full">
+            <table class="w-full mt-5">
             <thead class="text-left text-MyBlue bg-MyPaleBlue">
                 <tr class="">
                     <th class="py-3 pl-9 rounded-tl-md">User</th>
@@ -110,8 +116,9 @@
                 }
             </tbody>
         </table>
+        </div>
 
-        <ul class="mt-7 flex justify-end gap-2 text-sm font-medium text-MyBlue">
+        <ul class="mt-7 flex gap-2 text-sm font-medium text-MyBlue ml-auto">
             <li class="border border-MyBlue rounded-md w-7 h-7 flex items-center justify-center hover:bg-MyBlue hover:text-white hover:cursor-pointer"><i class="fa-solid fa-angle-left"></i></li>
             <li class="border border-MyBlue rounded-md w-7 h-7 flex items-center justify-center hover:bg-MyBlue hover:text-white hover:cursor-pointer">1</li>
             <li class="border border-MyBlue rounded-md w-7 h-7 flex items-center justify-center hover:bg-MyBlue hover:text-white hover:cursor-pointer">2</li>
@@ -147,47 +154,47 @@
     <div id="employerFormCreated" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
         <div class="bg-white mx-auto w-11/12 md:w-3/4 xl:w-1/2 h-fit rounded-lg mt-14">
             <div class="flex gap-4 items-center justify-between p-3">
-                <p class="text-MyBlue text-lg font-semibold">Java Developer (Spring, MySQL) at Giao Hang Tiet Kiem</p>
+                <p class="text-MyBlue text-lg font-semibold">Create User</p>
                 <button for="" id="close_employerFormCreated" class="text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyBlue"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
-            <div class="px-5 pb-4">
+            <form asp-controller="Home" asp-action="CreateUser" as class="px-5 pb-4">
                 <div class="py-3 text-center">
-                    <p class="font-medium">Review your application</p>
-                    <p class="text-sm text-MyDarkGrey">The employer will also receive a copy of your profile</p>
+                        <p class="font-medium">User Information Review</p>
+                        <p class="text-sm text-MyDarkGrey">Please review the user's profile details before submission</p>
                 </div>
                 <div class="h-0.5 w-full bg-MyPaleGrey"></div>
                 <div class="py-4">
                     <p class="font-medium">General Info</p>
-                    <p class="text-sm text-MyDarkGrey">You should verify your information correcly</p>
+                        <p class="text-sm text-MyDarkGrey">Please review the user's information carefully</p>
                     <div class="flex flex-col gap-4 mt-3">
                         <div class="flex flex-wrap sm:flex-nowrap gap-4">
                             <div class="w-full border border-MyBlue rounded-sm py-1.5 px-3">
-                                <p class="text-xs text-MyDarkGrey">Your name <span class="text-red-600">*</span></p>
-                                <input type="text" class="w-full outline-none text-sm font-medium" value="Bui Quang Minh">
+                                <p class="text-xs text-MyDarkGrey">Full name <span class="text-red-600">*</span></p>
+                                <input name="fullname" type="text" class="w-full outline-none text-sm font-medium" placeholder="Nguyen Van A">
                             </div>
                             <div class="w-full border border-MyBlue rounded-sm py-1.5 px-3">
-                                <p class="text-xs text-MyDarkGrey">Your phone number <span class="text-red-600">*</span></p>
-                                <input type="text" class="w-full outline-none text-sm font-medium" value="0706162561">
+                                <p class="text-xs text-MyDarkGrey">Phone number</p>
+                                <input name="phone" type="text" class="w-full outline-none text-sm font-medium" placeholder="000 000 0000">
                             </div>
                         </div>
                         <div class="w-full border border-MyBlue rounded-sm py-1.5 px-3">
-                            <p class="text-xs text-MyDarkGrey">Your gmail <span class="text-red-600">*</span></p>
-                            <input type="text" class="w-full outline-none text-sm font-medium" value="minhbee203@gmail.com">
+                            <p class="text-xs text-MyDarkGrey">Gmail <span class="text-red-600">*</span></p>
+                            <input name="email" type="text" class="w-full outline-none text-sm font-medium" placeholder="nguyenvana@gmail.com">
                         </div>
                     </div>
                 </div>
                 <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
                 <div class="py-4">
-                    <p class="font-medium">General Info</p>
-                    <p class="text-sm text-MyDarkGrey">You should verify your information correcly</p>
+                    <p class="font-medium">Company Info</p>
+                        <p class="text-sm text-MyDarkGrey">Please review the user's company carefully</p>
                     <div class="w-full border border-MyBlue rounded-sm py-1.5 px-3 mt-3">
-                        <p class="text-xs text-MyDarkGrey">Company Name <span class="text-red-600">*</span></p>
-                        <input type="text" class="w-full outline-none text-sm font-medium" value="minhbee203@gmail.com">
+                        <p class="text-xs text-MyDarkGrey">Company Name</p>
+                        <input name="company" type="text" class="w-full outline-none text-sm font-medium" placeholder="NVA">
                     </div>
                 </div>
-                <button class="border border-MyBlue bg-MyPaleBlue rounded-md hover:bg-MyBlue hover:text-white w-full py-3 text-sm">Response</button>
-            </div>
+                <button type="submit" class="border border-MyBlue bg-MyPaleBlue rounded-md hover:bg-MyBlue hover:text-white w-full py-3 text-sm">Create</button>
+            </form>
 
         </div>
     </div>

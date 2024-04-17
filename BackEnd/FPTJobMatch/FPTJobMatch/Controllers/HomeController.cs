@@ -18,24 +18,37 @@ namespace FPTJobMatch.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            HomePageVM homeVM = new HomePageVM
+            try 
             {
-                TopCategoryList = _unitOfWork.Category.GetAll(c => c.IsApproved == true).Take(4),
-                TopJobList = _unitOfWork.Job.GetAll(c => c.Category.IsApproved == true, includeProperties: "Category,Company.City,JobType").Take(12),
-                CityList = _unitOfWork.City.GetAll().Select(u => new SelectListItem
-                {
-                    Text = u.Name,
-                    Value = u.Id.ToString()
-                }),
-            };
-            return View(homeVM);
-        }
+                var topCategoryList = await _unitOfWork.Category
+                    .GetAllAsync(c => c.IsApproved == true);
 
-        public IActionResult SignIn()
-        {
-            return View();
+                var topJobList = await _unitOfWork.Job
+                    .GetAllAsync(c => c.Category.IsApproved == true, includeProperties: "Category,Company.City,JobType");
+
+                var cityList = (await _unitOfWork.City.GetAllAsync())
+                    .Select(u => new SelectListItem
+                    {
+                        Text = u.Name,
+                        Value = u.Id.ToString()
+                    })
+                    .ToList();
+
+                var homeVM = new HomePageVM
+                {
+                    TopCategoryList = topCategoryList.Take(4),
+                    TopJobList = topJobList.Take(12),
+                    CityList = cityList
+                };
+
+                return View(homeVM);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
+            }
         }
 
         public IActionResult Help()
@@ -44,11 +57,17 @@ namespace FPTJobMatch.Controllers
         }
 
         [Authorize]
-        public IActionResult Notification()
+        public async Task<IActionResult> Notification()
         {
-            string? currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            IEnumerable<Notification> notifications = _unitOfWork.Notification.GetAll(n => n.ReceiverId == currentUserId, includeProperties: "Sender");
-            return View(notifications);
+            try { 
+                string? currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                IEnumerable<Notification> notifications = await _unitOfWork.Notification.GetAllAsync(n => n.ReceiverId == currentUserId, includeProperties: "Sender");
+                return View(notifications);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

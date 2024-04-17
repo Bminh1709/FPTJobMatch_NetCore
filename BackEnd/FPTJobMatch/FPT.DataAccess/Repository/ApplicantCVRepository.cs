@@ -1,6 +1,7 @@
 ﻿using FPT.DataAccess.Data;
 using FPT.DataAccess.Repository.IRepository;
 using FPT.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,21 +13,46 @@ namespace FPT.DataAccess.Repository
 {
     public class ApplicantCVRepository : Repository<ApplicantCV>, IApplicantCVRepository
     {
-        private ApplicationDbContext _db;
+        private readonly ApplicationDbContext _db;
+
         public ApplicantCVRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public int CountCVs(Expression<Func<ApplicantCV, bool>> filter)
+
+        public async Task<int> CountCVsAsync(Expression<Func<ApplicantCV, bool>> filter)
         {
-            int numOfCVs = _db.ApplicantCVs.Count(filter);
-            return numOfCVs;
+            return await _db.ApplicantCVs.CountAsync(filter);
         }
 
-        public bool IsSubmittedLast30Days(int jobId, string userId)
+        public async Task<IEnumerable<ApplicantCV>> GetAllByJobIdAsync(int jobId, string? status = null, string? sortType = null)
         {
-            ApplicantCV? applicantCV = _db.ApplicantCVs.FirstOrDefault(a => a.JobId == jobId && a.JobSeekerId == userId);
+            IQueryable<ApplicantCV> query = _db.ApplicantCVs.Include(a => a.JobSeeker).Where(a => a.JobId == jobId);
+
+            if (status != "All" && !string.IsNullOrEmpty(status))
+            {
+                query = query.Where(a => a.CVStatus == status);
+            }
+
+            if (!string.IsNullOrEmpty(sortType))
+            {
+                if (sortType == "NewestFirst")
+                {
+                    query = query.OrderByDescending(a => a.DateSubmitted);
+                }
+                else if (sortType == "OldestFirst")
+                {
+                    query = query.OrderBy(a => a.DateSubmitted);
+                }
+            }
+
+            return await query.ToListAsync();
+        }
+
+        public async Task<bool> IsSubmittedLast30DaysAsync(int jobId, string userId)
+        {
+            var applicantCV = await _db.ApplicantCVs.FirstOrDefaultAsync(a => a.JobId == jobId && a.JobSeekerId == userId);
             if (applicantCV != null)
             {
                 int gapDays = (DateTime.UtcNow - applicantCV.DateSubmitted).Days;
@@ -43,4 +69,5 @@ namespace FPT.DataAccess.Repository
             _db.ApplicantCVs.Update(applicantCV);
         }
     }
+
 }
