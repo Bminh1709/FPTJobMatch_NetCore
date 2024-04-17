@@ -20,7 +20,7 @@ namespace FPT.Models
         public string? Logo { get; set; }
         public DateTime CreatedAt { get; set; }
 
-        public int CityId { get; set; }
+        public int? CityId { get; set; }
         [ForeignKey("CityId")]
         public City City { get; set; }
     }

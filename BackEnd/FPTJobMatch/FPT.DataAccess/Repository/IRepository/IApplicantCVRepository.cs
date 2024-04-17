@@ -10,9 +10,11 @@ namespace FPT.DataAccess.Repository.IRepository
 {
     public interface IApplicantCVRepository : IRepository<ApplicantCV>
     {
-        public void Update(ApplicantCV applicantCV);
-        public int CountCVs(Expression<Func<ApplicantCV, bool>> filter);
-        public bool IsSubmittedLast30Days(int jobId, string userId);
+        void Update(ApplicantCV applicantCV);
 
+        Task<int> CountCVsAsync(Expression<Func<ApplicantCV, bool>> filter);
+
+        Task<bool> IsSubmittedLast30DaysAsync(int jobId, string userId);
+        Task<IEnumerable<ApplicantCV>> GetAllByJobIdAsync(int jobId, string? status = null, string? sortType = null);
     }
 }

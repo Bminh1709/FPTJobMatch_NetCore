@@ -13,11 +13,10 @@ namespace FPT.Models.ViewModels
     {
         // List of Jobs for displaying
         [ValidateNever]
-        public IEnumerable<Job> Jobs { get; set; }
+        public IEnumerable<Job> JobList { get; set; }
         // Job for creating
         public Job JobUploadModel { get; set; }
-        // For case, employer wants a new category
-        //public Category? Category { get; set; }
+
         [ValidateNever]
         public IEnumerable<SelectListItem> JobTypeList { get; set; }
         [ValidateNever]

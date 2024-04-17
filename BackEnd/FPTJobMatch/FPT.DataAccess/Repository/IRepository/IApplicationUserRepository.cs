@@ -9,6 +9,7 @@ namespace FPT.DataAccess.Repository.IRepository
 {
     public interface IApplicationUserRepository : IRepository<ApplicationUser>
     {
-        public void Update(ApplicationUser applicationUser);
+        // only modifying data in memory, without interacting directly with the database
+        void Update(ApplicationUser applicationUser);
     }
 }

@@ -10,6 +10,6 @@ namespace FPT.DataAccess.Repository.IRepository
     public interface ICompanyRepository : IRepository<Company>
     {
         public void Update(Company company);
-        public bool IsExist(string companyName);    
+        Task<bool> IsExistAsync(string companyName);
     }
 }

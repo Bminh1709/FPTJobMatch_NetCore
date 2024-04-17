@@ -6,7 +6,6 @@ using FPT.Utility;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace FPTJobMatch.Areas.Employer.Controllers
 {
@@ -15,23 +14,17 @@ namespace FPTJobMatch.Areas.Employer.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        public AccountController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+
+        public AccountController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
-            _signInManager = signInManager;
         }
-        public IActionResult SignUp()
+
+        public async Task<IActionResult> SignUp()
         {
-            EmployerRegisterVM employerRegisterVM = new EmployerRegisterVM
-            {
-                CityList = _unitOfWork.City.GetAll().Select(u => new SelectListItem
-                {
-                    Text = u.Name,
-                    Value = u.Id.ToString()
-                }),
-            };
+            var employerRegisterVM = new EmployerRegisterVM();
+            await PrepareVMCityList(employerRegisterVM);
             return View(employerRegisterVM);
         }
 
@@ -39,77 +32,96 @@ namespace FPTJobMatch.Areas.Employer.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SignUp(EmployerRegisterVM model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                PrepareViewModelCityList(model);
-                return View(model);
-            }
-
-            if (_unitOfWork.Company.IsExist(model.CompanyName))
-            {
-                ModelState.AddModelError("CompanyName", "Company name already exists");
-                PrepareViewModelCityList(model);
-                return View(model);
-            }
-
-            var user = new ApplicationUser
-            {
-                UserName = model.Email,
-                Email = model.Email,
-                Name = model.Name,
-                CreatedAt = DateTime.UtcNow,
-                AccountStatus = SD.StatusPending,
-            };
-
-            var result = await _userManager.CreateAsync(user, model.Password);
-            if (result.Succeeded)
-            {
-                await _userManager.AddToRoleAsync(user, SD.Role_Employer);
-                // await _signInManager.SignInAsync(user, isPersistent: false);
-
-                var company = new Company
+                // Is Data Valid
+                if (!ModelState.IsValid)
                 {
-                    Name = model.CompanyName,
-                    CityId = model.CityId,
-                    CreatedAt = DateTime.UtcNow
+                    await PrepareVMCityList(model);
+                    return View(model);
+                }
+
+                // Is Email Exist
+                var existingUser = await _userManager.FindByEmailAsync(model.Email);
+                if (existingUser != null)
+                {
+                    ModelState.AddModelError("Email", "Email already exists");
+                    await PrepareVMCityList(model);
+                    return View(model);
+                }
+
+                // Is Company Exist
+                if (await _unitOfWork.Company.IsExistAsync(model.CompanyName))
+                {
+                    ModelState.AddModelError("CompanyName", "Company name already exists");
+                    await PrepareVMCityList(model);
+                    return View(model);
+                }
+
+                // Create A New User in System
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    Name = model.Name,
+                    CreatedAt = DateTime.UtcNow,
+                    AccountStatus = SD.StatusPending,
                 };
 
-                // Associate the company with the user
-                user.Company = company;
+                // Create User By Built-in Method "CreateAsync"
+                var result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    await _userManager.AddToRoleAsync(user, SD.Role_Employer); // Assign Role for User
+                    var company = new Company // Create a New Company
+                    {
+                        Name = model.CompanyName,
+                        CityId = model.CityId,
+                        CreatedAt = DateTime.UtcNow
+                    };
 
-                // Add company and user to Unit of Work and save changes
-                _unitOfWork.Company.Add(company);
-                _unitOfWork.Save();
+                    // Associate the company with the user
+                    user.Company = company;
 
-                return RedirectToAction("Index", "Access", new { area = "" });
+                    // Add Company to DB
+                    _unitOfWork.Company.Add(company);
+                    _unitOfWork.Save();
+
+                    // Redirect to Login Page
+                    return RedirectToAction("Index", "Access", new { area = "" });
+                }
+
+                // Display Errors
+                foreach (var error in result.Errors)
+                {
+                    if (error.Code.StartsWith("Password"))
+                    {
+                        ModelState.AddModelError("Password", error.Description);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+
+                await PrepareVMCityList(model);
+                return View(model);
             }
-
-            // Handle password-related errors separately
-            foreach (var error in result.Errors)
+            catch (Exception ex)
             {
-                if (error.Code.StartsWith("Password"))
-                {
-                    ModelState.AddModelError("Password", error.Description);
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
             }
-
-            PrepareViewModelCityList(model);
-            return View(model);
         }
 
-
-        private void PrepareViewModelCityList(EmployerRegisterVM model)
+        private async Task PrepareVMCityList(EmployerRegisterVM model)
         {
-            model.CityList = _unitOfWork.City.GetAll().Select(u => new SelectListItem
+            var cities = await _unitOfWork.City.GetAllAsync();
+            model.CityList = cities.Select(u => new SelectListItem
             {
                 Text = u.Name,
                 Value = u.Id.ToString()
             });
         }
-
     }
+
 }

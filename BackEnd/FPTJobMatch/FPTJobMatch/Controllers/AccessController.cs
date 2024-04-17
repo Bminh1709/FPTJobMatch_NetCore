@@ -25,48 +25,68 @@ namespace FPTJobMatch.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(SignInVM model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var user = await _userManager.FindByEmailAsync(model.Email);
-                if (user != null)
+                // Is Info Valid?
+                if (!ModelState.IsValid)
                 {
-                    if (user.AccountStatus == SD.StatusSuspending)
-                    {
-                        ModelState.AddModelError(string.Empty, "This account has been suspended.");
-                        return View(model);
-                    }
-                    else if (user.AccountStatus == SD.StatusPending)
-                    {
-                        ModelState.AddModelError(string.Empty, "This account is still processing.");
-                        return View(model);
-                    }
-
-                    var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
-
-                    if (result.Succeeded)
-                    {
-                        // Get the roles associated with the user
-                        var roles = await _userManager.GetRolesAsync(user);
-                        if (roles.Contains("JobSeeker"))
-                        {
-                            return RedirectToAction("Index", "Home");
-                        }
-                        else if (roles.Contains("Employer"))
-                        {
-                            return RedirectToAction("Index", "Employer");
-                        }
-                        else if (roles.Contains("Admin"))
-                        {
-                            return RedirectToAction("Index", "Admin");
-                        }
-                    }
-
+                    return View(model);
                 }
-            }
 
-            ModelState.AddModelError(string.Empty, "Incorrect Email or Password");
-            // Model state is invalid, return back
-            return View(model);
+                // Find User by Email
+                var user = await _userManager.FindByEmailAsync(model.Email);
+
+                // Is Email Existed?
+                if (user == null)
+                {
+                    ModelState.AddModelError(string.Empty, "Incorrect Email");
+                    return View(model);
+                }
+
+                // Check Account Status
+                if (user.AccountStatus == SD.StatusSuspending)
+                {
+                    ModelState.AddModelError(string.Empty, "This account has been suspended.");
+                    return View(model);
+                }
+                if (user.AccountStatus == SD.StatusPending)
+                {
+                    ModelState.AddModelError(string.Empty, "This account is still processing.");
+                    return View(model);
+                }
+
+                // Sign In into System
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+
+                // Is SignIn Success?
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError(string.Empty, "Incorrect Email or Password");
+                    return View(model);
+                }
+
+                // Get role and Navigate to Route
+                var role = await _userManager.GetRolesAsync(user);
+                var roleAreas = new Dictionary<string, string>
+                    {
+                        { SD.Role_JobSeeker, "" },
+                        { SD.Role_Employer, "Employer" },
+                        { SD.Role_Admin, "Admin" }
+                    };
+
+                if (roleAreas.ContainsKey(role.Single()))
+                {
+                    return RedirectToAction("Index", "Home", new { area = roleAreas[role.Single()] });
+                }
+
+                // Default redirect if role is not found
+                return RedirectToAction("Index", "Home");
+
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
+            }
         }
 
         public async Task<IActionResult> LogOut()
@@ -75,55 +95,58 @@ namespace FPTJobMatch.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult AccessDenied()
-        {
-            return View();
-        }
 
         [HttpPost]
         public async Task<IActionResult> ResetPassword(string oldPassword, string newPassword, string confirmNewPassword)
         {
-            // Check for null values
-            if (string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(confirmNewPassword))
+            try
             {
-                return Json(new { success = false, error = "All fields are required" });
+                // Check for null values
+                if (string.IsNullOrEmpty(oldPassword) || string.IsNullOrEmpty(newPassword) || string.IsNullOrEmpty(confirmNewPassword))
+                {
+                    return Json(new { success = false, error = "All fields are required" });
+                }
+
+                // -- First way to get user --
+                //string? currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                //ApplicationUser user = await _userManager.FindByIdAsync(currentUserId);
+                // -- Second way to get user --
+                var user = await _userManager.GetUserAsync(User);
+
+                // Check if the user exists
+                if (user == null)
+                {
+                    return Json(new { success = false, error = "User not found" });
+                }
+
+                // Check if the old password matches the user's current password
+                var passwordCheck = await _userManager.CheckPasswordAsync(user, oldPassword);
+                if (!passwordCheck)
+                {
+                    return Json(new { success = false, error = "Incorrect old password" });
+                }
+
+                // Check if the new password matches the confirm new password
+                if (newPassword != confirmNewPassword)
+                {
+                    return Json(new { success = false, error = "New password and confirm new password do not match" });
+                }
+
+                // Hash the new password using Identity's password hasher
+                var passwordHasher = new PasswordHasher<ApplicationUser>();
+                var hashedNewPassword = passwordHasher.HashPassword(user, newPassword);
+
+                // Update the user's password hash in the database
+                user.PasswordHash = hashedNewPassword;
+                await _userManager.UpdateAsync(user);
+
+                TempData["success"] = "Password updated successfully";
+                return Json(new { success = true });
             }
-
-            string? currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            ApplicationUser user = await _userManager.FindByIdAsync(currentUserId);
-
-            // Check if the user exists
-            if (user == null)
+            catch (Exception ex)
             {
-                return Json(new { success = false, error = "User not found" });
+                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
             }
-
-            // Check if the old password matches the user's current password
-            var passwordCheck = await _userManager.CheckPasswordAsync(user, oldPassword);
-            if (!passwordCheck)
-            {
-                return Json(new { success = false, error = "Incorrect old password" });
-            }
-
-            // Check if the new password matches the confirm new password
-            if (newPassword != confirmNewPassword)
-            {
-                return Json(new { success = false, error = "New password and confirm new password do not match" });
-            }
-
-            // Hash the new password using Identity's password hasher
-            var passwordHasher = new PasswordHasher<ApplicationUser>();
-            var hashedNewPassword = passwordHasher.HashPassword(user, newPassword);
-
-            // Update the user's password hash in the database
-            user.PasswordHash = hashedNewPassword;
-            await _userManager.UpdateAsync(user);
-
-            TempData["success"] = "Password updated successfully";
-            return Json(new
-            {
-                success = false
-            });
         }
     }
 }

@@ -27,7 +27,7 @@ $('body').on('click', '.job_item', function () {
                     $('#job_date').text(getTimeAgoString(rs.data.createdAt));
                     $('#job_address').text(rs.data.address);
                     $('#job_type').text(rs.data.jobType.name);
-                    $('#job_deadline').text(rs.data.job.deadline);
+                    $('#job_deadline').text(rs.data.deadline);
                     $('#job_category').text(rs.data.category.name);
                     $('#job_description').text(rs.data.description);
                     $('#job_responsibilities').text(rs.data.responsibility);

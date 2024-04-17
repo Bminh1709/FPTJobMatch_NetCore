@@ -17,7 +17,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFramework
 builder.Services.ConfigureApplicationCookie(options => {
     options.LoginPath = $"/Access/Index";
     options.LogoutPath = $"/Access/Logout";
-    options.AccessDeniedPath = $"/Access/AccessDenied";
+    options.AccessDeniedPath = $"/error/accessdenied";
 });
 
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
@@ -29,7 +29,6 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -40,6 +39,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseStatusCodePagesWithReExecute("/error/{0}");
 
 SeedDatabase();
 
