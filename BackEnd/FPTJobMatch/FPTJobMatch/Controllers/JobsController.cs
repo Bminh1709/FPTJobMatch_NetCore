@@ -63,7 +63,7 @@ namespace FPTJobMatch.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
+                return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
             }
         }
 
@@ -159,9 +159,24 @@ namespace FPTJobMatch.Controllers
             }
         }
 
-        public IActionResult Detail()
+        public async Task<IActionResult> Detail(int jobId)
         {
-            return View();
+            try
+            {
+                // Retrieve job data by jobId
+                Job job = await _unitOfWork.Job.GetAsync(j => j.Id == jobId, includeProperties: "Company.City,Category,JobType");
+
+                if (job == null)
+                {
+                    return NotFound();
+                }
+
+                return View(job);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
+            }
         }
     }
 

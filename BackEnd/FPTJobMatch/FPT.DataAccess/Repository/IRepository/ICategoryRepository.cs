@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 
 namespace FPT.DataAccess.Repository.IRepository
 {
-    public interface IJobTypeRepository : IRepository<JobType>
+    public interface ICategoryRepository : IRepository<Category>
     {
-        public void Update(JobType jobType);
+        public void Update(Category category);
+        Task<IEnumerable<Category>> GetCategoriesByStatus(bool isApproved);
+        int CountCategories(IEnumerable<Category> categories, bool isThisMonth);
     }
 }

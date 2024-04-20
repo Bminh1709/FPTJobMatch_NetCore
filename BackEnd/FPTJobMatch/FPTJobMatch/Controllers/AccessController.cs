@@ -132,13 +132,24 @@ namespace FPTJobMatch.Controllers
                     return Json(new { success = false, error = "New password and confirm new password do not match" });
                 }
 
-                // Hash the new password using Identity's password hasher
-                var passwordHasher = new PasswordHasher<ApplicationUser>();
-                var hashedNewPassword = passwordHasher.HashPassword(user, newPassword);
+                //// Hash the new password using Identity's password hasher
+                //var passwordHasher = new PasswordHasher<ApplicationUser>();
+                //var hashedNewPassword = passwordHasher.HashPassword(user, newPassword);
 
-                // Update the user's password hash in the database
-                user.PasswordHash = hashedNewPassword;
-                await _userManager.UpdateAsync(user);
+                //// Update the user's password hash in the database
+                //user.PasswordHash = hashedNewPassword;
+                //await _userManager.UpdateAsync(user);
+
+                //TempData["success"] = "Password updated successfully";
+                //return Json(new { success = true });
+
+                // Reset the user's password
+                var result = await _userManager.ResetPasswordAsync(user, await _userManager.GeneratePasswordResetTokenAsync(user), newPassword);
+
+                if (!result.Succeeded)
+                {
+                    return Json(new { success = false, error = "Failed to update password" });
+                }
 
                 TempData["success"] = "Password updated successfully";
                 return Json(new { success = true });

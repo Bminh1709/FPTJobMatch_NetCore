@@ -1,40 +1,35 @@
-﻿$(document).ready(function () {
-    $("#manageCvBtn").click(function () {
-        $("#Profile_section").hide();
-        $("#ManageCV_section").show();
-        $(this).addClass('active');
-        $('#profileBtn').removeClass('active');
-    });
+﻿
+$("#manageCvBtn").on('click', function () {
+    $("#Profile_section").hide();
+    $("#ManageCV_section").show();
+    $(this).addClass('active');
+    $('#profileBtn').removeClass('active');
+});
 
-    $("#profileBtn").click(function () {
-        $("#ManageCV_section").hide();
-        $("#Profile_section").show();
-        $(this).addClass('active');
-        $('#manageCvBtn').removeClass('active');
-    });
+$("#profileBtn").on('click', function () {
+    $("#ManageCV_section").hide();
+    $("#Profile_section").show();
+    $(this).addClass('active');
+    $('#manageCvBtn').removeClass('active');
 });
 
 
 // Information
-var formSubmitted = false;
+var isSubmittedInfo = false;
 $('#form_jobseekerInfo').on('submit', function (e) {
-    e.preventDefault();
-
-    if (!formSubmitted) {
-        $(this).find('input, select, textarea').removeAttr('disabled');
-        $('#jobseeker_about').focus();
-        formSubmitted = true; // Set the flag to true 
+    if (isSubmittedInfo) {
+        return;
+        isSubmittedInfo = false
     } else {
-        var phoneNumber = $("#jobseeker_phone").val();
-        if (phoneNumber != null) {
-
-        }
-        $(this).off('submit').submit();
+        e.preventDefault();
+        $(this).find('input, select, textarea').removeAttr('disabled');
+        $('#jobseeker_about').trigger("focus");
+        isSubmittedInfo = true;
     }
 });
 $('#btn_cancelInfo').on('click', function () {
     $('#form_jobseekerInfo').find('input, select, textarea').attr('disabled', 'disabled');
-    formSubmitted = false; 
+    isSubmittedInfo = false; 
 });
 
 

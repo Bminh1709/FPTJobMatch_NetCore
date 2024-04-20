@@ -3,6 +3,7 @@ using FPT.Models;
 using FPT.Models.ViewModels;
 using FPT.Utility;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -13,14 +14,17 @@ namespace FPTJobMatch.Areas.Employer.Controllers
     public class ApplicantController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public ApplicantController(IUnitOfWork unitOfWork)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public ApplicantController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
         {
             _unitOfWork = unitOfWork;
+            _userManager = userManager;
         }
 
         public async Task<IActionResult> Index(int jobId, string? status, string? sortType)
         {
-            try { 
+            try {
+                // Get the job
                 Job job = await _unitOfWork.Job.GetAsync(j => j.Id == jobId);
 
                 if (job == null)
@@ -31,9 +35,9 @@ namespace FPTJobMatch.Areas.Employer.Controllers
 
                 IEnumerable<ApplicantCV> applicantCVs = await _unitOfWork.ApplicantCV.GetAllByJobIdAsync(jobId, status, sortType);
 
-                ApplicantPageVM applicantPageVM = new ApplicantPageVM
+                ApplicantPageVM applicantPageVM = new()
                 {
-                    ApplicantList = applicantCVs.ToList(),
+                    ApplicantList = applicantCVs,
                     JobId = jobId,
                     JobTitle = job.Title,
                 };
@@ -87,7 +91,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
 
                 if (applicantCV.CVStatus == SD.StatusResponded && applicantCV.ResponseMessage == responseMessage)
                 {
-                    TempData["error"] = "You already responded to this CV";
+                    TempData["error"] = "You have already responded to this CV";
                     return RedirectToAction("Index", "Applicant", new { jobId = curJobId });
                 }
 
@@ -98,15 +102,34 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                 _unitOfWork.ApplicantCV.Update(applicantCV);
                 _unitOfWork.Save();
 
-                TempData["success"] = "Responded to the CV Successfully";
+                var user = await _userManager.GetUserAsync(User);
+
+                if (user == null)
+                {
+                    return RedirectToAction("Index", "Access", new { area = "" });
+                }
+
+                Notification newNotification = new()
+                {
+                    ReceiverId = applicantCV.JobSeekerId,
+                    Sender = user,
+                    CreatedAt = DateTime.UtcNow,
+                    Content = $"Your application has been responded to by {user.Name}",
+                };
+
+                _unitOfWork.Notification.Add(newNotification);
+                _unitOfWork.Save();
+
+                TempData["success"] = "Successfully responded to the CV.";
                 return RedirectToAction("Index", "Applicant", new { jobId = curJobId });
             }
             catch (Exception ex)
             {
-                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
+                return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
             }
         }
 
+        [HttpGet]
         public async Task<IActionResult> ApplicantDetail(string applicantId)
         {
             try { 
@@ -115,11 +138,11 @@ namespace FPTJobMatch.Areas.Employer.Controllers
 
                 if (applicant == null || jobSeekerDetail == null)
                 {
-                    TempData["error"] = "Applicant or Job Seeker Detail not found";
-                    return RedirectToAction("Index", "Applicant");
+                    TempData["error"] = "Applicant not found";
+                    return NotFound();
                 }
 
-                JobSeekerProfileVM jobSeekerProfileVM = new JobSeekerProfileVM
+                JobSeekerProfileVM jobSeekerProfileVM = new()
                 {
                     JobSeeker = applicant,
                     JobSeekerDetail = jobSeekerDetail,
@@ -128,7 +151,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
+                return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
             }
         }
     }

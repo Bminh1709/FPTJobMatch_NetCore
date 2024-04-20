@@ -1,4 +1,6 @@
-﻿@{
+﻿@using FPT.Utility.Helpers
+@model Job
+@{
     ViewData["Title"] = "Detail";
 }
 
@@ -6,12 +8,12 @@
     <!-- Banner -->
     <div class="rounded-xl p-5 sm:p-10 bg-cover bg-fixed" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/images/system/fptdiscussion.jpg);">
         <div class="flex flex-wrap gap-3">
-            <div class="p-2 border border-white rounded-md w-fit"><img src="~/images/system/FPT.png" alt="" class="h-32 w-32 object-contain"></div>
+            <div class="p-2 border border-white rounded-md w-fit"><img src="~/images/companyLogo/@(Model.Company.Logo ?? "noLogoCompany.jpg")" alt="Avatar" class="h-32 w-32 object-contain"></div>
             <div class="flex flex-col gap-3 justify-between text-white">
                 <div>
-                    <p class="text-2xl font-semibold">Game Economy Designer</p>
-                    <p class="my-1"><span class="font-semibold">Ubisoft. </span>Da Nang City, Vietnam</p>
-                    <p class="text-sm">2 days ago</p>
+                    <p class="text-2xl font-semibold">@Model.Title</p>
+                    <p class="my-1"><span class="font-semibold">@Model.Company.Name. </span>@Model.Company.City.Name City</p>
+                    <p class="text-sm">Posted @DateTimeHelper.GetTimeAgoString(Model.CreatedAt)</p>
                 </div>
                 <a href="" class="w-fit p-3 bg-MyBlue rounded-md text-xs hover:bg-MyPaleBlue hover:text-MyBlue">View Company</a>
             </div>
@@ -24,20 +26,19 @@
             <div class="flex flex-col gap-2">
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-earth-asia text-MyGrey text-lg"></i>
-                    <p>Tang 2 Toa nha Machinco, 444 Hoàng hoa thám, tHỤ khuê, Tay Ho, Hà Nội</p>
+                    <p>@Model.Address</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-circle-info text-MyGrey text-lg"></i>
+                    <p>@Model.Category.Name</p>
                 </div>
                 <div class="flex items-center gap-2">
                     <i class="fa-regular fa-clock text-MyGrey text-lg"></i>
-                    <p>Full Time</p>
+                    <p>@Model.JobType.Name</p>
                 </div>
-                <div class="flex items-center gap-3">
-                    <p>Skills: </p>
-                    <div class="flex gap-1 flex-wrap text-sm">
-                        <a href="" class="rounded-full px-3 py-1 shadow-normal">.NET</a>
-                        <a href="" class="rounded-full px-3 py-1 shadow-normal">ReactJs</a>
-                        <a href="" class="rounded-full px-3 py-1 shadow-normal">Japanese</a>
-                        <a href="" class="rounded-full px-3 py-1 shadow-normal">Team working</a>
-                    </div>
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-clock-rotate-left text-MyGrey text-lg"></i>
+                    <p>@Model.Deadline.ToString("MMM dd, yyyy")</p>
                 </div>
             </div>
             <div class="text-MyDarkGrey text-2xl hover:cursor-pointer hover:text-MyOrange">
@@ -47,57 +48,31 @@
         <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
         <div>
             <p class="text-xl font-semibold mb-2">Job Description</p>
-            <p>This position is responsible for serving as a technical expert; designing, developing and maintaining high profile application software and software tools for large projects and complex applications.This position is also responsible for adhering to and promoting GrapeCity’s vision and values by performing duties in a manner that is consistent with being a team member and supporting the continued growth of the company.</p>
+            <p>@Model.Description</p>
         </div>
         <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
         <div>
             <p class="text-xl font-semibold mb-2">Responsibilities</p>
-            <ul class="list-disc ml-7">
-                <li>Create, modify and organize next-gen photo realistic textures</li>
-                <li>Participate in the projects artistic directions</li>
-                <li>Anticipate and suggest improvements to solve technical issues</li>
-                <li>Create photorealistic textures from reference and interpret artistic direction from lead</li>
-                <li>Ability to use efficiently the textures space and to take into consideration the pixel ratio</li>
-                <li>Texturing, assignation and mapping knowledge is a must</li>
-                <li>Good understanding of memory and performance constraints, and know how to optimize textures while maintaining high quality</li>
-                <li>Work closely with Art Director, Lead, Modeler, and Technical Director in achieving desired looks of models</li>
-            </ul>
+            <p>@Model.Responsibility</p>
         </div>
         <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
         <div>
             <p class="text-xl font-semibold mb-2">Your Skills and Experience</p>
-            <ul class="list-disc ml-7">
-                <li>Create, modify and organize next-gen photo realistic textures</li>
-                <li>Participate in the projects artistic directions</li>
-                <li>Anticipate and suggest improvements to solve technical issues</li>
-                <li>Create photorealistic textures from reference and interpret artistic direction from lead</li>
-                <li>Ability to use efficiently the textures space and to take into consideration the pixel ratio</li>
-                <li>Texturing, assignation and mapping knowledge is a must</li>
-                <li>Good understanding of memory and performance constraints, and know how to optimize textures while maintaining high quality</li>
-                <li>Work closely with Art Director, Lead, Modeler, and Technical Director in achieving desired looks of models</li>
-            </ul>
+            <p>@Model.Experience</p>
         </div>
         <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
         <div>
             <p class="text-xl font-semibold mb-2">Additional Information</p>
-            <p>Ubisoft’s 19,000 team members, working across more than 30 countries around the world, are bound by a common mission to enrich players’ lives with original and memorable gaming experiences. Their commitment and talent have brought to life many acclaimed franchises such as Assassin’s Creed, Far Cry, Watch Dogs, Just Dance, Rainbow Six, and many more to come. Ubisoft is an equal opportunity employer that believes diverse backgrounds and perspectives are key to creating worlds where both players and teams can thrive and express themselves. If you are excited about solving game-changing challenges, cutting edge technologies and pushing the boundaries of entertainment, we invite you to join our journey and help us create the unknown.</p>
+            <p>@Model.AdditionalDetail</p>
         </div>
         <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
         <div>
-            <p class="text-2xl font-semibold">Apple Inc.</p>
-            <p class="text-sm text-MyDarkGrey">Japanese international enterprise software developer specializing in Microsoft technologies</p>
+            <p class="text-2xl font-semibold">@Model.Company.Name</p>
+            <p class="text-sm text-MyDarkGrey">@Model.Company.About</p>
             <div class="flex flex-wrap gap-5 md:gap-10 mt-3">
                 <div class="font-semibold">
-                    <p class="text-MyDarkGrey text-xs">Company Type</p>
-                    <p class="text-sm">IT Product</p>
-                </div>
-                <div class="font-semibold">
                     <p class="text-MyDarkGrey text-xs">Company Size</p>
-                    <p class="text-sm">100-150</p>
-                </div>
-                <div class="font-semibold">
-                    <p class="text-MyDarkGrey text-xs">Working Day</p>
-                    <p class="text-sm">Monday - Sunday</p>
+                    <p class="text-sm">@Model.Company.Size</p>
                 </div>
             </div>
         </div>

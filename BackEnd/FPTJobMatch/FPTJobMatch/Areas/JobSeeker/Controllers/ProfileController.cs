@@ -24,22 +24,21 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
 
         public async Task<IActionResult> Index()
         {
-            try { 
-                string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            try {
+                var user = await _userManager.GetUserAsync(User);
 
-                if (userId == null)
+                if (user == null)
                 {
-                    TempData["error"] = "An error occurred while updating user information";
-                    return RedirectToAction("Index");
+                    TempData["error"] = "User not found";
+                    return RedirectToAction("Index", "Access", new { area = "" });
                 }
 
-                ApplicationUser currentUser = await _unitOfWork.ApplicationUser.GetAsync(u => u.Id == userId);
-                JobSeekerDetail jobSeekerDetail = await _unitOfWork.JobSeekerDetail.GetAsync(d => d.JobSeekerId == userId);
-                IEnumerable<ApplicantCV> applicantCVsList = await _unitOfWork.ApplicantCV.GetAllAsync(cv => cv.JobSeekerId == userId, includeProperties: "Job.Employer,Job.Company");
+                JobSeekerDetail jobSeekerDetail = await _unitOfWork.JobSeekerDetail.GetAsync(d => d.JobSeekerId == user.Id);
+                IEnumerable<ApplicantCV> applicantCVsList = await _unitOfWork.ApplicantCV.GetAllAsync(cv => cv.JobSeekerId == user.Id, includeProperties: "Job.Employer,Job.Company");
 
                 JobSeekerProfileVM jobSeekerProfileVM = new JobSeekerProfileVM
                 {
-                    JobSeeker = currentUser,
+                    JobSeeker = user,
                     JobSeekerDetail = jobSeekerDetail,
                     ApplicantCVsList = applicantCVsList,
                 };
@@ -48,7 +47,7 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
+                return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
             }
         }
 
@@ -62,8 +61,8 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
 
                 if (user == null)
                 {
-                    TempData["error"] = "An error occurred while updating user information";
-                    return RedirectToAction("Index");
+                    TempData["error"] = "User not found";
+                    return RedirectToAction("Index", "Access", new { area = "" });
                 }
 
                 // Retrieve or create the JobSeekerDetail for the user
@@ -88,8 +87,6 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
                 }
 
                 _unitOfWork.ApplicationUser.Update(user);
-
-                // Save changes to the database
                 _unitOfWork.Save();
 
                 TempData["success"] = "Update Info Successfully";
@@ -97,7 +94,7 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
+                return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
             }
         }
 

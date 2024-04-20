@@ -11,16 +11,12 @@
     <!-- Searching box -->
     <div class="rounded-xl p-5 sm:p-10 bg-cover bg-fixed text-center" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/imgs/fptdiscussion.jpg);">
         <div class="w-full sm:w-11/12 lg:w-4/5 xl:w-3/4 mx-auto">
-            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">22 Jobs </span>Available Now</p>
-            <p class="text-white mb-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero repellendus magni, atque delectus molestias quis
-            </p>
-            <div class="flex flex-wrap gap-4 text-white items-center justify-center text-sm font-semibold tracking-widest">
-                <a href="" class="hover:underline">HOME</a>
+            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">The Art </span>of Administrative Excellence</p>
+            <div class="mt-5 flex flex-wrap gap-4 text-white items-center justify-center text-sm font-semibold tracking-widest">
+                <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="hover:underline">HOME</a>
                 <i class="fa-solid fa-angle-right"></i>
-                <a href="" class="text-MyPaleGrey">USER LIST</a>
+                <a class="text-MyPaleGrey">USER LIST</a>
             </div>
-
         </div>
     </div>
 
@@ -82,7 +78,8 @@
                     <th class="py-3">Status</th>
                     <th class="py-3">Date Applied</th>
                     <th class="py-3 px-5 text-center">Role</th>
-                    <th class="py-3 px-5 rounded-tr-md text-center">Modify</th>
+                    <th class="py-3 px-5 text-center">Pass</th>
+                    <th class="py-3 px-5 rounded-tr-md text-center">Status</th>
                 </tr>
             </thead>
             <tbody class="pt-3">
@@ -107,11 +104,16 @@
                         </td>
                         <td class="py-5 pr-3">@user.CreatedAt.ToString("MMM dd, yyyy")</td>
                         <td class="view_cvFormSubmitted py-5 text-center">@((await UserManager.GetRolesAsync(user)).Contains(SD.Role_Employer) ? "Employer" : "Job Seeker")</td>
+                        <td>
+                            <div class="flex justify-center">
+                                <button data-id="@user.Id" class="open_resetPassForm btn_resetPass hover:underline text-MyBlue">Reset</button>
+                            </div>
+                        </td>
                         <td class="text-xs">
-                        <div class="flex justify-center">
-                            <button data-id="@user.Id" class="open_statusForm btn_modifyUser border border-MyBlue bg-MyPaleBlue py-2 px-3 rounded-lg hover:bg-MyBlue hover:text-white">Change</button>
-                        </div>
-                    </td>
+                            <div class="flex justify-center">
+                                <button data-id="@user.Id" class="open_statusForm btn_modifyUser border border-MyBlue bg-MyPaleBlue py-2 px-3 rounded-lg hover:bg-MyBlue hover:text-white">Change</button>
+                            </div>
+                        </td>
                 </tr> 
                 }
             </tbody>
@@ -129,14 +131,14 @@
 
     <!-- Modify Status -->
     <div class="statusForm hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
-        <div class="bg-white mx-auto w-1/4 h-fit rounded-lg mt-28">
+            <div class="bg-white mx-auto w-1/2 lg:w-1/4 h-fit rounded-lg mt-28">
             <div class="flex gap-4 items-center justify-between px-5 py-3">
-                <p class="text-MyBlue text-lg font-semibold">Confirm Deletion</p>
+                <p class="text-MyBlue text-lg font-semibold">Status Modification</p>
                 <button class="close_statusForm text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyBlue"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
             <form method="post" asp-controller="Home" asp-action="StatusChange" id="form_modifyUser" class="px-5 py-3">
-                <input name="Id" id="id_modifyUser" type="text" hidden/>
+                <input name="userId" id="id_modifyUser" type="text" hidden/>
                 <select name="status" id="" class="w-full custom-select p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue">
                     <option value="@SD.StatusActive">Activate</option>
                     <option value="@SD.StatusSuspending">Suspend</option>
@@ -149,6 +151,36 @@
             </form>
         </div>
     </div>
+
+        <!-- Reset Password Form -->
+        <div class="resetPassForm hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+            <div class="bg-white mx-auto w-1/2 lg:w-1/4 h-fit rounded-lg mt-28">
+                <div class="flex gap-4 items-center justify-between px-5 py-3">
+                    <p class="text-MyBlue text-lg font-semibold">Password Reset</p>
+                    <button class="close_resetPassForm text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyBlue"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+                <!-- Password requirements note -->
+                <form method="post" asp-controller="Home" asp-action="ResetPassword" id="form_resetPassForm" class="px-5 py-3">
+                    <input name="userId" id="id_resetPass" type="text" hidden/>
+                    <input type="text" name="newPassword" value="" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" placeholder="Enter a new password" />
+                    <div class="text-sm text-MyDarkGrey mt-2">
+                        <ul>
+                            <li>At least 8 characters long</li>
+                            <li>Contain at least one uppercase letter</li>
+                            <li>Contain at least one lowercase letter</li>
+                            <li>Contain at least one numeric digit</li>
+                            <li>Contain at least one special character</li>
+                        </ul>
+                    </div>
+                    <div class="flex gap-2 flex-wrap justify-end mt-6">
+                        <button type="button" class="cancel_resetPassForm rounded-lg border border-MyBlue bg-MyPaleBlue py-2 px-5">Cancel</button>
+                        <button type="submit" class="border border-MyBlue bg-MyBlue text-white rounded-lg hover:bg-MyPaleBlue hover:text-MyBlue py-2 px-5">Change</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
 
     <!-- Employer Form -->
     <div id="employerFormCreated" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">

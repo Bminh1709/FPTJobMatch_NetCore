@@ -1,4 +1,5 @@
-﻿using FPT.Models;
+﻿using FPT.DataAccess.Repository.IRepository;
+using FPT.Models;
 using FPT.Models.ViewModels;
 using FPT.Utility;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -11,11 +12,11 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        private readonly IUnitOfWork _unitOfWork;
+        public AccountController(UserManager<ApplicationUser> userManager, IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
-            _signInManager = signInManager;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult SignUp()
         {
@@ -51,6 +52,15 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
                     if (result.Succeeded)
                     {
                         await _userManager.AddToRoleAsync(user, SD.Role_JobSeeker);
+
+                        JobSeekerDetail kobSeekerDetail = new JobSeekerDetail
+                        {
+                            JobSeeker = user,
+                        };
+
+                        _unitOfWork.JobSeekerDetail.Add(kobSeekerDetail);
+                        _unitOfWork.Save();
+
                         TempData["success"] = "Sign up successfully";
                         return RedirectToAction("Index", "Access", new { area = "" });
                     }

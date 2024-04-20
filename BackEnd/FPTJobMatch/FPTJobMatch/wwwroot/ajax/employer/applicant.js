@@ -5,30 +5,34 @@ $('body').on('click', '.view_cvFormSubmitted', function () {
 
     var applicantId = $(this).data("id");
     var jobId = $('#job_id').val();
+    var curApplicantId = $('#applicant_id').val();
 
-    $.ajax({
-        url: '/Employer/Applicant/GetCV',
-        type: 'GET',
-        data: { applicantId: applicantId, jobId: jobId },
-        success: function (rs) {
-            if (rs.applicant != null) {
-                $('#applicant_id').attr('value', rs.applicant.id);
-                $('#CV_id').attr('value', rs.applicant.cvId);
-                $('#applicant_name').attr('value', rs.applicant.name);
-                $('#applicant_phone').attr('value', rs.applicant.phoneNumber);
-                $('#applicant_email').attr('value', rs.applicant.email);
-                $('#applicant_response').val(rs.applicant.responseMessage);
-                $('#applicant_cv').attr('href', '/filecv/' + rs.applicant.fileCV);
+    if (applicantId != curApplicantId) {
+        $.ajax({
+            url: '/Employer/Applicant/GetCV',
+            type: 'GET',
+            data: { applicantId: applicantId, jobId: jobId },
+            success: function (rs) {
+                if (rs.applicant != null) {
+                    $('#applicant_id').attr('value', rs.applicant.id);
+                    $('#CV_id').attr('value', rs.applicant.cvId);
+                    $('#applicant_name').attr('value', rs.applicant.name);
+                    $('#applicant_phone').attr('value', rs.applicant.phoneNumber);
+                    $('#applicant_email').attr('value', rs.applicant.email);
+                    $('#applicant_response').val(rs.applicant.responseMessage);
+                    $('#applicant_cv').attr('href', '/filecv/' + rs.applicant.fileCV);
+                }
+            },
+            error: function (xhr, status, error) {
+                // Display error message
+                console.log(xhr);
+                console.log(status);
+                console.log(error);
+                alert('Error: ' + error);
             }
-        },
-        error: function (xhr, status, error) {
-            // Display error message
-            console.log(xhr);
-            console.log(status);
-            console.log(error);
-            alert('Error: ' + error);
-        }
-    });
+        });
+    }
+
 
 });
 

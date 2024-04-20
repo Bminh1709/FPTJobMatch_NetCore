@@ -11,9 +11,6 @@
     <div class="rounded-xl p-5 sm:p-10 bg-cover bg-fixed text-center" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/images/system/fptdiscussion.jpg);">
         <div class="w-full sm:w-11/12 lg:w-4/5 xl:w-3/4 mx-auto">
             <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">22 Jobs </span>Available Now</p>
-            <p class="text-white mb-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero repellendus magni, atque delectus molestias quis
-            </p>
             <div class="flex flex-wrap gap-4 text-white items-center justify-center text-sm font-semibold tracking-widest">
                 <a href="" class="hover:underline">HOME</a>
                 <div>
@@ -40,39 +37,40 @@
                 </a>
                 <p class="font-medium text-xl text-MyBlue">Candidate List</p>
             </div>
-            <form asp-controller="Applicant" asp-action="Index" method="get" class="flex flex-wrap gap-3">
-                <input type="int" hidden name="jobId" value="@jobId" />
-                <div class="relative" id="jobType_select">
+            <form asp-controller="Applicant" asp-action="Index" method="get" id="form_filter" class="flex flex-wrap gap-3">
+                <input type="text" hidden name="jobId" value="@jobId" />
+
+                <!-- Hidden input fields to store selected status and sorting -->
+                <input type="hidden" id="selectedStatus" name="status" value="" />
+                <input type="hidden" id="selectedSortType" name="sortType" value="" />
+
+                <!-- Status dropdown -->
+                <div class="relative" id="dropdown_btn">
                     <div class="hover:cursor-pointer text-sm flex items-center justify-between w-36 py-3 px-4 border border-MyBlue rounded-md">
-                        <p>Status</p>
+                        <p id="dropdown_status">Status</p>
                         <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
                     </div>
-                    <ul id="jobType_options" class="hidden w-36 absolute text-sm">
-                        <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">
-                            <button type="submit" name="status" value="Pending" class="w-full text-center">Pending</button>
-                        </li>
-                        <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">
-                            <button type="submit" name="status" value="Responded" class="w-full text-center">Responded</button>
-                        </li>
-                        <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">
-                            <button type="submit" name="status" value="All" class="w-full text-center">All</button>
-                        </li>
-                    </ul>
+                    <div id="dropdown_list" class="hidden w-36 absolute text-sm">
+                        <button type="button" class="status-option mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer" data-value="Pending">Pending</button>
+                        <button type="button" class="status-option mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer" data-value="Responded">Responded</button>
+                        <button type="button" class="status-option mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer" data-value="">All</button>
+                    </div>
                 </div>
-                <div class="relative" id="jobType_select">
+
+                <!-- Sorting dropdown -->
+                <div class="relative" id="dropdown_btn">
                     <div class="hover:cursor-pointer text-sm flex items-center justify-between w-36 py-3 px-4 border border-MyBlue rounded-md">
-                        <p>Sorting</p>
+                        <p id="dropdown_sort">Sorting</p>
                         <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
                     </div>
-                    <ul id="jobType_options" class="hidden w-36 absolute text-sm">
-                        <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">
-                            <button type="submit" name="sortType" value="NewestFirst" class="w-full text-center">Newest First</button>
-                        </li>
-                        <li class="mt-1 py-3 px-4 bg-MyPaleBlue rounded-md border border-MyBlue hover:bg-MyBlue hover:text-white hover:cursor-pointer">
-                            <button type="submit" name="sortType" value="OldestFirst" class="w-full text-center">Oldest First</button>
-                        </li>
-                    </ul>
+                    <div id="dropdown_list" class="hidden w-36 absolute text-sm">
+                        <button type="button" class="sort-option mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer" data-value="NewestFirst">Newest First</button>
+                        <button type="button" class="sort-option mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer" data-value="OldestFirst">Oldest First</button>
+                    </div>
                 </div>
+
+                <!-- Submit button -->
+                <button type="submit" id="applyFiltersButton" class="text-sm btnPaleBlue hover:text-white hover:cursor-pointer px-3 py-2">Filter</button>
             </form>
         </div>
 
@@ -179,6 +177,6 @@
 </div>
 
 @section Scripts {
-    <script src="~/js/employer/home.js" asp-append-version="true"></script>
+    <script src="~/js/employer/applicant.js" asp-append-version="true"></script>
     <script src="~/ajax/employer/applicant.js" asp-append-version="true"></script>
 }

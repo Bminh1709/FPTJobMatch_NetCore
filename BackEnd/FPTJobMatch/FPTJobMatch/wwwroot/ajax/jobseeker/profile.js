@@ -28,11 +28,11 @@ $('body').on('click', '.open_cvFormSubmitted', function () {
 });
 
 // Reset Password
-var formSubmitted = false;
+let isSubmittedReset = false;
 $('#btn_resetPassword').on('click', function (e) {
     e.preventDefault();
 
-    if (formSubmitted) {
+    if (isSubmittedReset) {
         var oldPassword = $('#old_resetPassword').val();
         var newPassword = $('#new_resetPassword').val();
         var confirmNewPassword = $('#confirm_resetPassword').val();
@@ -62,8 +62,6 @@ $('#btn_resetPassword').on('click', function (e) {
                     location.reload();
                 } else {
                     $('#message_resetPassword').text(response.error);
-                    // Enable form inputs
-                    toggleFormInputs(false);
                 }
             },
             error: function (xhr, status, error) {
@@ -72,33 +70,20 @@ $('#btn_resetPassword').on('click', function (e) {
                 console.log(status);
                 console.log(error);
                 alert('Error: ' + error);
-                // Enable form inputs
-                toggleFormInputs(false);
             }
         });
 
     } else {
-        // Disable form inputs
-        toggleFormInputs(false);
+        $('#form_resetPassword').find('input').removeAttr('disabled');
         $('#old_resetPassword').trigger("focus");
-        formSubmitted = true;
+        isSubmittedReset = true;
     }
-
 
 });
 
-// Function to enable/disable form inputs
-function toggleFormInputs(disabled) {
-    $('#form_resetPassword').find('input').prop('disabled', disabled);
-}
-
-// Event handler for the "Cancel" button
 $('#btn_cancelResetPassword').on('click', function () {
-    // Clear any error message
-    $('#message_resetPassword').text('');
-    // Disable form inputs
-    toggleFormInputs(true);
-    formSubmitted = false
+    isSubmittedReset = false;
+    $('#form_resetPassword').find('input').prop('disabled', true);
 });
 
 
