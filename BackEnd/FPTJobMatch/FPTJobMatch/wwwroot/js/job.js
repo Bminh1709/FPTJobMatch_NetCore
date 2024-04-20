@@ -3,6 +3,7 @@ const cvFormSubmit = $('#cvFormSubmit');
 const close_cvFormSubmit = $('#close_cvFormSubmit');
 
 apply_cvFormSubmit.on('click', function () {
+    window.scrollTo(0, 0)
     cvFormSubmit.removeClass('hidden');
 });
 

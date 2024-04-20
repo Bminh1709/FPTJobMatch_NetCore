@@ -19,10 +19,14 @@
                             <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
                         </div>
                         <ul id="jobType_options" class="hidden z-10 w-36 absolute text-sm">
-                            <li class="mt-1 py-3 px-4 bg-MyPaleOrange rounded-md border border-MyOrange hover:bg-MyOrange hover:text-white hover:cursor-pointer">All Types</li>
+                            <li class="mt-1 hover:cursor-pointer">
+                                <a asp-controller="Home" asp-action="Index" asp-route-jobTypeId="" class="block rounded-md border border-MyOrange py-3 px-4 bg-MyPaleOrange hover:bg-MyOrange hover:text-white">All Types</a>
+                            </li>
                             @foreach (var jobType in Model.JobTypeList)
                             {
-                                <li class="mt-1 py-3 px-4 bg-MyPaleOrange rounded-md border border-MyOrange hover:bg-MyOrange hover:text-white hover:cursor-pointer">@jobType.Text</li>
+                                <li class="mt-1 hover:cursor-pointer">
+                                    <a asp-controller="Home" asp-action="Index" asp-route-jobTypeId="@jobType.Value" class="block rounded-md border border-MyOrange py-3 px-4 bg-MyPaleOrange hover:bg-MyOrange hover:text-white">@jobType.Text</a>
+                                </li>
                             }
                         </ul>
                     </div>
@@ -35,7 +39,7 @@
         </div>
     </div>
     <!-- Jobs list -->
-    <div class="grid grid-cols-3 gap-2 sm:gap-5 mt-8">
+    <div class="min-h-screen grid grid-cols-3 gap-2 sm:gap-5 mt-8">
         <div id="leftTab" class="col-span-1 flex flex-col gap-2">
                 @foreach (var job in Model.JobList)
                 {
@@ -65,7 +69,6 @@
                     <div>
                         <div>
                             <p id="job_title" class="text-xl font-semibold"></p>
-                            <p id="company_city" class="text-sm my-1">Da Nang City, Vietnam</p>
                         </div>
                         <div class="flex flex-wrap gap-2 text-sm mt-4">
                             <div id="applicantCV_new" class="border border-MyOrange bg-MyPaleOrange px-3 rounded-lg py-2"></div>
@@ -74,8 +77,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col text-3xl">
-                        <button for="" class="edit_employerCVForm text-MyBlue"><i class="fa-solid fa-square-pen"></i></button>
-                        <button for="" class="delete_employerCVFormDelete text-MyOrange"><i class="fa-solid fa-square-xmark"></i></button>
+                        <button id="delete_employerCVFormDeleteId" class="delete_employerCVFormDelete text-MyOrange"><i class="fa-solid fa-square-xmark"></i></button>
                     </div>
                     <div class="h-0.5 w-full bg-MyPaleGrey mt-3"></div>
                 </div>
@@ -86,16 +88,16 @@
                             <p id="job_address"></p>
                         </div>
                         <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-clock-rotate-left text-MyGrey text-lg"></i>
+                            <p id="job_deadline"></p>
+                        </div>
+                        <div class="flex items-center gap-2">
                             <i class="fa-solid fa-circle-info text-MyGrey text-lg"></i>
                             <p id="job_category"></p>
                         </div>
                         <div class="flex items-center gap-2">
                             <i class="fa-regular fa-clock text-MyGrey text-lg"></i>
                             <p id="job_type"></p>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-clock-rotate-left text-MyGrey text-lg"></i>
-                            <p id="job_deadline"></p>
                         </div>
                     </div>
                     <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
@@ -117,20 +119,6 @@
                     <div>
                         <p class="text-xl font-semibold mb-2">Additional Information</p>
                         <p id="job_additionalInfo"></p>
-                    </div>
-                    <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
-                    <div>
-                        <p class="text-2xl font-semibold" id="company_name"></p>
-                        <div class="flex flex-wrap gap-5 md:gap-10 mt-3">
-                            <div class="font-semibold">
-                                <p class="text-MyDarkGrey text-xs">Location</p>
-                                <p class="text-sm" id="company_location"></p>
-                            </div>
-                            <div class="font-semibold">
-                                <p class="text-MyDarkGrey text-xs">Company Size</p>
-                                <p class="text-sm" id="company_size"></p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -214,18 +202,18 @@
     </div>
     <!-- Delete CV -->
     <div id="employerCVFormDelete" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
-        <div class="bg-white mx-auto w-1/4 h-fit rounded-lg mt-28">
+        <div class="bg-white mx-auto w-1/2 lg:w-1/4 h-fit rounded-lg mt-28">
             <div class="flex gap-4 items-center justify-between px-5 py-3">
                 <p class="text-MyOrange text-lg font-semibold">Confirm Deletion</p>
                 <button for="" id="close_employerCVFormDelete" class="close_employerCVFormDelete text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyOrange"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
-            <form class="px-5 pt-3 pb-5">
-                <input hidden type="text" value="1">
-                <p class="">Are you sure you would like to delete this profile from the database? This action cannot be undone.</p>
+            <form asp-controller="Home" asp-action="DeleteJob" method="post" class="px-5 pt-3 pb-5">
+                <input hidden type="text" name="jobId" id="delete_employerId">
+                <p class="">Are you sure you would like to delete this job? This action cannot be undone.</p>
                 <div class="flex gap-2 justify-end mt-6">
-                    <button id="cancel_employerCVFormDelete" class=" rounded-lg border border-MyOrange bg-MyPaleOrange py-2 px-5">Cancel</button>
-                    <button class="btn py-2 px-5">Delete</button>
+                    <button id="cancel_employerCVFormDelete" type="button" class="rounded-lg border border-MyOrange bg-MyPaleOrange py-2 px-5">Cancel</button>
+                    <button type="submit" class="btn py-2 px-5">Delete</button>
                 </div>
             </form>
         </div>

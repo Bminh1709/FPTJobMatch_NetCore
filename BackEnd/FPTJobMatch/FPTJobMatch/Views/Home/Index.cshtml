@@ -86,7 +86,7 @@
 <div class="px-6 md:px-16">
 
     <!-- TOP Hiring Companies -->
-    <div class="px-6 md:px-16 py-20 text-center">
+    <div id="topcompany" class="px-6 md:px-16 py-20 text-center">
         <p class="text-MyOrange text-4xl font-bold">Top Hiring Companies</p>
         <p class="text-MyDarkGrey mt-2">Find the company that's perfect for you. about 800+ new jobs everyday</p>
         <div class="flex flex-wrap gap-10 justify-center mt-8">
@@ -162,10 +162,10 @@
         @foreach (var job in Model.TopJobList)
 		{
             <div class="shadow-normal px-5 py-5 rounded-sm border hover:border-MyOrange">
-                <a href="www.facebook.com" class="flex gap-3">
-                    <img src="~/images/companyLogo/@(job.Company.Logo ?? "noLogoCompany.jpg")" alt="" class="h-20 w-20 p-4 border border-MyPaleGrey rounded-lg">
+                <a asp-controller="Jobs" asp-action="Detail" asp-route-jobId="@job.Id" class="flex gap-3">
+                    <img src="~/images/companyLogo/@(job.Company?.Logo ?? "noLogoCompany.jpg")" alt="" class="h-20 w-20 p-4 border border-MyPaleGrey rounded-lg">
                     <div>
-                        <p class="font-semibold text-xl">@job.Company.Name</p>
+                        <p class="font-semibold text-xl">@job.Company?.Name</p>
                             <p class="text-xs text-MyDarkGrey">Posted @DateTimeHelper.GetTimeAgoString(job.CreatedAt)</p>
                     </div>
                 </a>
@@ -176,15 +176,15 @@
                 <div>
                     <div class="flex gap-2 items-center mb-1">
                         <i class="fa-solid fa-circle-info text-MyDarkGrey text-lg"></i>
-                        <p class="text-xs">@job.Category.Name</p>
+                        <p class="text-xs">@job.Category?.Name</p>
                     </div>
                     <div class="flex gap-2 items-center mb-1">
                         <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
-                        <p class="text-xs">@job.Company.City.Name City</p>
+                        <p class="text-xs">@job.Company?.City.Name City</p>
                     </div>
                     <div class="flex gap-2 items-center">
                         <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
-                        <p class="text-xs">@job.JobType.Name</p>
+                        <p class="text-xs">@job.JobType?.Name</p>
                     </div>
                 </div>
             </div>

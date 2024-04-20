@@ -23,47 +23,65 @@ namespace FPTJobMatch.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var today = DateTime.Today;
-
-            var approvedCategories = await _unitOfWork.Category.GetAllAsync(c => c.IsApproved);
-            var newCategories = await _unitOfWork.Category.GetAllAsync(c => !c.IsApproved);
-
-            var categoryVM = new CategoryVM
+            try
             {
-                ApprovedCategortList = approvedCategories,
-                NewCategoryList = newCategories,
-                ApprovedCount = approvedCategories.Count(),
-                NewCount = newCategories.Count(),
-                ApprovedThisMonthCount = approvedCategories.Count(c => c.CreatedAt.Month == today.Month && c.CreatedAt.Year == today.Year),
-                NewThisMonthCount = newCategories.Count(c => c.CreatedAt.Month == today.Month && c.CreatedAt.Year == today.Year)
-            };
+                DateTime today = DateTime.Today;
+                IEnumerable<Category> approvedCategories = await _unitOfWork.Category.GetCategoriesByStatus(true);
+                IEnumerable<Category> newCategories = await _unitOfWork.Category.GetCategoriesByStatus(false);
 
-            return View(categoryVM);
+                var categoryVM = new CategoryVM
+                {
+                    ApprovedCategortList = approvedCategories,
+                    NewCategoryList = newCategories,
+                    ApprovedCount = _unitOfWork.Category.CountCategories(approvedCategories, false),
+                    NewCount = _unitOfWork.Category.CountCategories(newCategories, false),
+                    ApprovedThisMonthCount = _unitOfWork.Category.CountCategories(approvedCategories, true),
+                    NewThisMonthCount = _unitOfWork.Category.CountCategories(newCategories, true)
+                };
+
+                return View(categoryVM);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> HandleCategory(string submitBtn, int categoryId)
         {
-            try { 
+            try
+            {
                 Category category = await _unitOfWork.Category.GetAsync(c => c.Id == categoryId);
 
                 var user = await _userManager.GetUserAsync(User);
 
-                Notification newNotification = new Notification();
-                newNotification.Receiver = category.CreatedByUser;
-                newNotification.Sender = user;
-                newNotification.CreatedAt = DateTime.UtcNow;
+                string notificationContent = GetNotificationContent(submitBtn, category);
 
                 if (submitBtn == "approve")
                 {
                     category.IsApproved = true;
-                    newNotification.Content = $"The category {category.Name} has been approved by Admin";
+                    TempData["success"] = $"The category {category.Name} has been approved";
                 }
                 else if (submitBtn == "delete")
                 {
-                    newNotification.Content = $"The category {category.Name} has been deleted by Admin";
+                    // Retrieve all jobs associated with the category
+                    var jobsToDelete = await _unitOfWork.Job.GetAllAsync(j => j.CategoryId == category.Id);
+
+                    // Remove all jobs associated with the category
+                    _unitOfWork.Job.RemoveRange(jobsToDelete);
+
                     _unitOfWork.Category.Remove(category);
+                    TempData["success"] = $"The category {category.Name} has been deleted";
                 }
+
+                var newNotification = new Notification
+                {
+                    ReceiverId = category.CreatedByUserId,
+                    Sender = user,
+                    CreatedAt = DateTime.UtcNow,
+                    Content = notificationContent
+                };
 
                 _unitOfWork.Notification.Add(newNotification);
                 _unitOfWork.Save();
@@ -71,8 +89,21 @@ namespace FPTJobMatch.Areas.Admin.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
+                return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
             }
+        }
+
+        private string GetNotificationContent(string submitBtn, Category category)
+        {
+            if (submitBtn == "approve")
+            {
+                return $"The category {category.Name} has been approved by Admin";
+            }
+            else if (submitBtn == "delete")
+            {
+                return $"The category {category.Name} has been deleted by Admin";
+            }
+            return string.Empty;
         }
     }
 

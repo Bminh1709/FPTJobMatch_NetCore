@@ -18,10 +18,8 @@
                     </div>
 
                 </div>
-                <p class="text-sm leading-6 mt-1 mb-5">
-                    Lorem ipsum dolor sit amet
-                    consectetur adipisicing elit.
-                    Reprehenderit, eligendi dolorum sequi illum qui unde aspernatur non deserunt
+                <p class="text-sm leading-6 mt-2 mb-5">
+                    "Hey @Model.JobSeeker.Name, dive into job opportunities, connect with employers, and propel your career forward with us"
                 </p>
                 <ul class="bg-MyPaleOrange py-2 px-3 text-sm">
                     <li class="flex items-center py-3">
@@ -144,9 +142,18 @@
                             </div>
                         </div>
                         <p id="message_resetPassword" class="text-red-600 mt-4 text-sm"></p>
+                        <div class="text-sm text-MyDarkGrey mt-2">
+                            <ul class="list-disc ml-5">
+                                <li>At least 8 characters long</li>
+                                <li>Contain at least one uppercase letter</li>
+                                <li>Contain at least one lowercase letter</li>
+                                <li>Contain at least one numeric digit</li>
+                                <li>Contain at least one special character</li>
+                            </ul>
+                        </div>
                         <div class="flex gap-3 mt-8 justify-end text-sm">
                             <button class="btn py-2 px-4" type="submit" id="btn_resetPassword">Update</button>
-                            <button class="bg-MyPaleOrange border border-MyOrange rounded-lg py-2 px-4" id="btn_cancelResetPassword" type="button">Cancel</button>
+                            <button id="btn_cancelResetPassword" class="bg-MyPaleOrange border border-MyOrange rounded-lg py-2 px-4" type="button">Cancel</button>
                         </div>
                     </form>
                 </div>
@@ -293,7 +300,7 @@
     <div id="cvFormSubmitted" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
         <div class="bg-white mx-auto w-11/12 md:w-3/4 xl:w-1/2 h-fit rounded-lg mt-14">
             <div class="flex gap-4 items-center justify-between p-3">
-                <p class="text-MyOrange text-lg font-semibold">Java Developer (Spring, MySQL) at Giao Hang Tiet Kiem</p>
+                <p class="text-MyOrange text-lg font-semibold">Responded Application</p>
                 <button for="" id="close_cvFormSubmitted" class="text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyOrange"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>

@@ -23,7 +23,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? jobTypeId)
         {
             try { 
                 string? currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -34,24 +34,34 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                     return RedirectToAction("Index", "Access", new { area = "" });
                 }
 
-                var jobsTask = _unitOfWork.Job.GetAllAsync(j => j.EmployerId == currentUserId, includeProperties: "Company");
+                IEnumerable<Job> jobsTask;
+                if (jobTypeId.HasValue)
+                {
+                    jobsTask = await _unitOfWork.Job.GetAllAsync(j => j.EmployerId == currentUserId && j.JobTypeId == jobTypeId);
+                }
+                else
+                {
+                    jobsTask = await _unitOfWork.Job.GetAllAsync(j => j.EmployerId == currentUserId);
+                }
+
+                var jobsList = jobsTask.ToList();
 
                 // Retrieve job types and categories
-                var jobTypesTask = _unitOfWork.JobType.GetAllAsync();
-                var categoriesTask = _unitOfWork.Category.GetAllAsync();
+                var jobTypesList = await _unitOfWork.JobType.GetAllAsync();
+                var categoriesList = await _unitOfWork.Category.GetCategoriesByStatus(true);
 
                 // Wait for the completion of tasks (Async) 
-                await Task.WhenAll(jobsTask, jobTypesTask, categoriesTask);
+                // await Task.WhenAll(jobsTask, jobTypesTask, categoriesTask);
 
                 var viewModel = new JobVM
                 {
-                    JobList = jobsTask.Result,
-                    JobTypeList = jobTypesTask.Result.Select(u => new SelectListItem
+                    JobList = jobsList,
+                    JobTypeList = jobTypesList.Select(u => new SelectListItem
                     {
                         Text = u.Name,
                         Value = u.Id.ToString()
                     }),
-                    CategoryList = categoriesTask.Result.Select(u => new SelectListItem
+                    CategoryList = categoriesList.Select(u => new SelectListItem
                     {
                         Text = u.Name,
                         Value = u.Id.ToString()
@@ -89,21 +99,34 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                 Job newJob = viewModel.JobUploadModel;
                 newJob.CreatedAt = DateTime.UtcNow;
                 newJob.Employer = user;
-                newJob.Company = user.Company;
+                newJob.CompanyId = user.CompanyId;
 
                 // If User wanna create a new category
                 if (newJob.Category != null)
                 {
-                    var newCategory = new Category
-                    {
-                        Name = newJob.Category.Name,
-                        IsApproved = false,
-                        CreatedAt = DateTime.UtcNow,
-                        CreatedByUser = user,
-                    };
+                    var existingCategory = await _unitOfWork.Category.GetAsync(c => c.Name.ToLower() == newJob.Category.Name.ToLower());
 
-                    _unitOfWork.Category.Add(newCategory);
-                    newJob.Category = newCategory;
+
+                    if (existingCategory == null)
+                    {
+                        var newCategory = new Category
+                        {
+                            Name = newJob.Category.Name,
+                            IsApproved = false,
+                            CreatedAt = DateTime.UtcNow,
+                            CreatedByUser = user,
+                        };
+
+                        _unitOfWork.Category.Add(newCategory);
+                        _unitOfWork.Save();
+
+                        newJob.Category = newCategory;
+                    }
+                    else
+                    {
+                        // Use the existing category
+                        newJob.Category = existingCategory;
+                    }
                 }
 
                 _unitOfWork.Job.Add(newJob);
@@ -112,17 +135,16 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                 TempData["success"] = "Job created successfully";
                 return RedirectToAction("Index");
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                TempData["error"] = "An error occurred while creating the job";
-                return RedirectToAction("Index");
+                return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
             }
         }
 
         [HttpGet]
         public async Task<IActionResult> GetJob(int id)
         {
-            Job job = await _unitOfWork.Job.GetAsync(j => j.Id == id, includeProperties: "Category,JobType,Company.City");
+            Job job = await _unitOfWork.Job.GetAsync(j => j.Id == id, includeProperties: "Category,JobType");
             int numOfCVs = await _unitOfWork.ApplicantCV.CountCVsAsync(cv => cv.Job == job);
             int numOfNewCVs = await _unitOfWork.ApplicantCV.CountCVsAsync(cv => cv.Job == job && cv.CVStatus == SD.StatusPending);
 
@@ -131,6 +153,32 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                 success = true,
                 data = new { job, numOfNewCVs, numOfCVs }
             });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteJob(int jobId)
+        {
+            try
+            {
+                Job job = await _unitOfWork.Job.GetAsync(j => j.Id == jobId);
+
+                if (job == null)
+                {
+                    TempData["error"] = "Job not found or already deleted";
+                    return RedirectToAction("Index");
+                }
+
+                _unitOfWork.Job.Remove(job);
+                _unitOfWork.Save();
+
+                TempData["success"] = "Job deleted successfully";
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = "An error occurred while deleting the job";
+                return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
+            }
         }
     }
 

@@ -37,6 +37,18 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\filecv\\00168c74-7e4c-41c6-8724-d7852e3d4648.pdf",
+      "PackagePath": "staticwebassets\\filecv\\00168c74-7e4c-41c6-8724-d7852e3d4648.pdf"
+    },
+    {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\filecv\\1a21e7cf-a033-49e5-8dfd-a928e486efd9.pdf",
+      "PackagePath": "staticwebassets\\filecv\\1a21e7cf-a033-49e5-8dfd-a928e486efd9.pdf"
+    },
+    {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\filecv\\5d0a8301-4269-4830-b74e-b871c58e750f.pdf",
+      "PackagePath": "staticwebassets\\filecv\\5d0a8301-4269-4830-b74e-b871c58e750f.pdf"
+    },
+    {
       "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\filecv\\bc2cf43a-95f0-4b3c-9cc4-ab84592b284a.pdf",
       "PackagePath": "staticwebassets\\filecv\\bc2cf43a-95f0-4b3c-9cc4-ab84592b284a.pdf"
     },
@@ -125,12 +137,28 @@
       "PackagePath": "staticwebassets\\images\\system\\openaiLogo.png"
     },
     {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\admin\\category.js",
+      "PackagePath": "staticwebassets\\js\\admin\\category.js"
+    },
+    {
       "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\admin\\home.js",
       "PackagePath": "staticwebassets\\js\\admin\\home.js"
     },
     {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\employer\\account.js",
+      "PackagePath": "staticwebassets\\js\\employer\\account.js"
+    },
+    {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\employer\\applicant.js",
+      "PackagePath": "staticwebassets\\js\\employer\\applicant.js"
+    },
+    {
       "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\employer\\home.js",
       "PackagePath": "staticwebassets\\js\\employer\\home.js"
+    },
+    {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\employer\\profile.js",
+      "PackagePath": "staticwebassets\\js\\employer\\profile.js"
     },
     {
       "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\job.js",

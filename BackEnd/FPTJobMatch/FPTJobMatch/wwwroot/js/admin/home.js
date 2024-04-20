@@ -5,6 +5,7 @@ const cancel_statusForm = $('.cancel_statusForm');
 const open_statusForm = $('.open_statusForm');
 
 open_statusForm.on('click', function () {
+    window.scrollTo(0, 0);
     statusForm.removeClass('hidden');
 });
 
@@ -13,6 +14,25 @@ close_statusForm.on('click', function () {
 });
 cancel_statusForm.on('click', function () {
     statusForm.addClass('hidden');
+})
+
+
+// Reset Password Form (User)
+const resetPassForm = $('.resetPassForm');
+const close_resetPassForm = $('.close_resetPassForm');
+const cancel_resetPassForm = $('.cancel_resetPassForm');
+const open_resetPassForm = $('.open_resetPassForm');
+
+open_resetPassForm.on('click', function () {
+    window.scrollTo(0, 0);
+    resetPassForm.removeClass('hidden');
+});
+
+close_resetPassForm.on('click', function () {
+    resetPassForm.addClass('hidden');
+});
+cancel_resetPassForm.on('click', function () {
+    resetPassForm.addClass('hidden');
 })
 
 
@@ -37,69 +57,22 @@ const open_employerFormCreated = $('#open_employerFormCreated');
 
 open_employerFormCreated.on('click', function () {
     employerFormCreated.removeClass('hidden');
+    window.scrollTo(0, 0);
 });
 close_employerFormCreated.on('click', function () {
     employerFormCreated.addClass('hidden');
 });
 
 
-// Converting Btn (Category)
-$("#btn_VerifiedCat").click(function () {
-    $("#UnverifiedCat").hide();
-    $("#VerifiedCat").show();
-    $(this).addClass('active');
-    $('#btn_UnverifiedCat').removeClass('active');
-});
-
-$("#btn_UnverifiedCat").click(function () {
-    $("#VerifiedCat").hide();
-    $("#UnverifiedCat").show();
-    $(this).addClass('active');
-    $('#btn_VerifiedCat').removeClass('active');
-});
-
-
-// Accept Form (Category)
-const acceptForm = $('.acceptForm');
-const open_acceptForm = $('.open_acceptForm');
-const cancel_acceptForm = $('.cancel_acceptForm');
-
-open_acceptForm.on('click', function () {
-    acceptForm.removeClass('hidden');
-});
-cancel_acceptForm.on('click', function () {
-    acceptForm.addClass('hidden');
-})
-
-
-// Delete Form (Category)
-const deletionForm = $('.deletionForm');
-const open_deletionForm = $('.open_deletionForm');
-const cancel_deletionForm = $('.cancel_deletionForm');
-
-open_deletionForm.on('click', function () {
-    deletionForm.removeClass('hidden');
-});
-cancel_deletionForm.on('click', function () {
-    deletionForm.addClass('hidden');
-})
-
-
-// Get User's ID to Status
+// Get User's ID to Status Form
 $('body').on('click', '.btn_modifyUser', function () {
     var tmpId = $(this).data("id");
     $('#id_modifyUser').val(tmpId);
 });
 
 
-// Get Category's ID to Form Accept
-$('body').on('click', '.open_acceptForm', function () {
+// Get User's ID to Password Reset Form
+$('body').on('click', '.btn_resetPass', function () {
     var tmpId = $(this).data("id");
-    $('#id_approveCategory').val(tmpId);
-});
-
-// Get Category's ID to Form Delete
-$('body').on('click', '.open_deletionForm', function () {
-    var tmpId = $(this).data("id");
-    $('#id_deleteCategory').val(tmpId);
+    $('#id_resetPass').val(tmpId);
 });

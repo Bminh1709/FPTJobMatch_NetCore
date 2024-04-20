@@ -109,7 +109,8 @@ namespace FPTJobMatch.Areas.Admin.Controllers
                     Email = email,
                     Name = fullname,
                     PhoneNumber = phone,
-                    AccountStatus = SD.StatusActive
+                    AccountStatus = SD.StatusActive,
+                    CreatedAt = DateTime.UtcNow
                 };
 
                 // Set default password
@@ -157,9 +158,9 @@ namespace FPTJobMatch.Areas.Admin.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> StatusChange(string id, string status)
+        public async Task<IActionResult> StatusChange(string userId, string status)
         {
-            var user = await _userManager.FindByIdAsync(id);
+            var user = await _userManager.FindByIdAsync(userId);
 
             if (user == null)
             {
@@ -206,13 +207,14 @@ namespace FPTJobMatch.Areas.Admin.Controllers
 
                 // Update user status
                 _unitOfWork.ApplicationUser.Update(user);
+                _unitOfWork.Save();
 
                 // Create and save notification
                 var notification = new Notification
                 {
                     Content = $"Your account status has been changed to {status}.",
                     CreatedAt = DateTime.UtcNow,
-                    SenderId = User.FindFirstValue(ClaimTypes.NameIdentifier), 
+                    SenderId = User.FindFirstValue(ClaimTypes.NameIdentifier),
                     ReceiverId = user.Id
                 };
 
@@ -228,6 +230,52 @@ namespace FPTJobMatch.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
-    }
 
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(string userId, string newPassword)
+        {
+            // Check for null or empty userId
+            if (string.IsNullOrEmpty(userId))
+            {
+                return RedirectToAction("Index");
+            }
+
+            // Check for null or empty newPassword
+            if (String.IsNullOrEmpty(newPassword))
+            {
+                TempData["error"] = "Password can not be empty";
+                return RedirectToAction("Index");
+            }
+
+            try
+            {
+                // Find the user
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                {
+                    return RedirectToAction("Index");
+                }
+
+                // Reset the user's password
+                var resetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var result = await _userManager.ResetPasswordAsync(user, resetToken, newPassword);
+
+                if (result.Succeeded)
+                {
+                    TempData["success"] = "Password reset successfully";
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    TempData["error"] = "Failed to reset password";
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
+            }
+        }
+
+    }
 }

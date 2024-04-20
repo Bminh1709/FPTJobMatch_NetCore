@@ -50,22 +50,20 @@
     <nav class="px-6 md:px-16 py-2 w-full text-sm">
         <div class="hidden lg:block">
             <div class="flex justify-between items-center">
-                <a><img src="~/images/system/blueLogo.png" alt="FPT Logo" class="w-32"></a>
+                <a asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/system/blueLogo.png" alt="FPT Logo" class="w-32"></a>
                 <div class="flex gap-12 font-medium">
                     @if (User.IsInRole(SD.Role_Admin))
                     {
                         <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="hover:text-MyOrange">User List</a>
                         <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="hover:text-MyOrange">Categories</a>
-                        <a asp-area="Admin" asp-controller="Profile" asp-action="Index" class="hover:text-MyOrange">Profile</a>
                     }
                     else if (User.IsInRole(SD.Role_Employer))
                     {
                         <a asp-area="Employer" asp-controller="Home" asp-action="Index" class="hover:text-MyOrange">Job List</a>
-                        <a asp-area="Employer" asp-controller="Profile" asp-action="Index" class="hover:text-MyOrange">Profile</a>
                     } else
                     {
                         <a asp-area="" asp-controller="Jobs" asp-action="Index" class="hover:text-MyOrange">Jobs List</a>
-                        <a href="#topcompanies" class="hover:text-MyOrange">Top Companies</a>
+                        <a href="#topcompany" class="hover:text-MyOrange">Top Companies</a>
                     }
                     <a href="#contact" class="hover:text-MyOrange">Contacts</a>
                     <a href="" class="hover:text-MyOrange">FAQ</a>

@@ -8,11 +8,11 @@
     <!-- Searching box -->
     <div class="rounded-xl p-5 sm:p-10 bg-cover bg-fixed text-center" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/imgs/fptdiscussion.jpg);">
         <div class="w-full sm:w-11/12 lg:w-4/5 xl:w-3/4 mx-auto">
-            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">22 Jobs </span>Available Now</p>
+            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">@Model.ApprovedCount Categories </span>Available Now</p>
             <div class="mt-5 flex flex-wrap gap-4 text-white items-center justify-center text-sm font-semibold tracking-widest">
-                <a href="" class="hover:underline">HOME</a>
+                <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="hover:underline">HOME</a>
                 <i class="fa-solid fa-angle-right"></i>
-                <a href="" class="text-MyPaleGrey">USER LIST</a>
+                <a class="text-MyPaleGrey">CATEGORY</a>
             </div>
 
         </div>
@@ -68,25 +68,28 @@
                 <tbody class="pt-3">
                     @{
                         int countIdApproved = 1;
-                        foreach (var category in Model.ApprovedCategortList) 
+                        if (Model.ApprovedCategortList != null)
                         {
-                            <tr class="border border-MyPaleBlue">
-                                <td class="py-5 px-8">
-                                    <p>@(countIdApproved++)</p>
-                                </td>
-                                <td class="py-5 px-8 min-w-48">
-                                    <p>@category.Name</p>
-                                </td>
-                                <td class="py-5 pr-3 text-center">@category.CreatedAt.ToString("MMM dd, yyyy")</td>
-                                <td class="py-5 pr-3 text-center">
-                                    <p>unidentified</p>
-                                </td>
-                                <td class="text-xs">
-                                    <div class="open_deletionForm hover:cursor-pointer flex justify-center text-xl text-MyOrange">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </div>
-                                </td>
-                            </tr>
+                            foreach (var category in Model.ApprovedCategortList)
+                            {
+                                <tr class="border border-MyPaleBlue">
+                                    <td class="py-5 px-8">
+                                        <p>@(countIdApproved++)</p>
+                                    </td>
+                                    <td class="py-5 px-8 min-w-48">
+                                        <p>@category.Name</p>
+                                    </td>
+                                    <td class="py-5 pr-3 text-center">@category.CreatedAt.ToString("MMM dd, yyyy")</td>
+                                    <td class="py-5 pr-3 text-center">
+                                        <p>unidentified</p>
+                                    </td>
+                                    <td class="text-xs">
+                                        <div class="open_deletionForm hover:cursor-pointer flex justify-center text-xl text-MyOrange">
+                                            <i class="fa-solid fa-trash"></i>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
                         }
                     }
                 </tbody>
@@ -104,27 +107,30 @@
                 <tbody class="pt-3">
                     @{
                         int countIdNew = 1;
-                        foreach (var category in Model.NewCategoryList)
+                        if (Model.NewCategoryList != null)
                         {
-                            <tr class="border border-MyPaleBlue">
-                                <td class="py-5 px-8">
-                                    <p>@(countIdNew++)</p>
-                                </td>
-                                <td class="py-5 px-8 min-w-48">
-                                    <p>@category.Name</p>
-                                </td>
-                                <td class="py-5 pr-3 text-center">@category.CreatedAt.ToString("MMM dd, yyyy")</td>
-                                <td class="text-xs">
-                                    <button data-id="@category.Id" class="open_acceptForm flex justify-center mx-auto text-2xl text-MyBlue hover:cursor-pointer">
-                                        <i class="fa-solid fa-circle-check"></i>
-                                    </button>
-                                </td>
-                                <td class="text-xs">
-                                    <button data-id="@category.Id" class="open_deletionForm flex justify-center mx-auto text-2xl text-MyOrange hover:cursor-pointer">
-                                        <i class="fa-solid fa-circle-xmark"></i>
-                                    </button>
-                                </td>
-                            </tr>
+                            foreach (var category in Model.NewCategoryList)
+                            {
+                                <tr class="border border-MyPaleBlue">
+                                    <td class="py-5 px-8">
+                                        <p>@(countIdNew++)</p>
+                                    </td>
+                                    <td class="py-5 px-8 min-w-48">
+                                        <p>@category.Name</p>
+                                    </td>
+                                    <td class="py-5 pr-3 text-center">@category.CreatedAt.ToString("MMM dd, yyyy")</td>
+                                    <td class="text-xs">
+                                        <button data-id="@category.Id" class="open_acceptForm flex justify-center mx-auto text-2xl text-MyBlue hover:cursor-pointer">
+                                            <i class="fa-solid fa-circle-check"></i>
+                                        </button>
+                                    </td>
+                                    <td class="text-xs">
+                                        <button data-id="@category.Id" class="open_deletionForm flex justify-center mx-auto text-2xl text-MyOrange hover:cursor-pointer">
+                                            <i class="fa-solid fa-circle-xmark"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            }
                         }
                     }
                 </tbody>
@@ -179,5 +185,5 @@
 </div>
 
 @section Scripts {
-    <script src="~/js/admin/home.js"></script>
+    <script src="~/js/admin/category.js"></script>
 }

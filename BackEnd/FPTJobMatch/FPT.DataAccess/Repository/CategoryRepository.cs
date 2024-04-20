@@ -1,6 +1,7 @@
 ﻿using FPT.DataAccess.Data;
 using FPT.DataAccess.Repository.IRepository;
 using FPT.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FPT.DataAccess.Repository
 {
@@ -10,6 +11,24 @@ namespace FPT.DataAccess.Repository
         public CategoryRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
+        }
+
+        public async Task<IEnumerable<Category>> GetCategoriesByStatus(bool isApproved)
+        {
+            return await _db.Categories.Where(c => c.IsApproved == isApproved).ToListAsync();
+        }
+
+        public int CountCategories(IEnumerable<Category> categories, bool isThisMonth)
+        {
+            if (isThisMonth)
+            {
+                var today = DateTime.Today;
+                return categories.Count(c => c.CreatedAt.Month == today.Month && c.CreatedAt.Year == today.Year);
+            }
+            else
+            {
+                return categories.Count();
+            }
         }
 
         public void Update(Category category)
