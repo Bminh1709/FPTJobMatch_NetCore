@@ -6,10 +6,12 @@ Step 1: Clone source code
 Step 2: Set up project
 - Open project FPTJobMatch
 - Delete this folder "Migrations"
+
   ![image](https://github.com/Bminh1709/FPTJobMatch_NetCore/assets/119041798/066a9c91-35bc-4cd5-afbb-5097396236bf)
 - Open MySQL and Create Database named "FPTJobMatch"
 - In appsetting.json, configure your ConnectionString like Mr. Son's project
 - Add Migration to DB
+  
   ![image](https://github.com/Bminh1709/FPTJobMatch_NetCore/assets/119041798/6af66e99-c61e-4b5c-a318-f22573332e59)
 - Update database using command "Update-database"
 
