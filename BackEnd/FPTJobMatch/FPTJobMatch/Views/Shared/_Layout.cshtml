@@ -31,7 +31,8 @@
                         MyGrey: "#d6d4d4",
                         MyDarkGrey: "#8F8F8F",
 
-                        MyGreen: "#51b748"
+                        MyGreen: "#51b748",
+                        MyPaleGreen: "#e7ffe5"
                     },
                     boxShadow: {
                         'normal': '0px 0px 20px #f0ecec',
@@ -56,17 +57,19 @@
                     {
                         <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="hover:text-MyOrange">User List</a>
                         <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="hover:text-MyOrange">Categories</a>
+                        <a asp-area="Admin" asp-controller="Help" asp-action="Index" class="hover:text-MyOrange">Help Cennter</a>
                     }
                     else if (User.IsInRole(SD.Role_Employer))
                     {
-                        <a asp-area="Employer" asp-controller="Home" asp-action="Index" class="hover:text-MyOrange">Job List</a>
+                        <a asp-area="Employer" asp-controller="Home" asp-action="Index" class="hover:text-MyOrange">Job Management</a>
+                        <a href="#contact" class="hover:text-MyOrange">Contacts</a>
+                        <a asp-area="" asp-controller="Help" asp-action="Index" class="hover:text-MyOrange">Help Center</a>
                     } else
                     {
-                        <a asp-area="" asp-controller="Jobs" asp-action="Index" class="hover:text-MyOrange">Jobs List</a>
-                        <a href="#topcompany" class="hover:text-MyOrange">Top Companies</a>
+                        <a asp-area="" asp-controller="Jobs" asp-action="Index" class="hover:text-MyOrange">Job List</a>
+                        <a href="#contact" class="hover:text-MyOrange">Contacts</a>
+                        <a asp-area="" asp-controller="Help" asp-action="Index" class="hover:text-MyOrange">Help Center</a>
                     }
-                    <a href="#contact" class="hover:text-MyOrange">Contacts</a>
-                    <a href="" class="hover:text-MyOrange">FAQ</a>
                 </div>
                  
 

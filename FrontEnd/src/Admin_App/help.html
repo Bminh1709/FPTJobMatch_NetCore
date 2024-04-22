@@ -1,0 +1,248 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/src/stylesheets/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="/src/stylesheets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="relative">
+  <nav class="px-6 md:px-16 py-3 w-full text-sm">
+    <div class="hidden lg:block">
+        <div class="flex justify-between items-center">
+            <a><img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32"></a>
+            <div class="flex gap-12">
+              <a href="">Find Jobs</a>
+              <a href="">Company Profiles</a>
+              <a href="">Contacts</a>
+            </div>
+            <div class="flex gap-6">
+              <div class="flex gap-3 items-center font-medium">
+                <a href="">Sign Up</a>
+                <div class="h-5 w-0.5 bg-MyPaleGrey"></div>
+                <a href="">Sign In</a>
+              </div>
+              <a href="" class="btn py-2 px-3">
+                For Recruiters
+              </a>
+            </div>
+        </div>
+    </div>
+    <!-- Responsive navbar -->
+    <div class="flex justify-between items-center lg:hidden">
+        <a><img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32"></a>
+        <input hidden type="checkbox" id="mobile_checkbox" class="mobile_checkbox">
+        <label for="mobile_checkbox" class="hover:cursor-pointer"><i class="text-2xl text-MyOrange fa-solid fa-bars"></i></label>
+        <div class="mobile_navbar fixed z-10 top-0 right-0 h-screen bg-white transform translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="border-b border-MyPaleGrey py-2 flex flex-row-reverse">
+                <label for="mobile_checkbox" class="mr-5 hover:cursor-pointer"><i class="text-3xl text-MyOrange fa-solid fa-xmark"></i></label>
+            </div>
+            <div class="px-20 py-5 flex flex-col justify-between h-full">
+                <div class="flex flex-col items-center gap-6 text-base">
+                    <a href="">Find Jobs</a>
+                    <a href="">Company Profiles</a>
+                    <a href="">Contacts</a>
+                </div>
+                <img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32 mb-14">
+            </div>
+        </div>
+        <label for="mobile_checkbox" class="nav__overlay fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-50 hidden"></label>
+    </div>
+  </nav>
+
+  <!-- Searching box -->
+  <div class="px-6 md:px-16">
+    <div class="rounded-xl p-5 sm:p-10 bg-cover bg-fixed text-center" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/imgs/fptdiscussion.jpg);">
+        <div class="w-full sm:w-11/12 lg:w-4/5 xl:w-3/4 mx-auto">
+            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">22 Jobs </span>Available Now</p>
+            <p class="text-white mb-6">Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero repellendus magni, atque delectus molestias quis
+            </p>
+            <div class="flex flex-wrap gap-4 text-white items-center justify-center text-sm font-semibold tracking-widest">
+                <a href="" class="hover:underline">HOME</a>
+                <i class="fa-solid fa-angle-right"></i>
+                <a href="" class="text-MyPaleGrey">USER LIST</a>
+            </div>
+
+        </div>
+    </div>
+  </div>
+
+  <!-- Candidate List -->
+  <div class="h-screen px-6 md:px-16 overflow-x-auto">
+    <div class="flex gap-3 flex-wrap justify-between items-center mt-6">
+        <div>
+          <button id="open_employerFormCreated" class="btnPaleBlue text-sm py-3 px-4 ">
+            Create Account
+          </button>
+        </div>
+        <div class="flex flex-wrap gap-3">
+            <div class="relative" id="jobType_select">
+                <div class="hover:cursor-pointer text-sm flex items-center justify-between w-36 py-3 px-4 border border-MyBlue rounded-md">
+                    <p>Role</p>
+                    <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
+                </div>
+                <ul id="jobType_options" class="hidden w-36 absolute text-sm">
+                    <li class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Employers</li>
+                    <li class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Job Seekers</li>
+                    <li class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">All</li>
+                </ul>
+            </div>
+            <div class="relative" id="jobType_select">
+                <div class="hover:cursor-pointer text-sm flex items-center justify-between w-36 py-3 px-4 border border-MyBlue rounded-md">
+                    <p>Sorting</p>
+                    <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
+                </div>
+                <ul id="jobType_options" class="hidden w-36 absolute text-sm">
+                    <li class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Full Time</li>
+                    <li class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Part Time</li>
+                    <li class="mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer">Remote</li>
+                </ul>
+            </div>
+            <div class="border border-MyBlue rounded-md p-1">
+                <form action="" class="h-full">
+                    <input type="text" class="outline-none w-56 h-full px-3">
+                    <button type="submit" class="bg-MyPaleBlue h-full w-10 text-MyBlue rounded-md"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-4 mt-5 gap-5">
+        <div class="col-span-4 sm:col-span-2 xl:col-span-1">
+          <p class="font-semibold text-lg text-MyBlue mb-3">Category List</p>
+          <table class="w-full">
+            <thead class="text-left text-MyBlue bg-MyPaleBlue">
+                <tr class="">
+                    <th class="py-3 px-5 rounded-tl-md">No</th>
+                    <th class="py-3">Name</th>
+                    <th class="py-3 px-5 rounded-tr-md"></th>
+                </tr>
+            </thead>
+            <tbody class="pt-3">
+                <tr class="border border-MyPaleBlue">
+                    <td class="py-5 px-5">1</td>
+                    <td class="py-5 overflow-ellipsis">Account, login and billing</td>
+                    <td class="text-xs px-5 text-center">
+                      <div id="dropdown_btn" class="relative hover:cursor-pointer">
+                        <i class="fa-solid fa-ellipsis-vertical text-xl"></i>
+                        <div class="hidden absolute text-sm pt-3" id="dropdown_list">
+                          <button class="edit_helpCategory p-2 border-MyGrey hover:bg-MyPaleBlue bg-white border rounded-t-md">Edit</button>
+                          <button class="open_deletionForm p-2 hover:bg-MyPaleBlue bg-white border border-MyGrey rounded-b-md">Delete</button>
+                        </div>
+                      </div>
+                    </td>
+                </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="col-span-4 sm:col-span-2 xl:col-span-3">
+          <p class="font-semibold text-lg text-MyBlue  mb-3">Article List</p>
+          <a href="" class="flex justify-between items-center gap-2 p-4 border-b border-MyPaleBlue hover:bg-MyPaleBlue rounded-md">
+            <p>How can I generate text in my image How can I generate text in my image?</p>
+            <i class="fa-solid fa-angle-right"></i>
+          </a>
+          <a href="" class="flex justify-between items-center gap-2 p-4 border-b border-MyPaleBlue hover:bg-MyPaleBlue rounded-md">
+            <p>How can I generate text in my image How can I generate text in my image?</p>
+            <i class="fa-solid fa-angle-right"></i>
+          </a>
+          <a href="" class="flex justify-between items-center gap-2 p-4 border-b border-MyPaleBlue hover:bg-MyPaleBlue rounded-md">
+            <p>How can I generate text in my image How can I generate text in my image?</p>
+            <i class="fa-solid fa-angle-right"></i>
+          </a>
+        </div>
+    </div>
+
+  </div>
+
+      <!-- Delete Form -->
+      <div id="deletionForm" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+        <div class="bg-white mx-auto w-1/4 h-fit rounded-lg mt-28">
+            <div class="flex gap-4 items-center px-5 py-3">
+                <input hidden type="text" value="1">
+                <p class="text-MyBlue text-lg font-semibold">Confirm Deletion</p>
+            </div>
+            <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+            <div class="px-5 py-3">
+                <p class="">Are you sure you would like to delete this profile from the database? This action cannot be undone.</p>
+                <div class="flex gap-2 justify-end mt-6">
+                    <button id="cancel_deletionForm" class=" rounded-lg border border-MyBlue bg-MyPaleBlue py-2 px-5">Cancel</button>
+                    <button class="bg-MyBlue text-white rounded-lg py-2 px-5">Accept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+        <!-- Add - Update Category Form -->
+        <div id="form_helpCategory" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+          <div class="bg-white mx-auto w-11/12 md:w-3/4 xl:w-1/2 h-fit rounded-lg mt-14">
+              <div class="flex gap-4 items-center justify-between p-3">
+                  <p class="text-MyBlue text-lg font-semibold">Java Developer (Spring, MySQL) at Giao Hang Tiet Kiem</p>
+                  <button for="" id="close_helpCategory" class="text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyBlue"><i class="fa-solid fa-xmark"></i></button>
+              </div>
+              <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+              <div class="px-5 pb-4">
+                  <div class="py-3 text-center">
+                      <p class="font-medium">Review your application</p>
+                      <p class="text-sm text-MyDarkGrey">The employer will also receive a copy of your profile</p>
+                  </div>
+                  <div class="h-0.5 w-full bg-MyPaleGrey"></div>
+                  <div class="py-4">
+                      <div class="flex flex-col gap-4">
+                          <div class="w-full border border-MyBlue rounded-sm py-1.5 px-3">
+                            <p class="text-xs text-MyDarkGrey">Name <span class="text-red-600">*</span></p>
+                            <input type="text" class="w-full outline-none text-sm font-medium" value="minhbee203@gmail.com">
+                          </div>
+                          <div class="w-full border border-MyBlue rounded-sm py-1.5 px-3">
+                              <p class="text-xs text-MyDarkGrey">Description <span class="text-red-600">*</span></p>
+                              <input type="text" class="w-full outline-none text-sm font-medium" value="minhbee203@gmail.com">
+                          </div>
+                      </div>
+                  </div>
+                  <button class="border border-MyBlue bg-MyPaleBlue rounded-md hover:bg-MyBlue hover:text-white w-full py-3 text-sm">Response</button>
+              </div>
+              
+          </div>
+        </div>
+  
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+
+$(document).ready(function() {
+  const deletionForm = $('#deletionForm');
+  const cancel_deletionForm = $('#cancel_deletionForm');
+  const open_deletionForm = $('.open_deletionForm');
+
+  open_deletionForm.on('click', function() {
+    window.scrollTo(0, 0);
+    deletionForm.removeClass('hidden');
+  });
+
+  cancel_deletionForm.on('click', function() {
+    deletionForm.addClass('hidden');
+  });
+
+
+  const form_helpCategory = $('#form_helpCategory');
+  const close_helpCategory = $('#close_helpCategory');
+  const edit_helpCategory = $('.edit_helpCategory');
+
+  edit_helpCategory.on('click', function() {
+    window.scrollTo(0, 0);
+    form_helpCategory.removeClass('hidden');
+  });
+
+  close_helpCategory.on('click', function() {
+    form_helpCategory.addClass('hidden');
+  })
+
+});
+
+</script>
+</html>

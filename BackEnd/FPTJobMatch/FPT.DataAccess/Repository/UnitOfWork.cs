@@ -28,6 +28,8 @@ namespace FPT.DataAccess.Repository
 
         public IApplicantCVRepository ApplicantCV { get; private set; }
         public INotificationRepository Notification { get; private set; }
+        public IHelpTypeRepository HelpType { get; private set; }
+        public IHelpArticleRepository HelpArticle { get; private set; }
 
         public UnitOfWork(ApplicationDbContext db)
         {
@@ -41,6 +43,8 @@ namespace FPT.DataAccess.Repository
             City = new CityRepository(_db);
             ApplicantCV = new ApplicantCVRepository(_db);
             Notification = new NotificationRepository(_db);
+            HelpType = new HelpTypeRepository(_db);
+            HelpArticle = new HelpArticleRepository(_db);
         }
 
         public void Save()

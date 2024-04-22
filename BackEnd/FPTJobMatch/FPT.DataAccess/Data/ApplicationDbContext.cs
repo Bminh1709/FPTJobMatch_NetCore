@@ -23,6 +23,8 @@ namespace FPT.DataAccess.Data
         public DbSet<City> Cities { get; set; }
         public DbSet<ApplicantCV> ApplicantCVs { get; set; }
         public DbSet<Notification> Notifications { get; set; }
+        public DbSet<HelpType> HelpTypes { get; set; }
+        public DbSet<HelpArticle> HelpArticles { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

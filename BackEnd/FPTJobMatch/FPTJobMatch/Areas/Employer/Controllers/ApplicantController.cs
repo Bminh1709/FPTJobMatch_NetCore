@@ -33,7 +33,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                     return RedirectToAction("Index", "Jobs");
                 }
 
-                IEnumerable<ApplicantCV> applicantCVs = await _unitOfWork.ApplicantCV.GetAllByJobIdAsync(jobId, status, sortType);
+                IEnumerable<ApplicantCV> applicantCVs = await _unitOfWork.ApplicantCV.GetAllJobFilteredAsync(jobId, status, sortType);
 
                 ApplicantPageVM applicantPageVM = new()
                 {

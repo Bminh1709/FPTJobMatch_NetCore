@@ -51,11 +51,6 @@ namespace FPTJobMatch.Controllers
             }
         }
 
-        public IActionResult Help()
-        {
-            return View();
-        }
-
         [Authorize]
         public async Task<IActionResult> Notification()
         {

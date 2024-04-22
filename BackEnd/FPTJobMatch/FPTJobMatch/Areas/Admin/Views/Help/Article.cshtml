@@ -1,0 +1,76 @@
+﻿@model HelpArticleVM
+@{
+    ViewData["Title"] = "Article";
+}
+
+<!-- Searching box -->
+<div class="px-6 md:px-16">
+    <div class="rounded-xl p-5 sm:p-10 bg-cover bg-fixed text-center" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/imgs/fptdiscussion.jpg);">
+        <div class="w-full sm:w-11/12 lg:w-4/5 xl:w-3/4 mx-auto">
+            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyBoutline-MyBlue">22 Jobs </span>Available Now</p>
+            <div class="mt-5 flex flex-wrap gap-4 text-white items-center justify-center text-sm font-semibold tracking-widest">
+                <a href="" class="hover:underline">HOME</a>
+                <i class="fa-solid fa-angle-right"></i>
+                <a href="" class="text-MyPaleGrey">USER LIST</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Article -->
+<div id="" class="px-6 md:px-16 mt-3 pb-20">
+    <form asp-controller="Help" asp-action="UpsertArticle" method="post" class="border border-MyGrey bg-white rounded-md p-6">
+        <div class="flex justify-between">
+            <p class="font-bold text-xl mb-5">General Information</p>
+            <button id="open_deletionForm_article" type="button" class="text-3xl text-MyOrange"><i class="fa-solid fa-square-xmark"></i></button>
+        </div>
+        <div class="flex flex-wrap gap-6">
+            <div class="flex w-full gap-4">
+                <input hidden asp-for="HelpArticle.Id" />
+                <div class="w-full">
+                    <p class="font-medium mb-2">Title</p>
+                    <input asp-for="HelpArticle.Title" type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue">
+                </div>
+                <div class="w-full">
+                    <p class="font-medium mb-2">Type</p>
+                    <select asp-for="HelpArticle.HelpTypeId" asp-items="@Model.HelpTypeItems" class="custom-select rounded-md p-3 w-full outline-none border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:border-MyBlue">
+                    </select>
+                </div>
+            </div>
+            <span asp-validation-for="HelpArticle.Title" class="text-red-600 text-sm"></span>
+            <span asp-validation-for="HelpArticle.HelpTypeId" class="text-red-600 text-sm"></span>
+            <div class="w-full">
+                <p class="font-medium mb-2">Content</p>
+                <textarea asp-for="HelpArticle.Content" rows="10" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue"></textarea>
+            </div>
+            <span asp-validation-for="HelpArticle.Content" class="text-red-600 text-sm"></span>
+        </div>
+        <div class="flex gap-3 mt-8 justify-end text-sm">
+            <a asp-area="Admin" asp-controller="Help" asp-action="Index" class="text-MyBlue bg-MyPaleBlue border border-MyBlue rounded-lg py-2 px-4" >Back</a>
+            <button class="rounded-lg bg-MyBlue border border-MyBlue hover:bg-MyPaleBlue hover:text-MyBlue text-white py-2 px-4" type="submit">Upsert</button>
+        </div>
+    </form>
+</div>
+
+
+<!-- Delete Form -->
+<div id="deletionForm_article" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+    <div class="bg-white mx-auto w-1/4 h-fit rounded-lg mt-28">
+        <div class="flex gap-4 items-center px-5 py-3">
+            <p class="text-MyBlue text-lg font-semibold">Confirm Deletion</p>
+        </div>
+        <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+        <form asp-controller="Help" asp-action="DeleteArticle" method="post" class="px-5 py-3">
+            <input asp-for="HelpArticle.Id" name="articleId" id="id_articleDelete" hidden />
+            <p class="">Are you sure you would like to delete this article from the database? This action cannot be undone.</p>
+            <div class="flex gap-2 justify-end mt-6">
+                <button type="button" id="cancel_deletionForm_article" class=" rounded-lg border border-MyBlue bg-MyPaleBlue py-2 px-5">Cancel</button>
+                <button type="submit" class="bg-MyBlue text-white rounded-lg py-2 px-5">Accept</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/admin/help.js" asp-append-version="true"></script>
+}

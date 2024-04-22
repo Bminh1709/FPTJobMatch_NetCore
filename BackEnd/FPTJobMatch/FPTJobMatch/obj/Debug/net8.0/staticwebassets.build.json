@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "H1TfVrsi4h66CExz/EpN2xw+FpiXO6M6G/iIm22ifn0=",
+  "Hash": "it6Ld2tF6AnVLG63d+W+yLj2ABL9VbQ+S9LVrqFS/4s=",
   "Source": "FPTJobMatch",
   "BasePath": "_content/FPTJobMatch",
   "Mode": "Default",
@@ -53,6 +53,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\FPTJobMatch.bundle.scp.css"
+    },
+    {
+      "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\ajax\\admin\\help.js",
+      "SourceId": "FPTJobMatch",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\",
+      "BasePath": "_content/FPTJobMatch",
+      "RelativePath": "ajax/admin/help.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\ajax\\admin\\help.js"
     },
     {
       "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\ajax\\admin\\home.js",
@@ -699,6 +718,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\admin\\category.js"
+    },
+    {
+      "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\admin\\help.js",
+      "SourceId": "FPTJobMatch",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\",
+      "BasePath": "_content/FPTJobMatch",
+      "RelativePath": "js/admin/help.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\admin\\help.js"
     },
     {
       "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\admin\\home.js",

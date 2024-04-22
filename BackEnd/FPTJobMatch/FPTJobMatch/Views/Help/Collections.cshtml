@@ -1,0 +1,55 @@
+﻿@model IEnumerable<HelpArticle>
+@{
+    ViewData["Title"] = "Help Center";
+}
+
+<div class="min-h-screen">
+
+    <div class="py-14 bg-MyGreen text-center">
+        <p class="font-bold text-white text-2xl mx-10">Hello, how can FPTJobMatch help you?</p>
+        <form class="relative w-4/5 lg:w-1/2 mx-auto flex items-center mt-7">
+            <input type="text" class="py-4 pl-4 pr-20 w-full rounded-md outline-none" placeholder="Search for articles">
+            <button type="submit" class="py-3 px-4 rounded-md text-white absolute right-1 bg-MyGreen border border-MyGreen hover:bg-white hover:text-MyGreen"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </div>
+
+    <div class="w-3/4 mx-auto pt-8 pb-20">
+        <div>
+            <div class="flex flex-wrap gap-2 text-sm items-center text-MyDarkGrey mb-7">
+                <a asp-area="" asp-controller="Help" asp-action="Index" class="hover:underline">All Collections</a>
+                <i class="fa-solid fa-angle-right"></i>
+                <a>@ViewBag.HelpType.Name</a>
+            </div>
+            <p class="font-medium mt-3 text-xl">@ViewBag.HelpType.Name</p>
+            <p class="text-MyDarkGrey mt-1">@ViewBag.HelpType.Description</p>
+        </div>
+        <div class="flex flex-col mt-5 border border-MyPaleGrey rounded-md p-3">
+            @foreach(var article in Model)
+            {
+                <a asp-area="" asp-controller="Help" asp-action="Article" asp-route-articleId="@article.Id" target="_blank" class="flex justify-between items-center gap-2 p-4 border-b border-MyPaleGreen hover:bg-MyPaleGreen rounded-md">
+                    <p>@article.Title</p>
+                    <i class="fa-solid fa-angle-right"></i>
+                </a>
+            }
+        </div>
+    </div>
+
+</div>
+
+<div class="mx-6 md:mx-16 py-10 my-24 bg-MyPaleGreen rounded-md text-MyGreen border border-MyGreen">
+    <p class="text-lg font-medium text-center">Do you want to find more information?</p>
+    <div class="flex gap-5 flex-wrap justify-center text-sm mt-4">
+        <div class="flex items-center gap-3 p-3 rounded-md border border-MyGreen w-64 hover:bg-MyGreen hover:text-MyPaleGreen">
+            <div class="border border-MyGreen rounded-full py-2 px-3">
+                <i class="fa-solid fa-phone"></i>
+            </div>
+            <p class="break-all">0706162561</p>
+        </div>
+        <div class="flex items-center gap-3 p-3 rounded-md border border-MyGreen w-64 hover:bg-MyGreen hover:text-MyPaleGreen">
+            <div class="border border-MyGreen rounded-full py-2 px-3">
+                <i class="fa-solid fa-at"></i>
+            </div>
+            <p class="break-all">minhbee203@gmail.com</p>
+        </div>
+    </div>
+</div>

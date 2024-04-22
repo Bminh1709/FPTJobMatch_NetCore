@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/src/stylesheets/output.css" rel="stylesheet">
+  <link rel="stylesheet" href="/src/stylesheets/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="relative">
+  <nav class="px-6 md:px-16 py-3 w-full text-sm">
+    <div class="hidden lg:block">
+        <div class="flex justify-between items-center">
+            <a><img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32"></a>
+            <div class="flex gap-12">
+              <a href="">Find Jobs</a>
+              <a href="">Company Profiles</a>
+              <a href="">Contacts</a>
+            </div>
+            <div class="relative" id="profile_select">
+                <div class="flex items-center gap-2 text-MyBlue hover:cursor-pointer">
+                    <img src="/imgs/fptlearn.jpg" alt="" class="h-10 w-10 rounded-full">
+                    <i class="fa-solid fa-sort-down"></i>
+                </div>
+                <ul id="profile_options" class="hidden w-36 absolute text-sm right-0 pt-2">
+                    <li class="py-3 px-4 bg-MyPaleBlue rounded-t-md hover:bg-MyBlue hover:text-white hover:cursor-pointer">Profile</li>
+                    <li class="py-3 px-4 bg-MyPaleBlue rounded-b-md hover:bg-MyBlue hover:text-white hover:cursor-pointer">Log Out</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Responsive navbar -->
+    <div class="flex justify-between items-center lg:hidden">
+        <a><img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32"></a>
+        <input hidden type="checkbox" id="mobile_checkbox" class="mobile_checkbox">
+        <label for="mobile_checkbox" class="hover:cursor-pointer"><i class="text-2xl text-MyBoutline-MyBlue fa-solid fa-bars"></i></label>
+        <div class="mobile_navbar fixed z-10 top-0 right-0 h-screen bg-white transform translate-x-full transition-transform duration-300 ease-in-out">
+            <div class="border-b border-MyPaleGrey py-2 flex flex-row-reverse">
+                <label for="mobile_checkbox" class="mr-5 hover:cursor-pointer"><i class="text-3xl text-MyBoutline-MyBlue fa-solid fa-xmark"></i></label>
+            </div>
+            <div class="px-20 py-5 flex flex-col justify-between h-full">
+                <div class="flex flex-col items-center gap-6 text-base">
+                    <a href="">Find Jobs</a>
+                    <a href="">Company Profiles</a>
+                    <a href="">Contacts</a>
+                </div>
+                <img src="/imgs/blueLogo.png" alt="FPT Logo" class="w-32 mb-14">
+            </div>
+        </div>
+        <label for="mobile_checkbox" class="nav__overlay fixed top-0 right-0 bottom-0 left-0 bg-black bg-opacity-50 hidden"></label>
+    </div>
+  </nav>
+
+    <!-- Searching box -->
+    <div class="px-6 md:px-16">
+        <div class="rounded-xl p-5 sm:p-10 bg-cover bg-fixed text-center" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/imgs/fptdiscussion.jpg);">
+            <div class="w-full sm:w-11/12 lg:w-4/5 xl:w-3/4 mx-auto">
+                <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyBoutline-MyBlue">22 Jobs </span>Available Now</p>
+                <div class="mt-5 flex flex-wrap gap-4 text-white items-center justify-center text-sm font-semibold tracking-widest">
+                    <a href="" class="hover:underline">HOME</a>
+                    <i class="fa-solid fa-angle-right"></i>
+                    <a href="" class="text-MyPaleGrey">USER LIST</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Profile -->
+    <div id="" class="px-6 md:px-16 mt-3 pb-20">
+        <div class="border border-MyGrey bg-white rounded-md p-6">
+            <div class="flex justify-between">
+                <p class="font-bold text-xl mb-5">General Information</p>
+                <button id="open_deletionForm" class="text-3xl text-MyOrange"><i class="fa-solid fa-square-xmark"></i></button>
+            </div>
+            <div class="flex flex-wrap gap-6">
+                <div class="flex w-full gap-6">
+                    <div class="w-full">
+                        <p class="font-medium mb-2">Title</p>
+                        <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="minhbee203@gmail.com">
+                    </div>
+                    <div class="w-full">
+                        <p class="font-medium mb-2">Type</p>
+                        <input type="text" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue" value="minhbee203@gmail.com">
+                    </div>
+                </div>
+                <div class="w-full">
+                    <p class="font-medium mb-2">Content</p>
+                    <textarea rows="10" class="w-full p-3 rounded-md border border-MyGrey bg-MyVeryPaleGrey focus:bg-MyPaleBlue focus:outline-MyBlue"></textarea>
+                </div>
+            </div>
+            <div class="flex gap-3 mt-8 justify-end text-sm">
+                <button class="rounded-lg bg-MyBlue text-white py-2 px-4" type="submit">Update</button>
+                <button class="bg-MyPaleBlue border border-MyBlue rounded-lg py-2 px-4" type="submit">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+
+          <!-- Delete Form -->
+          <div id="deletionForm" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+            <div class="bg-white mx-auto w-1/4 h-fit rounded-lg mt-28">
+                <div class="flex gap-4 items-center px-5 py-3">
+                    <input hidden type="text" value="1">
+                    <p class="text-MyBlue text-lg font-semibold">Confirm Deletion</p>
+                </div>
+                <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+                <div class="px-5 py-3">
+                    <p class="">Are you sure you would like to delete this profile from the database? This action cannot be undone.</p>
+                    <div class="flex gap-2 justify-end mt-6">
+                        <button id="cancel_deletionForm" class=" rounded-lg border border-MyBlue bg-MyPaleBlue py-2 px-5">Cancel</button>
+                        <button class="bg-MyBlue text-white rounded-lg py-2 px-5">Accept</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+  
+</body>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script>
+
+$(document).ready(function() {
+  const deletionForm = $('#deletionForm');
+  const cancel_deletionForm = $('#cancel_deletionForm');
+  const open_deletionForm = $('#open_deletionForm');
+
+  open_deletionForm.on('click', function() {
+    window.scrollTo(0, 0);
+    deletionForm.removeClass('hidden');
+  });
+
+  cancel_deletionForm.on('click', function() {
+    deletionForm.addClass('hidden');
+  });
+
+});
+
+</script>
+</html>
