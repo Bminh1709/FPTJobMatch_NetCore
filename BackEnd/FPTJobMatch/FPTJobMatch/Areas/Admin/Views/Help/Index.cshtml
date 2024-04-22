@@ -1,0 +1,170 @@
+﻿@model HelpPageVM
+
+@{
+    ViewData["Title"] = "Help Center";
+}
+
+<div class="px-6 md:px-16">
+    <!-- Searching box -->
+    <div class="rounded-xl p-5 sm:p-10 bg-contain bg-fixed text-center" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/images/system/bg-reg.png);">
+        <div class="w-full sm:w-11/12 lg:w-4/5 xl:w-3/4 mx-auto">
+            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange"></span>Available Now</p>
+            <div class="mt-5 flex flex-wrap gap-4 text-white items-center justify-center text-sm font-semibold tracking-widest">
+                <a class="hover:underline">HOME</a>
+                <i class="fa-solid fa-angle-right"></i>
+                <a class="text-MyPaleGrey">CATEGORY</a>
+            </div>
+
+        </div>
+    </div>
+    <!-- Articles List -->
+    <div class="h-screen overflow-x-auto">
+        <div class="flex gap-3 flex-wrap justify-between items-center mt-6">
+            <div class="flex flex-wrap gap-2">
+                <button id="create_helpCategory" class="btnPaleBlue text-sm py-3 px-4 ">
+                    New Type
+                </button>
+                <a asp-area="Admin" asp-controller="Help" asp-action="Article" class="btnPaleBlue text-sm py-3 px-4 ">
+                    New Article
+                </a>
+            </div>
+            <form asp-controller="Help" asp-action="Index" method="get" id="form_filter" class="flex flex-wrap gap-3">
+
+                <!-- Hidden input fields to store selected status and sorting -->
+                <input type="hidden" id="selectedSortType" name="sortType" value="" />
+
+                <!-- Sorting dropdown -->
+                <div class="relative" id="dropdown_btn">
+                    <div class="hover:cursor-pointer text-sm flex items-center justify-between w-36 py-3 px-4 border border-MyBlue rounded-md">
+                        <p id="dropdown_sort">Sorting</p>
+                        <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
+                    </div>
+                    <div id="dropdown_list" class="hidden w-36 absolute text-sm">
+                        <button type="button" class="sort-option mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer" data-value="NewestFirst">Newest First</button>
+                        <button type="button" class="sort-option mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer" data-value="OldestFirst">Oldest First</button>
+                    </div>
+                </div>
+
+                 <div class="border border-MyBlue rounded-md p-1">
+                    <div class="h-full">
+                        <input name="keyword" type="text" class="outline-none w-40 sm:w-56 h-full px-3 py-2 text-sm" placeholder="Title">
+                        <button type="submit" id="applyFiltersButton" class="bg-MyPaleBlue h-full w-10 text-MyBlue rounded-md"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="grid grid-cols-4 mt-5 gap-5">
+            <div class="col-span-4 sm:col-span-2 xl:col-span-1">
+                <p class="font-semibold text-lg text-MyBlue mb-3">Category List</p>
+                <table class="w-full">
+                    <thead class="text-left text-MyBlue bg-MyPaleBlue">
+                        <tr class="">
+                            <th class="py-3 px-5 rounded-tl-md">No</th>
+                            <th class="py-3">Name</th>
+                            <th class="py-3 px-5 rounded-tr-md"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="pt-3">
+                        @{
+                            int countType = 1;
+                            foreach(var type in Model.HelpTypes)
+                            {
+
+                                <tr class="border border-MyPaleBlue">
+                                    <td class="py-5 px-5">@(countType++)</td>
+                                    <td class="py-5 overflow-ellipsis">@type.Name</td>
+                                    <td class="text-xs px-5 text-center">
+                                        <div id="dropdown_btn" class="relative hover:cursor-pointer w-4">
+                                            <i class="fa-solid fa-ellipsis-vertical text-xl"></i>
+                                            <div class="hidden z-10 absolute text-sm pt-3" id="dropdown_list">
+                                                <button data-id="@type.Id" class="edit_helpCategory p-2 border-MyGrey hover:bg-MyPaleBlue bg-white border rounded-t-md">Edit</button>
+                                                <button data-id="@type.Id" class="open_deletionForm p-2 hover:bg-MyPaleBlue bg-white border border-MyGrey rounded-b-md">Delete</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-span-4 sm:col-span-2 xl:col-span-3">
+                <p class="font-semibold text-lg text-MyBlue  mb-3">Article List</p>
+                @foreach(var article in Model.HelpArticles)
+                {
+                    <a asp-controller="Help" asp-action="Article" asp-route-articleId="@article.Id" class="flex justify-between items-center gap-2 p-4 border-b border-MyPaleBlue hover:bg-MyPaleBlue rounded-md">
+                        <p>@article.Title</p>
+                        <i class="fa-solid fa-angle-right"></i>
+                    </a>                
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Delete Form -->
+<div id="deletionForm" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+    <div class="bg-white mx-auto w-1/4 h-fit rounded-lg mt-28">
+        <div class="flex gap-4 items-center px-5 py-3">
+            <input hidden type="text">
+            <p class="text-MyBlue text-lg font-semibold">Confirm Deletion</p>
+        </div>
+        <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+        <form asp-controller="Help" asp-action="DeleteType" method="post" class="px-5 py-3">
+            <input name="typeId" id="id_typeDelete" hidden/>
+            <p class="">Are you sure you would like to delete this profile from the database? This action cannot be undone.</p>
+            <div class="flex gap-2 justify-end mt-6">
+                <button type="button" id="cancel_deletionForm" class=" rounded-lg border border-MyBlue bg-MyPaleBlue py-2 px-5">Cancel</button>
+                <button type="submit" class="bg-MyBlue text-white rounded-lg py-2 px-5">Accept</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Add - Update Category Form -->
+<div id="form_helpCategory" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
+    <div class="bg-white mx-auto w-11/12 md:w-3/4 xl:w-1/2 h-fit rounded-lg mt-14">
+        <div class="flex gap-4 items-center justify-between p-3">
+            <p class="text-MyBlue text-lg font-semibold">Type of Support</p>
+            <button for="" id="close_helpCategory" class="text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyBlue"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>
+        <form asp-controller="Help" asp-action="UpsertType" method="post" class="px-5 pb-4">
+            <input asp-for="HelpType.Id" hidden id="id_type"/>  
+            <div class="py-3 text-center">
+                <p class="font-medium">Review your application</p>
+                <p class="text-sm text-MyDarkGrey">The employer will also receive a copy of your profile</p>
+            </div>
+            <div class="h-0.5 w-full bg-MyPaleGrey"></div>
+            <div class="py-4">
+                <div class="flex flex-col gap-2">
+                    <div class="w-full border border-MyBlue rounded-sm py-1.5 px-3">
+                        <p class="text-xs text-MyDarkGrey">Name <span class="text-red-600">*</span></p>
+                        <input asp-for="HelpType.Name" type="text" id="name_type" class="w-full outline-none text-sm font-medium" placeholder="Type the name">
+                    </div>
+                    <span asp-validation-for="HelpType.Name" class="text-red-600 text-sm"></span>
+                    <div class="w-full border border-MyBlue rounded-sm py-1.5 px-3">
+                        <p class="text-xs text-MyDarkGrey">Description <span class="text-red-600">*</span></p>
+                        <input asp-for="HelpType.Description" type="text" id="description_type" class="w-full outline-none text-sm font-medium" placeholder="Type a short description">
+                    </div>
+                    <span asp-validation-for="HelpType.Description" class="text-red-600 text-sm"></span>
+                </div>
+            </div>
+            <button type="submit" class="border border-MyBlue bg-MyPaleBlue rounded-md hover:bg-MyBlue hover:text-white w-full py-3 text-sm">Upsert</button>
+        </form>
+
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    <script src="~/js/admin/help.js" asp-append-version="true"></script>
+    <script src="~/ajax/admin/help.js" asp-append-version="true"></script>
+}

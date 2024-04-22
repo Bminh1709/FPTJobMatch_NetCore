@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\FPTJobMatch.bundle.scp.css"
     },
     {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\ajax\\admin\\help.js",
+      "PackagePath": "staticwebassets\\ajax\\admin\\help.js"
+    },
+    {
       "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\ajax\\admin\\home.js",
       "PackagePath": "staticwebassets\\ajax\\admin\\home.js"
     },
@@ -139,6 +143,10 @@
     {
       "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\admin\\category.js",
       "PackagePath": "staticwebassets\\js\\admin\\category.js"
+    },
+    {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\admin\\help.js",
+      "PackagePath": "staticwebassets\\js\\admin\\help.js"
     },
     {
       "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\admin\\home.js",

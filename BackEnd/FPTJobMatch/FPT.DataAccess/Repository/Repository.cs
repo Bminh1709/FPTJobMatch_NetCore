@@ -62,4 +62,17 @@ public class Repository<T> : IRepository<T> where T : class
     {
         dbSet.RemoveRange(entity);
     }
+
+    public async Task RemoveById(int id)
+    {
+        var entity = await dbSet.FindAsync(id);
+        if (entity != null)
+        {
+            dbSet.Remove(entity);
+        }
+        else
+        {
+            throw new InvalidOperationException("Entity with the specified ID does not exist");
+        }
+    }
 }

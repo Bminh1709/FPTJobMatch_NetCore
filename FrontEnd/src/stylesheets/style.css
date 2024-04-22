@@ -86,6 +86,12 @@ body {
     border-color: var(--blue);
 }
 
+/* DropDown List */
+#dropdown_btn:hover #dropdown_list {
+    display: flex;
+    flex-direction: column;
+}
+
 #jobType_select:hover #jobType_options {
     display: block;
 }

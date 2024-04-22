@@ -12,6 +12,7 @@ namespace FPT.DataAccess.Repository.IRepository
         //T - Entity Type
         Task<IEnumerable<T>> GetAllAsync(Expression<Func<T, bool>>? filter = null, string? includeProperties = null);
         Task<T> GetAsync(Expression<Func<T, bool>> filter, string? includeProperties = null);
+        Task RemoveById(int id);
         void Add(T entity);
         void Remove(T entity);
         void RemoveRange(IEnumerable<T> entity);

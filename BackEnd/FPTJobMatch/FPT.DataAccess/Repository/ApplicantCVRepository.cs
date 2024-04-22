@@ -26,7 +26,7 @@ namespace FPT.DataAccess.Repository
             return await _db.ApplicantCVs.CountAsync(filter);
         }
 
-        public async Task<IEnumerable<ApplicantCV>> GetAllByJobIdAsync(int jobId, string? status = null, string? sortType = null)
+        public async Task<IEnumerable<ApplicantCV>> GetAllJobFilteredAsync(int jobId, string? status = null, string? sortType = null)
         {
             IQueryable<ApplicantCV> query = _db.ApplicantCVs.Include(a => a.JobSeeker).Where(a => a.JobId == jobId);
 
