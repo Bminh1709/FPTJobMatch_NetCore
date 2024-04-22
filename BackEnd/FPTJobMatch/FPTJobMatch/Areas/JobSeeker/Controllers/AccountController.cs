@@ -53,12 +53,12 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
                     {
                         await _userManager.AddToRoleAsync(user, SD.Role_JobSeeker);
 
-                        JobSeekerDetail kobSeekerDetail = new JobSeekerDetail
+                        JobSeekerDetail jobSeekerDetail = new JobSeekerDetail
                         {
                             JobSeeker = user,
                         };
 
-                        _unitOfWork.JobSeekerDetail.Add(kobSeekerDetail);
+                        _unitOfWork.JobSeekerDetail.Add(jobSeekerDetail);
                         _unitOfWork.Save();
 
                         TempData["success"] = "Sign up successfully";

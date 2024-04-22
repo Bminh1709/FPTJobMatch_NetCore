@@ -16,7 +16,7 @@ namespace FPT.DataAccess.Repository
 
         public async Task<IEnumerable<Job>> GetAllFilteredAsync(Expression<Func<Job, bool>>? filter = null, string? includeProperties = null, int? cityId = null, int? jobtypeId = null, string? keyword = null)
         {
-            IQueryable<Job> query = dbSet;
+            IQueryable<Job> query = _db.Jobs;
 
             // Apply filter if provided
             if (filter != null)
@@ -55,6 +55,15 @@ namespace FPT.DataAccess.Repository
 
             // Execute the query asynchronously and return the result
             return jobs;
+        }
+
+        public async Task RemoveRangeByEmployerIdAsync(string employerId)
+        {
+            var jobs = await _db.Jobs.Where(job => job.EmployerId == employerId).ToListAsync();
+            if (jobs != null)
+            {
+                _db.Jobs.RemoveRange(jobs);
+            }
         }
 
         public void Update(Job job)

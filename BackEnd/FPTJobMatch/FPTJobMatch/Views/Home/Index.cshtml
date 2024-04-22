@@ -180,7 +180,7 @@
                     </div>
                     <div class="flex gap-2 items-center mb-1">
                         <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
-                        <p class="text-xs">@job.Company?.City.Name City</p>
+                            <p class="text-xs">@(job.Company?.City != null ? job.Company.City.Name : "Unknown") City</p>
                     </div>
                     <div class="flex gap-2 items-center">
                         <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>

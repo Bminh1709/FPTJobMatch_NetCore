@@ -24,6 +24,7 @@ $('#form_jobseekerInfo').on('submit', function (e) {
         e.preventDefault();
         $(this).find('input, select, textarea').removeAttr('disabled');
         $('#jobseeker_about').trigger("focus");
+        window.scrollTo(0, 0);
         isSubmittedInfo = true;
     }
 });

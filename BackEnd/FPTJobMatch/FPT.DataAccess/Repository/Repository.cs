@@ -75,4 +75,10 @@ public class Repository<T> : IRepository<T> where T : class
             throw new InvalidOperationException("Entity with the specified ID does not exist");
         }
     }
+
+    public async Task RemoveRangeAsync(Expression<Func<T, bool>> filter)
+    {
+        var entitiesToRemove = await dbSet.Where(filter).ToListAsync();
+        dbSet.RemoveRange(entitiesToRemove);
+    }
 }

@@ -10,5 +10,7 @@ namespace FPT.DataAccess.Repository.IRepository
     public interface INotificationRepository : IRepository<Notification>
     {
         public void Update(Notification notification);
+        Task RemoveBySenderIdAsync(string senderId);
+        Task RemoveByReceiverIdAsync(string receiverId);
     }
 }

@@ -133,8 +133,6 @@ namespace FPT.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CompanyId");
-
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -231,6 +229,9 @@ namespace FPT.DataAccess.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<string>("EmployerId")
+                        .HasColumnType("text");
+
                     b.Property<string>("Logo")
                         .HasColumnType("text");
 
@@ -244,6 +245,9 @@ namespace FPT.DataAccess.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
+
+                    b.HasIndex("EmployerId")
+                        .IsUnique();
 
                     b.ToTable("Companies");
                 });
@@ -295,7 +299,6 @@ namespace FPT.DataAccess.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("AdminId")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Description")
@@ -618,15 +621,6 @@ namespace FPT.DataAccess.Migrations
                     b.Navigation("JobSeeker");
                 });
 
-            modelBuilder.Entity("FPT.Models.ApplicationUser", b =>
-                {
-                    b.HasOne("FPT.Models.Company", "Company")
-                        .WithMany()
-                        .HasForeignKey("CompanyId");
-
-                    b.Navigation("Company");
-                });
-
             modelBuilder.Entity("FPT.Models.Category", b =>
                 {
                     b.HasOne("FPT.Models.ApplicationUser", "CreatedByUser")
@@ -642,7 +636,14 @@ namespace FPT.DataAccess.Migrations
                         .WithMany()
                         .HasForeignKey("CityId");
 
+                    b.HasOne("FPT.Models.ApplicationUser", "Employer")
+                        .WithOne("Company")
+                        .HasForeignKey("FPT.Models.Company", "EmployerId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.Navigation("City");
+
+                    b.Navigation("Employer");
                 });
 
             modelBuilder.Entity("FPT.Models.HelpArticle", b =>
@@ -668,9 +669,7 @@ namespace FPT.DataAccess.Migrations
                 {
                     b.HasOne("FPT.Models.ApplicationUser", "Admin")
                         .WithMany()
-                        .HasForeignKey("AdminId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AdminId");
 
                     b.Navigation("Admin");
                 });
@@ -778,6 +777,12 @@ namespace FPT.DataAccess.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FPT.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("Company")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

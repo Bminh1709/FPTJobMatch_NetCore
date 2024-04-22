@@ -11,6 +11,7 @@ namespace FPT.DataAccess.Repository.IRepository
     {
         public void Update(Category category);
         Task<IEnumerable<Category>> GetCategoriesByStatus(bool isApproved);
+        Task NullifyCreatedByUserIdAsync(string userId);
         int CountCategories(IEnumerable<Category> categories, bool isThisMonth);
     }
 }

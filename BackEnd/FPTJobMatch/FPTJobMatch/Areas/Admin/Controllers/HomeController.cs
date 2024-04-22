@@ -1,5 +1,6 @@
 ﻿using FPT.DataAccess.Repository.IRepository;
 using FPT.Models;
+using FPT.Models.ViewModels;
 using FPT.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -130,7 +131,8 @@ namespace FPTJobMatch.Areas.Admin.Controllers
                     var newCompany = new Company
                     {
                         Name = company,
-                        CreatedAt = DateTime.UtcNow
+                        CreatedAt = DateTime.UtcNow,
+                        Employer = newUser
                     };
                     _unitOfWork.Company.Add(newCompany);
 
@@ -189,25 +191,15 @@ namespace FPTJobMatch.Areas.Admin.Controllers
                         break;
 
                     case "Delete":
-                        // Delete the user
-                        _unitOfWork.ApplicationUser.Remove(user);
-                        if (user.CompanyId != null)
-                        {
-                            var company = await _unitOfWork.Company.GetAsync(c => c.Id == user.CompanyId);
-                            _unitOfWork.Company.Remove(company);
-                        }
+                        await HandleUserDeletionAsync(user);
                         _unitOfWork.Save();
 
-                        successMessage = "Delete User Successfully";
+                        TempData["success"] = "User deleted successfully";
                         return RedirectToAction("Index");
 
                     default:
                         return RedirectToAction("Index");
                 }
-
-                // Update user status
-                _unitOfWork.ApplicationUser.Update(user);
-                _unitOfWork.Save();
 
                 // Create and save notification
                 var notification = new Notification
@@ -219,6 +211,7 @@ namespace FPTJobMatch.Areas.Admin.Controllers
                 };
 
                 _unitOfWork.Notification.Add(notification);
+
                 _unitOfWork.Save();
 
                 TempData["success"] = successMessage;
@@ -229,6 +222,25 @@ namespace FPTJobMatch.Areas.Admin.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        private async Task HandleUserDeletionAsync(ApplicationUser user)
+        {
+            if (await _userManager.IsInRoleAsync(user, SD.Role_Employer))
+            {
+                await _unitOfWork.Category.NullifyCreatedByUserIdAsync(user.Id);
+                //await _unitOfWork.Company.RemoveByEmployerIdAsync(user.Id);
+                await _unitOfWork.Job.RemoveRangeByEmployerIdAsync(user.Id);
+            }
+            else
+            {
+                await _unitOfWork.JobSeekerDetail.RemoveByUserIdAsync(user.Id);
+            }
+
+            await _unitOfWork.Notification.RemoveBySenderIdAsync(user.Id);
+            await _unitOfWork.Notification.RemoveByReceiverIdAsync(user.Id);
+
+            _unitOfWork.ApplicationUser.Remove(user);
         }
 
         [HttpPost]
@@ -274,6 +286,39 @@ namespace FPTJobMatch.Areas.Admin.Controllers
             catch (Exception ex)
             {
                 return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> UserDetail(string userId)
+        {
+            try
+            {
+                ApplicationUser user = await _unitOfWork.ApplicationUser.GetAsync(u => u.Id == userId);
+
+                if (user == null)
+                {
+                    TempData["error"] = "User not found";
+                    return RedirectToAction(nameof(Index));
+                }
+
+                if (await _userManager.IsInRoleAsync(user, SD.Role_Employer))
+                {
+                    Company company = await _unitOfWork.Company.GetAsync(c => c.EmployerId == user.Id, includeProperties: "City");
+                    ViewBag.Company = company;
+                    ViewBag.Role = "Employer";
+                } else
+                {
+                    JobSeekerDetail jobSeekerDetail = await _unitOfWork.JobSeekerDetail.GetAsync(u => u.JobSeekerId == user.Id);
+                    ViewBag.JobSeekerDetail = jobSeekerDetail;
+                    ViewBag.Role = "JobSeeker";
+                } 
+
+                return View(user);
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
             }
         }
 

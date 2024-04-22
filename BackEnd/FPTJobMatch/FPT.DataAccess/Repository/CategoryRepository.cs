@@ -35,5 +35,14 @@ namespace FPT.DataAccess.Repository
         {
             _db.Categories.Update(category);
         }
+
+        public async Task NullifyCreatedByUserIdAsync(string userId)
+        {
+            var categories = await _db.Categories.Where(c => c.CreatedByUserId == userId).ToListAsync();
+            foreach (var category in categories)
+            {
+                category.CreatedByUserId = null;
+            }
+        }
     }
 }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "it6Ld2tF6AnVLG63d+W+yLj2ABL9VbQ+S9LVrqFS/4s=",
+  "Hash": "wJTBVA8PTff2PqBtFCu123boi3yhj2RZaYxNkFtXfKw=",
   "Source": "FPTJobMatch",
   "BasePath": "_content/FPTJobMatch",
   "Mode": "Default",
@@ -300,6 +300,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\filecv\\bc2cf43a-95f0-4b3c-9cc4-ab84592b284a.pdf"
+    },
+    {
+      "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\filecv\\c1f3627c-f38d-43ae-bad0-33c725ac310e.pdf",
+      "SourceId": "FPTJobMatch",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\",
+      "BasePath": "_content/FPTJobMatch",
+      "RelativePath": "filecv/c1f3627c-f38d-43ae-bad0-33c725ac310e.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\filecv\\c1f3627c-f38d-43ae-bad0-33c725ac310e.pdf"
     },
     {
       "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\filecv\\e67a17cf-3bf8-4dc2-9af1-baece11a0f19.pdf",

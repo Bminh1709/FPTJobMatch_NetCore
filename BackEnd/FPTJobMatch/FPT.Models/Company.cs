@@ -23,5 +23,9 @@ namespace FPT.Models
         public int? CityId { get; set; }
         [ForeignKey("CityId")]
         public City City { get; set; }
+
+        public string? EmployerId { get; set; }
+        [ForeignKey("EmployerId")]
+        public ApplicationUser? Employer { get; set; }
     }
 }

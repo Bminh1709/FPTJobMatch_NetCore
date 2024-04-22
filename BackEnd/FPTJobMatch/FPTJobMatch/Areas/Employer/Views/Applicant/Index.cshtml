@@ -10,20 +10,15 @@
     <!-- Searching box -->
     <div class="rounded-xl p-5 sm:p-10 bg-cover bg-fixed text-center" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/images/system/fptdiscussion.jpg);">
         <div class="w-full sm:w-11/12 lg:w-4/5 xl:w-3/4 mx-auto">
-            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">22 Jobs </span>Available Now</p>
-            <div class="flex flex-wrap gap-4 text-white items-center justify-center text-sm font-semibold tracking-widest">
-                <a href="" class="hover:underline">HOME</a>
-                <div>
-                    <i class="fa-solid fa-angle-right"></i>
-                    <input type="number" id="job_id" value="@Model.JobId" hidden />
-                    <a href="" class="hover:underline">@Model.JobTitle</a>
-                </div>
-                <div>
-                    <i class="fa-solid fa-angle-right"></i>
-                    <a href="" class="text-MyPaleGrey">CANDIDATE LIST</a>
-                </div>
+            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">Success </span>Begins Here</p>
+            <div class="mt-5 flex flex-wrap gap-4 text-white items-center justify-center text-sm font-semibold tracking-widest">
+                <a asp-area="Employer" asp-controller="Home" asp-action="Index" class="hover:underline">HOME</a>
+                <i class="fa-solid fa-angle-right"></i>
+                <a asp-area="Employer" asp-controller="Home" asp-action="Index" class="hover:underline">@Model.JobTitle.ToUpper()</a>
+                <i class="fa-solid fa-angle-right"></i>
+                <a class="text-MyPaleGrey">CANDIDATE LIST</a>
             </div>
-
+            <input type="number" id="job_id" value="@Model.JobId" hidden />
         </div>
     </div>
 
@@ -117,7 +112,7 @@
     <div id="cvFormSubmitted" class="hidden absolute top-0 bottom-0 left-0 right-0 bg-black bg-opacity-50 z-10">
         <div class="bg-white mx-auto w-11/12 md:w-3/4 xl:w-1/2 h-fit rounded-lg mt-14">
             <div class="flex gap-4 items-center justify-between p-3">
-                <p class="text-MyBlue text-lg font-semibold">Java Developer (Spring, MySQL) at Giao Hang Tiet Kiem</p>
+                <p class="text-MyBlue text-lg font-semibold">Review Application</p>
                 <button for="" id="close_cvFormSubmitted" class="text-2xl text-MyDarkGrey hover:cursor-pointer hover:text-MyBlue"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="w-full h-0.5 bg-MyVeryPaleGrey"></div>

@@ -1,6 +1,7 @@
 ﻿using FPT.DataAccess.Data;
 using FPT.DataAccess.Repository.IRepository;
 using FPT.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FPT.DataAccess.Repository
 {
@@ -10,6 +11,15 @@ namespace FPT.DataAccess.Repository
         public JobSeekerDetailRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
+        }
+
+        public async Task RemoveByUserIdAsync(string userId)
+        {
+            var detail = await _db.JobSeekerDetails.FirstOrDefaultAsync(d => d.JobSeekerId == userId);
+            if (detail != null)
+            {
+                _db.JobSeekerDetails.Remove(detail);
+            }
         }
 
         public void Update(JobSeekerDetail jobSeekerDetail)

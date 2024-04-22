@@ -1,0 +1,125 @@
+﻿@using FPT.Utility
+@model ApplicationUser
+@{
+    ViewData["Title"] = @Model.Name;
+}
+
+
+<div class="px-6 md:px-16 bg-MyVeryPaleGrey min-h-screen pb-20">
+
+    <div class="grid grid-cols-1 sm:grid-cols-8 gap-6 py-7">
+        <div class="col-span-4 lg:col-span-3 xl:col-span-2">
+            <div class="bg-white min-w-44-white p-3 border-t-4 border-MyBlue">
+                <div class="flex gap-3 items-center">
+                    <div class="border border-MyGrey p-1 rounded-full">
+                        <img src="~/images/avatar/@(Model.Avatar ?? "maleavt.jpg")" alt="" class="w-20 h-20 rounded-full object-cover">
+                    </div>
+                    <div>
+                        <p class="font-medium text-lg">@Model.Name</p>
+                        @if (ViewBag.Role == "JobSeeker") {
+                            <p class="text-sm text-MyDarkGrey">Currently finding a job</p>
+                        } else {
+                            <p class="text-sm text-MyDarkGrey">Currently finding employees</p>
+                        }
+                    </div>
+
+                </div>
+                <p class="text-sm leading-6 mt-1 mb-5">
+                    "Hello Admin, manage users efficiently and effectively with our admin tools."
+                </p>
+                <ul class="bg-MyPaleBlue py-2 px-3 text-sm">
+                    <li class="flex items-center py-3">
+                        <span>Status</span>
+                        <span class="ml-auto">
+                            <span class="bg-MyBlue py-1 px-2 rounded text-white text-sm">@Model.AccountStatus</span>
+                        </span>
+                    </li>
+                    <li class="flex items-center py-3">
+                        <span>Member since</span>
+                        <span class="ml-auto">@Model.CreatedAt.ToString("MMM dd, yyyy")</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="bg-white p-5 mt-5">
+                <p class="text-lg font-bold text-MyBlue mb-5">Social accounts</p>
+                <div class="flex flex-col gap-4 text-sm">
+                    <div class="flex gap-3 items-center">
+                        <div class="w-8 flex justify-center">
+                            <i class="text-2xl text-MyBlue fa-brands fa-facebook-f"></i>
+                        </div>
+                        <div class="w-full">
+                            <p class="font-semibold">Facebook account</p>
+                            <a href="www.facbook.com/bminh" class="text-MyBlue text-xs underline w-full">www.facbook.com/bminh</a>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 items-center">
+                        <div class="w-8 flex justify-center">
+                            <i class="text-2xl text-MyBlue fa-brands fa-linkedin-in"></i>
+                        </div>
+                        <div class="w-full">
+                            <p class="font-semibold">Linkedin account</p>
+                            <a href="www.facbook.com/bminh" class="text-MyBlue text-xs underline w-full">www.facbook.com/bminh</a>
+                        </div>
+                    </div>
+                    <div class="flex gap-3 items-center">
+                        <div class="w-8 flex justify-center">
+                            <i class="text-2xl text-MyBlue fa-brands fa-twitter"></i>
+                        </div>
+                        <div class="w-full">
+                            <p class="font-semibold">Twitter account</p>
+                            <a href="www.facbook.com/bminh" class="text-MyBlue text-xs underline w-full">www.facbook.com/bminh</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-span-4 lg:col-span-5 xl:col-span-6">
+            <div id="Profile_section">
+                <div class="bg-white rounded-md p-6">
+                    <p class="font-bold text-xl mb-5">General Information</p>
+                    @if (ViewBag.Role == "JobSeeker") {
+                        <p class="font-semibold mb-1">About me</p>
+                        <p>@ViewBag.JobSeekerDetail.AboutMe</p>
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-7">
+                            <div>
+                                <p class="font-medium mb-2">Email Address</p>
+                                <p>@Model.Email</p>
+                            </div>
+                            <div>
+                                <p class="font-medium mb-2">Phone number</p>
+                                <p>@Model.PhoneNumber</p>
+                            </div>
+                            <div>
+                                <p class="font-medium mb-2">Date Of Birth</p>
+                                <p>@ViewBag.JobSeekerDetail.DateOfBirth</p>
+                            </div>
+                            <div>
+                                <p class="font-medium mb-2">Gender</p>
+                                <p>@ViewBag.JobSeekerDetail.Gender</p>
+                            </div>
+                            <div>
+                                <p class="font-medium mb-2">Address</p>
+                                <p>@ViewBag.JobSeekerDetail.Address</p>
+                            </div>
+                        </div>
+                    } else {
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-7">
+                            <div>
+                                <p class="font-medium mb-2">Company Name</p>
+                                <p>@ViewBag.Company?.Name</p>
+                            </div>
+                            <div>
+                                <p class="font-medium mb-2">City</p>
+                                <p>@(ViewBag.Company?.City != null ? ViewBag.Company.City.Name : "Unknown")</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+

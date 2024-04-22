@@ -13,7 +13,9 @@ $('body').on('click', '.view_cvFormSubmitted', function () {
             type: 'GET',
             data: { applicantId: applicantId, jobId: jobId },
             success: function (rs) {
+                console.log(rs)
                 if (rs.applicant != null) {
+                    console.log(rs.applicant)
                     $('#applicant_id').attr('value', rs.applicant.id);
                     $('#CV_id').attr('value', rs.applicant.cvId);
                     $('#applicant_name').attr('value', rs.applicant.name);
