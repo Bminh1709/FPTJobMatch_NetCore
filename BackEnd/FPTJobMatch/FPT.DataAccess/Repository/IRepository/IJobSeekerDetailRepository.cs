@@ -10,5 +10,6 @@ namespace FPT.DataAccess.Repository.IRepository
     public interface IJobSeekerDetailRepository : IRepository<JobSeekerDetail>
     {
         public void Update(JobSeekerDetail jobSeekerDetail);
+        Task RemoveByUserIdAsync(string userId);
     }
 }

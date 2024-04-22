@@ -77,7 +77,8 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                     {
                         Name = model.CompanyName,
                         CityId = model.CityId,
-                        CreatedAt = DateTime.UtcNow
+                        CreatedAt = DateTime.UtcNow,
+                        Employer = user
                     };
 
                     // Associate the company with the user
@@ -86,6 +87,8 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                     // Add Company to DB
                     _unitOfWork.Company.Add(company);
                     _unitOfWork.Save();
+
+                    TempData["success"] = "Sign up successfully, wait for approving";
 
                     // Redirect to Login Page
                     return RedirectToAction("Index", "Access", new { area = "" });

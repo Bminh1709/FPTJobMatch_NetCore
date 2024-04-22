@@ -1,6 +1,7 @@
 ﻿using FPT.DataAccess.Data;
 using FPT.DataAccess.Repository.IRepository;
 using FPT.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace FPT.DataAccess.Repository
 {
@@ -15,6 +16,18 @@ namespace FPT.DataAccess.Repository
         public void Update(Notification notification)
         {
             _db.Notifications.Update(notification);
+        }
+
+        public async Task RemoveBySenderIdAsync(string senderId)
+        {
+            var notifications = await _db.Notifications.Where(n => n.SenderId == senderId).ToListAsync();
+            _db.Notifications.RemoveRange(notifications);
+        }
+
+        public async Task RemoveByReceiverIdAsync(string receiverId)
+        {
+            var notifications = await _db.Notifications.Where(n => n.ReceiverId == receiverId).ToListAsync();
+            _db.Notifications.RemoveRange(notifications);
         }
     }
 }

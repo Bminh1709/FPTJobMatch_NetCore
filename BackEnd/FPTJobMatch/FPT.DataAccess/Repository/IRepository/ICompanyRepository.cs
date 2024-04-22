@@ -11,5 +11,6 @@ namespace FPT.DataAccess.Repository.IRepository
     {
         public void Update(Company company);
         Task<bool> IsExistAsync(string companyName);
+        Task RemoveByEmployerIdAsync(string employerId);
     }
 }

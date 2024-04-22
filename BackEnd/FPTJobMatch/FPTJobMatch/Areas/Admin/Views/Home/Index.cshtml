@@ -90,7 +90,7 @@
                             <div class="flex gap-3 items-center">
                                 <img src="~/images/avatar/@(user.Avatar ?? "maleavt.jpg")" class="w-14 h-14 rounded-full object-cover p-1 border border-MyDarkGrey">
                                 <div class="break-all">
-                                    <a href="www" class="font-semibold text-lg hover:underline hover:text-MyBlue">@user.Name</a>
+                                            <a asp-area="Admin" asp-controller="Home" asp-action="UserDetail" asp-route-userId="@user.Id" target="_blank" class="font-semibold text-lg hover:underline hover:text-MyBlue">@user.Name</a>
                                     <p class="text-sm text-MyDarkGrey">@user.Email</p>
                                 </div>
                             </div>

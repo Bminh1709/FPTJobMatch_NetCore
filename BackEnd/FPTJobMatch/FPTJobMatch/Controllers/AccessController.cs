@@ -46,12 +46,12 @@ namespace FPTJobMatch.Controllers
                 // Check Account Status
                 if (user.AccountStatus == SD.StatusSuspending)
                 {
-                    ModelState.AddModelError(string.Empty, "This account has been suspended.");
+                    ModelState.AddModelError(string.Empty, "This account has been suspended");
                     return View(model);
                 }
                 if (user.AccountStatus == SD.StatusPending)
                 {
-                    ModelState.AddModelError(string.Empty, "This account is still processing.");
+                    ModelState.AddModelError(string.Empty, "This account is still processing");
                     return View(model);
                 }
 

@@ -19,5 +19,7 @@ namespace FPT.DataAccess.Repository.IRepository
            string? keyword = null
         );
 
+        Task RemoveRangeByEmployerIdAsync(string employerId);
+
     }
 }

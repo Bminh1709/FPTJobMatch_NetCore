@@ -31,6 +31,12 @@ namespace FPT.DataAccess.Data
         {
             base.OnModelCreating(builder);
 
+            builder.Entity<ApplicationUser>()
+                .HasOne(u => u.Company)
+                .WithOne(c => c.Employer)
+                .HasForeignKey<Company>(c => c.EmployerId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             builder.Entity<JobType>().HasData(
                 new JobType { Id = 1, Name = "Part Time" },
                 new JobType { Id = 2, Name = "Full Time" },

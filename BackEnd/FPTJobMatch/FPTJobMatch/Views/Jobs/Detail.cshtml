@@ -8,11 +8,11 @@
     <!-- Banner -->
     <div class="rounded-xl p-5 sm:p-10 bg-cover bg-fixed" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/images/system/fptdiscussion.jpg);">
         <div class="flex flex-wrap gap-3">
-            <div class="p-2 border border-white rounded-md w-fit"><img src="~/images/companyLogo/@(Model.Company.Logo ?? "noLogoCompany.jpg")" alt="Avatar" class="h-32 w-32 object-contain"></div>
+            <div class="p-2 border border-white rounded-md w-fit"><img src="~/images/companyLogo/@(Model.Company?.Logo ?? "noLogoCompany.jpg")" alt="Avatar" class="h-32 w-32 object-contain"></div>
             <div class="flex flex-col gap-3 justify-between text-white">
                 <div>
                     <p class="text-2xl font-semibold">@Model.Title</p>
-                    <p class="my-1"><span class="font-semibold">@Model.Company.Name. </span>@Model.Company.City.Name City</p>
+                    <p class="my-1"><span class="font-semibold">@(Model.Company?.Name ?? "Unknown"). </span>@(Model.Company?.City != null ? Model.Company.City.Name : "Unknown") City</p>
                     <p class="text-sm">Posted @DateTimeHelper.GetTimeAgoString(Model.CreatedAt)</p>
                 </div>
                 <a href="" class="w-fit p-3 bg-MyBlue rounded-md text-xs hover:bg-MyPaleBlue hover:text-MyBlue">View Company</a>
@@ -30,11 +30,11 @@
                 </div>
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-circle-info text-MyGrey text-lg"></i>
-                    <p>@Model.Category.Name</p>
+                    <p>@(Model.Category?.Name ?? "Unknown")</p>
                 </div>
                 <div class="flex items-center gap-2">
                     <i class="fa-regular fa-clock text-MyGrey text-lg"></i>
-                    <p>@Model.JobType.Name</p>
+                    <p>@(Model.JobType?.Name ?? "Unknown")</p>
                 </div>
                 <div class="flex items-center gap-2">
                     <i class="fa-solid fa-clock-rotate-left text-MyGrey text-lg"></i>
@@ -67,12 +67,12 @@
         </div>
         <div class="h-0.5 w-full bg-MyPaleGrey my-5"></div>
         <div>
-            <p class="text-2xl font-semibold">@Model.Company.Name</p>
-            <p class="text-sm text-MyDarkGrey">@Model.Company.About</p>
+            <p class="text-2xl font-semibold">@(Model.Company?.Name ?? "Unknown")</p>
+            <p class="text-sm text-MyDarkGrey">@(Model.Company?.About ?? "Unknown")</p>
             <div class="flex flex-wrap gap-5 md:gap-10 mt-3">
                 <div class="font-semibold">
                     <p class="text-MyDarkGrey text-xs">Company Size</p>
-                    <p class="text-sm">@Model.Company.Size</p>
+                    <p class="text-sm">@Model.Company?.Size</p>
                 </div>
             </div>
         </div>

@@ -12,9 +12,9 @@
     <!-- Searching box -->
     <div class="rounded-xl p-5 sm:p-10 bg-cover bg-fixed text-center" style="background-image: linear-gradient(to bottom, rgba(2,79,160), transparent), url(/images/system/fptdiscussion.jpg);">
         <div class="w-full sm:w-11/12 lg:w-4/5 xl:w-3/4 mx-auto">
-            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">22 Jobs </span>Available Now</p>
+            <p class="font-semibold text-3xl text-white mb-2"><span class="text-MyOrange">265 Jobs </span>Available Now</p>
             <p class="text-white mb-6">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero repellendus magni, atque delectus molestias quis
+                Your Premier Recruitment Destination for Seamless Career Connections. Dive into a world of endless possibilities as you explore tailored job listings designed to match your unique skills and aspirations
             </p>
             <form asp-controller="Jobs" asp-action="Index" method="get" class="flex flex-col gap-3 w-full">
                 <div class="flex flex-col sm:flex-row gap-5">
@@ -59,25 +59,25 @@
             {
                 <div data-id="@job.Id" class="job_item rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:border-MyOrange hover:border-r-8">
                     <div class="flex flex-wrap justify-center md:justify-start gap-3">
-                        <img src="~/images//companyLogo/@(job.Company.Logo ?? "noLogoCompany.jpg")" alt="Company Logo" class="h-16 w-16 p-4 border border-MyPaleGrey rounded-lg object-contain">
+                        <img src="~/images//companyLogo/@(job.Company?.Logo ?? "noLogoCompany.jpg")" alt="Company Logo" class="h-16 w-16 p-4 border border-MyPaleGrey rounded-lg object-contain">
                         <div>
-                            <p class="font-semibold text-xl">@job.Company.Name</p>
-                                <p class="text-xs text-MyDarkGrey">Posted @DateTimeHelper.GetTimeAgoString(job.CreatedAt)</p>
+                            <p class="font-semibold text-xl">@(job.Company?.Name ?? "Unknown")</p>
+                            <p class="text-xs text-MyDarkGrey">Posted @DateTimeHelper.GetTimeAgoString(job.CreatedAt)</p>
                         </div>
                     </div>
                     <p class="font-semibold sm:text-xl my-4">@job.Title</p>
                     <div class="flex items-center gap-5 flex-wrap">
                         <div class="flex gap-2 items-center">
-                                <i class="fa-solid fa-circle-info text-MyDarkGrey text-lg"></i>
-                            <p class="text-xs">@job.Category.Name</p>
+                            <i class="fa-solid fa-circle-info text-MyDarkGrey text-lg"></i>
+                            <p class="text-xs">@(job.Category?.Name ?? "Unknown")</p>
                         </div>
                         <div class="flex gap-2 items-center">
                             <i class="fa-regular fa-clock text-MyDarkGrey text-lg"></i>
-                            <p class="text-xs">@job.JobType.Name</p>
+                            <p class="text-xs">@(job.JobType?.Name ?? "Unknown")</p>
                         </div>
                         <div class="flex gap-2 items-center">
                             <i class="fa-solid fa-earth-asia text-MyDarkGrey text-lg"></i>
-                            <p class="text-xs">@job.Company.City.Name City</p>
+                            <p class="text-xs">@(job.Company?.City != null ? job.Company.City.Name : "Unknown") City</p>
                         </div>
                     </div>
                 </div>
@@ -230,7 +230,7 @@
             <div class="col-span-1 flex flex-col justify-center w-full sm:w-1/2">
                 <p class="text-MyOrange font-bold">WE ARE</p>
                 <p class="text-5xl font-semibold text-white">HIRING</p>
-                <p class="text-white">Choose from a variety of Happy Birthday ribbon designs or create your own! Shop now for custom gift giving supplies & more!</p>
+                <p class="text-white">FPTJobMatch: Your Bridge to Career Success. Explore tailored job listings, connect with top employers, and take the next step in your professional journey.</p>
                 <a href="" class="w-fit btn py-2 px-3 flex justify-center items-center text-sm mt-3"><i class="fa-solid fa-circle-check"></i><span class="ml-2">Apply Now</span></a>
             </div>
             <img src="~/images/system/FPT.png" alt="" class="h-14 absolute right-14 hidden sm:block">

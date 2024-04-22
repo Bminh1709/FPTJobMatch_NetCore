@@ -56,8 +56,15 @@ namespace FPTJobMatch.Controllers
         {
             try { 
                 string? currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+                if (string.IsNullOrWhiteSpace(currentUserId))
+                {
+                    TempData["error"] = "Sign In First";
+                    return RedirectToAction("Index", "Access", new { area = "" });
+                }
+
                 IEnumerable<Notification> notifications = await _unitOfWork.Notification.GetAllAsync(n => n.ReceiverId == currentUserId, includeProperties: "Sender");
-                return View(notifications);
+                return View(notifications.OrderByDescending(n => n.CreatedAt));
             }
             catch (Exception ex)
             {

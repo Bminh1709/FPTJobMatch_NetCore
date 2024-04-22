@@ -27,6 +27,7 @@ namespace FPTJobMatch.Controllers
 
                 // Call GetAllFilteredAsync method to get filtered jobs
                 var jobList = await _unitOfWork.Job.GetAllFilteredAsync(
+                    c => c.Category.IsApproved == true,
                     cityId: cityId,
                     jobtypeId: jobtypeId,
                     keyword: keyword,
