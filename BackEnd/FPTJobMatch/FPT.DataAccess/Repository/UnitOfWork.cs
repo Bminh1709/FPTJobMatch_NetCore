@@ -13,6 +13,7 @@ namespace FPT.DataAccess.Repository
     public class UnitOfWork : IUnitOfWork
     {
         private ApplicationDbContext _db;
+        private UserManager<ApplicationUser> _userManager;
         public IApplicationUserRepository ApplicationUser { get; private set; }
 
         public IJobSeekerDetailRepository JobSeekerDetail { get; private set; }
@@ -31,10 +32,12 @@ namespace FPT.DataAccess.Repository
         public IHelpTypeRepository HelpType { get; private set; }
         public IHelpArticleRepository HelpArticle { get; private set; }
 
-        public UnitOfWork(ApplicationDbContext db)
+        public UnitOfWork(ApplicationDbContext db, UserManager<ApplicationUser> userManager)
         {
             _db = db;
-            ApplicationUser = new ApplicationUserRepository(_db);
+            _userManager = userManager;
+
+            ApplicationUser = new ApplicationUserRepository(_db, _userManager);
             JobSeekerDetail = new JobSeekerDetailRepository(_db);
             Company = new CompanyRepository(_db);
             Category = new CategoryRepository(_db);

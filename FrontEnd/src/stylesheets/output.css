@@ -1229,11 +1229,6 @@ video {
   border-width: 2px;
 }
 
-.border-x {
-  border-left-width: 1px;
-  border-right-width: 1px;
-}
-
 .border-b {
   border-bottom-width: 1px;
 }
@@ -1244,10 +1239,6 @@ video {
 
 .border-t-4 {
   border-top-width: 4px;
-}
-
-.border-t {
-  border-top-width: 1px;
 }
 
 .border-MyBlue {
@@ -1602,10 +1593,6 @@ video {
   padding-top: 2rem;
 }
 
-.pb-3 {
-  padding-bottom: 0.75rem;
-}
-
 .text-left {
   text-align: left;
 }
@@ -1865,11 +1852,6 @@ video {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-MyPaleGrey:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(240 236 236 / var(--tw-bg-opacity));
-}
-
 .hover\:text-MyBlue:hover {
   --tw-text-opacity: 1;
   color: rgb(2 79 160 / var(--tw-text-opacity));
@@ -1935,6 +1917,11 @@ video {
 
 .focus\:outline-MyOrange:focus {
   outline-color: #F2721E;
+}
+
+.disabled\:text-MyGrey:disabled {
+  --tw-text-opacity: 1;
+  color: rgb(214 212 212 / var(--tw-text-opacity));
 }
 
 @media (min-width: 640px) {
@@ -2109,20 +2096,20 @@ video {
 }
 
 @media (min-width: 1280px) {
-  .xl\:col-span-2 {
-    grid-column: span 2 / span 2;
-  }
-
-  .xl\:col-span-6 {
-    grid-column: span 6 / span 6;
-  }
-
   .xl\:col-span-1 {
     grid-column: span 1 / span 1;
   }
 
+  .xl\:col-span-2 {
+    grid-column: span 2 / span 2;
+  }
+
   .xl\:col-span-3 {
     grid-column: span 3 / span 3;
+  }
+
+  .xl\:col-span-6 {
+    grid-column: span 6 / span 6;
   }
 
   .xl\:grid {

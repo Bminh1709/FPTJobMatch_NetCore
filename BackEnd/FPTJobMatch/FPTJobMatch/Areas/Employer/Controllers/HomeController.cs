@@ -2,6 +2,7 @@
 using FPT.Models;
 using FPT.Models.ViewModels;
 using FPT.Utility;
+using FPT.Utility.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> Index(int? jobTypeId)
+        public async Task<IActionResult> Index(int? jobTypeId, int? pageIndex)
         {
             try { 
                 string? currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -34,17 +35,17 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                     return RedirectToAction("Index", "Access", new { area = "" });
                 }
 
-                IEnumerable<Job> jobsTask;
+                PaginatedList<Job> jobsTask;
+
                 if (jobTypeId.HasValue)
                 {
-                    jobsTask = await _unitOfWork.Job.GetAllAsync(j => j.EmployerId == currentUserId && j.JobTypeId == jobTypeId);
+                    ViewBag.JobTypeId = jobTypeId;
+                    jobsTask = await _unitOfWork.Job.GetAllFilteredAsync(j => j.EmployerId == currentUserId && j.JobTypeId == jobTypeId, pageIndex: pageIndex ?? 1);
                 }
                 else
                 {
-                    jobsTask = await _unitOfWork.Job.GetAllAsync(j => j.EmployerId == currentUserId);
+                    jobsTask = await _unitOfWork.Job.GetAllFilteredAsync(j => j.EmployerId == currentUserId, pageIndex: pageIndex ?? 1);
                 }
-
-                var jobsList = jobsTask.ToList();
 
                 // Retrieve job types and categories
                 var jobTypesList = await _unitOfWork.JobType.GetAllAsync();
@@ -55,7 +56,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
 
                 var viewModel = new JobVM
                 {
-                    JobList = jobsList,
+                    JobList = jobsTask,
                     JobTypeList = jobTypesList.Select(u => new SelectListItem
                     {
                         Text = u.Name,

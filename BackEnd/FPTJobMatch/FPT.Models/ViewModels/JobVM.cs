@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using FPT.Utility.Helpers;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace FPT.Models.ViewModels
     {
         // List of Jobs for displaying
         [ValidateNever]
-        public IEnumerable<Job> JobList { get; set; }
+        public PaginatedList<Job> JobList { get; set; }
         // Job for creating
         public Job JobUploadModel { get; set; }
 

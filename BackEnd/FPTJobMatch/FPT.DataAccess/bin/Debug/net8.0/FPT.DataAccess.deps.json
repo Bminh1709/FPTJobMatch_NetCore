@@ -1746,6 +1746,9 @@
         }
       },
       "FPT.Utility/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "8.0.3"
+        },
         "runtime": {
           "FPT.Utility.dll": {}
         }

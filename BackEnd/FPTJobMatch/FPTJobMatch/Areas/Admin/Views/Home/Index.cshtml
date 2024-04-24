@@ -1,7 +1,8 @@
 ﻿@using FPT.Utility
+@using FPT.Utility.Helpers
 @using Microsoft.AspNetCore.Identity
 @inject UserManager<ApplicationUser> UserManager
-@model IEnumerable<ApplicationUser>
+@model PaginatedList<ApplicationUser>
 @{
     ViewData["Title"] = "Home";
 }
@@ -120,13 +121,18 @@
         </table>
         </div>
 
-        <ul class="mt-7 flex gap-2 text-sm font-medium text-MyBlue ml-auto">
-            <li class="border border-MyBlue rounded-md w-7 h-7 flex items-center justify-center hover:bg-MyBlue hover:text-white hover:cursor-pointer"><i class="fa-solid fa-angle-left"></i></li>
-            <li class="border border-MyBlue rounded-md w-7 h-7 flex items-center justify-center hover:bg-MyBlue hover:text-white hover:cursor-pointer">1</li>
-            <li class="border border-MyBlue rounded-md w-7 h-7 flex items-center justify-center hover:bg-MyBlue hover:text-white hover:cursor-pointer">2</li>
-            <li class="border border-MyBlue rounded-md w-7 h-7 flex items-center justify-center hover:bg-MyBlue hover:text-white hover:cursor-pointer">3</li>
-            <li class="border border-MyBlue rounded-md w-7 h-7 flex items-center justify-center hover:bg-MyBlue hover:text-white hover:cursor-pointer"><i class="fa-solid fa-angle-right"></i></li>
-        </ul>
+            <div class="text-sm flex justify-center gap-5 mt-3 text-MyBlue ml-auto mt-7">
+                    <a class="flex items-center gap-2">
+                        <i class="fa-solid fa-angle-left"></i>
+                        <p class="hover:underline">Previous</p>
+                    </a>
+                    <a class="flex items-center gap-2">
+                        <p class="hover:underline">Next</p>
+                        <i class="fa-solid fa-angle-right"></i>
+                    </a>
+            </div>
+
+
     </div>
 
     <!-- Modify Status -->

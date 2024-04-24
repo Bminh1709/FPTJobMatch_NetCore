@@ -82,7 +82,28 @@
                     </div>
                 </div>
             }
+
+            <div class="text-sm flex justify-center gap-5 mt-3 text-MyOrange">
+                @if (Model.JobList.HasPreviousPage)
+                {
+                    <a asp-area="" asp-controller="Jobs" asp-action="Index" asp-route-cityId="@ViewBag.CityId" asp-route-jobtypeId="@ViewBag.JobtypeId" asp-route-keyword="@ViewBag.Keywords" asp-route-pageIndex="@(Model.JobList.PageIndex - 1)" class="flex items-center gap-2">
+                            <i class="fa-solid fa-angle-left"></i>
+                            <p class="hover:underline">Previous</p>
+                    </a>
+                }
+                @if (Model.JobList.HasNextPage)
+                {
+                    <a asp-area="" asp-controller="Jobs" asp-action="Index" asp-route-cityId="@ViewBag.CityId" asp-route-jobtypeId="@ViewBag.JobtypeId" asp-route-keyword="@ViewBag.Keywords" asp-route-pageIndex="@(Model.JobList.PageIndex + 1)" class="flex items-center gap-2">
+                            <p class="hover:underline">Next</p>
+                            <i class="fa-solid fa-angle-right"></i>
+                    </a>
+                }
+            </div>
+
+            
         </div>
+
+
         <div id="rightTab" class="col-span-2">
             <p id="noJobClick_message" class="text-MyOrange text-lg font-medium mt-2 text-center">Please select a job from the list on the left tab</p>
             <div id="jobDisplay_tab" class="hidden sticky top-0 h-fit rounded-md border border-MyGrey p-3 sm:p-6">

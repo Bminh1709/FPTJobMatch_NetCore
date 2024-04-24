@@ -10,3 +10,4 @@ D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMat
 D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPT.Utility\obj\Debug\net8.0\refint\FPT.Utility.dll
 D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPT.Utility\obj\Debug\net8.0\FPT.Utility.pdb
 D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPT.Utility\obj\Debug\net8.0\ref\FPT.Utility.dll
+D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPT.Utility\obj\Debug\net8.0\FPT.Utility.csproj.AssemblyReference.cache
