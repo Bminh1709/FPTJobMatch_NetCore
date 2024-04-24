@@ -20,24 +20,24 @@ namespace FPTJobMatch.Controllers
             _webHostEnvironment = webHostEnvironment;
         }
 
-        public async Task<IActionResult> Index(int? cityId, int? jobtypeId, string? keyword)
+        public async Task<IActionResult> Index(int? cityId, int? jobtypeId, string? keyword, int? pageIndex)
         {
             try { 
-                string? jobSeekerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+                string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
                 // Call GetAllFilteredAsync method to get filtered jobs
                 var jobList = await _unitOfWork.Job.GetAllFilteredAsync(
                     c => c.Category.IsApproved == true,
+                    includeProperties: "Company.City,JobType,Category",
                     cityId: cityId,
                     jobtypeId: jobtypeId,
                     keyword: keyword,
-                    includeProperties: "Company.City,JobType,Category"
+                    pageIndex: pageIndex ?? 1
                 );
 
-                if (!string.IsNullOrEmpty(keyword))
-                {
-                    ViewBag.Keywords = keyword;
-                }
+                ViewBag.Keywords = keyword;
+                ViewBag.CityId = cityId;
+                ViewBag.JobtypeId = jobtypeId;
 
                 var cityList = await _unitOfWork.City.GetAllAsync();
                 var jobTypeList = await _unitOfWork.JobType.GetAllAsync();
@@ -57,7 +57,7 @@ namespace FPTJobMatch.Controllers
                         Value = u.Id.ToString(),
                         Selected = (u.Id == jobtypeId) // Select the current job type if provided
                     }),
-                    JobSeeker = await _unitOfWork.ApplicationUser.GetAsync(u => u.Id == jobSeekerId)
+                    JobSeeker = await _unitOfWork.ApplicationUser.GetAsync(u => u.Id == userId)
                 };
 
                 return View(jobPageVM);

@@ -10,6 +10,6 @@ namespace FPT.DataAccess.Repository.IRepository
     public interface IHelpArticleRepository : IRepository<HelpArticle>
     {
         public void Update(HelpArticle helpArticle);
-        Task<IEnumerable<HelpArticle>> GetAllArticlesFilteredAsync(string? status = null, string? keyword = null);
+        Task<IEnumerable<HelpArticle>> GetAllArticlesFilteredAsync(string? sortType = null, string? keyword = null);
     }
 }

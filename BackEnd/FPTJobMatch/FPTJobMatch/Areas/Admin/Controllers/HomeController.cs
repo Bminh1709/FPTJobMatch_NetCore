@@ -2,6 +2,7 @@
 using FPT.Models;
 using FPT.Models.ViewModels;
 using FPT.Utility;
+using FPT.Utility.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -22,53 +23,11 @@ namespace FPTJobMatch.Areas.Admin.Controllers
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> Index(string? userType, string? sortType, string? keyword)
+        public async Task<IActionResult> Index(string? userType, string? sortType, string? keyword, int? pageIndex)
         {
             try
             {
-                var users = await _unitOfWork.ApplicationUser.GetAllAsync();
-
-                // Filter users based on userType
-                if (!string.IsNullOrEmpty(userType))
-                {
-                    ViewBag.UserType = userType;
-                    var role = userType switch
-                    {
-                        SD.Role_JobSeeker => SD.Role_JobSeeker,
-                        SD.Role_Employer => SD.Role_Employer,
-                        _ => null
-                    };
-
-                    if (role != null)
-                    {
-                        users = users.Where(u => _userManager.IsInRoleAsync(u, role).Result);
-                    }
-                }
-
-                // Exclude Admin
-                users = users.Where(u => !_userManager.IsInRoleAsync(u, SD.Role_Admin).Result);
-
-                // Sort users based on sortType
-                if (!string.IsNullOrEmpty(sortType))
-                {
-                    ViewBag.SortType = sortType;
-                    if (sortType == "NewestFirst")
-                    {
-                        users = users.OrderByDescending(u => u.CreatedAt);
-                    }
-                    else if (sortType == "OldestFirst")
-                    {
-                        users = users.OrderBy(u => u.CreatedAt);
-                    }
-                }
-
-                // Filter users based on keyword
-                if (!string.IsNullOrEmpty(keyword))
-                {
-                    ViewBag.Keyword = keyword;
-                    users = users.Where(u => u.Name.ToLower().Contains(keyword.ToLower()) || u.Email.ToLower().Contains(keyword.ToLower()));
-                }
-
+                PaginatedList<ApplicationUser> users = await _unitOfWork.ApplicationUser.GetFilteredUsersAsync(userType, sortType, keyword, pageIndex ?? 1);
                 return View(users);
             }
             catch (Exception ex)
