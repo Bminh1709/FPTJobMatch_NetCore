@@ -1,5 +1,6 @@
 ﻿@using FPT.Utility
 @using Microsoft.AspNetCore.Identity
+@using System.Security.Claims
 @inject SignInManager<ApplicationUser> SignInManager
 
 <!DOCTYPE html>
@@ -75,6 +76,7 @@
 
                 @if (SignInManager.IsSignedIn(User))
                 {
+                    <input id="userId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" type="text" hidden />
                     <div class="relative" id="profile_select">
                         <div class="flex items-center gap-2 text-MyBlue hover:cursor-pointer">
                             <img src="~/images/avatar/maleavt.jpg" alt="" class="h-10 w-10 rounded-full">
@@ -227,6 +229,7 @@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

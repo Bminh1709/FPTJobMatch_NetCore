@@ -57,7 +57,8 @@ namespace FPT.DataAccess.DbInitializer
                     Email = "minhbee203@gmail.com",
                     Name = "Bui Minh",
                     CreatedAt = DateTime.UtcNow,
-                    AccountStatus = SD.StatusActive
+                    AccountStatus = SD.StatusActive,
+                    EmailConfirmed = true
                 };
 
                 var result = _userManager.CreateAsync(adminUser, "Aa12345.").Result;

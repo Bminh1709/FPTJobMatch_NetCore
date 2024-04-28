@@ -4,6 +4,7 @@ using FPT.Models;
 using FPT.Models.ViewModels;
 using FPT.Utility;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -14,11 +15,13 @@ namespace FPTJobMatch.Areas.Employer.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IEmailSender _emailSender;
 
-        public AccountController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
+        public AccountController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, IEmailSender emailSender)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
+            _emailSender = emailSender;
         }
 
         public async Task<IActionResult> SignUp()
@@ -88,10 +91,15 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                     _unitOfWork.Company.Add(company);
                     _unitOfWork.Save();
 
-                    TempData["success"] = "Sign up successfully, wait for approving";
 
-                    // Redirect to Login Page
-                    return RedirectToAction("Index", "Access", new { area = "" });
+                    // Send Email for verifying
+                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var confirmationLink = Url.Action("ConfirmEmail", "Access", new { area = "", userId = user.Id, token }, Request.Scheme);
+                    var emailBody = $"Please confirm your email by clicking <a href=\"{confirmationLink}\">here</a>.";
+                    await _emailSender.SendEmailAsync(user.Email, "Confirm your email", emailBody);
+
+                    TempData["success"] = "Sign up successfully";
+                    return RedirectToAction("VerifyEmail", "Access", new { area = "", email = model.Email });
                 }
 
                 // Display Errors

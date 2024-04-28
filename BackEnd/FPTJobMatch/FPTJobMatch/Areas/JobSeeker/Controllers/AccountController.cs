@@ -4,6 +4,7 @@ using FPT.Models.ViewModels;
 using FPT.Utility;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FPTJobMatch.Areas.JobSeeker.Controllers
@@ -13,10 +14,12 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUnitOfWork _unitOfWork;
-        public AccountController(UserManager<ApplicationUser> userManager, IUnitOfWork unitOfWork)
+        private readonly IEmailSender _emailSender;
+        public AccountController(UserManager<ApplicationUser> userManager, IUnitOfWork unitOfWork, IEmailSender emailSender)
         {
             _userManager = userManager;
             _unitOfWork = unitOfWork;
+            _emailSender = emailSender;
         }
         public IActionResult SignUp()
         {
@@ -53,7 +56,7 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
                     {
                         await _userManager.AddToRoleAsync(user, SD.Role_JobSeeker);
 
-                        JobSeekerDetail jobSeekerDetail = new JobSeekerDetail
+                        JobSeekerDetail jobSeekerDetail = new()
                         {
                             JobSeeker = user,
                         };
@@ -61,8 +64,14 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
                         _unitOfWork.JobSeekerDetail.Add(jobSeekerDetail);
                         _unitOfWork.Save();
 
+                        // Send Email for verifying
+                        var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                        var confirmationLink = Url.Action("ConfirmEmail", "Access", new { area = "", userId = user.Id, token }, Request.Scheme);
+                        var emailBody = $"Please confirm your email by clicking <a href=\"{confirmationLink}\">here</a>.";
+                        await _emailSender.SendEmailAsync(user.Email, "Confirm your email", emailBody);
+
                         TempData["success"] = "Sign up successfully";
-                        return RedirectToAction("Index", "Access", new { area = "" });
+                        return RedirectToAction("VerifyEmail", "Access", new { area = "", email = model.Email });
                     }
                     // Handle password-related errors separately
                     foreach (var error in result.Errors)

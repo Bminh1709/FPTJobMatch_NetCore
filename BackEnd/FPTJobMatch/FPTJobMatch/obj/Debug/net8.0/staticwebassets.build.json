@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wJTBVA8PTff2PqBtFCu123boi3yhj2RZaYxNkFtXfKw=",
+  "Hash": "4Zb53TsRao31NVNN23dz50GR22IIIsnstLBdNULL0Ug=",
   "Source": "FPTJobMatch",
   "BasePath": "_content/FPTJobMatch",
   "Mode": "Default",
@@ -492,6 +492,25 @@
       "OriginalItemSpec": "wwwroot\\images\\system\\blueLogo.png"
     },
     {
+      "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\system\\EmailSending.png",
+      "SourceId": "FPTJobMatch",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\",
+      "BasePath": "_content/FPTJobMatch",
+      "RelativePath": "images/system/EmailSending.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\system\\EmailSending.png"
+    },
+    {
       "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\system\\ErrorHandler.png",
       "SourceId": "FPTJobMatch",
       "SourceType": "Discovered",
@@ -663,6 +682,25 @@
       "OriginalItemSpec": "wwwroot\\images\\system\\Interview.png"
     },
     {
+      "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\system\\lock.png",
+      "SourceId": "FPTJobMatch",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\",
+      "BasePath": "_content/FPTJobMatch",
+      "RelativePath": "images/system/lock.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\system\\lock.png"
+    },
+    {
       "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\system\\mgmLogo.jpg",
       "SourceId": "FPTJobMatch",
       "SourceType": "Discovered",
@@ -739,6 +777,25 @@
       "OriginalItemSpec": "wwwroot\\js\\admin\\category.js"
     },
     {
+      "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\admin\\chat.js",
+      "SourceId": "FPTJobMatch",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\",
+      "BasePath": "_content/FPTJobMatch",
+      "RelativePath": "js/admin/chat.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\admin\\chat.js"
+    },
+    {
       "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\admin\\help.js",
       "SourceId": "FPTJobMatch",
       "SourceType": "Discovered",
@@ -775,6 +832,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\admin\\home.js"
+    },
+    {
+      "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\chat.js",
+      "SourceId": "FPTJobMatch",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\",
+      "BasePath": "_content/FPTJobMatch",
+      "RelativePath": "js/chat.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\chat.js"
     },
     {
       "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\employer\\account.js",
@@ -1155,6 +1231,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\lib\\signalr\\signalr.js",
+      "SourceId": "FPTJobMatch",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\",
+      "BasePath": "_content/FPTJobMatch",
+      "RelativePath": "lib/signalr/signalr.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\signalr\\signalr.js"
+    },
+    {
+      "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\lib\\signalr\\signalr.min.js",
+      "SourceId": "FPTJobMatch",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\",
+      "BasePath": "_content/FPTJobMatch",
+      "RelativePath": "lib/signalr/signalr.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\lib\\signalr\\signalr.min.js"
     }
   ]
 }
