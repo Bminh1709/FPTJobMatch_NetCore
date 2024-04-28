@@ -99,3 +99,7 @@ body {
 #profile_select:hover #profile_options {
     display: flex;
 }
+
+#chat_btn:hover #chat_text {
+    display: block;
+}

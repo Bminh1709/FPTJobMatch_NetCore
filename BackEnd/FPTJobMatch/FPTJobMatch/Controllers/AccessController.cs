@@ -43,6 +43,13 @@ namespace FPTJobMatch.Controllers
                     return View(model);
                 }
 
+                // Check if the email is confirmed
+                if (!user.EmailConfirmed)
+                {
+                    // Redirect to the VerifyEmail action
+                    return RedirectToAction("VerifyEmail", "Access", new { email = model.Email });
+                }
+
                 // Check Account Status
                 if (user.AccountStatus == SD.StatusSuspending)
                 {
@@ -94,7 +101,6 @@ namespace FPTJobMatch.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
-
 
         [HttpPost]
         public async Task<IActionResult> ResetPassword(string oldPassword, string newPassword, string confirmNewPassword)
@@ -153,6 +159,44 @@ namespace FPTJobMatch.Controllers
 
                 TempData["success"] = "Password updated successfully";
                 return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
+            }
+        }
+
+
+        public IActionResult VerifyEmail(string email)
+        {
+            ViewBag.EmailVerify = email;
+            return View();
+        }
+
+        public async Task<IActionResult> ConfirmEmail(string userId, string token)
+        {
+            try
+            {
+                if (userId == null || token == null)
+                {
+                    return RedirectToAction("GenericError", "Home", new { area = "", code = 400, errorMessage = "Invalid parameters: userId or token is null" });
+                }
+
+                var user = await _userManager.FindByIdAsync(userId);
+                if (user == null)
+                {
+                    return RedirectToAction("GenericError", "Home", new { area = "", code = 404, errorMessage = "User not found" });
+                }
+
+                var result = await _userManager.ConfirmEmailAsync(user, token);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Access", new { area = "" });
+                }
+                else
+                {
+                    return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = "Failed to confirm email" });
+                }
             }
             catch (Exception ex)
             {

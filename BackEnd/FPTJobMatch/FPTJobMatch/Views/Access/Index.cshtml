@@ -39,14 +39,14 @@
             <div class="bg-MyPaleGrey h-0.5 w-full"></div>
         </div>
         <div class="flex gap-3 justify-between h-10">
-            <div class="flex items-center justify-center gap-2 border border-MyOrange rounded-md w-full hover:bg-MyPaleOrange">
+            <a asp-area="" asp-controller="ExternalSignIn" asp-action="ExternalLogin" asp-route-provider="Facebook" class="flex items-center justify-center gap-2 border border-MyOrange rounded-md w-full hover:bg-MyPaleOrange">
                 <img src="~/images/system/Facebook-logo.png" alt="Facebook-logo" class="h-5">
                 <p class="text-xs">Facebook</p>
-            </div>
-            <div class="flex items-center justify-center gap-2 border border-MyOrange rounded-md w-full hover:bg-MyPaleOrange">
+            </a>
+            <a asp-area="" asp-controller="ExternalSignIn" asp-action="ExternalLogin" asp-route-provider="Google" class="flex items-center justify-center gap-2 border border-MyOrange rounded-md w-full hover:bg-MyPaleOrange">
                 <img src="~/images/system/Google-logo.png" alt="Google-logo" class="h-5">
                 <p class="text-xs">Google</p>
-            </div>
+            </a>
         </div>
     </div>
 </div>

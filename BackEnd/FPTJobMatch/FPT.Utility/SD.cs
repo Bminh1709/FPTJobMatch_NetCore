@@ -20,5 +20,9 @@ namespace FPT.Utility
 
         // CV Status
         public const string StatusResponded = "Responded";
+
+        // Chatting Action 
+        public const string ReloadPage = "Reload";
+        public const string RemoveStartChat = "RemoveStart";
     }
 }

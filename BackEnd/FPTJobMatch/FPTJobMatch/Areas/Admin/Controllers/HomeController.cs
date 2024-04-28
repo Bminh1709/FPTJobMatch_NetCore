@@ -70,7 +70,8 @@ namespace FPTJobMatch.Areas.Admin.Controllers
                     Name = fullname,
                     PhoneNumber = phone,
                     AccountStatus = SD.StatusActive,
-                    CreatedAt = DateTime.UtcNow
+                    CreatedAt = DateTime.UtcNow,
+                    EmailConfirmed = true
                 };
 
                 // Set default password

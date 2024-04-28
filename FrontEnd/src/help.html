@@ -13,7 +13,34 @@
 <body>
 
 
-    <button onclick="backToTopFunction()" title="Go to top" id="backToTop-btn" class="fixed bottom-6 right-6 text-xl bg-MyOrange rounded-lg text-white px-3 py-2 "><i class="fa-solid fa-circle-arrow-up"></i></button>
+    <div class="fixed z-10 bottom-20 right-6 flex items-end gap-3">
+        <div id="chat_box" class="hidden">
+            <div class="bg-white border border-MyGrey h-[500px] w-96 rounded-md text-sm flex flex-col">
+                <div class="px-2 py-3 flex items-center justify-between">
+                    <p class="font-semibold text-MyOrange">Chat with FPTJobMatch</p>
+                    <button class="text-MyOrange underline">End chat</button>
+                </div>
+                <div class="bg-MyVeryPaleGrey h-full px-2 py-3 flex flex-col-reverse overflow-y-scroll">
+                    <div class="flex flex-col gap-2">
+                        <p class="bg-white p-3 w-fit rounded-xl">2</p>
+                        <p class="bg-MyOrange text-white p-3 w-fit rounded-xl ml-auto">3</p>
+                        <button class="py-3 px-4 rounded-full mx-auto bg-white shadow-lg">Chat now</button>
+                        <p class="text-center text-xs text-MyDarkGrey">Your turn waiting order is #1</p>
+                    </div>
+                </div>
+                <form class="flex gap-2 p-3">
+                    <input type="text" class="w-full outline-none">
+                    <button class="text-base text-MyDarkGrey hover:text-MyOrange"><i class="fa-regular fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        <div id="chat_btn" title="Chat with FPTJobMatch" class="hover:cursor-pointer h-fit flex gap-2 items-center btn text-xl p-3">
+            <i class="fa-solid fa-headset"></i>
+            <p class="text-sm hidden" id="chat_text">Chat with Admin</p>
+        </div>
+    </div>
+    
+    <button onclick="backToTopFunction()" title="Go to top" id="backToTop-btn" class="fixed bottom-6 right-6 text-xl btn px-3 py-2 "><i class="fa-solid fa-circle-arrow-up"></i></button>
     <!-- <button title="Chat" class="fixed bottom-6 right-6 text-xl bg-MyOrange rounded-lg text-white px-3 py-2 "><i class="fa-solid fa-message"></i></button> -->
     <nav class="px-6 md:px-16 py-3 w-full text-sm">
         <div class="hidden lg:block">
@@ -219,5 +246,9 @@
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
     }
+
+    $('#chat_btn').on('click', function(){
+        $('#chat_box').toggle();
+    });
 </script>
 </html>

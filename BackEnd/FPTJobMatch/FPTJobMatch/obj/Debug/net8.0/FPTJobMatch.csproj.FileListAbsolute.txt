@@ -120,3 +120,6 @@ D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMat
 D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPTJobMatch\bin\Debug\net8.0\Newtonsoft.Json.dll
 D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPTJobMatch\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
 D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPTJobMatch\bin\Debug\net8.0\System.Security.Permissions.dll
+D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPTJobMatch\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Google.dll
+D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPTJobMatch\bin\Debug\net8.0\Microsoft.AspNetCore.Authentication.Facebook.dll
+D:\Greenwich Subjects\1670 Application Development\ASM1\Source\BackEnd\FPTJobMatch\FPTJobMatch\bin\Debug\net8.0\libman.json

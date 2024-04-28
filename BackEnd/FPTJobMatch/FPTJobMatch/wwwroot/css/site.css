@@ -128,3 +128,7 @@ body {
     border-color: var(--orange);
     border-right-width: 8px;
 }
+
+#chat_btn:hover #chat_text {
+    display: block;
+}
