@@ -36,6 +36,7 @@ namespace FPTJobMatch.Areas.Admin.Controllers
             }
         }
 
+        [HttpPost]
         public async Task<IActionResult> CreateUser(string fullname, string? phone, string email, string? company)
         {
             try
@@ -94,10 +95,14 @@ namespace FPTJobMatch.Areas.Admin.Controllers
                         CreatedAt = DateTime.UtcNow,
                         Employer = newUser
                     };
+
+
                     _unitOfWork.Company.Add(newCompany);
+                    _unitOfWork.Save();
 
                     // Associate the new company with the user
-                    newUser.Company = newCompany;
+                    newUser.CompanyId = newCompany.Id;
+                    _unitOfWork.Save();
 
                     await _userManager.AddToRoleAsync(newUser, SD.Role_Employer);
                 }
@@ -106,7 +111,6 @@ namespace FPTJobMatch.Areas.Admin.Controllers
                     await _userManager.AddToRoleAsync(newUser, SD.Role_JobSeeker);
                 }
 
-                _unitOfWork.Save();
 
                 TempData["success"] = "Create user successfully";
                 return RedirectToAction("Index");
@@ -178,7 +182,7 @@ namespace FPTJobMatch.Areas.Admin.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
+                return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
             }
 
             return RedirectToAction("Index");

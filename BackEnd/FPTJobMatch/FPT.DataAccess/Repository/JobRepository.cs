@@ -49,7 +49,7 @@ namespace FPT.DataAccess.Repository
             // Apply keyword filter on the client side
             if (!string.IsNullOrEmpty(keyword))
             {
-                jobs = jobs.Where(j => j.Title.Contains(keyword, StringComparison.OrdinalIgnoreCase));
+                jobs = jobs.Where(j => j.Title.ToLower().Contains(keyword.ToLower()));
             }
 
             // Set Page Size

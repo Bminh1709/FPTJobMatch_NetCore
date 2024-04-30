@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|d:\\greenwich subjects\\1670 application development\\asm1\\source\\backend\\fptjobmatch\\fptjobmatch\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|solutionrelative:fptjobmatch\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|d:\\greenwich subjects\\1670 application development\\asm1\\source\\backend\\fptjobmatch\\fptjobmatch\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|solutionrelative:fptjobmatch\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|d:\\greenwich subjects\\1670 application development\\asm1\\source\\backend\\fptjobmatch\\fptjobmatch\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|solutionrelative:fptjobmatch\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|d:\\greenwich subjects\\1670 application development\\asm1\\source\\backend\\fptjobmatch\\fptjobmatch\\areas\\jobseeker\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|solutionrelative:fptjobmatch\\areas\\jobseeker\\controllers\\profilecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|d:\\greenwich subjects\\1670 application development\\asm1\\source\\backend\\fptjobmatch\\fptjobmatch\\wwwroot\\js\\chat.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|solutionrelative:fptjobmatch\\wwwroot\\js\\chat.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|d:\\greenwich subjects\\1670 application development\\asm1\\source\\backend\\fptjobmatch\\fptjobmatch\\areas\\jobseeker\\views\\profile\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|solutionrelative:fptjobmatch\\areas\\jobseeker\\views\\profile\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|d:\\greenwich subjects\\1670 application development\\asm1\\source\\backend\\fptjobmatch\\fptjobmatch\\areas\\admin\\views\\help\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|solutionrelative:fptjobmatch\\areas\\admin\\views\\help\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|d:\\greenwich subjects\\1670 application development\\asm1\\source\\backend\\fptjobmatch\\fptjobmatch\\wwwroot\\ajax\\employer\\profile.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|solutionrelative:fptjobmatch\\wwwroot\\ajax\\employer\\profile.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|d:\\greenwich subjects\\1670 application development\\asm1\\source\\backend\\fptjobmatch\\fptjobmatch\\views\\help\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|solutionrelative:fptjobmatch\\views\\help\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|d:\\greenwich subjects\\1670 application development\\asm1\\source\\backend\\fptjobmatch\\fptjobmatch\\wwwroot\\ajax\\jobseeker\\profile.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2E72058-05B1-49DD-B30A-95344C2622A0}|FPTJobMatch\\FPTJobMatch.csproj|solutionrelative:fptjobmatch\\wwwroot\\ajax\\jobseeker\\profile.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -55,66 +55,67 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\appsettings.json",
-              "RelativeDocumentMoniker": "FPTJobMatch\\appsettings.json",
-              "ToolTip": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\appsettings.json",
-              "RelativeToolTip": "FPTJobMatch\\appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-04-28T15:08:15.496Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "chat.js",
-              "DocumentMoniker": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\chat.js",
-              "RelativeDocumentMoniker": "FPTJobMatch\\wwwroot\\js\\chat.js",
-              "ToolTip": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\js\\chat.js",
-              "RelativeToolTip": "FPTJobMatch\\wwwroot\\js\\chat.js",
-              "ViewState": "AQIAADwAAAAAAAAAAAAIwEMAAAAHAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-04-28T02:41:48.003Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ChatHub.cs",
-              "DocumentMoniker": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\ChatHub.cs",
-              "RelativeDocumentMoniker": "FPTJobMatch\\ChatHub.cs",
-              "ToolTip": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\ChatHub.cs",
-              "RelativeToolTip": "FPTJobMatch\\ChatHub.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-28T03:00:43.095Z",
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "FPTJobMatch\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "FPTJobMatch\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AQIAAJIAAAAAAAAAAAAuwKoAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2024-04-30T04:15:31.592Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\Areas\\Admin\\Views\\Help\\Index.cshtml",
-              "RelativeDocumentMoniker": "FPTJobMatch\\Areas\\Admin\\Views\\Help\\Index.cshtml",
-              "ToolTip": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\Areas\\Admin\\Views\\Help\\Index.cshtml",
-              "RelativeToolTip": "FPTJobMatch\\Areas\\Admin\\Views\\Help\\Index.cshtml",
-              "ViewState": "AQIAAKkAAAAAAAAAAAAAAL4AAABIAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-28T02:45:30.735Z",
+              "Title": "profile.js",
+              "DocumentMoniker": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\ajax\\employer\\profile.js",
+              "RelativeDocumentMoniker": "FPTJobMatch\\wwwroot\\ajax\\employer\\profile.js",
+              "ToolTip": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\ajax\\employer\\profile.js",
+              "RelativeToolTip": "FPTJobMatch\\wwwroot\\ajax\\employer\\profile.js",
+              "ViewState": "AQIAADAAAAAAAAAAAAAYwEgAAAAeAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-04-30T04:14:23.482Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProfileController.cs",
+              "DocumentMoniker": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\Areas\\JobSeeker\\Controllers\\ProfileController.cs",
+              "RelativeDocumentMoniker": "FPTJobMatch\\Areas\\JobSeeker\\Controllers\\ProfileController.cs",
+              "ToolTip": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\Areas\\JobSeeker\\Controllers\\ProfileController.cs",
+              "RelativeToolTip": "FPTJobMatch\\Areas\\JobSeeker\\Controllers\\ProfileController.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAhwBoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-30T04:09:01.169Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "profile.js",
+              "DocumentMoniker": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\ajax\\jobseeker\\profile.js",
+              "RelativeDocumentMoniker": "FPTJobMatch\\wwwroot\\ajax\\jobseeker\\profile.js",
+              "ToolTip": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\ajax\\jobseeker\\profile.js",
+              "RelativeToolTip": "FPTJobMatch\\wwwroot\\ajax\\jobseeker\\profile.js",
+              "ViewState": "AQIAAFkAAAAAAAAAAAA+wGUAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-04-30T04:08:13.609Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\Views\\Help\\Index.cshtml",
-              "RelativeDocumentMoniker": "FPTJobMatch\\Views\\Help\\Index.cshtml",
-              "ToolTip": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\Views\\Help\\Index.cshtml",
-              "RelativeToolTip": "FPTJobMatch\\Views\\Help\\Index.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAeAAAA",
+              "DocumentMoniker": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\Areas\\JobSeeker\\Views\\Profile\\Index.cshtml",
+              "RelativeDocumentMoniker": "FPTJobMatch\\Areas\\JobSeeker\\Views\\Profile\\Index.cshtml",
+              "ToolTip": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\Areas\\JobSeeker\\Views\\Profile\\Index.cshtml",
+              "RelativeToolTip": "FPTJobMatch\\Areas\\JobSeeker\\Views\\Profile\\Index.cshtml",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAABdAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2024-04-28T02:39:11.86Z"
+              "WhenOpened": "2024-04-30T04:07:02.215Z",
+              "EditorCaption": ""
             }
           ]
         }

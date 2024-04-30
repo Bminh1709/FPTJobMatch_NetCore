@@ -56,3 +56,25 @@ $('#btn_cancelResetPassword').on('click', function () {
     isSubmittedReset = false;
     $('#form_resetPassword').find('input').prop('disabled', true);
 });
+
+
+$('#companyLogo_input').on('change', function () {
+    var formData = new FormData();
+    formData.append('file', $(this)[0].files[0]);
+
+    $.ajax({
+        url: '/Employer/Profile/UploadLogo',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            console.log('Logo uploaded successfully');
+            location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.error('Error uploading logo: ' + error);
+            // Handle error if needed
+        }
+    });
+});

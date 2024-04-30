@@ -22,20 +22,20 @@ $('body').on('click', '.job_item', function () {
                     $('#company_logo').attr('src', '/images/companyLogo/' + (rs.data.logo ?? 'noLogoCompany.jpg')).attr('alt', rs.data.title);
                     $('#job_id').attr('value', rs.data.id);
                     $('#job_title').text(rs.data.title);
-                    $('#company_name_small').text(rs.data.company.name + ",");
-                    $('#company_city').text(rs.data.company.city.name + " City");
+                    $('#company_name_small').text(rs.data.company != null ? rs.data.company.name + "," : '');
+                    $('#company_city').text(rs.data.company.city !== null ? rs.data.company.city.name + " City" : '');
                     $('#job_date').text(getTimeAgoString(rs.data.createdAt));
                     $('#job_address').text(rs.data.address);
-                    $('#job_type').text(rs.data.jobType.name);
+                    $('#job_type').text(rs.data.jobType != null ? rs.data.jobType.name : '');
                     $('#job_deadline').text(rs.data.deadline);
-                    $('#job_category').text(rs.data.category.name);
+                    $('#job_category').text(rs.data.category != null ? rs.data.category.name : '');
                     $('#job_description').text(rs.data.description);
                     $('#job_responsibilities').text(rs.data.responsibility);
                     $('#job_experience').text(rs.data.experience);
                     $('#job_additionalInfo').text(rs.data.additionalDetail);
-                    $('#company_name').text(rs.data.company.name);
-                    $('#company_size').text(rs.data.company.size);
-                    $('#company_location').text(rs.data.company.city.name + " City");
+                    $('#company_name').text(rs.data.company != null ? rs.data.company.name : '');
+                    $('#company_size').text(rs.data.company != null ? rs.data.company.size : '');
+                    $('#company_location').text(rs.data.company.city !== null ? rs.data.company.city.name + " City" : '');
 
                     // Show the #rightTab element
                     $('#jobDisplay_tab').show();

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FPTJobMatch")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0051284732b5abbf9752ae873e48bd2215081338")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2439c50e8adcaead3ce51b13806e5c2488ea9486")]
 [assembly: System.Reflection.AssemblyProductAttribute("FPTJobMatch")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FPTJobMatch")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

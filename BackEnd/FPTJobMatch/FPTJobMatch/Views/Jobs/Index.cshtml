@@ -59,7 +59,7 @@
             {
                 <div data-id="@job.Id" class="job_item rounded-l-md border-2 border-MyPaleGrey p-3 sm:p-6 hover:border-MyOrange hover:border-r-8">
                     <div class="flex flex-wrap justify-center md:justify-start gap-3">
-                        <img src="~/images//companyLogo/@(job.Company?.Logo ?? "noLogoCompany.jpg")" alt="Company Logo" class="h-16 w-16 p-4 border border-MyPaleGrey rounded-lg object-contain">
+                        <img src="~/images//companyLogo/@(job.Company?.Logo ?? "noLogoCompany.jpg")" alt="Company Logo" class="h-16 w-16 p-4 border border-MyPaleGrey rounded-lg object-cover">
                         <div>
                             <p class="font-semibold text-xl">@(job.Company?.Name ?? "Unknown")</p>
                             <p class="text-xs text-MyDarkGrey">Posted @DateTimeHelper.GetTimeAgoString(job.CreatedAt)</p>

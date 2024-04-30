@@ -103,3 +103,7 @@ body {
 #chat_btn:hover #chat_text {
     display: block;
 }
+
+#companyLogo:hover img.absolute {
+    display: block;
+}
