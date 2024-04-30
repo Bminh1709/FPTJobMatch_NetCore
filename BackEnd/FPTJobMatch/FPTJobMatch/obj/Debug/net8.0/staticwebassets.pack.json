@@ -65,8 +65,16 @@
       "PackagePath": "staticwebassets\\filecv\\e67a17cf-3bf8-4dc2-9af1-baece11a0f19.pdf"
     },
     {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\avatar\\b71fe71a-6415-44f9-86ad-a7a62f41d6aa.jpg",
+      "PackagePath": "staticwebassets\\images\\avatar\\b71fe71a-6415-44f9-86ad-a7a62f41d6aa.jpg"
+    },
+    {
       "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\avatar\\maleavt.jpg",
       "PackagePath": "staticwebassets\\images\\avatar\\maleavt.jpg"
+    },
+    {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\companyLogo\\0c9e6079-6342-4b43-96d9-b9816c163d05.png",
+      "PackagePath": "staticwebassets\\images\\companyLogo\\0c9e6079-6342-4b43-96d9-b9816c163d05.png"
     },
     {
       "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\companyLogo\\noLogoCompany.jpg",
@@ -119,6 +127,10 @@
     {
       "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\system\\blueLogo.png",
       "PackagePath": "staticwebassets\\images\\system\\blueLogo.png"
+    },
+    {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\system\\camera.png",
+      "PackagePath": "staticwebassets\\images\\system\\camera.png"
     },
     {
       "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\system\\femaleavt.jpg",

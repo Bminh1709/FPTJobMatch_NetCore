@@ -162,7 +162,7 @@
         @foreach (var job in Model.TopJobList)
 		{
             <div class="shadow-normal px-5 py-5 rounded-sm border hover:border-MyOrange">
-                <a asp-controller="Jobs" asp-action="Detail" asp-route-jobId="@job.Id" class="flex gap-3">
+                    <a asp-area="" asp-controller="Jobs" asp-action="Index" asp-route-keyword="@job.Title" class="flex gap-3">
                     <img src="~/images/companyLogo/@(job.Company?.Logo ?? "noLogoCompany.jpg")" alt="" class="h-20 w-20 p-4 border border-MyPaleGrey rounded-lg">
                     <div>
                         <p class="font-semibold text-xl">@job.Company?.Name</p>

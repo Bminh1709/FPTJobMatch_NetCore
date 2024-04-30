@@ -5,12 +5,17 @@
 }
 <div class="px-6 md:px-16 bg-MyVeryPaleGrey min-h-screen pb-20">
 
+    <input hidden id="avatar_input" type="file" name="name" accept="image/*" />
+
     <div class="grid grid-cols-1 sm:grid-cols-8 gap-6 py-7">
         <div class="col-span-4 lg:col-span-3 xl:col-span-2">
             <div class="bg-white min-w-44-white p-3 border-t-4 border-MyOrange">
                 <div class="flex gap-3 items-center">
-                    <div class="border border-MyGrey p-1 rounded-full">
-                        <img src="~/images/avatar/@(Model.JobSeeker.Avatar ?? "maleavt.jpg")" alt="" class="w-20 h-20 rounded-full object-cover">
+                    <div id="companyLogo" class="border border-MyGrey p-1 rounded-full relative w-20 h-20">
+                        <label for="avatar_input">
+                            <img src="~/images/system/camera.png" alt="" class="hidden absolute w-full h-full left-0 right-0 top-0 bottom-0 rounded-full hover:cursor-pointer p-1">
+                        </label>
+                        <img src="~/images/avatar/@(Model.JobSeeker.Avatar ?? "maleavt.jpg")" alt="Avatar" class="w-full h-full rounded-full object-cover">
                     </div>
                     <div>
                         <p class="font-medium text-lg">@Model.JobSeeker.Name</p>

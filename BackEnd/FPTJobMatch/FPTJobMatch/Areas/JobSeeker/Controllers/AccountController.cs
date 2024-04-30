@@ -92,7 +92,7 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
             }
             catch (Exception ex)
             {
-                return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
+                return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
             }
         }
     }

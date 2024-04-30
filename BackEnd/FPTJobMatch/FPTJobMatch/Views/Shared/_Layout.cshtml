@@ -2,6 +2,12 @@
 @using Microsoft.AspNetCore.Identity
 @using System.Security.Claims
 @inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var user = await UserManager.GetUserAsync(User);
+    var isAuthenticated = SignInManager.IsSignedIn(User);
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -74,12 +80,12 @@
                 </div>
                  
 
-                @if (SignInManager.IsSignedIn(User))
+                @if (isAuthenticated)
                 {
                     <input id="userId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" type="text" hidden />
                     <div class="relative" id="profile_select">
                         <div class="flex items-center gap-2 text-MyBlue hover:cursor-pointer">
-                            <img src="~/images/avatar/maleavt.jpg" alt="" class="h-10 w-10 rounded-full">
+                            <img src="~/images/avatar/@(user.Avatar ?? "maleavt.jpg")" alt="" class="h-10 w-10 rounded-full">
                             <i class="fa-solid fa-sort-down"></i>
                         </div>
                         <div id="profile_options" class="hidden flex-col w-36 absolute text-sm right-0 pt-2">
@@ -127,26 +133,29 @@
                     <div class="flex flex-col items-center gap-6 text-base">
                         @if (User.IsInRole(SD.Role_Admin))
                         {
-                            <a href="" class="hover:text-MyOrange">User List</a>
-                            <a href="#contact" class="hover:text-MyOrange">Categories</a>
-                                <a href="" class="hover:text-MyOrange">Profile</a>
+                            <a asp-area="Admin" asp-controller="Home" asp-action="Index" class="hover:text-MyOrange">User List</a>
+                            <a asp-area="Admin" asp-controller="Category" asp-action="Index" class="hover:text-MyOrange">Categories</a>
+                            <a asp-area="Admin" asp-controller="Help" asp-action="Index" class="hover:text-MyOrange">Help Center</a>
+                            <a asp-area="Admin" asp-controller="Profile" asp-action="Index" class="hover:text-MyOrange">Profile</a>
                         } else if (User.IsInRole(SD.Role_Employer))
                         {
-                            <a href="" class="hover:text-MyOrange">Job List</a>
-                            <a href="#contact" class="hover:text-MyOrange">Profile</a>
+                            <a asp-area="Employer" asp-controller="Home" asp-action="Index" class="hover:text-MyOrange">Job List</a>
+                            <a asp-area="" asp-controller="Help" asp-action="Index" class="hover:text-MyOrange">Help Center</a>
+                            <a asp-area="Employer" asp-controller="Profile" asp-action="Index" class="hover:text-MyOrange">Profile</a>
                         } else
                         {
-                            <a href="" class="hover:text-MyOrange">Job List</a>
-                            <a href="#contact" class="hover:text-MyOrange">Top Companies</a>
+                            <a asp-area="" asp-controller="Jobs" asp-action="Index" class="hover:text-MyOrange">Job List</a>
+                            <a asp-area="" asp-controller="Help" asp-action="Index" class="hover:text-MyOrange">Help Center</a>
+                            <a asp-area="JobSeeker" asp-controller="Profile" asp-action="Index" class="hover:text-MyOrange">Profile</a>
                         }
-                        <a href="" class="hover:text-MyOrange">Contact</a>
-                        <a href="#contact" class="hover:text-MyOrange">FAQ</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Notification" class="hover:text-MyOrange">Notification</a>
+                        <a href="#contact" class="hover:text-MyOrange">Contact</a>
                         @if (SignInManager.IsSignedIn(User))
                         {
-                            <a href="" class="hover:text-MyOrange">Logout</a>
+                            <a asp-area="" asp-controller="Access" asp-action="LogOut" class="hover:text-MyOrange">Logout</a>
                         } else
                         {
-                            <a asp-controller="Access" asp-action="Index" class="hover:text-MyOrange">Sign In</a>
+                            <a asp-area="" asp-controller="Access" asp-action="Index" class="hover:text-MyOrange">Sign In</a>
                             <a asp-area="JobSeeker" asp-controller="Account" asp-action="SignUp" class="hover:text-MyOrange">Sign Up</a>
                             <a asp-area="Employer" asp-controller="Account" asp-action="SignUp" class="hover:text-MyOrange">For Recruiter</a>
                         }

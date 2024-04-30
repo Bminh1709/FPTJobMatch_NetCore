@@ -87,3 +87,24 @@ $('#btn_cancelResetPassword').on('click', function () {
 });
 
 
+$('#avatar_input').on('change', function () {
+    var formData = new FormData();
+    formData.append('file', $(this)[0].files[0]);
+
+    $.ajax({
+        url: '/JobSeeker/Profile/UploadAvatar',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+            console.log('Avatar uploaded successfully');
+            location.reload();
+        },
+        error: function (xhr, status, error) {
+            console.error('Error uploading Avatar: ' + error);
+        }
+    });
+});
+
+

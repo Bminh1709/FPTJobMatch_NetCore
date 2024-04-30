@@ -3,6 +3,7 @@ using FPT.Models;
 using FPT.Models.ViewModels;
 using FPT.Utility;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -15,11 +16,13 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProfileController(UserManager<ApplicationUser> userManager, IUnitOfWork unitOfWork)
+        public ProfileController(UserManager<ApplicationUser> userManager, IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             _userManager = userManager;
             _unitOfWork = unitOfWork;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public async Task<IActionResult> Index()
@@ -107,6 +110,62 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
                 success = true,
                 data = new { applicantCV.Id, applicantCV.FileCV, applicantCV.ResponseMessage }
             });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UploadAvatar(IFormFile file)
+        {
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user == null)
+            {
+                TempData["error"] = "User not found";
+                return RedirectToAction("Index", "Access", new { area = "" });
+            }
+
+            if (file == null || file.Length == 0)
+            {
+                TempData["error"] = "No file uploaded";
+                return RedirectToAction("Index");
+            }
+
+            if (!IsImage(file))
+            {
+                TempData["error"] = "Uploaded file is not an image";
+                return RedirectToAction("Index");
+            }
+
+            string wwwrootPath = _webHostEnvironment.WebRootPath;
+            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            string imagePath = Path.Combine(wwwrootPath, "images", "avatar", fileName);
+
+            // Delete old logo if it exists
+            if (!string.IsNullOrEmpty(user.Avatar))
+            {
+                var oldImagePath = Path.Combine(wwwrootPath, "images", "avatar", user.Avatar);
+                if (System.IO.File.Exists(oldImagePath))
+                {
+                    System.IO.File.Delete(oldImagePath);
+                }
+            }
+
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await file.CopyToAsync(fileStream);
+            }
+
+            user.Avatar = fileName;
+
+            _unitOfWork.ApplicationUser.Update(user);
+            _unitOfWork.Save();
+
+            TempData["success"] = "Logo uploaded successfully";
+            return RedirectToAction("Index");
+        }
+
+        private bool IsImage(IFormFile file)
+        {
+            return file.ContentType.StartsWith("image/");
         }
     }
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "4Zb53TsRao31NVNN23dz50GR22IIIsnstLBdNULL0Ug=",
+  "Hash": "V1i5dHZfLdwRQIDTRFFh70fJFnuYbPCz+sLo2zGmCs8=",
   "Source": "FPTJobMatch",
   "BasePath": "_content/FPTJobMatch",
   "Mode": "Default",
@@ -340,6 +340,25 @@
       "OriginalItemSpec": "wwwroot\\filecv\\e67a17cf-3bf8-4dc2-9af1-baece11a0f19.pdf"
     },
     {
+      "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\avatar\\b71fe71a-6415-44f9-86ad-a7a62f41d6aa.jpg",
+      "SourceId": "FPTJobMatch",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\",
+      "BasePath": "_content/FPTJobMatch",
+      "RelativePath": "images/avatar/b71fe71a-6415-44f9-86ad-a7a62f41d6aa.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\avatar\\b71fe71a-6415-44f9-86ad-a7a62f41d6aa.jpg"
+    },
+    {
       "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\avatar\\maleavt.jpg",
       "SourceId": "FPTJobMatch",
       "SourceType": "Discovered",
@@ -357,6 +376,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\avatar\\maleavt.jpg"
+    },
+    {
+      "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\companyLogo\\0c9e6079-6342-4b43-96d9-b9816c163d05.png",
+      "SourceId": "FPTJobMatch",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\",
+      "BasePath": "_content/FPTJobMatch",
+      "RelativePath": "images/companyLogo/0c9e6079-6342-4b43-96d9-b9816c163d05.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\companyLogo\\0c9e6079-6342-4b43-96d9-b9816c163d05.png"
     },
     {
       "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\companyLogo\\noLogoCompany.jpg",
@@ -490,6 +528,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\system\\blueLogo.png"
+    },
+    {
+      "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\system\\camera.png",
+      "SourceId": "FPTJobMatch",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\",
+      "BasePath": "_content/FPTJobMatch",
+      "RelativePath": "images/system/camera.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\system\\camera.png"
     },
     {
       "Identity": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\system\\EmailSending.png",

@@ -16,11 +16,13 @@ namespace FPTJobMatch.Areas.Employer.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public ProfileController(UserManager<ApplicationUser> userManager, IUnitOfWork unitOfWork)
+        public ProfileController(UserManager<ApplicationUser> userManager, IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             _userManager = userManager;
             _unitOfWork = unitOfWork;
+            _webHostEnvironment = webHostEnvironment;
         }
         public async Task<IActionResult> Index()
         {
@@ -137,5 +139,64 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                 return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> UploadLogo(IFormFile file)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            Company company = await _unitOfWork.Company.GetAsync(c => c.EmployerId == userId);
+
+            if (company == null)
+            {
+                TempData["error"] = "Company not found";
+                return RedirectToAction("Index");
+            }
+
+            if (file == null || file.Length == 0)
+            {
+                TempData["error"] = "No file uploaded";
+                return RedirectToAction("Index");
+            }
+
+            if (!IsImage(file))
+            {
+                TempData["error"] = "Uploaded file is not an image";
+                return RedirectToAction("Index");
+            }
+
+            string wwwrootPath = _webHostEnvironment.WebRootPath;
+            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+            string imagePath = Path.Combine(wwwrootPath, "images", "companyLogo", fileName);
+
+            // Delete old logo if it exists
+            if (!string.IsNullOrEmpty(company.Logo))
+            {
+                var oldImagePath = Path.Combine(wwwrootPath, "images", "companyLogo", company.Logo);
+                if (System.IO.File.Exists(oldImagePath))
+                {
+                    System.IO.File.Delete(oldImagePath);
+                }
+            }
+
+            using (var fileStream = new FileStream(imagePath, FileMode.Create))
+            {
+                await file.CopyToAsync(fileStream);
+            }
+
+            company.Logo = fileName;
+
+            _unitOfWork.Company.Update(company);
+            _unitOfWork.Save();
+
+            TempData["success"] = "Logo uploaded successfully";
+            return RedirectToAction("Index");
+        }
+
+        private bool IsImage(IFormFile file)
+        {
+            return file.ContentType.StartsWith("image/");
+        }
+
     }
 }
