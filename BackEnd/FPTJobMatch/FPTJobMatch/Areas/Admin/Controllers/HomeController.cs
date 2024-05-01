@@ -4,6 +4,7 @@ using FPT.Models.ViewModels;
 using FPT.Utility;
 using FPT.Utility.Helpers;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
@@ -16,11 +17,13 @@ namespace FPTJobMatch.Areas.Admin.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public HomeController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
+        public HomeController(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         public async Task<IActionResult> Index(string? userType, string? sortType, string? keyword, int? pageIndex)
@@ -108,6 +111,13 @@ namespace FPTJobMatch.Areas.Admin.Controllers
                 }
                 else
                 {
+                    JobSeekerDetail jobSeekerDetail = new()
+                    {
+                        JobSeeker = newUser,
+                    };
+
+                    _unitOfWork.JobSeekerDetail.Add(jobSeekerDetail);
+                    _unitOfWork.Save();
                     await _userManager.AddToRoleAsync(newUser, SD.Role_JobSeeker);
                 }
 
@@ -195,6 +205,18 @@ namespace FPTJobMatch.Areas.Admin.Controllers
                 await _unitOfWork.Category.NullifyCreatedByUserIdAsync(user.Id);
                 //await _unitOfWork.Company.RemoveByEmployerIdAsync(user.Id);
                 await _unitOfWork.Job.RemoveRangeByEmployerIdAsync(user.Id);
+
+                Company company = await _unitOfWork.Company.GetAsync(c => c.EmployerId  == user.Id);
+
+                // Delete the user's avatar
+                if (!string.IsNullOrEmpty(company.Logo))
+                {
+                    var logoPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", "companyLogo", company.Logo);
+                    if (System.IO.File.Exists(logoPath))
+                    {
+                        System.IO.File.Delete(logoPath);
+                    }
+                }
             }
             else
             {
@@ -203,6 +225,17 @@ namespace FPTJobMatch.Areas.Admin.Controllers
 
             await _unitOfWork.Notification.RemoveBySenderIdAsync(user.Id);
             await _unitOfWork.Notification.RemoveByReceiverIdAsync(user.Id);
+
+            // Delete the user's avatar
+            if (!string.IsNullOrEmpty(user.Avatar))
+            {
+                var avatarPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", "avatar", user.Avatar);
+                if (System.IO.File.Exists(avatarPath))
+                {
+                    System.IO.File.Delete(avatarPath);
+                }
+            }
+
 
             _unitOfWork.ApplicationUser.Remove(user);
         }

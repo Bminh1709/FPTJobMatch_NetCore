@@ -258,14 +258,14 @@
                                     <tr class="border border-MyPaleOrange">
                                         <td class="p-3 min-w-56">
                                             <div class="flex gap-3 items-center">
-                                                <img src="~/images/avatar/@(cv.Job.Company.Logo ?? "maleavt.jpg")" alt="" class="w-12 h-12 rounded-full object-cover">
+                                                <img src="~/images/companyLogo/@(cv.Job.Company.Logo ?? "nologocompany.jpg")" alt="" class="w-12 h-12 rounded-full object-cover">
                                                 <div class="break-all">
                                                     <p class="font-medium">@cv.Job.Company.Name</p>
                                                     <p class="text-xs">@cv.Job.Employer.Email</p>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="p-3">@cv.Job.Title</td>
+                                        <td class="p-3"><a class="hover:underline" asp-area="" asp-controller="Jobs" asp-action="Detail" asp-route-jobId="@cv.Job.Id" target="_blank">@cv.Job.Title</a></td>
                                         <td class="p-3">
                                             <div class="flex gap-2 items-center">
                                                 <i class="fa-solid fa-circle text-xs @(cv.CVStatus == SD.StatusPending ? "text-MyOrange" : "text-MyGreen")"></i>

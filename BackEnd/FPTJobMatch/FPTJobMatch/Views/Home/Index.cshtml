@@ -149,7 +149,7 @@
             <p class="text-MyDarkGrey text-sm">Choose from a variety of Happy Birthday ribbon designs or create your own! Shop now for custom gift giving supplies & more!</p>
         </div>
         <div class="col-span-1 flex flex-col gap-4">
-            <img src="~/images/system/logos/FPT.png" alt="" class="object-contain">
+            <img src="~/images/system/FPT.png" alt="" class="object-contain">
             <a href="" class="btn py-3 px-4 flex justify-center items-center"><i class="fa-solid fa-circle-check"></i><span class="ml-2">Apply Now</span></a>
         </div>
     </div>
@@ -163,7 +163,7 @@
 		{
             <div class="shadow-normal px-5 py-5 rounded-sm border hover:border-MyOrange">
                     <a asp-area="" asp-controller="Jobs" asp-action="Index" asp-route-keyword="@job.Title" class="flex gap-3">
-                    <img src="~/images/companyLogo/@(job.Company?.Logo ?? "noLogoCompany.jpg")" alt="" class="h-20 w-20 p-4 border border-MyPaleGrey rounded-lg">
+                    <img src="~/images/companyLogo/@(job.Company?.Logo ?? "noLogoCompany.jpg")" alt="" class="h-20 w-20 p-1 object-cover border border-MyPaleGrey rounded-lg">
                     <div>
                         <p class="font-semibold text-xl">@job.Company?.Name</p>
                             <p class="text-xs text-MyDarkGrey">Posted @DateTimeHelper.GetTimeAgoString(job.CreatedAt)</p>

@@ -26,7 +26,7 @@ namespace FPT.DataAccess.Repository
             return await _db.ApplicantCVs.CountAsync(filter);
         }
 
-        public async Task<IEnumerable<ApplicantCV>> GetAllJobFilteredAsync(int jobId, string? status = null, string? sortType = null)
+        public async Task<IEnumerable<ApplicantCV>> GetAllJobFilteredAsync(int jobId, string? status = null, string? sortType = null, bool? excellent = null)
         {
             IQueryable<ApplicantCV> query = _db.ApplicantCVs.Include(a => a.JobSeeker).Where(a => a.JobId == jobId);
 
@@ -45,6 +45,11 @@ namespace FPT.DataAccess.Repository
                 {
                     query = query.OrderBy(a => a.DateSubmitted);
                 }
+            }
+
+            if (excellent.HasValue)
+            {
+                query = query.Where(a => a.IsExcellent == excellent.Value);
             }
 
             return await query.ToListAsync();

@@ -95,6 +95,22 @@ namespace FPTJobMatch.Controllers
                 });
             }
 
+            Job job = await _unitOfWork.Job.GetAsync(j => j.Id == jobId);
+
+            // Convert DateTime to DateOnly for comparison
+            DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
+
+            // Check if the current date is before the deadline and the job is not expired.
+            if (job.Deadline <= currentDate)
+            {
+                TempData["error"] = "Cannot apply for the job because it's expired";
+                return Json(new
+                {
+                    success = false
+                });
+            }
+
+
             bool isSubmitted = await _unitOfWork.ApplicantCV.IsSubmittedLast30DaysAsync(jobId, jobSeekerId);
 
             if (isSubmitted)

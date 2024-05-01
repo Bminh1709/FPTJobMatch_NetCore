@@ -21,7 +21,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
             _userManager = userManager;
         }
 
-        public async Task<IActionResult> Index(int jobId, string? status, string? sortType)
+        public async Task<IActionResult> Index(int jobId, string? status, string? sortType, bool? excellent)
         {
             try {
                 // Get the job
@@ -33,7 +33,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                     return RedirectToAction("Index", "Jobs");
                 }
 
-                IEnumerable<ApplicantCV> applicantCVs = await _unitOfWork.ApplicantCV.GetAllJobFilteredAsync(jobId, status, sortType);
+                IEnumerable<ApplicantCV> applicantCVs = await _unitOfWork.ApplicantCV.GetAllJobFilteredAsync(jobId, status, sortType, excellent);
 
                 ApplicantPageVM applicantPageVM = new()
                 {
@@ -48,6 +48,18 @@ namespace FPTJobMatch.Areas.Employer.Controllers
             {
                 return RedirectToAction("GenericError", "Home", new { area = "", code = 500, errorMessage = ex.Message });
             }
+        }
+
+        [HttpPost] 
+        public async Task<IActionResult> MarkExcellent(int applicantId, bool isExcellent)
+        {
+            ApplicantCV applicantCV = await _unitOfWork.ApplicantCV.GetAsync(a => a.Id == applicantId);
+            applicantCV.IsExcellent = isExcellent;
+
+            _unitOfWork.ApplicantCV.Update(applicantCV);
+            _unitOfWork.Save();
+
+            return Json(new { success = true });
         }
 
         [HttpGet]

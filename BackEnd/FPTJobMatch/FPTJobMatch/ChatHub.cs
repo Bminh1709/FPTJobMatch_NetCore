@@ -9,6 +9,7 @@ namespace FPTJobMatch
 {
     public class ChatHub : Hub
     {
+        private static bool isAdminOnline = false;
         private static List<string> usersConnected = new List<string>(); // List of online users
         private static Queue<string> userQueue = new Queue<string>(); // Queue to store user IDs
         private static string? currentChattingUser = null; // Track the currently chatting user
@@ -30,6 +31,10 @@ namespace FPTJobMatch
         {
             // Get user ID from context
             string userId = Context.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == _adminId)
+            {
+                isAdminOnline = true;
+            }
             usersConnected.Add(userId);
 
             if (userId == _adminId && currentChattingUser != null)
@@ -44,6 +49,10 @@ namespace FPTJobMatch
         public override async Task OnDisconnectedAsync(Exception exception)
         {
             string userId = Context.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (userId == _adminId)
+            {
+                isAdminOnline = false;
+            }
             usersConnected.Remove(userId);
 
             await base.OnDisconnectedAsync(exception);
@@ -60,6 +69,11 @@ namespace FPTJobMatch
             if (currentChattingUser == null)
             {
                 currentChattingUser = userId;
+                if (isAdminOnline)
+                {
+                    await Clients.User(currentChattingUser).SendAsync("ReceiveMessage", "You are now chatting with the admin.");
+                    await Clients.User(_adminId).SendAsync("ReceiveMessage", "You are now chatting with a new user.");
+                }
             }
             else
             {
@@ -81,16 +95,20 @@ namespace FPTJobMatch
                     currentChattingUser = userQueue.Dequeue();
 
                     await Clients.User(currentChattingUser).SendAsync("ReceiveMessage", "You are now chatting with the admin.");
+                    await Clients.User(_adminId).SendAsync("ReceiveMessage", "You are now chatting with a new user.");
 
-                    if (userQueue.Any())
-                    {
-                        await Clients.User(_adminId).SendAsync("ReceiveMessage", "You are now chatting with a new user.");
-                    }
-                    else
-                    {
-                        await Clients.User(_adminId).SendAsync("ReceiveMessage", "There are no users left.");
-                    }
-                } 
+                    //if (userQueue.Any())
+                    //{
+                    //    await Clients.User(_adminId).SendAsync("ReceiveMessage", "You are now chatting with a new user.");
+                    //}
+                    //else
+                    //{
+                    //    await Clients.User(_adminId).SendAsync("ReceiveMessage", "There are no users left.");
+                    //}
+                } else
+                {
+                    await Clients.User(_adminId).SendAsync("ReceiveMessage", "There are no users left.");
+                }
             }
             else
             {

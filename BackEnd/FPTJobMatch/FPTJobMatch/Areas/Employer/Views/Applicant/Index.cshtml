@@ -36,8 +36,21 @@
                 <input type="text" hidden name="jobId" value="@jobId" />
 
                 <!-- Hidden input fields to store selected status and sorting -->
+                <input type="hidden" id="selectedExcellent" name="excellent" value="" />
                 <input type="hidden" id="selectedStatus" name="status" value="" />
                 <input type="hidden" id="selectedSortType" name="sortType" value="" />
+
+                <!-- Excellent dropdown -->
+                <div class="relative" id="dropdown_btn">
+                    <div class="hover:cursor-pointer text-sm flex items-center justify-between w-36 py-3 px-4 border border-MyBlue rounded-md">
+                        <p id="dropdown_excellent">Type</p>
+                        <i class="text-MyDarkGrey fa-solid fa-angle-down"></i>
+                    </div>
+                    <div id="dropdown_list" class="hidden w-36 absolute text-sm">
+                        <button type="button" class="excellent-option mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer" data-value="true">Excellent</button>
+                        <button type="button" class="excellent-option mt-1 py-3 px-4 btnPaleBlue hover:text-white hover:cursor-pointer" data-value="false">Normal</button>
+                    </div>
+                </div>
 
                 <!-- Status dropdown -->
                 <div class="relative" id="dropdown_btn">
@@ -77,7 +90,8 @@
                     <th class="py-3">Status</th>
                     <th class="py-3">Date Applied</th>
                     <th class="py-3">Date Response</th>
-                    <th class="py-3 px-5 rounded-tr-md text-center">Application</th>
+                    <th class="py-3 text-center w-24">Excellent</th>
+                    <th class="py-3 px-5 rounded-tr-md text-center w-44">Application</th>
                 </tr>
             </thead>
             <tbody class="pt-3">
@@ -101,7 +115,13 @@
                         </td>
                         <td class="py-5 pr-3">@applicant.DateSubmitted.ToString("MMM dd, yyyy")</td>
                         <td class="py-5 pr-3">@((applicant.DateResponded == null) ? "Not Yet" : applicant.DateResponded.Value.ToString("MMM dd, yyyy"))</td>
-                        <td data-id="@applicant.JobSeekerId" class="view_cvFormSubmitted py-5 pr-3 text-MyBlue hover:underline text-center hover:cursor-pointer">View</td>
+                        <td class="py-5 pr-3 text-center w-24">
+                            <form id="markExcellentForm" action="/" method="post">
+                                <input name="isExcellent" id="isExcellent_excelForm" class="star mb-10" type="checkbox" @(applicant.IsExcellent.HasValue && applicant.IsExcellent.Value ? "checked" : "")>
+                                <input hidden name="applicantId" id="applicantId_excelForm" value="@applicant.Id" />
+                            </form>
+                        </td>
+                        <td data-id="@applicant.JobSeekerId" class="view_cvFormSubmitted w-44 py-5 pr-3 text-MyBlue hover:underline text-center hover:cursor-pointer">View</td>
                     </tr>
                 }
             </tbody>

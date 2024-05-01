@@ -15,6 +15,6 @@ namespace FPT.DataAccess.Repository.IRepository
         Task<int> CountCVsAsync(Expression<Func<ApplicantCV, bool>> filter);
 
         Task<bool> IsSubmittedLast30DaysAsync(int jobId, string userId);
-        Task<IEnumerable<ApplicantCV>> GetAllJobFilteredAsync(int jobId, string? status = null, string? sortType = null);
+        Task<IEnumerable<ApplicantCV>> GetAllJobFilteredAsync(int jobId, string? status = null, string? sortType = null, bool? excellent = null);
     }
 }

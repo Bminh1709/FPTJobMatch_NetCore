@@ -51,3 +51,26 @@ $('#responseMessage_form').on('submit', function (e) {
         $('#responseMessage_errorMessage').text('Please enter a message before submitting');
     }
 });
+
+
+$("#isExcellent_excelForm").on('change', function () {
+    
+    var applicantId = $("#applicantId_excelForm").val();
+    var isExcellent = $(this).is(":checked");
+
+    // Send AJAX request to the server
+    $.ajax({
+        url: "/Employer/Applicant/MarkExcellent",
+        method: "POST",
+        data: {
+            applicantId: applicantId,
+            isExcellent: isExcellent
+        },
+        success: function (response) {
+            console.log(response);
+        },
+        error: function (xhr, status, error) {
+            console.error(error);
+        }
+    });
+});
