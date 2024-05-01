@@ -85,7 +85,7 @@
                     <input id="userId" value="@User.FindFirstValue(ClaimTypes.NameIdentifier)" type="text" hidden />
                     <div class="relative" id="profile_select">
                         <div class="flex items-center gap-2 text-MyBlue hover:cursor-pointer">
-                            <img src="~/images/avatar/@(user.Avatar ?? "maleavt.jpg")" alt="" class="h-10 w-10 rounded-full">
+                            <img src="~/images/avatar/@(user.Avatar ?? "maleavt.jpg")" alt="" class="h-10 w-10 rounded-full object-cover">
                             <i class="fa-solid fa-sort-down"></i>
                         </div>
                         <div id="profile_options" class="hidden flex-col w-36 absolute text-sm right-0 pt-2">

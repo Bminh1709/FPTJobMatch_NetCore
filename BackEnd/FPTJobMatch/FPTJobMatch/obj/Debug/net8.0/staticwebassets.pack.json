@@ -49,6 +49,18 @@
       "PackagePath": "staticwebassets\\filecv\\1a21e7cf-a033-49e5-8dfd-a928e486efd9.pdf"
     },
     {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\filecv\\1a5f2483-067f-40d6-9e33-30f6b7242424.pdf",
+      "PackagePath": "staticwebassets\\filecv\\1a5f2483-067f-40d6-9e33-30f6b7242424.pdf"
+    },
+    {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\filecv\\39e4d9ae-9614-417e-8fac-f2552184d81f.pdf",
+      "PackagePath": "staticwebassets\\filecv\\39e4d9ae-9614-417e-8fac-f2552184d81f.pdf"
+    },
+    {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\filecv\\477e0346-03a5-4fc3-bb03-8cae0667b685.docx",
+      "PackagePath": "staticwebassets\\filecv\\477e0346-03a5-4fc3-bb03-8cae0667b685.docx"
+    },
+    {
       "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\filecv\\5d0a8301-4269-4830-b74e-b871c58e750f.pdf",
       "PackagePath": "staticwebassets\\filecv\\5d0a8301-4269-4830-b74e-b871c58e750f.pdf"
     },
@@ -65,16 +77,32 @@
       "PackagePath": "staticwebassets\\filecv\\e67a17cf-3bf8-4dc2-9af1-baece11a0f19.pdf"
     },
     {
-      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\avatar\\b71fe71a-6415-44f9-86ad-a7a62f41d6aa.jpg",
-      "PackagePath": "staticwebassets\\images\\avatar\\b71fe71a-6415-44f9-86ad-a7a62f41d6aa.jpg"
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\filecv\\ecc22f16-aa05-4dd9-8591-57db42d35d64.pdf",
+      "PackagePath": "staticwebassets\\filecv\\ecc22f16-aa05-4dd9-8591-57db42d35d64.pdf"
+    },
+    {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\avatar\\1a830531-8e0c-4b71-8ef5-2206c52186e1.jpg",
+      "PackagePath": "staticwebassets\\images\\avatar\\1a830531-8e0c-4b71-8ef5-2206c52186e1.jpg"
+    },
+    {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\avatar\\234b93fb-cf19-4ae5-a74d-d4b6a5608257.jpg",
+      "PackagePath": "staticwebassets\\images\\avatar\\234b93fb-cf19-4ae5-a74d-d4b6a5608257.jpg"
     },
     {
       "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\avatar\\maleavt.jpg",
       "PackagePath": "staticwebassets\\images\\avatar\\maleavt.jpg"
     },
     {
-      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\companyLogo\\0c9e6079-6342-4b43-96d9-b9816c163d05.png",
-      "PackagePath": "staticwebassets\\images\\companyLogo\\0c9e6079-6342-4b43-96d9-b9816c163d05.png"
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\avatar\\meo.jpg",
+      "PackagePath": "staticwebassets\\images\\avatar\\meo.jpg"
+    },
+    {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\companyLogo\\695b4076-3f87-4ef5-95b2-4f088bcca183.jpg",
+      "PackagePath": "staticwebassets\\images\\companyLogo\\695b4076-3f87-4ef5-95b2-4f088bcca183.jpg"
+    },
+    {
+      "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\companyLogo\\6f4b945f-8a64-4574-8fae-e69d1f6b3245.png",
+      "PackagePath": "staticwebassets\\images\\companyLogo\\6f4b945f-8a64-4574-8fae-e69d1f6b3245.png"
     },
     {
       "Id": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\wwwroot\\images\\companyLogo\\noLogoCompany.jpg",

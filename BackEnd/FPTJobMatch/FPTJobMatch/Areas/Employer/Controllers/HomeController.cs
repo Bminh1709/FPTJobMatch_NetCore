@@ -119,6 +119,19 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                         };
 
                         _unitOfWork.Category.Add(newCategory);
+
+                        ApplicationUser? admin = await _userManager.FindByEmailAsync("minhbee203@gmail.com");
+                        // Create and save notification
+                        var notification = new Notification
+                        {
+                            Content = $"New Job Category named {newJob.Category.Name} just added by {user.Name}.",
+                            CreatedAt = DateTime.UtcNow,
+                            SenderId = user.Id,
+                            ReceiverId = admin?.Id
+                        };
+
+                        _unitOfWork.Notification.Add(notification);
+
                         _unitOfWork.Save();
 
                         newJob.Category = newCategory;

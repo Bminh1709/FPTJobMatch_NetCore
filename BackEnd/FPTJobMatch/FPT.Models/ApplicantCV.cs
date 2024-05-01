@@ -16,6 +16,7 @@ namespace FPT.Models
         public DateTime DateSubmitted { get; set; }
         public DateTime? DateResponded { get; set; }
         public string? ResponseMessage { get; set; }
+        public bool? IsExcellent { get; set; }
         [Required(ErrorMessage = "File is required")]
         public string FileCV { get; set; }
 

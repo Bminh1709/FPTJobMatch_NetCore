@@ -26,6 +26,14 @@ $('.sort-option').on('click', function () {
     $('#dropdown_sort').text(sortValue !== '' ? sortValue : 'Sorting');
 });
 
+// Sorting dropdown click event handler
+$('.excellent-option').on('click', function () {
+    var excellentValue = $(this).data('value');
+    $('#selectedExcellent').val(excellentValue);
+    var buttonText = excellentValue === true ? 'Excellent' : 'Normal';
+    $('#dropdown_excellent').text(buttonText);
+});
+
 
 
 
