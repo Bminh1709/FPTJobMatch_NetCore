@@ -49,19 +49,19 @@ namespace FPT.DataAccess.DbInitializer
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
             }
 
-            if (_userManager.FindByEmailAsync("minhbee203@gmail.com").Result == null)
+            if (_userManager.FindByEmailAsync("xxxxxxx").Result == null)
             {
                 var adminUser = new ApplicationUser
                 {
-                    UserName = "minhbee203@gmail.com",
-                    Email = "minhbee203@gmail.com",
-                    Name = "Bui Minh",
+                    UserName = "xxxxxxx",
+                    Email = "xxxxxxx",
+                    Name = "xxxxxxx",
                     CreatedAt = DateTime.UtcNow,
                     AccountStatus = SD.StatusActive,
                     EmailConfirmed = true
                 };
 
-                var result = _userManager.CreateAsync(adminUser, "Aa12345.").Result;
+                var result = _userManager.CreateAsync(adminUser, "xxxxxxx.").Result;
 
                 if (result.Succeeded)
                 {
