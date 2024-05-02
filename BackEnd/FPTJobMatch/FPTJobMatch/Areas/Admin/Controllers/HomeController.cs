@@ -136,6 +136,7 @@ namespace FPTJobMatch.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> StatusChange(string userId, string status)
         {
+            // Get that User
             var user = await _userManager.FindByIdAsync(userId);
 
             if (user == null)
@@ -143,6 +144,7 @@ namespace FPTJobMatch.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
+            // If account status is not changed, return right away
             if (user.AccountStatus == status)
             {
                 return RedirectToAction("Index");
@@ -154,17 +156,19 @@ namespace FPTJobMatch.Areas.Admin.Controllers
 
                 switch (status)
                 {
+                    // Activate Account
                     case SD.StatusActive:
                         user.AccountStatus = SD.StatusActive;
                         successMessage = "Change Status to Active Successfully";
                         break;
-
+                    // Suspend Account
                     case SD.StatusSuspending:
                         user.AccountStatus = SD.StatusSuspending;
                         successMessage = "Change Status to Suspend Successfully";
                         break;
-
+                    // Delete Account
                     case "Delete":
+                        // CTRL + Click to this function to view the code
                         await HandleUserDeletionAsync(user);
                         _unitOfWork.Save();
 
@@ -200,15 +204,20 @@ namespace FPTJobMatch.Areas.Admin.Controllers
 
         private async Task HandleUserDeletionAsync(ApplicationUser user)
         {
+            // If Deleting an Employer
             if (await _userManager.IsInRoleAsync(user, SD.Role_Employer))
             {
+                // Mark the Category which is created by the Employer null
                 await _unitOfWork.Category.NullifyCreatedByUserIdAsync(user.Id);
                 //await _unitOfWork.Company.RemoveByEmployerIdAsync(user.Id);
+
+                // Remove all Jobs which are created by the Employer
                 await _unitOfWork.Job.RemoveRangeByEmployerIdAsync(user.Id);
 
+                // Get the Employer's Company for deleting logo in the system
                 Company company = await _unitOfWork.Company.GetAsync(c => c.EmployerId  == user.Id);
 
-                // Delete the user's avatar
+                // Delete the Company's logo
                 if (!string.IsNullOrEmpty(company.Logo))
                 {
                     var logoPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", "companyLogo", company.Logo);
@@ -220,9 +229,11 @@ namespace FPTJobMatch.Areas.Admin.Controllers
             }
             else
             {
+                // If Deleting a JobSeeker
                 await _unitOfWork.JobSeekerDetail.RemoveByUserIdAsync(user.Id);
             }
 
+            // Delete all notifications
             await _unitOfWork.Notification.RemoveBySenderIdAsync(user.Id);
             await _unitOfWork.Notification.RemoveByReceiverIdAsync(user.Id);
 

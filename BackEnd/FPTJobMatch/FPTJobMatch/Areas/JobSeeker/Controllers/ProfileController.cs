@@ -60,8 +60,10 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
         {
             try
             {
+                // Get current User's Data
                 var user = await _userManager.GetUserAsync(User);
 
+                // Check if user signed in
                 if (user == null)
                 {
                     TempData["error"] = "User not found";
