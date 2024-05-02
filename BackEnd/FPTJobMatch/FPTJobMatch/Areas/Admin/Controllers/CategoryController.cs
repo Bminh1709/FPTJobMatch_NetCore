@@ -52,17 +52,22 @@ namespace FPTJobMatch.Areas.Admin.Controllers
         {
             try
             {
+                // Get the Category's Data
                 Category category = await _unitOfWork.Category.GetAsync(c => c.Id == categoryId);
 
+                // Get Admin's Data
                 var user = await _userManager.GetUserAsync(User);
 
+                // Create content for Notification
                 string notificationContent = GetNotificationContent(submitBtn, category);
 
+                // If approving the category
                 if (submitBtn == "approve")
                 {
                     category.IsApproved = true;
                     TempData["success"] = $"The category {category.Name} has been approved";
                 }
+                // if deleting the category
                 else if (submitBtn == "delete")
                 {
                     // Retrieve all jobs associated with the category
@@ -71,10 +76,12 @@ namespace FPTJobMatch.Areas.Admin.Controllers
                     // Remove all jobs associated with the category
                     _unitOfWork.Job.RemoveRange(jobsToDelete);
 
+                    // Remove the category
                     _unitOfWork.Category.Remove(category);
                     TempData["success"] = $"The category {category.Name} has been deleted";
                 }
 
+                // Create notification
                 var newNotification = new Notification
                 {
                     ReceiverId = category.CreatedByUserId,

@@ -21,6 +21,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
             _userManager = userManager;
         }
 
+        // Display all applicants
         public async Task<IActionResult> Index(int jobId, string? status, string? sortType, bool? excellent)
         {
             try {
@@ -33,15 +34,18 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                     return RedirectToAction("Index", "Jobs");
                 }
 
+                // Get all Applicants 
                 IEnumerable<ApplicantCV> applicantCVs = await _unitOfWork.ApplicantCV.GetAllJobFilteredAsync(jobId, status, sortType, excellent);
 
+                // Using custom ViewModel
                 ApplicantPageVM applicantPageVM = new()
                 {
-                    ApplicantList = applicantCVs,
-                    JobId = jobId,
-                    JobTitle = job.Title,
+                    ApplicantList = applicantCVs, // List of applicants
+                    JobId = jobId, // Job's ID
+                    JobTitle = job.Title, // Job's Title
                 };
 
+                // Pass data to View
                 return View(applicantPageVM);
             }
             catch (Exception ex)
@@ -53,9 +57,13 @@ namespace FPTJobMatch.Areas.Employer.Controllers
         [HttpPost] 
         public async Task<IActionResult> MarkExcellent(int applicantId, bool isExcellent)
         {
+            // Get CV's Data
             ApplicantCV applicantCV = await _unitOfWork.ApplicantCV.GetAsync(a => a.Id == applicantId);
+
+            // Change IsExcellent property
             applicantCV.IsExcellent = isExcellent;
 
+            // Update CV
             _unitOfWork.ApplicantCV.Update(applicantCV);
             _unitOfWork.Save();
 
@@ -93,6 +101,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
         public async Task<IActionResult> ResponseCV(int cvId, string applicantId, string responseMessage, int curJobId)
         {
             try { 
+                // Get CV's Data
                 ApplicantCV applicantCV = await _unitOfWork.ApplicantCV.GetAsync(a => a.Id == cvId && a.JobSeekerId == applicantId);
 
                 if (applicantCV == null)
@@ -101,26 +110,33 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                     return RedirectToAction("Index", "Applicant", new { jobId = curJobId });
                 }
 
+                // Check if CV has been responded
                 if (applicantCV.CVStatus == SD.StatusResponded && applicantCV.ResponseMessage == responseMessage)
                 {
                     TempData["error"] = "You have already responded to this CV";
                     return RedirectToAction("Index", "Applicant", new { jobId = curJobId });
                 }
 
+                // If CV is not responded
                 applicantCV.DateResponded = DateTime.UtcNow;
                 applicantCV.ResponseMessage = responseMessage;
                 applicantCV.CVStatus = SD.StatusResponded;
 
+                // Update CV
                 _unitOfWork.ApplicantCV.Update(applicantCV);
                 _unitOfWork.Save();
 
+
+                // Get Current User who signing in the system => Sending notification
                 var user = await _userManager.GetUserAsync(User);
 
+                // If User is not signed in => navigate to Login Page
                 if (user == null)
                 {
                     return RedirectToAction("Index", "Access", new { area = "" });
                 }
 
+                // Create notification 
                 Notification newNotification = new()
                 {
                     ReceiverId = applicantCV.JobSeekerId,
@@ -145,7 +161,10 @@ namespace FPTJobMatch.Areas.Employer.Controllers
         public async Task<IActionResult> ApplicantDetail(string applicantId)
         {
             try { 
+
+                // Get the applicant's data
                 ApplicationUser applicant = await _unitOfWork.ApplicationUser.GetAsync(u => u.Id == applicantId);
+                // Get the information of that applicant
                 JobSeekerDetail jobSeekerDetail = await _unitOfWork.JobSeekerDetail.GetAsync(u => u.JobSeekerId == applicant.Id);
 
                 if (applicant == null || jobSeekerDetail == null)
@@ -154,6 +173,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                     return NotFound();
                 }
 
+                // Custom ViewModel
                 JobSeekerProfileVM jobSeekerProfileVM = new()
                 {
                     JobSeeker = applicant,

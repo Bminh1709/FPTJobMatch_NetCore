@@ -24,22 +24,29 @@ namespace FPTJobMatch.Areas.Employer.Controllers
             _userManager = userManager;
         }
 
+        // Display jobs
         public async Task<IActionResult> Index(int? jobTypeId, int? pageIndex)
         {
             try { 
+                // Get User's ID who signing in the system
                 string? currentUserId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
                 // Is User Signed In?
                 if (string.IsNullOrEmpty(currentUserId))
                 {
+                    // If not sign in, navigating to login page
                     return RedirectToAction("Index", "Access", new { area = "" });
                 }
 
                 PaginatedList<Job> jobsTask;
 
+                // If user filters by Job Type
                 if (jobTypeId.HasValue)
                 {
                     ViewBag.JobTypeId = jobTypeId;
+                    // j.EmployerId == currentUserId => Jobs of current employer
+                    // j.JobTypeId == jobTypeId      => Filter by Job Type
+                    // pageIndex: pageIndex ?? 1     => Pagination
                     jobsTask = await _unitOfWork.Job.GetAllFilteredAsync(j => j.EmployerId == currentUserId && j.JobTypeId == jobTypeId, pageIndex: pageIndex ?? 1);
                 }
                 else
@@ -48,12 +55,13 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                 }
 
                 // Retrieve job types and categories
-                var jobTypesList = await _unitOfWork.JobType.GetAllAsync();
-                var categoriesList = await _unitOfWork.Category.GetCategoriesByStatus(true);
+                var jobTypesList = await _unitOfWork.JobType.GetAllAsync(); // Get All Job Type
+                var categoriesList = await _unitOfWork.Category.GetCategoriesByStatus(true); // Get All Categories which are approved by admin
 
                 // Wait for the completion of tasks (Async) 
                 // await Task.WhenAll(jobsTask, jobTypesTask, categoriesTask);
 
+                // Using custom View Model
                 var viewModel = new JobVM
                 {
                     JobList = jobsTask,
@@ -73,6 +81,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
             }
             catch (Exception ex)
             {
+                // Catch Exception and navigate to Error Page
                 return RedirectToAction("GenericError", "Error", new { area = "", code = 500, errorMessage = ex.Message });
             }
         }
@@ -107,7 +116,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                 {
                     var existingCategory = await _unitOfWork.Category.GetAsync(c => c.Name.ToLower() == newJob.Category.Name.ToLower());
 
-
+                    // If user wants to create a new category which is not existed before
                     if (existingCategory == null)
                     {
                         var newCategory = new Category
@@ -117,9 +126,10 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                             CreatedAt = DateTime.UtcNow,
                             CreatedByUser = user,
                         };
-
+                        // Add Category to DB
                         _unitOfWork.Category.Add(newCategory);
 
+                        // Get Admin's Data
                         ApplicationUser? admin = await _userManager.FindByEmailAsync("minhbee203@gmail.com");
                         // Create and save notification
                         var notification = new Notification
@@ -130,6 +140,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                             ReceiverId = admin?.Id
                         };
 
+                        // Add Notification to DB
                         _unitOfWork.Notification.Add(notification);
 
                         _unitOfWork.Save();
@@ -143,6 +154,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                     }
                 }
 
+                // Add Job to DB
                 _unitOfWork.Job.Add(newJob);
                 _unitOfWork.Save();
 
