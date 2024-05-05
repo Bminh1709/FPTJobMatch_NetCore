@@ -50,9 +50,9 @@ namespace FPT.DataAccess.Repository
             HelpArticle = new HelpArticleRepository(_db);
         }
 
-        public void Save()
+        public async Task Save()
         {
-            _db.SaveChanges();
+            await _db.SaveChangesAsync();
         }
     }
 }

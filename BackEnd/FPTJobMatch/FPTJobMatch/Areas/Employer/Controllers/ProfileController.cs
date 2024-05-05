@@ -84,7 +84,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                 existingCompany.Address = model.Company.Address;
 
                 _unitOfWork.Company.Update(existingCompany);
-                _unitOfWork.Save();
+                await _unitOfWork.Save();
 
                 TempData["success"] = "Company information updated successfully";
                 return RedirectToAction("Index"); 
@@ -187,7 +187,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
             company.Logo = fileName;
 
             _unitOfWork.Company.Update(company);
-            _unitOfWork.Save();
+            await _unitOfWork.Save();
 
             TempData["success"] = "Logo uploaded successfully";
             return RedirectToAction("Index");

@@ -62,7 +62,7 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
                         };
 
                         _unitOfWork.JobSeekerDetail.Add(jobSeekerDetail);
-                        _unitOfWork.Save();
+                        await _unitOfWork.Save();
 
                         // Send Email for verifying
                         var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);

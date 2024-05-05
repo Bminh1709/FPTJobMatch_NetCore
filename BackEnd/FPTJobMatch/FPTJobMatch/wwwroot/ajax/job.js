@@ -19,7 +19,7 @@ $('body').on('click', '.job_item', function () {
             success: function (rs) {
                 if (rs.data != null) {
                     console.log(rs.data)
-                    $('#company_logo').attr('src', '/images/companyLogo/' + (rs.data.logo ?? 'noLogoCompany.jpg')).attr('alt', rs.data.title);
+                    $('#company_logo').attr('src', '/images/companyLogo/' + (rs.data.company.logo ?? 'noLogoCompany.jpg')).attr('alt', rs.data.title);
                     $('#job_id').attr('value', rs.data.id);
                     $('#job_title').text(rs.data.title);
                     $('#company_name_small').text(rs.data.company != null ? rs.data.company.name + "," : '');

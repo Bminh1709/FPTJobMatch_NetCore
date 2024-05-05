@@ -65,7 +65,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
 
             // Update CV
             _unitOfWork.ApplicantCV.Update(applicantCV);
-            _unitOfWork.Save();
+            await _unitOfWork.Save();
 
             return Json(new { success = true });
         }
@@ -124,7 +124,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
 
                 // Update CV
                 _unitOfWork.ApplicantCV.Update(applicantCV);
-                _unitOfWork.Save();
+                await _unitOfWork.Save();
 
 
                 // Get Current User who signing in the system => Sending notification
@@ -146,7 +146,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                 };
 
                 _unitOfWork.Notification.Add(newNotification);
-                _unitOfWork.Save();
+                await _unitOfWork.Save();
 
                 TempData["success"] = "Successfully responded to the CV.";
                 return RedirectToAction("Index", "Applicant", new { jobId = curJobId });

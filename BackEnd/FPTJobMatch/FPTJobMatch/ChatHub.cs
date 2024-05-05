@@ -89,25 +89,18 @@ namespace FPTJobMatch
         {
             if (currentChattingUser == userId)
             {
-                currentChattingUser = null;
-                if (userQueue.Any())
-                {
-                    currentChattingUser = userQueue.Dequeue();
+                currentChattingUser = userQueue.Any() ? userQueue.Dequeue() : null;
 
+                if (currentChattingUser == null)
+                {
+                    // If there are no more users in the queue, inform the admin
+                    await Clients.User(_adminId).SendAsync("ReceiveMessage", "There are no users left.");
+                }
+                else if (currentChattingUser != userId)
+                {
+                    // If the dequeued user is not the same as userId, inform both the user and the admin
                     await Clients.User(currentChattingUser).SendAsync("ReceiveMessage", "You are now chatting with the admin.");
                     await Clients.User(_adminId).SendAsync("ReceiveMessage", "You are now chatting with a new user.");
-
-                    //if (userQueue.Any())
-                    //{
-                    //    await Clients.User(_adminId).SendAsync("ReceiveMessage", "You are now chatting with a new user.");
-                    //}
-                    //else
-                    //{
-                    //    await Clients.User(_adminId).SendAsync("ReceiveMessage", "There are no users left.");
-                    //}
-                } else
-                {
-                    await Clients.User(_adminId).SendAsync("ReceiveMessage", "There are no users left.");
                 }
             }
             else

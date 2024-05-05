@@ -1,0 +1,425 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Tests\\FPT.Tests.csproj": {}
+  },
+  "projects": {
+    "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.DataAccess\\FPT.DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.DataAccess\\FPT.DataAccess.csproj",
+        "projectName": "FPT.DataAccess",
+        "projectPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.DataAccess\\FPT.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\MINH\\.nuget\\packages\\",
+        "outputPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.DataAccess\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\MINH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Models\\FPT.Models.csproj": {
+                "projectPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Models\\FPT.Models.csproj"
+              },
+              "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Utility\\FPT.Utility.csproj": {
+                "projectPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Utility\\FPT.Utility.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.3, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[8.0.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Models\\FPT.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Models\\FPT.Models.csproj",
+        "projectName": "FPT.Models",
+        "projectPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Models\\FPT.Models.csproj",
+        "packagesPath": "C:\\Users\\MINH\\.nuget\\packages\\",
+        "outputPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Models\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\MINH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Utility\\FPT.Utility.csproj": {
+                "projectPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Utility\\FPT.Utility.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.ViewFeatures": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.Extensions.Identity.Stores": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Tests\\FPT.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Tests\\FPT.Tests.csproj",
+        "projectName": "FPT.Tests",
+        "projectPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Tests\\FPT.Tests.csproj",
+        "packagesPath": "C:\\Users\\MINH\\.nuget\\packages\\",
+        "outputPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Tests\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\MINH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.DataAccess\\FPT.DataAccess.csproj": {
+                "projectPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.DataAccess\\FPT.DataAccess.csproj"
+              },
+              "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\FPTJobMatch.csproj": {
+                "projectPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\FPTJobMatch.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "FakeItEasy": {
+              "target": "Package",
+              "version": "[8.2.0, )"
+            },
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[6.12.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.8.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.5.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Utility\\FPT.Utility.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Utility\\FPT.Utility.csproj",
+        "projectName": "FPT.Utility",
+        "projectPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Utility\\FPT.Utility.csproj",
+        "packagesPath": "C:\\Users\\MINH\\.nuget\\packages\\",
+        "outputPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Utility\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\MINH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[8.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\FPTJobMatch.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\FPTJobMatch.csproj",
+        "projectName": "FPTJobMatch",
+        "projectPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\FPTJobMatch.csproj",
+        "packagesPath": "C:\\Users\\MINH\\.nuget\\packages\\",
+        "outputPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPTJobMatch\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\MINH\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.DataAccess\\FPT.DataAccess.csproj": {
+                "projectPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.DataAccess\\FPT.DataAccess.csproj"
+              },
+              "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Models\\FPT.Models.csproj": {
+                "projectPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Models\\FPT.Models.csproj"
+              },
+              "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Utility\\FPT.Utility.csproj": {
+                "projectPath": "D:\\Greenwich Subjects\\1670 Application Development\\ASM1\\Source\\BackEnd\\FPTJobMatch\\FPT.Utility\\FPT.Utility.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Authentication.Facebook": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Google": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[8.0.4, )"
+            },
+            "Microsoft.Extensions.Caching.StackExchangeRedis": {
+              "target": "Package",
+              "version": "[8.0.4, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

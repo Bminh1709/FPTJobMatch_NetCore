@@ -19,6 +19,6 @@ namespace FPT.DataAccess.Repository.IRepository
         INotificationRepository Notification { get; }
         IHelpTypeRepository HelpType { get; }
         IHelpArticleRepository HelpArticle { get; }
-        void Save();
+        Task Save();
     }
 }

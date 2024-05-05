@@ -91,7 +91,7 @@ namespace FPTJobMatch.Areas.Admin.Controllers
                 };
 
                 _unitOfWork.Notification.Add(newNotification);
-                _unitOfWork.Save();
+                await _unitOfWork.Save();
                 return RedirectToAction("Index");
             }
             catch (Exception ex)

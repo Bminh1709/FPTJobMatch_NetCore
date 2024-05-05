@@ -53,7 +53,7 @@ namespace FPT.DataAccess.Repository
             }
 
             // Set Page Size
-            int pageSize = 5;
+            int pageSize = 6;
 
             // Use PaginatedList<T>.CreateAsync to create paginated results
             return await PaginatedList<Job>.CreateAsync(jobs, pageIndex, pageSize);

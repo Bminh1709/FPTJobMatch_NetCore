@@ -67,11 +67,11 @@
                     var nextDisabled = !Model.JobList.HasNextPage ? "text-MyDarkGrey" : "";
 
                     <div class="text-sm flex justify-center gap-5 mt-3 text-MyOrange">
-                        <a asp-area="Employer" asp-controller="Home" asp-action="Index" asp-route-jobTypeId="@ViewBag.JobTypeId" asp-route-pageIndex="@(Model.JobList.PageIndex - 1)"       class="flex items-center gap-2 @prevDisabled">
+                        <a asp-area="Employer" asp-controller="Home" asp-action="Index" asp-route-jobTypeId="@ViewBag.JobTypeId" asp-route-pageIndex="@(Model.JobList.PageIndex - 1)" class="flex items-center gap-2 @prevDisabled">
                                 <i class="fa-solid fa-angle-left"></i>
                                 <p class="hover:underline">Previous</p>
                         </a>
-                        <a asp-area="Employer" asp-controller="Home" asp-action="Index" asp-route-jobTypeId="@ViewBag.JobTypeId" asp-route-pageIndex="@(Model.JobList.PageIndex + 1)"       class="flex items-center gap-2 @nextDisabled">
+                        <a asp-area="Employer" asp-controller="Home" asp-action="Index" asp-route-jobTypeId="@ViewBag.JobTypeId" asp-route-pageIndex="@(Model.JobList.PageIndex + 1)" class="flex items-center gap-2 @nextDisabled">
                                 <p class="hover:underline">Next</p>
                                 <i class="fa-solid fa-angle-right"></i>
                         </a>

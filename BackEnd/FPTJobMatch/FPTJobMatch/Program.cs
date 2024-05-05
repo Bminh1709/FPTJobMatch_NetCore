@@ -1,46 +1,44 @@
-using FPT.DataAccess.Data;
-using FPT.DataAccess.Repository.IRepository;
-using FPT.DataAccess.Repository;
-using FPT.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using FPT.DataAccess.DbInitializer;
-using Microsoft.AspNetCore.Identity.UI.Services;
-using FPTJobMatch.Services;
 using FPTJobMatch;
+using FPTJobMatch.Installers;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
 
+// Install services defined in classes implementing IInstaller from the assembly
+builder.Services.InstallServicesInAssembly(configuration);
+
+# region Services Register
 // Add services to the container.
-builder.Services.AddControllersWithViews();
-builder.Services.AddSignalR();
+//builder.Services.AddControllersWithViews();
+//builder.Services.AddSignalR();
 
-builder.Services.AddAuthentication().AddGoogle(googleOptions =>
-{
-    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-});
+//builder.Services.AddAuthentication().AddGoogle(googleOptions =>
+//{
+//    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+//    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+//});
 
-builder.Services.AddAuthentication().AddFacebook(facebookOptions =>
-{
-    facebookOptions.AppId = configuration["Authentication:Facebook:AppId"];
-    facebookOptions.AppSecret = configuration["Authentication:Facebook:AppSecret"];
-});
+//builder.Services.AddAuthentication().AddFacebook(facebookOptions =>
+//{
+//    facebookOptions.AppId = configuration["Authentication:Facebook:AppId"];
+//    facebookOptions.AppSecret = configuration["Authentication:Facebook:AppSecret"];
+//});
 
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")
-));
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
-builder.Services.ConfigureApplicationCookie(options => {
-    options.LoginPath = $"/Access/Index";
-    options.LogoutPath = $"/Access/Logout";
-    options.AccessDeniedPath = $"/error/accessdenied";
-});
+//builder.Services.AddDbContext<ApplicationDbContext>(options =>
+//    options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")
+//));
+//builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+//builder.Services.ConfigureApplicationCookie(options => {
+//    options.LoginPath = $"/Access/Index";
+//    options.LogoutPath = $"/Access/Logout";
+//    options.AccessDeniedPath = $"/error/accessdenied";
+//});
 
-builder.Services.AddScoped<IDbInitializer, DbInitializer>();
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddSingleton<IEmailSender, EmailService>();
+//builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+//builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+//builder.Services.AddSingleton<IEmailSender, EmailService>();
+#endregion
 
 var app = builder.Build();
 
@@ -72,7 +70,6 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.MapHub<ChatHub>("/chatHub");
-
 
 app.Run();
 

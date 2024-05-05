@@ -106,7 +106,7 @@ namespace FPTJobMatch.Areas.Admin.Controllers
                 }
 
                 // If not include this line Save(), all changes will not make
-                _unitOfWork.Save();
+                await _unitOfWork.Save();
 
                 return RedirectToAction(nameof(Index));
             }
@@ -143,7 +143,7 @@ namespace FPTJobMatch.Areas.Admin.Controllers
             try
             {
                 await _unitOfWork.HelpType.RemoveById(typeId);
-                _unitOfWork.Save();
+                await _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -240,7 +240,7 @@ namespace FPTJobMatch.Areas.Admin.Controllers
                     TempData["success"] = "Article updated successfully";
                 }
 
-                _unitOfWork.Save();
+                await _unitOfWork.Save();
 
                 return RedirectToAction(nameof(Index));
             }
@@ -256,7 +256,7 @@ namespace FPTJobMatch.Areas.Admin.Controllers
             try
             {
                 await _unitOfWork.HelpArticle.RemoveById(articleId);
-                _unitOfWork.Save();
+                await _unitOfWork.Save();
                 TempData["error"] = "Article deleted successfully";
                 return RedirectToAction(nameof(Index));
             }

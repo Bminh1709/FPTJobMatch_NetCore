@@ -143,7 +143,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                         // Add Notification to DB
                         _unitOfWork.Notification.Add(notification);
 
-                        _unitOfWork.Save();
+                        await _unitOfWork.Save();
 
                         newJob.Category = newCategory;
                     }
@@ -156,7 +156,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
 
                 // Add Job to DB
                 _unitOfWork.Job.Add(newJob);
-                _unitOfWork.Save();
+                await _unitOfWork.Save();
 
                 TempData["success"] = "Job created successfully";
                 return RedirectToAction("Index");
@@ -195,7 +195,7 @@ namespace FPTJobMatch.Areas.Employer.Controllers
                 }
 
                 _unitOfWork.Job.Remove(job);
-                _unitOfWork.Save();
+                await _unitOfWork.Save();
 
                 TempData["success"] = "Job deleted successfully";
                 return RedirectToAction("Index");

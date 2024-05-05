@@ -92,7 +92,7 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
                 }
 
                 _unitOfWork.ApplicationUser.Update(user);
-                _unitOfWork.Save();
+                await _unitOfWork.Save();
 
                 TempData["success"] = "Update Info Successfully";
                 return RedirectToAction("Index");
@@ -159,7 +159,7 @@ namespace FPTJobMatch.Areas.JobSeeker.Controllers
             user.Avatar = fileName;
 
             _unitOfWork.ApplicationUser.Update(user);
-            _unitOfWork.Save();
+            await _unitOfWork.Save();
 
             TempData["success"] = "Logo uploaded successfully";
             return RedirectToAction("Index");
