@@ -158,7 +158,5 @@ function displayStoredMessages() {
 
 // Call the function to display stored messages when the page loads
 if (JSON.parse(canDisplayMessage)) {
-    debugger;
-    alert("display message")
     displayStoredMessages();
 }

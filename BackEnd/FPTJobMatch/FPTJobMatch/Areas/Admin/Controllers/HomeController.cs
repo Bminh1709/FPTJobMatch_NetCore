@@ -101,11 +101,11 @@ namespace FPTJobMatch.Areas.Admin.Controllers
 
 
                     _unitOfWork.Company.Add(newCompany);
-                    _unitOfWork.Save();
+                    await _unitOfWork.Save();
 
                     // Associate the new company with the user
                     newUser.CompanyId = newCompany.Id;
-                    _unitOfWork.Save();
+                    await _unitOfWork.Save();
 
                     await _userManager.AddToRoleAsync(newUser, SD.Role_Employer);
                 }
@@ -117,7 +117,7 @@ namespace FPTJobMatch.Areas.Admin.Controllers
                     };
 
                     _unitOfWork.JobSeekerDetail.Add(jobSeekerDetail);
-                    _unitOfWork.Save();
+                    await _unitOfWork.Save();
                     await _userManager.AddToRoleAsync(newUser, SD.Role_JobSeeker);
                 }
 
@@ -170,7 +170,7 @@ namespace FPTJobMatch.Areas.Admin.Controllers
                     case "Delete":
                         // CTRL + Click to this function to view the code
                         await HandleUserDeletionAsync(user);
-                        _unitOfWork.Save();
+                        await _unitOfWork.Save();
 
                         TempData["success"] = "User deleted successfully";
                         return RedirectToAction("Index");
@@ -190,7 +190,7 @@ namespace FPTJobMatch.Areas.Admin.Controllers
 
                 _unitOfWork.Notification.Add(notification);
 
-                _unitOfWork.Save();
+                await _unitOfWork.Save();
 
                 TempData["success"] = successMessage;
             }

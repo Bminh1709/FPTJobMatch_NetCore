@@ -86,11 +86,11 @@ namespace FPTJobMatch.Areas.Employer.Controllers
 
                     // Add Company to DB
                     _unitOfWork.Company.Add(company);
-                    _unitOfWork.Save();
+                    await _unitOfWork.Save();
 
                     // Associate the company with the user
                     user.CompanyId = company.Id;
-                    _unitOfWork.Save();
+                    await _unitOfWork.Save();
 
                     // Send Email for verifying
                     var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);

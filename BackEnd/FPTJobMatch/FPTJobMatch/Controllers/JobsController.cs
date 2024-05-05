@@ -23,6 +23,7 @@ namespace FPTJobMatch.Controllers
         public async Task<IActionResult> Index(int? cityId, int? jobtypeId, string? keyword, int? pageIndex)
         {
             try { 
+                // Get Current User's ID
                 string? userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
                 // Call GetAllFilteredAsync method to get filtered jobs
@@ -39,7 +40,10 @@ namespace FPTJobMatch.Controllers
                 ViewBag.CityId = cityId;
                 ViewBag.JobtypeId = jobtypeId;
 
+
+                // Get all Cities For drop-down List
                 var cityList = await _unitOfWork.City.GetAllAsync();
+                // Get all Job Type For drop-down List
                 var jobTypeList = await _unitOfWork.JobType.GetAllAsync();
 
                 var jobPageVM = new JobPageVM
@@ -83,8 +87,10 @@ namespace FPTJobMatch.Controllers
         [HttpPost]
         public async Task<IActionResult> SubmitCV(int jobId, IFormFile fileCV)
         {
+            // Get Current User's ID
             string? jobSeekerId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
+            
+            // Check if user signs in
             if (string.IsNullOrEmpty(jobSeekerId))
             {
                 TempData["error"] = "User not authenticated";
@@ -95,6 +101,7 @@ namespace FPTJobMatch.Controllers
                 });
             }
 
+            // Get Job's Data
             Job job = await _unitOfWork.Job.GetAsync(j => j.Id == jobId);
 
             // Convert DateTime to DateOnly for comparison
@@ -110,7 +117,7 @@ namespace FPTJobMatch.Controllers
                 });
             }
 
-
+            // Check if user submitted CV in the last 30 days
             bool isSubmitted = await _unitOfWork.ApplicantCV.IsSubmittedLast30DaysAsync(jobId, jobSeekerId);
 
             if (isSubmitted)
@@ -123,6 +130,7 @@ namespace FPTJobMatch.Controllers
                 });
             }
 
+            // Check if user does not include the CV file
             if (fileCV == null || fileCV.Length == 0)
             {
                 TempData["error"] = "No CV file uploaded";
@@ -135,32 +143,44 @@ namespace FPTJobMatch.Controllers
 
             try
             {
+                // Save file CV to system
+
+                // Create a random file name
                 var fileName = Guid.NewGuid().ToString() + Path.GetExtension(fileCV.FileName);
+                // Create a folder
                 var fileCVPath = @"filecv\";
+                // Create a full link directing to the folder above 
                 var finalPath = Path.Combine(_webHostEnvironment.WebRootPath, fileCVPath);
 
+                // Check if file is already existed
                 if (!Directory.Exists(finalPath))
                 {
                     Directory.CreateDirectory(finalPath);
                 }
 
+                // Create a full link directing to the file
                 var filePath = Path.Combine(finalPath, fileName);
 
+                // Add file to DB
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     await fileCV.CopyToAsync(stream);
                 }
 
+                // Create a new CV
                 var applicantCV = new ApplicantCV
                 {
                     DateSubmitted = DateTime.UtcNow,
                     FileCV = fileName,
                     JobSeekerId = jobSeekerId,
                     JobId = jobId,
-                    CVStatus = SD.StatusPending
+                    CVStatus = SD.StatusPending,
+                    IsExcellent = false,
                 };
+
+                // Add CV to DB
                 _unitOfWork.ApplicantCV.Add(applicantCV);
-                _unitOfWork.Save();
+                await _unitOfWork.Save();
 
                 TempData["success"] = "Application submitted successfully";
                 return Json(new

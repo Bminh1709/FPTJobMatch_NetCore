@@ -92,7 +92,7 @@ namespace FPTJobMatch.Controllers
                 };
 
                 _unitOfWork.JobSeekerDetail.Add(jobSeekerDetail);
-                _unitOfWork.Save();
+                await _unitOfWork.Save();
 
                 // Set success message
                 TempData["success"] = "Sign up successfully";

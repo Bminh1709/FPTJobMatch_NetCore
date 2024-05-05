@@ -53,9 +53,9 @@ $('#responseMessage_form').on('submit', function (e) {
 });
 
 
-$("#isExcellent_excelForm").on('change', function () {
+$(".isExcellent_excelForm").on('change', function () {
     
-    var applicantId = $("#applicantId_excelForm").val();
+    var applicantId = $(this).closest(".markExcellentForm").find(".applicantId_excelForm").val();
     var isExcellent = $(this).is(":checked");
 
     // Send AJAX request to the server
